@@ -14,7 +14,7 @@ const TikTokIcon = () => (
 
 const LetterboxdIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M8.29 16.752V7.2H6.546V16.8c0 .414.336.748.748.748h4.19v-1.344l-3.194-.047v-.004h-.002ZM2.16 7.2v9.552c0 .414.334.748.748.748h3.24V7.2H2.16Zm11.04 0v9.552c0 .414.336.748.748.748h3.24V7.2h-3.988ZM21.84 7.2h-3.238v10.348h3.238c.414 0 .748-.334.748-.748V7.2h.002Z"/>
+    <path d="M6 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0 M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0 M18 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0" />
   </svg>
 )
 
@@ -69,13 +69,21 @@ const ConstellationHero = () => {
               height: Math.random() * 3 + 1 + 'px',
               background: `rgba(${Math.random() > 0.5 ? '147, 197, 253' : '196, 181, 253'}, ${Math.random() * 0.5 + 0.2})`,
             }}
-            initial={{ 
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+            initial={{
+              x: typeof window === 'undefined'
+                ? 0
+                : Math.random() * window.innerWidth,
+              y: typeof window === 'undefined'
+                ? 0
+                : Math.random() * window.innerHeight,
             }}
             animate={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: typeof window === 'undefined'
+                ? 0
+                : Math.random() * window.innerWidth,
+              y: typeof window === 'undefined'
+                ? 0
+                : Math.random() * window.innerHeight,
             }}
             transition={{
               duration: Math.random() * 30 + 20,
