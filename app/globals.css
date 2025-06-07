@@ -1,42 +1,167 @@
 @import "tailwindcss";
 
+/* CSS Variables for the color system */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Core cosmic palette */
+  --midnight: 222 47% 11%;
+  --midnight-light: 217 33% 17%;
+  --electric: 199 89% 58%;
+  --electric-hover: 199 89% 48%;
+  --amber: 39 100% 50%;
+  --amber-hover: 39 100% 40%;
+  
+  /* Cosmic colors */
+  --cosmic-blue: 217 91% 60%;
+  --cosmic-purple: 271 91% 65%;
+  --cosmic-pink: 340 82% 59%;
+  
+  /* System colors */
+  --background: 222 47% 11%;
+  --foreground: 210 40% 96%;
+  --muted: 217 32% 20%;
+  --muted-foreground: 215 20% 65%;
+  --border: 217 32% 20%;
+  --input: 217 32% 20%;
+  --ring: 271 91% 65%;
+  
+  /* Component colors */
+  --card: 217 33% 17%;
+  --card-foreground: 210 40% 96%;
+  --popover: 217 33% 17%;
+  --popover-foreground: 210 40% 96%;
+  
+  /* Semantic colors */
+  --primary: 217 91% 60%;
+  --primary-foreground: 222 47% 11%;
+  --secondary: 271 91% 65%;
+  --secondary-foreground: 210 40% 96%;
+  --accent: 340 82% 59%;
+  --accent-foreground: 222 47% 11%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 96%;
+  
+  /* Radius */
+  --radius: 0.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Apply fonts globally */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  background-color: #0f172a;
+  color: hsl(var(--foreground));
+  min-height: 100vh;
 }
 
-/* Add this to the END of your existing globals.css file */
-
-/* Force dark theme colors */
-html, body {
-  background-color: #0c111b !important;
-  color: #e5e7eb !important;
+/* Font utilities */
+.font-sans {
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
 }
 
-/* Define all custom color classes */
-.bg-midnight { background-color: #0c111b; }
-.bg-midnight-light { background-color: #1a202c; }
-.text-midnight { color: #0c111b; }
-.text-electric { color: #38bdf8; }
-.bg-electric { background-color: #38bdf8; }
-/* ... (copy all the classes from the "Minimal CSS Fix" artifact above) */
+.font-display {
+  font-family: var(--font-space-grotesk), system-ui, -apple-system, sans-serif;
+}
+
+.font-mono {
+  font-family: var(--font-jetbrains-mono), 'Courier New', monospace;
+}
+
+/* Selection colors */
+::selection {
+  background-color: hsl(var(--electric) / 0.3);
+  color: hsl(var(--foreground));
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--midnight));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--midnight-light));
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted));
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid hsl(var(--electric));
+  outline-offset: 2px;
+}
+
+/* Ensure dark theme is applied */
+html.dark {
+  color-scheme: dark;
+}
+
+/* Utility classes for quick color access */
+.bg-midnight { background-color: hsl(var(--midnight)); }
+.bg-midnight-light { background-color: hsl(var(--midnight-light)); }
+.text-midnight { color: hsl(var(--midnight)); }
+.text-electric { color: hsl(var(--electric)); }
+.bg-electric { background-color: hsl(var(--electric)); }
+.text-amber { color: hsl(var(--amber)); }
+.bg-amber { background-color: hsl(var(--amber)); }
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(147, 51, 234, 0.1);
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(135deg, hsl(var(--electric)), hsl(var(--amber)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow effects */
+.glow-electric {
+  box-shadow: 0 0 20px hsl(var(--electric) / 0.5);
+}
+
+.glow-amber {
+  box-shadow: 0 0 20px hsl(var(--amber) / 0.5);
+}
+
+/* Animation utilities */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    opacity: 1;
+    box-shadow: 0 0 20px hsl(var(--electric) / 0.5);
+  }
+  50% { 
+    opacity: 0.8;
+    box-shadow: 0 0 40px hsl(var(--electric) / 0.8);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
