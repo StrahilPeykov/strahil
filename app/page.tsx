@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowUpRight, Menu, X, Mail, Github, Linkedin, Instagram, Twitter, Code2, Sparkles } from 'lucide-react'
+import { ArrowUpRight, Menu, X, Mail, Github, Linkedin, Instagram, Twitter, Code2, Sparkles, Briefcase, Lightbulb, BookOpen, Camera, Gamepad2, FileText } from 'lucide-react'
 
 // Custom icons
 const TikTokIcon = () => (
@@ -17,224 +17,6 @@ const LetterboxdIcon = () => (
     <path d="M6 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0 M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0 M18 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0" />
   </svg>
 )
-
-// Refined Constellation component
-const ConstellationHero = () => {
-  const shouldReduceMotion = useReducedMotion()
-  const [hoveredNode, setHoveredNode] = useState<string | null>(null)
-  
-  const nodes = [
-    { id: 'work', label: 'Work', x: 25, y: 35 },
-    { id: 'ideas', label: 'Ideas', x: 65, y: 25 },
-    { id: 'library', label: 'Library', x: 80, y: 55 },
-    { id: 'media', label: 'Media', x: 55, y: 70 },
-    { id: 'play', label: 'Play', x: 20, y: 60 },
-    { id: 'fitness', label: 'Fitness', x: 45, y: 45 },
-  ]
-
-  const connections = [
-    ['work', 'ideas'],
-    ['ideas', 'library'],
-    ['library', 'media'],
-    ['media', 'play'],
-    ['play', 'work'],
-    ['fitness', 'ideas'],
-    ['fitness', 'media'],
-  ]
-
-  return (
-    <div className="absolute inset-0 overflow-hidden">
-      {/* Cosmic gradient background */}
-      <div className="absolute inset-0">
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: `
-              radial-gradient(circle at 30% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
-              radial-gradient(circle at 70% 40%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-              radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%)
-            `
-          }}
-        />
-      </div>
-      
-      {/* Subtle floating particles */}
-      <div className="absolute inset-0">
-        {[...Array(30)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              width: Math.random() * 3 + 1 + 'px',
-              height: Math.random() * 3 + 1 + 'px',
-              background: `rgba(${Math.random() > 0.5 ? '147, 197, 253' : '196, 181, 253'}, ${Math.random() * 0.5 + 0.2})`,
-            }}
-            initial={{
-              x: typeof window === 'undefined'
-                ? 0
-                : Math.random() * window.innerWidth,
-              y: typeof window === 'undefined'
-                ? 0
-                : Math.random() * window.innerHeight,
-            }}
-            animate={{
-              x: typeof window === 'undefined'
-                ? 0
-                : Math.random() * window.innerWidth,
-              y: typeof window === 'undefined'
-                ? 0
-                : Math.random() * window.innerHeight,
-            }}
-            transition={{
-              duration: Math.random() * 30 + 20,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "linear"
-            }}
-          />
-        ))}
-      </div>
-      
-      {/* SVG Constellation */}
-      <svg 
-        className="absolute inset-0 w-full h-full opacity-70"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="xMidYMid slice"
-      >
-        {/* Gradient definitions */}
-        <defs>
-          <linearGradient id="cosmicGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.6" />
-            <stop offset="50%" stopColor="#c084fc" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#f472b6" stopOpacity="0.3" />
-          </linearGradient>
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-            <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-        </defs>
-        
-        {/* Connection lines */}
-        <g className="opacity-30">
-          {connections.map(([from, to], i) => {
-            const fromNode = nodes.find(n => n.id === from)
-            const toNode = nodes.find(n => n.id === to)
-            if (!fromNode || !toNode) return null
-            
-            const isActive = hoveredNode === from || hoveredNode === to
-            
-            return (
-              <motion.line
-                key={i}
-                x1={`${fromNode.x}%`}
-                y1={`${fromNode.y}%`}
-                x2={`${toNode.x}%`}
-                y2={`${toNode.y}%`}
-                stroke={isActive ? "#60a5fa" : "url(#cosmicGradient)"}
-                strokeWidth={isActive ? 1.5 : 0.5}
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ 
-                  pathLength: 1, 
-                  opacity: isActive ? 0.8 : 0.3,
-                }}
-                transition={{ 
-                  duration: shouldReduceMotion ? 0 : 2,
-                  delay: shouldReduceMotion ? 0 : i * 0.1 
-                }}
-                filter={isActive ? "url(#glow)" : ""}
-              />
-            )
-          })}
-        </g>
-        
-        {/* Nodes */}
-        {nodes.map((node, i) => {
-          const isHovered = hoveredNode === node.id
-          
-          return (
-            <motion.g
-              key={node.id}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ 
-                duration: shouldReduceMotion ? 0 : 0.5,
-                delay: shouldReduceMotion ? 0 : 0.5 + i * 0.08,
-              }}
-              onHoverStart={() => setHoveredNode(node.id)}
-              onHoverEnd={() => setHoveredNode(null)}
-              className="cursor-pointer"
-            >
-              <Link href={`/${node.id}`}>
-                {/* Subtle glow for hovered node */}
-                {isHovered && (
-                  <motion.circle
-                    cx={`${node.x}%`}
-                    cy={`${node.y}%`}
-                    r="8"
-                    fill="none"
-                    stroke="#60a5fa"
-                    strokeWidth="0.5"
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1.5, opacity: 0.3 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                )}
-                
-                {/* Small node dot */}
-                <motion.circle
-                  cx={`${node.x}%`}
-                  cy={`${node.y}%`}
-                  r={isHovered ? "4" : "3"}
-                  fill="#1e293b"
-                  stroke={isHovered ? "#60a5fa" : "#94a3b8"}
-                  strokeWidth="1"
-                  animate={{
-                    scale: isHovered ? 1.2 : 1,
-                  }}
-                  transition={{ duration: 0.2 }}
-                  filter="url(#glow)"
-                />
-                
-                {/* Inner dot */}
-                <motion.circle
-                  cx={`${node.x}%`}
-                  cy={`${node.y}%`}
-                  r="1.5"
-                  fill={isHovered ? "#60a5fa" : "#c084fc"}
-                  animate={{
-                    scale: shouldReduceMotion ? 1 : [1, 1.3, 1],
-                    opacity: [0.8, 0.4, 0.8]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: i * 0.2
-                  }}
-                />
-                
-                {/* Label */}
-                <text
-                  x={`${node.x}%`}
-                  y={`${node.y + 2.5}%`}
-                  textAnchor="middle"
-                  className={`fill-current text-[0.5rem] font-medium select-none transition-all ${
-                    isHovered ? 'text-blue-400 opacity-100' : 'text-gray-500 opacity-60'
-                  }`}
-                  style={{ fontSize: '0.5rem', letterSpacing: '0.05em' }}
-                >
-                  {node.label.toUpperCase()}
-                </text>
-              </Link>
-            </motion.g>
-          )
-        })}
-      </svg>
-    </div>
-  )
-}
 
 // Enhanced Navigation
 const Navigation = () => {
@@ -272,7 +54,7 @@ const Navigation = () => {
         <div className="container max-w-7xl mx-auto px-6">
           <div className={`rounded-full transition-all duration-300 ${
             isScrolled 
-              ? 'backdrop-blur-md bg-slate-900/70 border border-purple-500/20 px-4 py-2' 
+              ? 'backdrop-blur-xl bg-slate-900/80 border border-purple-500/20 px-4 py-2 shadow-lg shadow-purple-500/5' 
               : 'px-2'
           }`}>
             <div className="flex items-center justify-between">
@@ -347,6 +129,7 @@ const Navigation = () => {
 export default function Home() {
   const shouldReduceMotion = useReducedMotion()
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [activeSection, setActiveSection] = useState<string | null>(null)
   
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -360,84 +143,402 @@ export default function Home() {
   const scrollToExplore = () => {
     window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })
   }
+
+  const sections = [
+    { 
+      id: 'work', 
+      label: 'Work', 
+      icon: Briefcase,
+      color: '#60a5fa', 
+      description: 'Portfolio & Case Studies',
+      gradient: 'from-blue-500/10 to-blue-600/10'
+    },
+    { 
+      id: 'ideas', 
+      label: 'Ideas', 
+      icon: Lightbulb,
+      color: '#c084fc', 
+      description: 'Thoughts & Writing',
+      gradient: 'from-purple-500/10 to-purple-600/10'
+    },
+    { 
+      id: 'library', 
+      label: 'Library', 
+      icon: BookOpen,
+      color: '#f472b6', 
+      description: 'Knowledge Base',
+      gradient: 'from-pink-500/10 to-pink-600/10'
+    },
+    { 
+      id: 'media', 
+      label: 'Media', 
+      icon: Camera,
+      color: '#60a5fa', 
+      description: 'Visual Content',
+      gradient: 'from-blue-500/10 to-cyan-500/10'
+    },
+    { 
+      id: 'play', 
+      label: 'Play', 
+      icon: Gamepad2,
+      color: '#c084fc', 
+      description: 'Experiments & Fun',
+      gradient: 'from-purple-500/10 to-pink-500/10'
+    },
+    { 
+      id: 'cv', 
+      label: 'CV', 
+      icon: FileText,
+      color: '#60a5fa', 
+      description: 'Resume & Experience',
+      gradient: 'from-blue-500/10 to-purple-500/10'
+    },
+  ]
   
   return (
     <main className="min-h-screen bg-slate-950 text-gray-300 overflow-x-hidden">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
-        {/* Cosmic background gradient */}
-        <div className="absolute inset-0">
+      <section className="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden">
+        {/* Dynamic background with large typography */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Large background text elements */}
+          <div className="absolute inset-0">
+            <motion.h2 
+              className="absolute top-[10%] left-[-5%] text-[20vw] font-display font-bold text-slate-800/20 select-none"
+              animate={{ 
+                x: [0, -20, 0],
+                opacity: [0.2, 0.15, 0.2]
+              }}
+              transition={{ 
+                duration: 20,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              WORK
+            </motion.h2>
+            <motion.h2 
+              className="absolute top-[30%] right-[-8%] text-[18vw] font-display font-bold text-slate-800/15 select-none"
+              animate={{ 
+                x: [0, 20, 0],
+                opacity: [0.15, 0.1, 0.15]
+              }}
+              transition={{ 
+                duration: 25,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              IDEAS
+            </motion.h2>
+            <motion.h2 
+              className="absolute bottom-[20%] left-[10%] text-[15vw] font-display font-bold text-slate-800/10 select-none"
+              animate={{ 
+                y: [0, -15, 0],
+                opacity: [0.1, 0.05, 0.1]
+              }}
+              transition={{ 
+                duration: 22,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              PLAY
+            </motion.h2>
+            <motion.h2 
+              className="absolute bottom-[35%] right-[5%] text-[22vw] font-display font-bold text-slate-800/20 select-none"
+              animate={{ 
+                x: [0, -15, 0],
+                y: [0, 10, 0],
+                opacity: [0.2, 0.15, 0.2]
+              }}
+              transition={{ 
+                duration: 30,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              LIBRARY
+            </motion.h2>
+            <motion.h2 
+              className="absolute top-[50%] left-[40%] text-[16vw] font-display font-bold text-slate-800/10 select-none"
+              animate={{ 
+                scale: [1, 1.05, 1],
+                opacity: [0.1, 0.05, 0.1]
+              }}
+              transition={{ 
+                duration: 18,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              MEDIA
+            </motion.h2>
+            <motion.h2 
+              className="absolute top-[70%] left-[-10%] text-[12vw] font-display font-bold text-slate-800/15 select-none"
+              animate={{ 
+                x: [0, 30, 0],
+                opacity: [0.15, 0.1, 0.15]
+              }}
+              transition={{ 
+                duration: 15,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              CV
+            </motion.h2>
+          </div>
+          
+          {/* Cosmic gradient overlay */}
           <div 
             className="absolute inset-0"
             style={{
               background: `
-                radial-gradient(ellipse at top, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at bottom, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at center, rgba(30, 41, 59, 0.5) 0%, transparent 100%)
+                radial-gradient(ellipse at 20% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 100%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(244, 114, 182, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at center, rgba(15, 23, 42, 0.9) 0%, transparent 100%)
               `
             }}
           />
         </div>
         
-        {/* Mouse follow gradient */}
+        {/* Floating particles */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full"
+              style={{
+                width: Math.random() * 4 + 1 + 'px',
+                height: Math.random() * 4 + 1 + 'px',
+                background: `rgba(${Math.random() > 0.5 ? '96, 165, 250' : '192, 132, 252'}, ${Math.random() * 0.6 + 0.2})`,
+                filter: 'blur(0.5px)',
+                boxShadow: `0 0 ${Math.random() * 10 + 5}px rgba(${Math.random() > 0.5 ? '96, 165, 250' : '192, 132, 252'}, 0.3)`
+              }}
+              initial={{
+                x: typeof window !== 'undefined' ? Math.random() * window.innerWidth : 0,
+                y: typeof window !== 'undefined' ? Math.random() * window.innerHeight : 0,
+              }}
+              animate={{
+                x: typeof window !== 'undefined' ? Math.random() * window.innerWidth : 0,
+                y: typeof window !== 'undefined' ? Math.random() * window.innerHeight : 0,
+              }}
+              transition={{
+                duration: Math.random() * 30 + 20,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "linear"
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* Mouse follow gradient - subtle */}
         <div
-          className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
+          className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300 opacity-40"
           style={{
-            background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(147, 197, 253, 0.04), transparent 40%)`
+            background: `radial-gradient(800px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(147, 197, 253, 0.05), transparent 40%)`
           }}
         />
-        
-        <ConstellationHero />
+
+        {/* Removed the floating orbs section that was here */}
         
         {/* Content */}
-        <div className="relative z-10 text-center max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.8 }}
-            className="mb-8"
-          >
-            <h1 className="text-6xl lg:text-8xl font-display font-bold text-white mb-2">
-              Strahil
-              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"> Peykov</span>
-            </h1>
-          </motion.div>
+        <div className="relative z-10 max-w-6xl mx-auto w-full">
+          {/* Subtle connection lines */}
+          <svg className="absolute inset-x-0 top-0 w-full h-32 pointer-events-none opacity-10" viewBox="0 0 800 200" preserveAspectRatio="xMidYMid slice">
+            <motion.path
+              d="M 50,150 Q 400,50 750,150"
+              fill="none"
+              stroke="url(#gradient)"
+              strokeWidth="2"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ duration: 2, ease: "easeInOut" }}
+            />
+            <defs>
+              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.3" />
+                <stop offset="50%" stopColor="#c084fc" stopOpacity="0.5" />
+                <stop offset="100%" stopColor="#f472b6" stopOpacity="0.3" />
+              </linearGradient>
+            </defs>
+          </svg>
           
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: 0.2 }}
-            className="text-xl lg:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto"
-          >
-            Full-Stack Developer crafting digital experiences at the intersection of 
-            <span className="text-blue-400"> code</span> and 
-            <span className="text-purple-400"> creativity</span>
-          </motion.p>
-          
+          <div className="text-center mb-16 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.8 }}
+              className="mb-8"
+            >
+              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-display font-bold text-white mb-2 relative">
+                <motion.span
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  Strahil
+                </motion.span>
+                <motion.span 
+                  className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent inline-block"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                  {' '}Peykov
+                </motion.span>
+              </h1>
+            </motion.div>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: 0.2 }}
+              className="text-xl lg:text-2xl text-gray-400 mb-4 max-w-3xl mx-auto leading-relaxed"
+            >
+              Full-Stack Developer crafting digital experiences at the intersection of 
+              <motion.span 
+                className="text-blue-400 font-medium"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+              > code</motion.span> and 
+              <motion.span 
+                className="text-purple-400 font-medium"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 }}
+              > creativity</motion.span>
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: 0.3 }}
+              className="text-gray-500 text-sm"
+            >
+              Navigate my digital universe below
+            </motion.p>
+          </div>
+
+          {/* Minimal Navigation Grid */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: 0.4 }}
+            className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-16"
+          >
+            {sections.map((section, i) => {
+              const Icon = section.icon
+              return (
+                <motion.div
+                  key={section.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: shouldReduceMotion ? 0 : 0.5 + i * 0.05 }}
+                >
+                  <Link
+                    href={`/${section.id}`}
+                    onMouseEnter={() => setActiveSection(section.id)}
+                    onMouseLeave={() => setActiveSection(null)}
+                    className="group relative block h-full"
+                  >
+                    {/* Background glow on hover */}
+                    <div 
+                      className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${section.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                    />
+                    
+                    {/* Card */}
+                    <div className="relative bg-slate-900/40 backdrop-blur-md border border-slate-800/50 rounded-2xl p-6 md:p-8 h-full transition-all duration-300 group-hover:border-slate-700/70 group-hover:bg-slate-900/60 group-hover:shadow-2xl">
+                      {/* Subtle inner glow */}
+                      <div 
+                        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        style={{
+                          background: `radial-gradient(circle at 30% 30%, ${section.color}15 0%, transparent 50%)`
+                        }}
+                      />
+                      
+                      {/* Number indicator */}
+                      <div className="absolute bottom-6 right-6 text-6xl font-display font-bold text-slate-800/5 select-none group-hover:text-slate-800/10 transition-all">
+                        {String(i + 1).padStart(2, '0')}
+                      </div>
+                      
+                      {/* Icon */}
+                      <div className="relative mb-4">
+                        <div 
+                          className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+                          style={{ 
+                            backgroundColor: `${section.color}15`,
+                            borderColor: `${section.color}30`,
+                            borderWidth: '1px',
+                            borderStyle: 'solid'
+                          }}
+                        >
+                          <Icon 
+                            size={20} 
+                            style={{ color: section.color }}
+                            className="transition-all duration-300 group-hover:scale-110"
+                          />
+                        </div>
+                      </div>
+                      
+                      {/* Content */}
+                      <h3 className="relative text-lg md:text-xl font-semibold text-white mb-2 transition-colors duration-300">
+                        {section.label}
+                      </h3>
+                      <p className="relative text-sm text-gray-500 group-hover:text-gray-400 transition-colors">
+                        {section.description}
+                      </p>
+                      
+                      {/* Arrow indicator */}
+                      <div className="absolute top-6 right-6 text-gray-700 group-hover:text-gray-500 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                        <ArrowUpRight size={18} />
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              )
+            })}
+          </motion.div>
+          
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: 0.8 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <button
-              onClick={scrollToExplore}
-              className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-full transition-all hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
+            <Link 
+              href="mailto:strahil.peykov@gmail.com"
+              className="group relative overflow-hidden px-8 py-4 text-white font-semibold rounded-full transition-all hover:scale-105"
             >
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 transition-all group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute inset-0 bg-white/10 blur-xl" />
+              </div>
               <span className="relative z-10 flex items-center gap-2">
-                Explore the Constellation 
+                <Mail className="w-5 h-5" />
+                Get in touch
                 <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
               </span>
-            </button>
-            
-            <Link
-              href="/cv"
-              className="px-8 py-4 border-2 border-purple-500/30 text-purple-400 font-semibold rounded-full transition-all hover:bg-purple-500/10 hover:border-purple-500/50 hover:scale-105"
-            >
-              View Resume
             </Link>
+            
+            <button
+              onClick={scrollToExplore}
+              className="group relative overflow-hidden px-8 py-4 font-semibold rounded-full transition-all hover:scale-105"
+            >
+              <div className="absolute inset-0 border-2 border-purple-500/30 rounded-full transition-all group-hover:border-purple-500/50" />
+              <div className="absolute inset-0 bg-purple-500/0 group-hover:bg-purple-500/10 rounded-full transition-all" />
+              <span className="relative text-purple-400 group-hover:text-purple-300 transition-colors">
+                Learn more
+              </span>
+            </button>
           </motion.div>
         </div>
         
@@ -448,20 +549,21 @@ export default function Home() {
           transition={{ delay: 1.5 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
-          <div className="relative">
-            <div className="w-6 h-10 border-2 border-purple-400/50 rounded-full p-1">
-              <motion.div
-                animate={{ y: [0, 16, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="w-1.5 h-1.5 bg-gradient-to-b from-blue-400 to-purple-400 rounded-full mx-auto"
-              />
+          <button
+            onClick={scrollToExplore}
+            className="flex flex-col items-center gap-2 group cursor-pointer"
+          >
+            <div className="relative">
+              <div className="w-6 h-10 border-2 border-purple-400/30 rounded-full p-1 group-hover:border-purple-400/50 transition-colors">
+                <motion.div
+                  animate={{ y: [0, 16, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                  className="w-1.5 h-1.5 bg-gradient-to-b from-blue-400 to-purple-400 rounded-full mx-auto"
+                />
+              </div>
             </div>
-            <motion.div
-              animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="absolute inset-0 w-6 h-10 border-2 border-purple-400/30 rounded-full"
-            />
-          </div>
+            <p className="text-xs text-gray-500 uppercase tracking-wider group-hover:text-purple-400 transition-colors">Scroll</p>
+          </button>
         </motion.div>
       </section>
    
