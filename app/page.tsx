@@ -200,7 +200,7 @@ export default function Home() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center px-6 py-12 overflow-hidden">
         {/* Dynamic background with large typography */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Large background text elements */}
@@ -345,8 +345,6 @@ export default function Home() {
           }}
         />
 
-        {/* Removed the floating orbs section that was here */}
-        
         {/* Content */}
         <div className="relative z-10 max-w-6xl mx-auto w-full">
           {/* Subtle connection lines */}
@@ -369,12 +367,12 @@ export default function Home() {
             </defs>
           </svg>
           
-          <div className="text-center mb-16 relative z-10">
+          <div className="text-center mb-6 relative z-10">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: shouldReduceMotion ? 0 : 0.8 }}
-              className="mb-8"
+              className="mb-6"
             >
               <h1 className="text-6xl sm:text-7xl lg:text-8xl font-display font-bold text-white mb-2 relative">
                 <motion.span
@@ -399,7 +397,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: 0.2 }}
-              className="text-xl lg:text-2xl text-gray-400 mb-4 max-w-3xl mx-auto leading-relaxed"
+              className="text-lg lg:text-2xl text-gray-400 mb-1 max-w-3xl mx-auto leading-relaxed"
             >
               Full-Stack Developer crafting digital experiences at the intersection of 
               <motion.span 
@@ -431,7 +429,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: 0.4 }}
-            className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-16"
+            className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3 mb-6"
           >
             {sections.map((section, i) => {
               const Icon = section.icon
@@ -454,7 +452,7 @@ export default function Home() {
                     />
                     
                     {/* Card */}
-                    <div className="relative bg-slate-900/40 backdrop-blur-md border border-slate-800/50 rounded-2xl p-6 md:p-8 h-full transition-all duration-300 group-hover:border-slate-700/70 group-hover:bg-slate-900/60 group-hover:shadow-2xl">
+                    <div className="relative bg-slate-900/40 backdrop-blur-md border border-slate-800/50 rounded-xl p-2 md:p-3 h-full transition-all duration-300 group-hover:border-slate-700/70 group-hover:bg-slate-900/60 group-hover:shadow-2xl">
                       {/* Subtle inner glow */}
                       <div 
                         className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -464,14 +462,14 @@ export default function Home() {
                       />
                       
                       {/* Number indicator */}
-                      <div className="absolute bottom-6 right-6 text-6xl font-display font-bold text-slate-800/5 select-none group-hover:text-slate-800/10 transition-all">
+                      <div className="absolute bottom-2 right-2 text-3xl font-display font-bold text-slate-800/5 select-none group-hover:text-slate-800/10 transition-all">
                         {String(i + 1).padStart(2, '0')}
                       </div>
                       
                       {/* Icon */}
-                      <div className="relative mb-4">
+                      <div className="relative mb-2">
                         <div 
-                          className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+                          className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
                           style={{ 
                             backgroundColor: `${section.color}15`,
                             borderColor: `${section.color}30`,
@@ -480,7 +478,7 @@ export default function Home() {
                           }}
                         >
                           <Icon 
-                            size={20} 
+                            size={16} 
                             style={{ color: section.color }}
                             className="transition-all duration-300 group-hover:scale-110"
                           />
@@ -488,16 +486,16 @@ export default function Home() {
                       </div>
                       
                       {/* Content */}
-                      <h3 className="relative text-lg md:text-xl font-semibold text-white mb-2 transition-colors duration-300">
+                      <h3 className="relative text-sm md:text-base font-semibold text-white mb-1 transition-colors duration-300">
                         {section.label}
                       </h3>
-                      <p className="relative text-sm text-gray-500 group-hover:text-gray-400 transition-colors">
+                      <p className="relative text-xs text-gray-500 group-hover:text-gray-400 transition-colors">
                         {section.description}
                       </p>
                       
                       {/* Arrow indicator */}
-                      <div className="absolute top-6 right-6 text-gray-700 group-hover:text-gray-500 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                        <ArrowUpRight size={18} />
+                      <div className="absolute top-2 right-2 text-gray-700 group-hover:text-gray-500 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                        <ArrowUpRight size={16} />
                       </div>
                     </div>
                   </Link>
@@ -515,7 +513,7 @@ export default function Home() {
           >
             <Link 
               href="mailto:strahil.peykov@gmail.com"
-              className="group relative overflow-hidden px-8 py-4 text-white font-semibold rounded-full transition-all hover:scale-105"
+              className="group relative overflow-hidden px-6 py-3 text-white font-semibold rounded-full transition-all hover:scale-105"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 transition-all group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -531,7 +529,7 @@ export default function Home() {
             
             <button
               onClick={scrollToExplore}
-              className="group relative overflow-hidden px-8 py-4 font-semibold rounded-full transition-all hover:scale-105"
+              className="group relative overflow-hidden px-6 py-3 font-semibold rounded-full transition-all hover:scale-105"
             >
               <div className="absolute inset-0 border-2 border-purple-500/30 rounded-full transition-all group-hover:border-purple-500/50" />
               <div className="absolute inset-0 bg-purple-500/0 group-hover:bg-purple-500/10 rounded-full transition-all" />
@@ -547,7 +545,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          className="absolute bottom-6 left-1/2 -translate-x-1/2"
         >
           <button
             onClick={scrollToExplore}
