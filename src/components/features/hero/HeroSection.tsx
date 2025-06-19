@@ -13,7 +13,7 @@ export function HeroSection() {
   const { scrollToExplore } = useScrollToSection()
 
   return (
-    <section className="relative h-screen flex items-center justify-center px-6 py-12 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-6 py-12 overflow-hidden">
       <HeroBackground />
 
       {/* Content */}
@@ -102,7 +102,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20 sm:mb-16"
         >
           <Link
             href="mailto:strahil.peykov@gmail.com"

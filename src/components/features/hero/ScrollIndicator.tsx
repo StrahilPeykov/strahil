@@ -12,7 +12,7 @@ export function ScrollIndicator({ onScroll }: ScrollIndicatorProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 1.5 }}
-      className="absolute bottom-6 left-1/2 -translate-x-1/2"
+      className="absolute bottom-6 left-1/2 -translate-x-1/2 z-50 hidden sm:flex"
     >
       <button
         onClick={onScroll}
