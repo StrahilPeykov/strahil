@@ -15,7 +15,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 'ai-analytics',
-    title: 'AI-Powered Analytics Platform',
+    title: 'Analytics Platform',
     description: 'Real-time data visualization with ML insights for enterprise clients',
     technologies: ['React', 'Python', 'TensorFlow', 'AWS'],
     gradient: 'from-blue-500/10 to-purple-500/10',
