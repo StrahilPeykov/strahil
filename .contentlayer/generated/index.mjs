@@ -4,9 +4,9 @@ export { isType } from 'contentlayer/client'
 
 // NOTE During development Contentlayer imports from `.mjs` files to improve HMR speeds.
 // During (production) builds Contentlayer it imports from `.json` files to improve build performance.
-import allCaseStudies from './CaseStudy/_index.json' assert { type: 'json' }
-import allNotes from './Note/_index.json' assert { type: 'json' }
-import allLibraryNotes from './LibraryNote/_index.json' assert { type: 'json' }
+import { allCaseStudies } from './CaseStudy/_index.mjs'
+import { allNotes } from './Note/_index.mjs'
+import { allLibraryNotes } from './LibraryNote/_index.mjs'
 
 export { allCaseStudies, allNotes, allLibraryNotes }
 
