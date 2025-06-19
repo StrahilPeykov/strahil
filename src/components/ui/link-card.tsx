@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import { Card } from './card'
+import { Card } from './Card'
 
 interface LinkCardProps {
   href: string

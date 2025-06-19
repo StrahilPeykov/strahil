@@ -1,5 +1,5 @@
-export { Card } from './card'
-export { Section } from './section'
+export { Card } from './Card'
+export { Section } from './Section'
 export { AnimatedText } from './animated-text'
 export { Tag } from './tag'
 export { LinkCard } from './link-card'
