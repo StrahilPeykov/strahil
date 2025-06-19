@@ -14,7 +14,12 @@ var CaseStudy = defineDocumentType(() => ({
     image: { type: "string", required: false },
     client: { type: "string", required: false },
     role: { type: "string", required: false },
-    duration: { type: "string", required: false }
+    duration: { type: "string", required: false },
+    // New SEO fields
+    seoTitle: { type: "string", required: false },
+    seoDescription: { type: "string", required: false },
+    canonicalUrl: { type: "string", required: false },
+    author: { type: "string", default: "Strahil Peykov" }
   },
   computedFields: {
     url: {
@@ -95,4 +100,4 @@ export {
   Note,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-OUOSVDE6.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-NE62LN5I.mjs.map

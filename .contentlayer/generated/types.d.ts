@@ -22,6 +22,10 @@ export type CaseStudy = {
   client?: string | undefined
   role?: string | undefined
   duration?: string | undefined
+  seoTitle?: string | undefined
+  seoDescription?: string | undefined
+  canonicalUrl?: string | undefined
+  author: string
   /** MDX file body */
   body: MDX
   url: string
