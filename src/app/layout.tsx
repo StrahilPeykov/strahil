@@ -217,7 +217,15 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/icons/favicon.svg',
+    icon: [
+      { url: '/icons/favicon.svg', type: 'image/svg+xml' },
+      { url: '/icons/favicon.ico' }, // fallback for older browsers
+      { url: '/icons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/icons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/icons/apple-touch-icon.png' },
+    ],
     shortcut: '/icons/favicon.svg',
   },
   manifest: '/icons/site.webmanifest',
