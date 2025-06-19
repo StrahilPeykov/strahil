@@ -225,7 +225,7 @@ export const metadata: Metadata = {
     apple: [
       { url: '/apple-touch-icon.png' },
     ],
-    shortcut: '/favicon.ico',
+    shortcut: '/favicon.svg',
   },
   manifest: '/site.webmanifest',
   category: 'Technology',
