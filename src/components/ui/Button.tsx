@@ -1,8 +1,9 @@
 import { cn } from '../../lib/utils'
-import { motion } from 'framer-motion'
+import { motion, HTMLMotionProps } from 'framer-motion'
 import { LucideIcon } from 'lucide-react'
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends Omit<HTMLMotionProps<"button">, "onDrag" | "onDragStart" | "onDragEnd" | "children"> {
+  children: React.ReactNode
   variant?: 'primary' | 'secondary' | 'ghost' | 'gradient'
   size?: 'sm' | 'md' | 'lg'
   icon?: LucideIcon
