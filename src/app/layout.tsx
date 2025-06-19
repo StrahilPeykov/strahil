@@ -218,17 +218,17 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico' }, // fallback for older browsers
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icons/favicon.svg', type: 'image/svg+xml' },
+      { url: '/icons/favicon.ico' }, // fallback for older browsers
+      { url: '/icons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/icons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
     ],
     apple: [
-      { url: '/apple-touch-icon.png' },
+      { url: '/icons/apple-touch-icon.png' },
     ],
-    shortcut: '/favicon.svg',
+    shortcut: '/icons/favicon.svg',
   },
-  manifest: '/site.webmanifest',
+  manifest: '/icons/site.webmanifest',
   category: 'Technology',
   classification: 'Software Development Portfolio',
   // Note: Google verification handled via DNS TXT record, not meta tag
