@@ -230,11 +230,9 @@ export const metadata: Metadata = {
   manifest: '/site.webmanifest',
   category: 'Technology',
   classification: 'Software Development Portfolio',
-  other: {
-    'google-site-verification': 'YOUR_GOOGLE_VERIFICATION_CODE_HERE', // Replace with actual verification code
-    'msvalidate.01': 'YOUR_BING_VERIFICATION_CODE_HERE', // Replace with Bing verification if needed
-    'yandex-verification': 'YOUR_YANDEX_VERIFICATION_CODE_HERE', // Replace with Yandex verification if needed
-  },
+  // Note: Google verification handled via DNS TXT record, not meta tag
+  // Add other search engine verifications here if needed
+  other: {},
 }
 
 export const viewport: Viewport = {
