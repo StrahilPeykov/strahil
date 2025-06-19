@@ -1,0 +1,28 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background glow gradient -->
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#c084fc" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    
+    <!-- Text gradient -->
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+    
+    <!-- Dark background -->
+    <rect id="bg" width="32" height="32" rx="6" fill="#0f172a"/>
+  </defs>
+  
+  <!-- Background -->
+  <use href="#bg"/>
+  
+  <!-- Glow effect -->
+  <circle cx="16" cy="16" r="12" fill="url(#bgGlow)"/>
+  
+  <!-- SP Text -->
+  <text x="16" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="url(#textGrad)">SP</text>
+</svg>
