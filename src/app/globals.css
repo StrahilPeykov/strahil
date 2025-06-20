@@ -158,6 +158,15 @@ html.dark {
   }
 }
 
+@keyframes slide {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    transform: translateX(50px) translateY(-50px);
+  }
+}
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }

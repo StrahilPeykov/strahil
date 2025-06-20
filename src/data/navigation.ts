@@ -1,4 +1,4 @@
-import { Briefcase, Lightbulb, BookOpen, Camera, Gamepad2, FileText } from 'lucide-react'
+import { Briefcase, Lightbulb, BookOpen, Camera, Gamepad2, FileText, GraduationCap, Wrench } from 'lucide-react'
 import type { NavigationItem } from '../types/navigation'
 
 export const navigationSections: NavigationItem[] = [
@@ -21,13 +21,40 @@ export const navigationSections: NavigationItem[] = [
     gradient: 'from-purple-500/10 to-purple-600/10'
   },
   {
+    id: 'courses',
+    href: '/courses',
+    label: 'Courses',
+    icon: GraduationCap,
+    description: 'Learn & Grow',
+    color: '#f472b6',
+    gradient: 'from-pink-500/10 to-pink-600/10'
+  },
+  {
+    id: 'tools',
+    href: '/tools',
+    label: 'Tools',
+    icon: Wrench,
+    description: 'Developer Tools',
+    color: '#60a5fa',
+    gradient: 'from-blue-500/10 to-cyan-500/10'
+  },
+  {
     id: 'library',
     href: '/library',
     label: 'Library',
     icon: BookOpen,
-    description: 'Knowledge Base',
+    description: 'Resources & Guides',
+    color: '#c084fc',
+    gradient: 'from-purple-500/10 to-pink-500/10'
+  },
+  {
+    id: 'play',
+    href: '/play',
+    label: 'Play',
+    icon: Gamepad2,
+    description: 'Experiments & Fun',
     color: '#f472b6',
-    gradient: 'from-pink-500/10 to-pink-600/10'
+    gradient: 'from-pink-500/10 to-orange-500/10'
   },
   {
     id: 'media',
@@ -36,16 +63,7 @@ export const navigationSections: NavigationItem[] = [
     icon: Camera,
     description: 'Visual Content',
     color: '#60a5fa',
-    gradient: 'from-blue-500/10 to-cyan-500/10'
-  },
-  {
-    id: 'play',
-    href: '/play',
-    label: 'Play',
-    icon: Gamepad2,
-    description: 'Experiments & Fun',
-    color: '#c084fc',
-    gradient: 'from-purple-500/10 to-pink-500/10'
+    gradient: 'from-blue-500/10 to-purple-500/10'
   },
   {
     id: 'cv',
@@ -53,7 +71,7 @@ export const navigationSections: NavigationItem[] = [
     label: 'CV',
     icon: FileText,
     description: 'Resume & Experience',
-    color: '#60a5fa',
-    gradient: 'from-blue-500/10 to-purple-500/10'
+    color: '#c084fc',
+    gradient: 'from-purple-500/10 to-blue-500/10'
   }
 ]

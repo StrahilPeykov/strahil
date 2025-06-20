@@ -1,12 +1,12 @@
 // src/app/work/page.tsx
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { Code2, Sparkles, ArrowRight, ExternalLink, Github } from 'lucide-react'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { Code2, Sparkles, ArrowRight, ExternalLink, Github, Filter, Grid3x3, List, Award, Users, Clock, TrendingUp, Zap, Search } from 'lucide-react'
 import { PageWrapper } from '../../components/layout/PageWrapper'
 import { Badge } from '../../components/ui/Badge'
 import Link from 'next/link'
-import { useRef } from 'react'
+import { useRef, useState, useMemo } from 'react'
 
 // Enhanced project data with more details
 const projects = [
@@ -23,8 +23,16 @@ const projects = [
       'Increased user engagement by 120%',
       'Saved $2M annually in operational costs'
     ],
+    metrics: {
+      users: '50K+',
+      performance: '99.9%',
+      dataProcessed: '10M+/day'
+    },
     image: '/images/projects/analytics.png',
     gradient: 'from-blue-500 to-cyan-500',
+    category: 'AI/ML',
+    featured: true,
+    status: 'production',
     link: '/work/ai-analytics-platform',
     github: null,
     live: 'https://analytics.example.com'
@@ -42,8 +50,16 @@ const projects = [
       '10,000+ active daily users',
       'Zero security incidents since launch'
     ],
+    metrics: {
+      users: '10K+',
+      tvl: '$100M+',
+      chains: '8'
+    },
     image: '/images/projects/defi.png',
     gradient: 'from-purple-500 to-pink-500',
+    category: 'Blockchain',
+    featured: true,
+    status: 'production',
     link: '/work/defi-dashboard',
     github: 'https://github.com/example/defi',
     live: 'https://defi.example.com'
@@ -61,15 +77,109 @@ const projects = [
       '95% customer satisfaction rate',
       '$500K+ in revenue first year'
     ],
+    metrics: {
+      content: '1M+',
+      satisfaction: '95%',
+      revenue: '$500K+'
+    },
     image: '/images/projects/content.png',
     gradient: 'from-pink-500 to-orange-500',
+    category: 'AI/ML',
+    featured: false,
+    status: 'production',
     link: '/work/content-creation-suite',
+    github: null,
+    live: null
+  },
+  {
+    id: 'developer-tools-cli',
+    title: 'Developer Productivity CLI',
+    client: 'Open Source',
+    year: '2023',
+    description: 'Command-line tool that automates repetitive development tasks, saving hours daily',
+    longDescription: 'Built a comprehensive CLI tool that streamlines common development workflows. Features include automated testing, deployment scripts, and code generation.',
+    technologies: ['Node.js', 'TypeScript', 'Commander.js', 'Jest', 'GitHub Actions'],
+    achievements: [
+      '5K+ GitHub stars',
+      'Used by 100+ companies',
+      '50+ contributors'
+    ],
+    metrics: {
+      stars: '5K+',
+      downloads: '100K+',
+      contributors: '50+'
+    },
+    image: '/images/projects/cli.png',
+    gradient: 'from-green-500 to-teal-500',
+    category: 'Open Source',
+    featured: true,
+    status: 'active',
+    link: '/work/developer-tools-cli',
+    github: 'https://github.com/example/cli',
+    live: null
+  },
+  {
+    id: 'ecommerce-platform',
+    title: 'Next-Gen E-Commerce Platform',
+    client: 'Retail Giant',
+    year: '2022',
+    description: 'Headless commerce solution handling millions in daily transactions',
+    longDescription: 'Architected a scalable e-commerce platform using microservices architecture. Features include real-time inventory, personalized recommendations, and multi-currency support.',
+    technologies: ['React', 'Node.js', 'GraphQL', 'MongoDB', 'Elasticsearch', 'Stripe'],
+    achievements: [
+      'Handles 1M+ daily transactions',
+      'Reduced cart abandonment by 30%',
+      'Improved conversion rate by 45%'
+    ],
+    metrics: {
+      gmv: '$10M+',
+      conversion: '+45%',
+      performance: '50ms'
+    },
+    image: '/images/projects/ecommerce.png',
+    gradient: 'from-orange-500 to-red-500',
+    category: 'Web Apps',
+    featured: false,
+    status: 'production',
+    link: '/work/ecommerce-platform',
+    github: null,
+    live: 'https://shop.example.com'
+  },
+  {
+    id: 'healthcare-dashboard',
+    title: 'Healthcare Analytics Dashboard',
+    client: 'Medical Institution',
+    year: '2022',
+    description: 'HIPAA-compliant platform for patient data visualization and insights',
+    longDescription: 'Developed a secure healthcare analytics platform that helps medical professionals track patient outcomes and identify trends in treatment effectiveness.',
+    technologies: ['Angular', 'Python', 'Django', 'PostgreSQL', 'Chart.js', 'Docker'],
+    achievements: [
+      'HIPAA compliant implementation',
+      'Reduced reporting time by 70%',
+      'Used by 500+ healthcare professionals'
+    ],
+    metrics: {
+      users: '500+',
+      uptime: '99.99%',
+      compliance: 'HIPAA'
+    },
+    image: '/images/projects/healthcare.png',
+    gradient: 'from-blue-500 to-indigo-500',
+    category: 'Web Apps',
+    featured: false,
+    status: 'production',
+    link: '/work/healthcare-dashboard',
     github: null,
     live: null
   }
 ]
 
 const categories = ['All', 'Web Apps', 'AI/ML', 'Blockchain', 'Open Source']
+const statuses = ['All', 'Production', 'Active', 'Development']
+const viewModes = [
+  { id: 'grid', icon: Grid3x3, label: 'Grid View' },
+  { id: 'list', icon: List, label: 'List View' }
+]
 
 function ProjectCard({ project, index }: { project: typeof projects[0], index: number }) {
   const cardRef = useRef<HTMLDivElement>(null)
