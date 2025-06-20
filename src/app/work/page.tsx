@@ -1,4 +1,3 @@
-// src/app/work/page.tsx
 'use client'
 
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
@@ -8,7 +7,7 @@ import { Badge } from '../../components/ui/Badge'
 import Link from 'next/link'
 import { useRef, useState, useMemo } from 'react'
 
-// Enhanced project data with more details
+// Project data with more details
 const projects = [
   {
     id: 'ai-analytics-platform',

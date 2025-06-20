@@ -1,4 +1,3 @@
-// src/app/fitness/page.tsx
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'

@@ -1,4 +1,3 @@
-// src/app/play/page.tsx
 'use client'
 
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion'

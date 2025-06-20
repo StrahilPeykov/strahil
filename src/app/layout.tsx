@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { cn } from '../lib/utils'
-import { ThemeProvider } from '../components/theme-provider'
+import { ThemeProvider } from '../components/ThemeProvider'
 
 const inter = Inter({ 
   subsets: ['latin'],

@@ -1,4 +1,3 @@
-// src/app/ideas/page.tsx
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
@@ -8,7 +7,7 @@ import { Badge } from '../../components/ui/Badge'
 import Link from 'next/link'
 import { useState, useMemo } from 'react'
 
-// Enhanced ideas/blog data
+// ideas/blog data
 const allIdeas = [
   {
     id: 'future-of-ai-development',
