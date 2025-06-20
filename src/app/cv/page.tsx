@@ -55,20 +55,20 @@ const experience = [
 
 const education = [
   {
-    degree: 'MSc Complex Systems & Policy',
-    institution: 'University Name',
+    degree: 'BSc Computer Science & Engineering',
+    institution: 'Eindhoven University of Technology',
     location: 'Netherlands',
-    period: '2021 - 2023',
-    description: 'Focused on emergent behaviors in socio-technical systems and computational modeling',
-    achievements: ['Thesis: "AI-Driven Policy Making in Complex Urban Systems"', 'GPA: 8.5/10']
+    period: '2021 - 2025',
+    description: 'Comprehensive foundation in software engineering, algorithms, and computer systems',
+    achievements: ['Graduated July 2025', 'Focus on Software Engineering & AI']
   },
   {
-    degree: 'BSc Computer Science',
-    institution: 'University Name',
-    location: 'Bulgaria',
-    period: '2016 - 2020',
-    description: 'Comprehensive foundation in software engineering and computer systems',
-    achievements: ['Graduated with Honors', 'Student Project Award Winner']
+    degree: 'High School Diploma - Mathematics & Natural Sciences',
+    institution: 'School of Mathematics and Natural Sciences',
+    location: 'Burgas, Bulgaria',
+    period: '2015 - 2021',
+    description: 'Specialized mathematics and natural sciences education',
+    achievements: ['Strong foundation in Mathematics', 'Preparation for technical studies']
   }
 ]
 

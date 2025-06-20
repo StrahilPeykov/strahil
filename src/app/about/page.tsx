@@ -10,34 +10,34 @@ import { useRef } from 'react'
 
 const timeline = [
   {
-    year: '2024',
-    title: 'Full-Stack Developer',
-    description: 'Building AI-driven solutions and scalable web applications',
-    icon: Rocket,
+    year: '2025',
+    title: 'BSc Computer Science & Engineering',
+    description: 'Graduated from Eindhoven University of Technology',
+    icon: Brain,
     color: 'text-blue-400',
     gradient: 'from-blue-500 to-cyan-500'
   },
   {
-    year: '2023',
-    title: 'MSc Complex Systems & Policy',
-    description: 'Exploring emergent behaviors in socio-technical systems',
-    icon: Brain,
+    year: '2024',
+    title: 'Full-Stack Developer',
+    description: 'Building scalable web applications and digital experiences',
+    icon: Rocket,
     color: 'text-purple-400',
     gradient: 'from-purple-500 to-pink-500'
   },
   {
-    year: '2020',
-    title: 'Started Freelancing',
-    description: 'Began working with international clients on diverse projects',
-    icon: Globe,
+    year: '2023',
+    title: 'ASML Internship',
+    description: 'Software engineering internship at leading semiconductor company',
+    icon: Code2,
     color: 'text-pink-400',
     gradient: 'from-pink-500 to-orange-500'
   },
   {
-    year: '2018',
-    title: 'Discovered Programming',
-    description: 'Fell in love with code and never looked back',
-    icon: Code2,
+    year: '2021',
+    title: 'Started University',
+    description: 'Began Computer Science & Engineering at TU/e',
+    icon: Globe,
     color: 'text-green-400',
     gradient: 'from-green-500 to-teal-500'
   }

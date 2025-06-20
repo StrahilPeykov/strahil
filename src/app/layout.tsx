@@ -119,8 +119,7 @@ export const metadata: Metadata = {
     default: 'Strahil Peykov - Full-Stack Developer | Complex Systems Expert | Eindhoven',
     template: '%s | Strahil Peykov'
   },
-  description: 'Strahil Peykov is a Bulgarian Full-Stack Developer in Eindhoven, Netherlands. MSc Complex Systems & Policy. Building scalable web applications, AI-driven solutions, and digital experiences. Expert in React, Next.js, Python, and Machine Learning.',
-  keywords: [
+  description: 'Strahil Peykov is a Bulgarian Full-Stack Developer in Eindhoven, Netherlands. BSc Computer Science & Engineering from TU/e. Building scalable web applications, modern software solutions, and digital experiences. Expert in React, Next.js, Python, and Machine Learning.',  keywords: [
     // Primary branded keywords
     'Strahil Peykov',
     'Strahil',
