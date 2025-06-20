@@ -10,32 +10,34 @@ import Link from 'next/link'
 const courses = [
   {
     id: 'algorithms-exam-prep',
-    title: 'Algorithms Exam Mastery',
-    subtitle: 'Pass your algorithms exam with confidence',
-    description: 'Complete guide covering all major algorithms topics with practical examples, problem-solving strategies, and exam tips.',
-    longDescription: 'Master data structures and algorithms for your university exam. This course covers everything from basic sorting to advanced graph algorithms, with a focus on understanding concepts deeply rather than memorization.',
+    title: 'Algorithms Exam Preparation',
+    subtitle: 'Master all 8 exercise types for your algorithms exam',
+    description: 'Comprehensive exam preparation covering all exercise types with real past exam questions and detailed solutions.',
+    longDescription: 'Prepare for your algorithms exam with focused practice on all 8 exercise types. Based on analysis of past exams, with full solutions and explanations for each type of problem you\'ll encounter.',
     image: '/images/courses/algorithms.jpg',
     gradient: 'from-blue-500 to-cyan-500',
-    duration: '8 weeks',
-    lessons: 48,
-    students: 1234,
-    rating: 4.9,
-    level: 'Intermediate',
+    duration: '4 weeks',
+    lessons: 8,
+    students: 0,
+    rating: 0,
+    level: 'University',
     price: 'Free',
     status: 'published',
     topics: [
-      'Sorting & Searching',
+      'Backtracking',
+      'Greedy Choice Lemma',
       'Dynamic Programming',
-      'Graph Algorithms',
-      'Tree Traversals',
-      'Complexity Analysis',
-      'Problem Solving Patterns'
+      'Network Flow',
+      'Shortest-Path Algorithms',
+      'Flow Theory',
+      'NP-Completeness',
+      'NP-Hardness Proofs'
     ],
     outcomes: [
-      'Understand core algorithm concepts',
-      'Solve complex problems efficiently',
-      'Analyze time and space complexity',
-      'Pass your exam with high scores'
+      'Master all 8 exercise types',
+      'Understand exam patterns',
+      'Write formal proofs correctly',
+      'Achieve top marks'
     ],
     link: '/courses/algorithms-exam-prep'
   },
