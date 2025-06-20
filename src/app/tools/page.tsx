@@ -304,15 +304,17 @@ export default function ToolsPage() {
                   Try it now
                   <ExternalLink className="w-5 h-5" />
                 </a>
-                <a
-                  href={tools[0].github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 border border-slate-700 text-gray-300 font-medium rounded-full hover:bg-slate-800 transition-colors"
-                >
-                  <Github className="w-5 h-5" />
-                  View source
-                </a>
+                {tools[0].github && (
+                  <a
+                    href={tools[0].github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 border border-slate-700 text-gray-300 font-medium rounded-full hover:bg-slate-800 transition-colors"
+                  >
+                    <Github className="w-5 h-5" />
+                    View source
+                  </a>
+                )}
               </div>
             </div>
             
