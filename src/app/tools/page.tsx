@@ -288,7 +288,7 @@ export default function ToolsPage() {
                 <div>
                   <h3 className="text-sm font-semibold text-gray-300 mb-2">Stats</h3>
                   <div className="space-y-1 text-sm text-gray-400">
-                    <div>{tools[0].users.toLocaleString()} active users</div>
+                    <div>{tools[0].users?.toLocaleString() || '0'} active users</div>
                     <div>{tools[0].searches} searches performed</div>
                   </div>
                 </div>
