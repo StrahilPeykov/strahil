@@ -1,6 +1,6 @@
 export { Card } from './Card'
 export { Section } from './Section'
-export { AnimatedText } from './animated-text'
+export { AnimatedText } from './AnimatedText'
 export { Tag } from './tag'
 export { LinkCard } from './LinkCard'
 export { GradientBorder } from './GradientBorder'
