@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowUpRight, Mail } from 'lucide-react'
+import { ArrowUpRight, Mail, User } from 'lucide-react'
 import Link from 'next/link'
 import { HeroBackground } from './HeroBackground'
 import { NavigationGrid } from './NavigationGrid'

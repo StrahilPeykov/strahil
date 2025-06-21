@@ -1,26 +1,31 @@
 import Link from 'next/link'
 import { SocialLinks } from './SocialLinks'
-import { navigationSections } from '../../../data/navigation'
+import { navigationSections, additionalPages } from '../../../data/navigation'
 
 export function Footer() {
   return (
     <footer className="border-t border-slate-800/50 py-16 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-12 mb-12">
+        <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* About */}
-          <div>
+          <div className="md:col-span-1">
             <h3 className="font-display font-semibold text-white text-lg mb-4">About</h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
+            <p className="text-gray-400 text-sm leading-relaxed mb-4">
               Bulgarian Computer Science student and Software Engineer based in Eindhoven, NL. 
-              BSc Computer Science & Engineering at TU/e. Building enterprise solutions 
-              at the intersection of technology and innovation.
+              BSc Computer Science & Engineering at TU/e.
             </p>
+            <Link 
+              href="/about"
+              className="text-purple-400 hover:text-purple-300 text-sm transition-colors"
+            >
+              Learn more →
+            </Link>
           </div>
           
-          {/* Quick Links */}
+          {/* Main Pages */}
           <div>
-            <h3 className="font-display font-semibold text-white text-lg mb-4">Quick Links</h3>
-            <div className="grid grid-cols-2 gap-2">
+            <h3 className="font-display font-semibold text-white text-lg mb-4">Pages</h3>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2">
               {navigationSections.map((link) => (
                 <Link
                   key={link.href}
@@ -33,9 +38,28 @@ export function Footer() {
             </div>
           </div>
           
+          {/* More */}
+          <div>
+            <h3 className="font-display font-semibold text-white text-lg mb-4">More</h3>
+            <div className="space-y-2">
+              {additionalPages.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="block text-gray-400 hover:text-purple-400 transition-colors text-sm"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+          
           {/* Connect */}
           <div>
             <h3 className="font-display font-semibold text-white text-lg mb-4">Connect</h3>
+            <p className="text-gray-400 text-sm mb-4">
+              Let's build something amazing together.
+            </p>
             <SocialLinks />
           </div>
         </div>

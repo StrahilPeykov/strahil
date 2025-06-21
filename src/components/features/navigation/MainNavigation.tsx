@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
 import { useScrollPosition } from '../../../hooks/useScrollPosition'
-import { navigationSections } from '../../../data/navigation'
+import { allNavigationItems, headerNavItems } from '../../../data/navigation'
 import { MobileMenu } from './MobileMenu'
 import { FaviconLogo } from '../../ui/LogoIcon'
 
@@ -14,6 +14,9 @@ export function MainNavigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false)
+
+  // Get header navigation items
+  const navItems = allNavigationItems.filter(item => headerNavItems.includes(item.id))
 
   return (
     <>
@@ -49,24 +52,17 @@ export function MainNavigation() {
 
               {/* Desktop menu */}
               <div className="hidden md:flex items-center gap-1">
-                {navigationSections.slice(0, 6).map((item) => (
+                {navItems.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="relative px-3 py-2 text-gray-400 hover:text-white transition-all group"
+                    className="relative px-4 py-2 text-gray-400 hover:text-white transition-all group"
                     aria-label={`Navigate to ${item.label}`}
                   >
                     <span className="relative z-10 text-sm font-medium">{item.label}</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/10 group-hover:via-purple-500/10 group-hover:to-pink-500/10 rounded-full transition-all" />
                   </Link>
                 ))}
-                <Link
-                  href="/cv"
-                  className="relative ml-2 px-4 py-2 text-purple-400 hover:text-white transition-all group border border-purple-500/30 rounded-full hover:bg-purple-500/10"
-                  aria-label="View CV"
-                >
-                  <span className="relative z-10 text-sm font-medium">CV</span>
-                </Link>
               </div>
 
               {/* Mobile menu button */}
@@ -87,7 +83,7 @@ export function MainNavigation() {
       <MobileMenu 
         isOpen={isMobileMenuOpen} 
         onClose={closeMobileMenu}
-        items={navigationSections}
+        items={allNavigationItems}
       />
     </>
   )
