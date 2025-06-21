@@ -17,13 +17,22 @@ const contactMethods = [
     delay: 0.1
   },
   {
+    icon: Phone,
+    label: 'Phone',
+    value: '+31 6 4472 9684',
+    href: 'tel:+31644729684',
+    color: 'text-green-400',
+    gradient: 'from-green-500 to-teal-500',
+    delay: 0.2
+  },
+  {
     icon: MapPin,
     label: 'Location',
     value: 'Eindhoven, Netherlands',
     href: 'https://maps.google.com/?q=Eindhoven,Netherlands',
     color: 'text-purple-400',
     gradient: 'from-purple-500 to-pink-500',
-    delay: 0.2
+    delay: 0.3
   },
   {
     icon: Clock,
@@ -32,16 +41,16 @@ const contactMethods = [
     href: null,
     color: 'text-pink-400',
     gradient: 'from-pink-500 to-orange-500',
-    delay: 0.3
+    delay: 0.4
   },
   {
     icon: Globe,
     label: 'Languages',
     value: 'English, Bulgarian, Dutch',
     href: null,
-    color: 'text-green-400',
-    gradient: 'from-green-500 to-teal-500',
-    delay: 0.4
+    color: 'text-yellow-400',
+    gradient: 'from-yellow-500 to-orange-500',
+    delay: 0.5
   }
 ]
 
@@ -201,7 +210,7 @@ export default function ContactPage() {
       {/* Contact Methods */}
       <section className="px-6 py-16 border-y border-slate-800">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
             {contactMethods.map((method) => {
               const Icon = method.icon
               const Component = method.href ? Link : 'div'
