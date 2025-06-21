@@ -9,11 +9,11 @@ import { useRef, useState } from 'react'
 
 const experience = [
   {
-    role: 'Senior Full-Stack Developer',
-    company: 'Freelance',
+    role: 'Software Developer',
+    company: 'ASML',
     location: 'Remote',
-    period: '2022 - Present',
-    description: 'Leading development of AI-driven web applications for international clients',
+    period: '2023 - Present',
+    description: 'Leading development of web applications for international clients',
     achievements: [
       'Built scalable platforms processing 10M+ events daily',
       'Reduced client operational costs by 40% through optimization',
@@ -26,7 +26,7 @@ const experience = [
     role: 'Full-Stack Developer',
     company: 'Tech Startup',
     location: 'Eindhoven, NL',
-    period: '2020 - 2022',
+    period: '2021 - 2022',
     description: 'Developed core features for a SaaS platform serving 50K+ users',
     achievements: [
       'Architected microservices reducing response time by 60%',
@@ -39,7 +39,7 @@ const experience = [
   {
     role: 'Junior Developer',
     company: 'Digital Agency',
-    location: 'Sofia, BG',
+    location: 'Burgas, BG',
     period: '2018 - 2020',
     description: 'Created responsive web applications for diverse client projects',
     achievements: [
@@ -108,11 +108,11 @@ const certifications = [
 ]
 
 const achievements = [
-  'Built platform serving 30M+ users globally',
+  'Built platform serving 300+ users globally',
   'Open source contributor with 1K+ GitHub stars',
   'Improved client revenue by 200% through optimization',
   'Worked with clients from 15+ countries',
-  'Technical blog with 50K+ monthly readers',
+  'Technical blog with 50+ monthly readers',
   '99.9% project success rate'
 ]
 
@@ -205,7 +205,7 @@ export default function CVPage() {
                 >
                   <Download className="w-5 h-5" />
                   Download PDF
-                  <span className="text-xs opacity-70">(Updated Jan 2024)</span>
+                  <span className="text-xs opacity-70">(Updated Jun 2025)</span>
                 </motion.button>
                 
                 <Link
@@ -226,9 +226,9 @@ export default function CVPage() {
               className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12"
             >
               {[
-                { label: 'Years Experience', value: '6+' },
+                { label: 'Years Experience', value: '5+' },
                 { label: 'Projects Completed', value: '50+' },
-                { label: 'Happy Clients', value: '30+' },
+                { label: 'Happy Clients', value: '20+' },
                 { label: 'Technologies', value: '25+' }
               ].map((stat, i) => (
                 <div key={i} className="text-center">
