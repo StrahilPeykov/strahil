@@ -2,7 +2,7 @@
 'use client'
 
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Brain, Globe, Rocket, Code2, Dumbbell, Mountain, Coffee, Music, Sparkles, ArrowRight, Quote } from 'lucide-react'
+import { Brain, Globe, Rocket, Code2, Dumbbell, Palette, BookOpenCheck, Music, Sparkles, ArrowRight, Quote } from 'lucide-react'
 import { PageWrapper } from '../../components/layout/PageWrapper'
 import { Badge } from '../../components/ui/Badge'
 import Link from 'next/link'
@@ -52,9 +52,9 @@ const skills = [
 
 const interests = [
   { icon: Dumbbell, label: 'Fitness', description: 'Powerlifting & Calisthenics' },
-  { icon: Mountain, label: 'Nature', description: 'Hiking & Photography' },
-  { icon: Coffee, label: 'Coffee', description: 'Specialty Coffee Enthusiast' },
-  { icon: Music, label: 'Music', description: 'Electronic & Classical' }
+  { icon: Palette, label: 'Aesthetics', description: 'Film & Website Projects' },
+  { icon: BookOpenCheck, label: 'Ideas', description: 'Philosophy and Politics' },
+  { icon: Music, label: 'Music', description: 'Piano & Drums' }
 ]
 
 const values = [

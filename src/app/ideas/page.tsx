@@ -87,7 +87,7 @@ const allIdeas = [
   },
   {
     id: 'developer-wellness',
-    title: 'Code, Coffee, and Calisthenics',
+    title: 'Coding and the Gym',
     excerpt: 'Balancing physical and mental health as a developer. My journey from burnout to balance.',
     content: 'They say sitting is the new smoking. Here\'s how I transformed my lifestyle while staying productive...',
     date: '2023-08-28',

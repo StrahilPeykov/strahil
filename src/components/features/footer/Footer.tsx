@@ -12,8 +12,8 @@ export function Footer() {
             <h3 className="font-display font-semibold text-white text-lg mb-4">About</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
               Bulgarian creative technologist based in Eindhoven, NL. 
-              MSc in Complex Systems & Policy. Building at the intersection 
-              of technology and human experience.
+              BSc Computer Science & Engineering. Building at the intersection 
+              of technology and user experience.
             </p>
           </div>
           
@@ -43,7 +43,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-slate-800/50">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-            <p>© 2024 Strahil Peykov. All rights reserved.</p>
+            <p>© 2025 Strahil Peykov. All rights reserved.</p>
             <div className="flex items-center gap-2">
               <span>Built with</span>
               <span className="text-blue-400">Next.js</span>
