@@ -9,46 +9,19 @@ import { useRef, useState } from 'react'
 
 const experience = [
   {
-    role: 'Software Developer',
-    company: 'ASML',
-    location: 'Remote',
-    period: '2023 - Present',
-    description: 'Leading development of web applications for international clients',
+    role: 'Software Engineer Intern',
+    company: 'ASML Netherlands B.V.',
+    location: 'Veldhoven, NL',
+    period: 'Dec 2023 - July 2025',
+    description: 'Developing enterprise integration solutions for Business Line Applications department',
     achievements: [
-      'Built scalable platforms processing 10M+ events daily',
-      'Reduced client operational costs by 40% through optimization',
-      'Led teams of 3-5 developers on multiple projects',
-      'Implemented ML pipelines improving user engagement by 120%'
+      'Built application dashboard integrating multiple IT backend systems',
+      'Implemented ETL processes for data transformation and synchronization',
+      'Developed REST APIs with OAuth2 authentication for secure data exchange',
+      'Created automated data ingestion modules for enterprise resource management',
+      'Designed role-based access controls following ASML security standards'
     ],
-    technologies: ['React', 'Next.js', 'Python', 'AWS', 'TensorFlow']
-  },
-  {
-    role: 'Full-Stack Developer',
-    company: 'Tech Startup',
-    location: 'Eindhoven, NL',
-    period: '2021 - 2022',
-    description: 'Developed core features for a SaaS platform serving 50K+ users',
-    achievements: [
-      'Architected microservices reducing response time by 60%',
-      'Built real-time collaboration features using WebSockets',
-      'Implemented CI/CD pipelines improving deployment efficiency',
-      'Mentored junior developers and conducted code reviews'
-    ],
-    technologies: ['Vue.js', 'Node.js', 'PostgreSQL', 'Docker', 'GraphQL']
-  },
-  {
-    role: 'Junior Developer',
-    company: 'Digital Agency',
-    location: 'Burgas, BG',
-    period: '2018 - 2020',
-    description: 'Created responsive web applications for diverse client projects',
-    achievements: [
-      'Delivered 20+ client projects on time and budget',
-      'Improved site performance scores by average of 40%',
-      'Introduced modern development practices to the team',
-      'Built reusable component library used across projects'
-    ],
-    technologies: ['JavaScript', 'React', 'PHP', 'MySQL', 'WordPress']
+    technologies: ['Mendix', 'JavaScript', 'Python', 'Microsoft Graph API', 'Azure DevOps', 'REST APIs', 'ETL']
   }
 ]
 
@@ -59,7 +32,7 @@ const education = [
     location: 'Netherlands',
     period: '2021 - 2025',
     description: 'Comprehensive foundation in software engineering, algorithms, and computer systems',
-    achievements: ['Graduated July 2025', 'Focus on Software Engineering & AI']
+    achievements: ['Graduated July 2025', 'Focus on Software Engineering & System Architecture']
   },
   {
     degree: 'High School Diploma - Mathematics & Natural Sciences',
@@ -73,47 +46,45 @@ const education = [
 
 const skills = {
   technical: [
-    { name: 'JavaScript/TypeScript', level: 95 },
-    { name: 'React/Next.js', level: 92 },
-    { name: 'Python', level: 88 },
-    { name: 'Node.js', level: 85 },
-    { name: 'AI/Machine Learning', level: 80 },
     { name: 'Cloud (AWS/GCP)', level: 82 },
-    { name: 'Database Design', level: 87 },
-    { name: 'System Architecture', level: 85 }
+    { name: 'JavaScript/TypeScript', level: 90 },
+    { name: 'React/Next.js', level: 88 },
+    { name: 'Python', level: 85 },
+    { name: 'Java', level: 85 },
+    { name: 'Django/Spring Boot', level: 82 },
+    { name: 'SQL/Database Design', level: 85 },
+    { name: 'Azure DevOps/Git', level: 88 }
   ],
   soft: [
     'Problem Solving',
-    'Team Leadership',
+    'Team Collaboration',
     'Client Communication',
     'Project Management',
-    'Technical Writing',
-    'Mentoring',
+    'Technical Documentation',
+    'Enterprise Integration',
     'Cross-cultural Collaboration',
     'Agile Methodologies'
   ],
   languages: [
-    { name: 'English', level: 'Professional' },
     { name: 'Bulgarian', level: 'Native' },
-    { name: 'Dutch', level: 'Intermediate' },
-    { name: 'Russian', level: 'Basic' }
+    { name: 'English', level: 'Fluent' },
+    { name: 'Dutch', level: 'Beginner' },
+    { name: 'German', level: 'Beginner' },
+    { name: 'French', level: 'Beginner' }
   ]
 }
 
 const certifications = [
-  { name: 'AWS Certified Solutions Architect', issuer: 'Amazon', year: '2023' },
-  { name: 'Google Cloud Professional', issuer: 'Google', year: '2022' },
-  { name: 'Advanced React Patterns', issuer: 'Epic React', year: '2022' },
-  { name: 'Machine Learning Specialization', issuer: 'Coursera', year: '2021' }
+  { name: 'Supervised Machine Learning: Regression and Classification', issuer: 'Coursera', year: '2024' }
 ]
 
 const achievements = [
-  'Built platform serving 300+ users globally',
-  'Open source contributor with 1K+ GitHub stars',
-  'Improved client revenue by 200% through optimization',
-  'Worked with clients from 15+ countries',
-  'Technical blog with 50+ monthly readers',
-  '99.9% project success rate'
+  'Developed enterprise integration solution at ASML',
+  'Built multiple full-stack web applications',
+  'Created automated ETL processes for data synchronization',
+  'Implemented secure REST APIs with OAuth2 authentication',
+  'Contributed to open source projects',
+  'Completed BSc in Computer Science & Engineering'
 ]
 
 export default function CVPage() {
@@ -178,7 +149,7 @@ export default function CVPage() {
                 Strahil
                 <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"> Peykov</span>
               </h1>
-              <p className="text-2xl text-gray-400 mb-6">Full-Stack Developer & Digital Architect</p>
+              <p className="text-2xl text-gray-400 mb-6">Software Engineer & Full-Stack Developer</p>
               
               {/* Contact Info */}
               <div className="flex flex-wrap gap-4 justify-center mb-8">
@@ -226,10 +197,10 @@ export default function CVPage() {
               className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12"
             >
               {[
-                { label: 'Years Experience', value: '5+' },
-                { label: 'Projects Completed', value: '50+' },
-                { label: 'Happy Clients', value: '20+' },
-                { label: 'Technologies', value: '25+' }
+                { label: 'Years Experience', value: '2+' },
+                { label: 'Projects Completed', value: '10+' },
+                { label: 'Technologies', value: '20+' },
+                { label: 'Happy Clients', value: '15+' }
               ].map((stat, i) => (
                 <div key={i} className="text-center">
                   <div className="text-3xl font-display font-bold text-white mb-1">
@@ -487,7 +458,7 @@ export default function CVPage() {
                     Languages
                   </h3>
                   
-                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
                     {skills.languages.map((lang, index) => (
                       <motion.div
                         key={lang.name}
