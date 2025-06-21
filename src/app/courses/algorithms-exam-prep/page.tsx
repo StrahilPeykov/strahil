@@ -1,337 +1,456 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Brain, ChevronRight, AlertCircle, CheckCircle, Lightbulb, ArrowLeft } from 'lucide-react'
+import { BookOpen, Clock, Target, CheckCircle, AlertCircle, FileText, Code, Brain, Trophy } from 'lucide-react'
 import Link from 'next/link'
-import { PageWrapper } from '../../../../components/layout/PageWrapper'
-import { Badge } from '../../../../components/ui/Badge'
+import { PageWrapper } from '../../../components/layout/PageWrapper'
+import { Badge } from '../../../components/ui/Badge'
 
-// Mathematical notation components
-const MathDisplay = ({ children, block = false, className = '' }) => (
-  <span className={`${block ? 'block my-4 text-center' : 'inline'} font-mono text-blue-300 ${className}`}>
-    {children}
-  </span>
-)
+const examTopics = [
+  {
+    id: 'backtracking',
+    number: 1,
+    title: 'Backtracking',
+    description: 'Mathematical statements and algorithm analysis for backtracking problems',
+    difficulty: 'Medium',
+    timeEstimate: '45 min',
+    icon: Brain,
+    color: 'text-blue-400',
+    bgColor: 'bg-blue-500/10',
+    borderColor: 'border-blue-500/30',
+    topics: [
+      'Determining correct output values',
+      'Writing mathematical statements',
+      'Algorithm analysis',
+      'Preconditions and postconditions'
+    ]
+  },
+  {
+    id: 'greedy-choice',
+    number: 2,
+    title: 'Greedy Choice Lemma',
+    description: 'Formulating greedy-choice lemmas for optimization problems',
+    difficulty: 'Medium',
+    timeEstimate: '30 min',
+    icon: Target,
+    color: 'text-green-400',
+    bgColor: 'bg-green-500/10',
+    borderColor: 'border-green-500/30',
+    topics: [
+      'Identifying optimal greedy choices',
+      'Mathematical lemma formulation',
+      'No proof required - just statements',
+      'Common patterns and strategies'
+    ]
+  },
+  {
+    id: 'dynamic-programming',
+    number: 3,
+    title: 'Dynamic Programming',
+    description: 'Recursive formulas and algorithm implementation',
+    difficulty: 'Hard',
+    timeEstimate: '60 min',
+    icon: Code,
+    color: 'text-purple-400',
+    bgColor: 'bg-purple-500/10',
+    borderColor: 'border-purple-500/30',
+    topics: [
+      'Defining subproblems',
+      'Writing recursive formulas',
+      'Base cases and step cases',
+      'Pseudocode implementation'
+    ]
+  },
+  {
+    id: 'flow-algorithms',
+    number: 4,
+    title: 'Flow Algorithms',
+    description: 'Edmonds-Karp and flow network analysis',
+    difficulty: 'Medium',
+    timeEstimate: '40 min',
+    icon: FileText,
+    color: 'text-cyan-400',
+    bgColor: 'bg-cyan-500/10',
+    borderColor: 'border-cyan-500/30',
+    topics: [
+      'Finding augmenting paths',
+      'Identifying critical edges',
+      'Residual networks',
+      'Flow analysis'
+    ]
+  },
+  {
+    id: 'shortest-paths',
+    number: 5,
+    title: 'Shortest-Path Algorithms',
+    description: 'Modifications to classic algorithms and proofs',
+    difficulty: 'Hard',
+    timeEstimate: '50 min',
+    icon: Target,
+    color: 'text-orange-400',
+    bgColor: 'bg-orange-500/10',
+    borderColor: 'border-orange-500/30',
+    topics: [
+      'Bellman-Ford modifications',
+      'Dijkstra variations',
+      'Johnson\'s algorithm',
+      'Weight transformations'
+    ]
+  },
+  {
+    id: 'flow-theory',
+    number: 6,
+    title: 'Flow Theory',
+    description: 'Maximum flow/matching and network modifications',
+    difficulty: 'Medium',
+    timeEstimate: '45 min',
+    icon: Brain,
+    color: 'text-pink-400',
+    bgColor: 'bg-pink-500/10',
+    borderColor: 'border-pink-500/30',
+    topics: [
+      'Flow-matching reductions',
+      'Network modifications',
+      'Ford-Fulkerson variants',
+      'Residual network invariants'
+    ]
+  },
+  {
+    id: 'np-complexity',
+    number: 7,
+    title: 'NP-Complexity Classification',
+    description: 'Determining if problems are NP-hard or polynomial',
+    difficulty: 'Hard',
+    timeEstimate: '55 min',
+    icon: AlertCircle,
+    color: 'text-red-400',
+    bgColor: 'bg-red-500/10',
+    borderColor: 'border-red-500/30',
+    topics: [
+      'Identifying polynomial algorithms',
+      'NP-hardness reductions',
+      'Common NP-hard problems',
+      'Reduction techniques'
+    ]
+  },
+  {
+    id: 'np-proofs',
+    number: 8,
+    title: 'NP-Hardness Proofs',
+    description: 'Formal proofs for NP-completeness reductions',
+    difficulty: 'Very Hard',
+    timeEstimate: '60 min',
+    icon: FileText,
+    color: 'text-yellow-400',
+    bgColor: 'bg-yellow-500/10',
+    borderColor: 'border-yellow-500/30',
+    topics: [
+      'Reduction construction',
+      'Correctness proofs',
+      'Both directions of equivalence',
+      'Counter-examples'
+    ]
+  }
+]
 
-const Sub = ({ base, sub }) => (
-  <span>{base}<sub className="text-xs">{sub}</sub></span>
-)
+const examTips = [
+  {
+    title: 'Time Management',
+    description: 'Allocate time based on exercise points. Don\'t spend too long on one problem.',
+    icon: Clock
+  },
+  {
+    title: 'Read Carefully',
+    description: 'Pay attention to what\'s asked. Sometimes no proof is needed, just a statement.',
+    icon: AlertCircle
+  },
+  {
+    title: 'Show Your Work',
+    description: 'Even partial solutions get points. Write down your reasoning process.',
+    icon: FileText
+  },
+  {
+    title: 'Practice Examples',
+    description: 'Work through all past exam problems. Patterns often repeat.',
+    icon: Brain
+  }
+]
 
-const AlgorithmBlock = ({ title, children }) => (
-  <div className="my-6 bg-slate-900/50 rounded-xl border border-slate-800 overflow-hidden">
-    {title && (
-      <div className="px-4 py-2 bg-slate-800/50 border-b border-slate-800">
-        <span className="text-sm font-semibold text-purple-400">{title}</span>
-      </div>
-    )}
-    <pre className="p-4 font-mono text-sm text-gray-300 overflow-x-auto">
-      <code>{children}</code>
-    </pre>
-  </div>
-)
+function TopicCard({ topic, index }: { topic: typeof examTopics[0], index: number }) {
+  const Icon = topic.icon
 
-const ExamSolution = ({ children, score = "10/10" }) => (
-  <div className="mt-6 bg-green-500/5 border border-green-500/20 rounded-xl p-6">
-    <div className="flex items-center gap-2 mb-4">
-      <CheckCircle className="w-5 h-5 text-green-400" />
-      <span className="text-green-400 font-semibold">Full Solution</span>
-      <span className="text-xs text-gray-500">({score})</span>
-    </div>
-    <div className="space-y-4 text-gray-300">{children}</div>
-  </div>
-)
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.1 }}
+    >
+      <Link href={`/courses/algorithms-exam-prep/${topic.id}`}>
+        <div className={`group relative h-full ${topic.bgColor} backdrop-blur-sm border ${topic.borderColor} rounded-xl p-6 hover:scale-105 transition-all cursor-pointer`}>
+          <div className="flex items-start justify-between mb-4">
+            <div className={`w-12 h-12 ${topic.bgColor} rounded-lg flex items-center justify-center ${topic.color}`}>
+              <Icon className="w-6 h-6" />
+            </div>
+            <Badge variant={
+              topic.difficulty === 'Very Hard' ? 'error' : 
+              topic.difficulty === 'Hard' ? 'warning' : 
+              'purple'
+            } size="sm">
+              {topic.difficulty}
+            </Badge>
+          </div>
 
-export default function BacktrackingPage() {
+          <div className="mb-4">
+            <h3 className={`text-lg font-semibold text-white mb-1 group-hover:${topic.color} transition-colors`}>
+              {topic.number}. {topic.title}
+            </h3>
+            <p className="text-sm text-gray-400">
+              {topic.description}
+            </p>
+          </div>
+
+          <div className="space-y-2 mb-4">
+            {topic.topics.map((item, i) => (
+              <div key={i} className="flex items-center gap-2 text-xs text-gray-500">
+                <CheckCircle className="w-3 h-3 text-green-400" />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex items-center justify-between text-xs text-gray-500">
+            <span className="flex items-center gap-1">
+              <Clock className="w-3 h-3" />
+              {topic.timeEstimate}
+            </span>
+            <span className={`${topic.color} group-hover:underline`}>
+              Start lesson →
+            </span>
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  )
+}
+
+export default function AlgorithmsExamPrepPage() {
   return (
     <PageWrapper>
-      {/* Header */}
-      <section className="relative px-6 py-16 border-b border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <Link
-            href="/courses/algorithms-exam-prep"
-            className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-purple-400 mb-6 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to course
-          </Link>
-
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-400">
-              <Brain className="w-6 h-6" />
-            </div>
-            <div>
-              <p className="text-sm text-gray-500">Exercise 1</p>
-              <h1 className="text-3xl font-display font-bold text-white">Backtracking</h1>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            <Badge variant="blue">Algorithm Analysis</Badge>
-            <Badge variant="purple">Mathematical Statements</Badge>
-            <Badge variant="warning">Medium Difficulty</Badge>
-          </div>
-        </div>
-      </section>
-
-      {/* Exam Format */}
-      <section className="px-6 py-12">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Exam Format & Expectations
-          </h2>
-
-          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-            <p className="text-gray-300 mb-4">
-              Backtracking questions typically give you an algorithm and ask you to:
-            </p>
-            <ol className="space-y-3 list-decimal list-inside text-gray-300">
-              <li><strong className="text-white">Determine output values</strong> - What does the algorithm return for specific inputs?</li>
-              <li><strong className="text-white">Write mathematical statement</strong> - Formally describe what the algorithm computes</li>
-              <li><strong className="text-white">State preconditions</strong> - When is the input valid?</li>
-            </ol>
-            <div className="mt-6 p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
-              <p className="text-sm text-blue-300">
-                <strong>Key:</strong> The mathematical statement should be precise. Use set notation, 
-                quantifiers (∀, ∃), and formal definitions.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Complete Example with Solution */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Past Exam Example: N-Queens Counting (2024 Resit)
-          </h2>
-
-          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800 mb-6">
-            <h3 className="text-lg font-semibold text-white mb-4">Given Algorithm:</h3>
-            
-            <AlgorithmBlock title="countQueens(n, row, positions)">
-{`if row = n:
-    return 1
-    
-count = 0
-for col in 0..n-1:
-    if isSafe(positions, row, col):
-        positions[row] = col
-        count = count + countQueens(n, row + 1, positions)
+      {/* Hero Section */}
+      <section className="relative min-h-[40vh] flex items-center justify-center px-6 py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 via-purple-500/5 to-transparent" />
         
-return count`}
-            </AlgorithmBlock>
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="mb-6"
+          >
+            <BookOpen className="w-16 h-16 text-blue-400 mx-auto mb-6" />
+            <Badge variant="blue" className="mb-4">Free Course</Badge>
+          </motion.div>
+          
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl lg:text-6xl font-display font-bold text-white mb-6"
+          >
+            Algorithms Exam
+            <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Mastery Course
+            </span>
+          </motion.h1>
+          
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-xl text-gray-400 max-w-2xl mx-auto mb-8"
+          >
+            Complete preparation guide covering all 8 exam topics with real examples, 
+            practice problems, and proven strategies to help you pass with confidence.
+          </motion.p>
 
-            <div className="mt-6">
-              <h4 className="font-semibold text-white mb-2">Question 1a: What is countQueens(4, 0, [])?</h4>
-              <p className="text-gray-400">Determine the exact output value.</p>
-            </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="flex flex-wrap gap-4 justify-center text-sm text-gray-500"
+          >
+            <span className="flex items-center gap-2">
+              <Clock className="w-4 h-4" />
+              8 comprehensive lessons
+            </span>
+            <span className="flex items-center gap-2">
+              <FileText className="w-4 h-4" />
+              48 practice problems
+            </span>
+            <span className="flex items-center gap-2">
+              <Target className="w-4 h-4" />
+              5 past exams analyzed
+            </span>
+          </motion.div>
+        </div>
+      </section>
 
-            <ExamSolution score="3/3 points">
-              <p><strong>Answer:</strong> countQueens(4, 0, []) = <MathDisplay>2</MathDisplay></p>
+      {/* Course Overview */}
+      <section className="px-6 py-16 border-y border-slate-800">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12">
+            <div> 
+              <div className="flex items-center gap-2 mb-4">
+                <Trophy className="w-5 h-5 text-yellow-400" />
+                <span className="text-yellow-400 font-mono text-sm">Exam-Focused Content</span>
+              </div>
               
-              <p className="text-sm text-gray-400">
-                <strong>Reasoning:</strong> For n=4, there are exactly 2 valid N-queens placements:
+              <h2 className="text-4xl font-display font-bold text-white mb-4">
+                Master All 8 Exercise Types
+              </h2>
+              
+              <p className="text-xl text-gray-400 mb-6">
+                Based on analysis of past exams, this course covers every type of exercise 
+                you'll encounter, with real exam questions and detailed solutions.
               </p>
-              <div className="grid grid-cols-2 gap-4 my-3">
-                <div className="bg-slate-800/50 rounded p-3 font-mono text-xs">
-                  <div>Solution 1:</div>
-                  <div>. Q . .</div>
-                  <div>. . . Q</div>
-                  <div>Q . . .</div>
-                  <div>. . Q .</div>
+              
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                <div className="flex items-center gap-3">
+                  <Target className="w-5 h-5 text-green-400" />
+                  <span className="text-gray-300">Exam patterns analyzed</span>
                 </div>
-                <div className="bg-slate-800/50 rounded p-3 font-mono text-xs">
-                  <div>Solution 2:</div>
-                  <div>. . Q .</div>
-                  <div>Q . . .</div>
-                  <div>. . . Q</div>
-                  <div>. Q . .</div>
+                <div className="flex items-center gap-3">
+                  <BookOpen className="w-5 h-5 text-blue-400" />
+                  <span className="text-gray-300">Past exam solutions</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Clock className="w-5 h-5 text-purple-400" />
+                  <span className="text-gray-300">Time management tips</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Trophy className="w-5 h-5 text-yellow-400" />
+                  <span className="text-gray-300">Score maximization</span>
                 </div>
               </div>
-            </ExamSolution>
-
-            <div className="mt-8">
-              <h4 className="font-semibold text-white mb-2">Question 1b: Mathematical Statement</h4>
-              <p className="text-gray-400">Write a formal mathematical statement describing what countQueens(n, 0, []) computes.</p>
-            </div>
-
-            <ExamSolution score="7/7 points">
-              <p><strong>Mathematical Statement:</strong></p>
               
-              <MathDisplay block>
-                Let countQueens(n, 0, []) = |{Q ∈ P<Sub base="n" sub="" /> | Q is a valid n-queens placement}|
-              </MathDisplay>
-              
-              <p>where:</p>
-              <ul className="space-y-2 ml-4 text-sm">
-                <li>• P<Sub base="n" sub="" /> = {permutations of (0,1,...,n-1)}</li>
-                <li>• A placement Q = (q<Sub base="0" sub="" />, q<Sub base="1" sub="" />, ..., q<Sub base="n-1" sub="" />) is valid if:</li>
-                <li className="ml-4">- q<Sub base="i" sub="" /> represents the column of the queen in row i</li>
-                <li className="ml-4">- ∀i,j ∈ {0,...,n-1}, i ≠ j: queens at (i,q<Sub base="i" sub="" />) and (j,q<Sub base="j" sub="" />) don't attack</li>
-                <li className="ml-4">- No two queens share a diagonal: |i-j| ≠ |q<Sub base="i" sub="" />-q<Sub base="j" sub="" />|</li>
-              </ul>
-              
-              <p className="mt-4 text-sm text-gray-400">
-                <strong>Note:</strong> The algorithm counts the number of ways to place n non-attacking queens 
-                on an n×n chessboard, where each row and column contains exactly one queen.
-              </p>
-            </ExamSolution>
+              <div className="p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+                <div className="flex items-start gap-3">
+                  <AlertCircle className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm text-blue-400 font-semibold mb-1">Pro Tip</p>
+                    <p className="text-sm text-gray-300">
+                      Focus on exercises 5-8 first — they're worth 50% of the exam and have 
+                      clear patterns you can master quickly.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 blur-3xl" />
+              <div className="relative bg-slate-900/50 backdrop-blur-sm border border-blue-500/20 rounded-2xl p-8">
+                <h3 className="text-xl font-semibold text-white mb-6">Exam Structure</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-gray-400">Total Exercises</span>
+                    <span className="text-white font-semibold">8</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-gray-400">Time Limit</span>
+                    <span className="text-white font-semibold">3 hours</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-gray-400">Points per Exercise</span>
+                    <span className="text-white font-semibold">12.5</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-gray-400">Passing Grade</span>
+                    <span className="text-white font-semibold">55/100</span>
+                  </div>
+                  <hr className="border-slate-700" />
+                  <div className="pt-2">
+                    <p className="text-sm text-gray-400 mb-2">Point Distribution:</p>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-gray-500">Exercises 1-4</span>
+                        <span className="text-gray-300">50 points</span>
+                      </div>
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-gray-500">Exercises 5-8</span>
+                        <span className="text-gray-300">50 points</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* General Pattern & Template */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            General Solution Template
+      {/* Course Topics */}
+      <section className="px-6 py-16">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-display font-bold text-white mb-8">
+            Course Topics
           </h2>
-
-          <div className="space-y-6">
-            <div className="bg-purple-500/10 rounded-xl p-6 border border-purple-500/30">
-              <h3 className="text-lg font-semibold text-purple-400 mb-4">For Counting Problems:</h3>
-              <MathDisplay block>
-                Let f(input) = |{x ∈ S | P(x) holds}|
-              </MathDisplay>
-              <p className="text-sm text-gray-400 mt-2">
-                where S is the search space and P is the property being counted
-              </p>
-            </div>
-
-            <div className="bg-blue-500/10 rounded-xl p-6 border border-blue-500/30">
-              <h3 className="text-lg font-semibold text-blue-400 mb-4">For Search Problems:</h3>
-              <MathDisplay block>
-                Let f(input) = {x ∈ S | C(x) ∧ optimal(x)}
-              </MathDisplay>
-              <p className="text-sm text-gray-400 mt-2">
-                where C(x) are the constraints and optimal(x) is the optimization criterion
-              </p>
-            </div>
-
-            <div className="bg-green-500/10 rounded-xl p-6 border border-green-500/30">
-              <h3 className="text-lg font-semibold text-green-400 mb-4">For Decision Problems:</h3>
-              <MathDisplay block>
-                Let f(input) = ∃x ∈ S : P(x) holds
-              </MathDisplay>
-              <p className="text-sm text-gray-400 mt-2">
-                Returns true if at least one solution exists
-              </p>
-            </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {examTopics.map((topic, i) => (
+              <TopicCard key={topic.id} topic={topic} index={i} />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Common Backtracking Patterns */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Common Patterns in Past Exams
+      {/* Exam Tips */}
+      <section className="px-6 py-16 border-t border-slate-800">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-display font-bold text-white mb-8 text-center">
+            Exam Success Tips
           </h2>
-
-          <div className="space-y-6">
-            {/* Pattern 1 */}
-            <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-              <h3 className="text-lg font-semibold text-white mb-3">Subset Generation</h3>
-              <AlgorithmBlock title="generateSubsets(A, i, current)">
-{`if i = |A|:
-    process(current)
-    return
-    
-// Include A[i]
-current.add(A[i])
-generateSubsets(A, i+1, current)
-current.remove(A[i])
-
-// Exclude A[i]  
-generateSubsets(A, i+1, current)`}
-              </AlgorithmBlock>
-              <p className="text-sm text-gray-400 mt-3">
-                <strong>Statement:</strong> Generates all 2<sup>n</sup> subsets of A
-              </p>
-            </div>
-
-            {/* Pattern 2 */}
-            <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-              <h3 className="text-lg font-semibold text-white mb-3">Permutation Generation</h3>
-              <AlgorithmBlock title="generatePerms(A, k)">
-{`if k = |A|:
-    process(A)
-    return
-    
-for i in k..|A|-1:
-    swap(A[k], A[i])
-    generatePerms(A, k+1)
-    swap(A[k], A[i])  // backtrack`}
-              </AlgorithmBlock>
-              <p className="text-sm text-gray-400 mt-3">
-                <strong>Statement:</strong> Generates all n! permutations of A
-              </p>
-            </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {examTips.map((tip, i) => {
+              const Icon = tip.icon
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="bg-slate-900/50 rounded-xl p-6 border border-slate-800"
+                >
+                  <Icon className="w-8 h-8 text-purple-400 mb-4" />
+                  <h3 className="font-semibold text-white mb-2">{tip.title}</h3>
+                  <p className="text-sm text-gray-400">{tip.description}</p>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
 
-      {/* Key Tips */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Exam Strategy & Tips
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-green-500/10 rounded-xl p-6 border border-green-500/30">
-              <h3 className="font-semibold text-green-400 mb-3">Do This ✓</h3>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li>• Trace the algorithm with a small example first</li>
-                <li>• Use proper set notation: {x ∈ S | P(x)}</li>
-                <li>• Define all variables clearly</li>
-                <li>• State preconditions: "for all n ≥ 1"</li>
-                <li>• Be precise about what's being counted/found</li>
-              </ul>
-            </div>
-
-            <div className="bg-red-500/10 rounded-xl p-6 border border-red-500/30">
-              <h3 className="font-semibold text-red-400 mb-3">Avoid This ✗</h3>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li>• Don't describe HOW the algorithm works</li>
-                <li>• Don't use informal language</li>
-                <li>• Don't forget edge cases (n=0, empty input)</li>
-                <li>• Don't mix implementation with specification</li>
-                <li>• Don't use ambiguous notation</li>
-              </ul>
-            </div>
+      {/* CTA */}
+      <section className="px-6 py-16">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl p-12 border border-purple-500/20">
+            <h2 className="text-3xl font-display font-bold text-white mb-4">
+              Ready to Master Algorithms?
+            </h2>
+            <p className="text-gray-400 mb-8">
+              Start with any topic or follow the recommended order. 
+              Each lesson includes examples from past exams.
+            </p>
+            <Link
+              href="/courses/algorithms-exam-prep/backtracking"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-full hover:scale-105 transition-transform"
+            >
+              Start with Backtracking
+              <BookOpen className="w-5 h-5" />
+            </Link>
           </div>
-
-          <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
-            <div className="flex items-start gap-2">
-              <Lightbulb className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-gray-300">
-                <strong className="text-yellow-400">Pro tip:</strong> The mathematical statement is usually worth 
-                70% of the points. Spend time making it precise and complete.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Navigation */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto flex justify-between">
-          <Link
-            href="/courses/algorithms-exam-prep"
-            className="flex items-center gap-2 text-gray-400 hover:text-purple-400 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to overview
-          </Link>
-          <Link
-            href="/courses/algorithms-exam-prep/greedy-choice"
-            className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
-          >
-            Next: Greedy Choice
-            <ChevronRight className="w-4 h-4" />
-          </Link>
         </div>
       </section>
     </PageWrapper>
