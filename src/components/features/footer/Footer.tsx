@@ -11,9 +11,9 @@ export function Footer() {
           <div>
             <h3 className="font-display font-semibold text-white text-lg mb-4">About</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Bulgarian creative technologist based in Eindhoven, NL. 
-              BSc Computer Science & Engineering. Building at the intersection 
-              of technology and user experience.
+              Bulgarian Computer Science student and Software Engineer based in Eindhoven, NL. 
+              BSc Computer Science & Engineering at TU/e. Building enterprise solutions 
+              at the intersection of technology and innovation.
             </p>
           </div>
           
