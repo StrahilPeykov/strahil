@@ -29,7 +29,7 @@ const personalSchema = {
   "name": "Strahil Peykov",
   "alternateName": ["Strahil"],
   "jobTitle": "Full-Stack Developer",
-  "description": "Bulgarian Full-Stack Developer based in Eindhoven, Netherlands. Expert in complex systems, AI development, and scalable web applications. MSc in Complex Systems & Policy.",
+  "description": "Bulgarian Full-Stack Developer based in Eindhoven, Netherlands. BSc Computer Science & Engineering from TU/e. Software Engineer at ASML. Expert in scalable web applications and enterprise software development.",
   "url": "https://strahilpeykov.com",
   "image": "https://strahilpeykov.com/og-image.png",
   "birthPlace": {
@@ -39,12 +39,13 @@ const personalSchema = {
   "nationality": "Bulgarian",
   "worksFor": {
     "@type": "Organization",
-    "name": "Freelance Developer"
+    "name": "ASML Netherlands B.V.",
+    "description": "Software Engineer"
   },
   "alumniOf": {
     "@type": "EducationalOrganization",
-    "name": "University",
-    "description": "MSc Complex Systems & Policy"
+    "name": "Eindhoven University of Technology",
+    "description": "BSc Computer Science & Engineering (2021-2025)"
   },
   "address": {
     "@type": "PostalAddress",
@@ -67,13 +68,20 @@ const personalSchema = {
     "React",
     "Next.js",
     "Python",
+    "Java",
+    "JavaScript",
     "TypeScript",
     "Machine Learning",
     "Web Development",
     "Software Engineering",
-    "AI-Driven Solutions",
-    "Enterprise Applications",
     "Scalable Systems"
+    "Django",
+    "Spring Boot",
+    "ETL Processes",
+    "Enterprise Integration",
+    "Microsoft Graph API",
+    "Azure DevOps",
+    "Software Engineering"
   ],
   "hasOccupation": {
     "@type": "Occupation",
@@ -116,10 +124,10 @@ const websiteSchema = {
 
 export const metadata: Metadata = {
   title: {
-    default: 'Strahil Peykov - Full-Stack Developer | Complex Systems Expert | Eindhoven',
+    default: 'Strahil Peykov - Software Engineer & Full-Stack Developer | TU/e Student',
     template: '%s | Strahil Peykov'
   },
-  description: 'Strahil Peykov is a Bulgarian Full-Stack Developer in Eindhoven, Netherlands. BSc Computer Science & Engineering from TU/e. Building scalable web applications, modern software solutions, and digital experiences. Expert in React, Next.js, Python, and Machine Learning.',  keywords: [
+  description: 'Strahil Peykov is a Bulgarian Full-Stack Developer in Eindhoven, Netherlands. BSc Computer Science & Engineering from TU/e (2021-2025). Software Engineer at ASML. Building scalable web applications and digital experiences. Expert in React, Next.js, Python and Django.',  keywords: [
     // Primary branded keywords
     'Strahil Peykov',
     'Strahil',
@@ -144,9 +152,10 @@ export const metadata: Metadata = {
     'Tech Eindhoven',
     
     // Specialization keywords
-    'Complex Systems',
     'Machine Learning Developer',
     'AI-Driven Solutions',
+    'Enterprise Integration',
+    'System Integration',
     'Enterprise Applications',
     'Scalable Web Applications',
     'Digital Solutions',
@@ -155,17 +164,20 @@ export const metadata: Metadata = {
     'React',
     'Next.js',
     'Python',
+    'Java',
     'JavaScript',
     'TypeScript',
-    'TensorFlow',
-    'AWS',
+    'Django',
+    'Enterprise Integration',
     'Web Development',
     'Frontend Development',
     'Backend Development',
     
     // Academic/Professional
-    'MSc Complex Systems',
-    'Policy Technology',
+    'BSc Computer Science',
+    'TU/e Student',
+    'Eindhoven University of Technology',
+    'ASML Intern',
     'Bulgarian Tech Professional',
     'European Developer',
     'Tech Consultant'
@@ -181,8 +193,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://strahilpeykov.com',
-    title: 'Strahil Peykov - Full-Stack Developer & Complex Systems Expert',
-    description: 'Bulgarian Full-Stack Developer based in Eindhoven, Netherlands. Expert in complex systems, AI development, and scalable web applications. MSc in Complex Systems & Policy.',
+    title: 'Strahil Peykov - Full-Stack Developer & Software Engineer',
+    description: 'Bulgarian Full-Stack Developer based in Eindhoven, Netherlands. BSc Computer Science & Engineering at TU/e. Software Engineer at ASML.',
     siteName: 'Strahil Peykov Portfolio',
     images: [
       {
@@ -197,7 +209,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Strahil Peykov - Full-Stack Developer',
-    description: 'Bulgarian Full-Stack Developer in Eindhoven, Netherlands. Expert in complex systems and AI-driven solutions.',
+    description: 'Bulgarian Full-Stack Developer in Eindhoven, Netherlands. BSc Computer Science & Engineering at TU/e. Software Engineer at ASML.',
     images: ['/og-image.png'],
     creator: '@WerbenHS',
     site: '@WerbenHS',
@@ -282,7 +294,7 @@ export default function RootLayout({
         
         {/* Open Graph additional tags */}
         <meta property="og:email" content="strahil.peykov@gmail.com" />
-        <meta property="og:phone_number" content="+31-XXX-XXXXXXX" />
+        <meta property="og:phone_number" content="+31644729684" />
         <meta property="og:street-address" content="Eindhoven" />
         <meta property="og:locality" content="Eindhoven" />
         <meta property="og:region" content="North Brabant" />
@@ -333,14 +345,13 @@ export default function RootLayout({
                 <span itemProp="addressLocality">Eindhoven</span>
                 <span itemProp="addressCountry">Netherlands</span>
               </span>
-              <span itemProp="alumniOf">MSc Complex Systems & Policy</span>
+              <span itemProp="alumniOf">BSc Computer Science & Engineering, TU/e</span>
               <span itemProp="nationality">Bulgarian</span>
               <span itemProp="knowsAbout">React</span>
               <span itemProp="knowsAbout">Next.js</span>
               <span itemProp="knowsAbout">Python</span>
-              <span itemProp="knowsAbout">Complex Systems</span>
-              <span itemProp="knowsAbout">Machine Learning</span>
               <span itemProp="knowsAbout">AI Development</span>
+              <span itemProp="knowsAbout">Enterprise Integration</span>
             </span>
           </div>
         </ThemeProvider>
