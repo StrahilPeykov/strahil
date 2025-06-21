@@ -168,6 +168,7 @@ export const metadata: Metadata = {
     'JavaScript',
     'TypeScript',
     'Django',
+    'Spring Boot',
     'Enterprise Integration',
     'Web Development',
     'Frontend Development',
