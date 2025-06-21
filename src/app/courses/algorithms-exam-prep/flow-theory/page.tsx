@@ -1,43 +1,14 @@
+'use client'
+
 import { motion } from 'framer-motion'
 import { GitBranch, ChevronRight, AlertCircle, CheckCircle, Zap, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { PageWrapper } from '../../../../components/layout/PageWrapper'
 import { Badge } from '../../../../components/ui/Badge'
+import { MathDisplay, MathSymbols, AlgorithmBlock } from '../../../../components/ui/MathDisplay'
+import { ExamSolution } from '../../../../components/ui/AlgorithmComponents'
 
-// Mathematical notation components
-const MathDisplay = ({ children, block = false, className = '' }) => (
-  <span className={`${block ? 'block my-4 text-center' : 'inline'} font-mono text-blue-300 ${className}`}>
-    {children}
-  </span>
-)
-
-const Sub = ({ base, sub }) => (
-  <span>{base}<sub className="text-xs">{sub}</sub></span>
-)
-
-const ExamSolution = ({ children, score = "10/10" }) => (
-  <div className="mt-6 bg-green-500/5 border border-green-500/20 rounded-xl p-6">
-    <div className="flex items-center gap-2 mb-4">
-      <CheckCircle className="w-5 h-5 text-green-400" />
-      <span className="text-green-400 font-semibold">Full Solution</span>
-      <span className="text-xs text-gray-500">({score})</span>
-    </div>
-    <div className="space-y-4 text-gray-300">{children}</div>
-  </div>
-)
-
-const AlgorithmBlock = ({ title, children }) => (
-  <div className="my-6 bg-slate-900/50 rounded-xl border border-slate-800 overflow-hidden">
-    {title && (
-      <div className="px-4 py-2 bg-slate-800/50 border-b border-slate-800">
-        <span className="text-sm font-semibold text-purple-400">{title}</span>
-      </div>
-    )}
-    <pre className="p-4 font-mono text-sm text-gray-300 overflow-x-auto">
-      <code>{children}</code>
-    </pre>
-  </div>
-)
+const { Sub, Sup, In, ForAll, Exists, Leq, Geq, Sum, RightArrow } = MathSymbols
 
 export default function FlowTheoryPage() {
   return (
@@ -75,211 +46,155 @@ export default function FlowTheoryPage() {
       <section className="px-6 py-12">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Exam Format & Key Concepts
+            Exam Format & Expectations
           </h2>
 
-          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800 mb-6">
+          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
             <p className="text-gray-300 mb-4">
-              Flow theory questions typically involve:
+              Flow Theory questions typically involve:
             </p>
-            <ul className="space-y-2 text-gray-300">
-              <li>• Building flow networks from matching problems</li>
-              <li>• Updating existing flows when edges are added/removed</li>
-              <li>• Understanding Ford-Fulkerson variants and complexity</li>
-              <li>• True/false statements about flow properties</li>
-            </ul>
+            <ol className="space-y-3 list-decimal list-inside text-gray-300">
+              <li><strong className="text-white">Max-flow min-cut theorem</strong> - Find minimum cut given maximum flow</li>
+              <li><strong className="text-white">Flow conservation</strong> - Verify or compute flows at vertices</li>
+              <li><strong className="text-white">Reduction to matching</strong> - Convert problems to bipartite matching</li>
+              <li><strong className="text-white">Prove flow properties</strong> - Value, feasibility, optimality</li>
+            </ol>
           </div>
+        </div>
+      </section>
 
-          <div className="bg-pink-500/10 rounded-xl p-6 border border-pink-500/30">
-            <div className="flex items-start gap-3">
-              <Zap className="w-5 h-5 text-pink-400 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-pink-400 font-semibold mb-2">Key Theorem</p>
-                <MathDisplay block>
-                  max flow = min cut = |maximum matching| (in bipartite graphs)
-                </MathDisplay>
-                <p className="text-sm text-gray-400 mt-2">
-                  This connection is the foundation for most flow-matching reductions.
-                </p>
-              </div>
+      {/* Complete Example: Max-Flow Min-Cut */}
+      <section className="px-6 py-12 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-display font-bold text-white mb-6">
+            Past Exam Example: Finding Minimum Cut (2024)
+          </h2>
+
+          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+            <h3 className="text-lg font-semibold text-white mb-4">Problem:</h3>
+            <p className="text-gray-400 mb-4">
+              Given a flow network with maximum flow value 15. The final residual network G<Sub base="f*" sub="" /> is:
+            </p>
+            
+            <div className="bg-slate-800/50 rounded-lg p-4 mb-4 font-mono text-sm">
+              <div>s → a: 0 (saturated)</div>
+              <div>s → b: 3</div>
+              <div>a → c: 2</div>
+              <div>b → c: 0 (saturated)</div>
+              <div>b → d: 4</div>
+              <div>c → t: 0 (saturated)</div>
+              <div>d → t: 1</div>
+              <div>(Plus backward edges)</div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Complete Example: Incremental Flow Updates */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Full Exam Solution: Incremental Flow Updates (2024 Resit)
-          </h2>
-
-          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-            <h3 className="text-lg font-semibold text-white mb-4">Problem:</h3>
-            <p className="text-gray-400 mb-4">
-              You have computed max flow f in network G. Now k new edges are added to get G'.
-              How to compute max flow in G' efficiently?
-            </p>
+            <div className="border-t border-slate-700 pt-4">
+              <p className="font-semibold text-gray-300 mb-2">
+                Find a minimum cut (S, T) and verify its capacity equals 15.
+              </p>
+            </div>
 
             <ExamSolution score="10/10">
-              <div className="bg-purple-500/10 rounded-xl p-6 border border-purple-500/30 mb-4">
-                <p className="font-semibold text-purple-400 mb-3">Algorithm:</p>
-                <AlgorithmBlock>
-{`1. Start with existing flow f from G
-2. Initialize f(e) = 0 for all new edges e
-3. Build residual network G'_f
-4. Run Ford-Fulkerson from this starting point
-5. Return the augmented flow`}
-                </AlgorithmBlock>
+              <p className="mb-3"><strong>Step 1:</strong> Find reachable vertices from s in G<Sub base="f*" sub="" />:</p>
+              
+              <div className="ml-4 mb-4">
+                <p>• From s: Can reach b (residual capacity 3)</p>
+                <p>• From b: Can reach d (residual capacity 4)</p>
+                <p>• Cannot reach a (no edge from s)</p>
+                <p>• Cannot reach c (no edge from b)</p>
+                <p>• Cannot reach t (no path)</p>
               </div>
-
-              <div className="mt-4">
-                <p className="font-semibold text-white mb-2">Correctness:</p>
-                <ul className="space-y-2 text-sm">
-                  <li>• The existing flow f is still valid in G' (satisfies capacity and conservation)</li>
-                  <li>• Ford-Fulkerson finds augmenting paths if they exist</li>
-                  <li>• Starting from f instead of 0 saves iterations</li>
-                </ul>
+              
+              <p className="mb-3"><strong>Step 2:</strong> Define the cut:</p>
+              <div className="ml-4 mb-4">
+                <p>S = {"{"} s, b, d {"}"} (reachable from s)</p>
+                <p>T = {"{"} a, c, t {"}"} (not reachable)</p>
               </div>
-
-              <div className="mt-4">
-                <p className="font-semibold text-white mb-2">Time Complexity:</p>
-                <div className="bg-slate-800/50 rounded p-4">
-                  <p className="text-sm">
-                    • Original max flow computation: O(|E|·|f*|)<br/>
-                    • Incremental update: O(|E|·Δf) where Δf = increase in flow<br/>
-                    • <strong className="text-green-400">Key insight:</strong> At most k augmenting paths needed (one per new edge)
-                  </p>
-                  <p className="text-sm text-yellow-300 mt-2">
-                    Total: O(|E|·k) for the update phase
-                  </p>
-                </div>
+              
+              <p className="mb-3"><strong>Step 3:</strong> Find edges crossing the cut (S → T):</p>
+              <div className="ml-4 mb-4">
+                <p>• (s, a) with capacity c(s,a)</p>
+                <p>• (b, c) with capacity c(b,c)</p>
+                <p>• (d, t) with capacity c(d,t)</p>
               </div>
+              
+              <p className="mb-3"><strong>Step 4:</strong> Verify these edges are saturated:</p>
+              <div className="ml-4 mb-4">
+                <p>Since residual capacity is 0 for edges crossing S → T,</p>
+                <p>they must be saturated in the maximum flow.</p>
+              </div>
+              
+              <p className="mb-3"><strong>Step 5:</strong> Calculate cut capacity:</p>
+              <MathDisplay block>
+                c(S,T) = c(s,a) + c(b,c) + c(d,t) = 15
+              </MathDisplay>
+              
+              <p className="mt-3 text-sm text-gray-400">
+                By max-flow min-cut theorem: max flow = min cut = 15 ✓
+              </p>
             </ExamSolution>
           </div>
         </div>
       </section>
 
-      {/* Complete Example: Flow Network Construction */}
+      {/* Bipartite Matching Reduction */}
       <section className="px-6 py-12 border-t border-slate-800">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Full Exam Solution: Bipartite Matching to Flow (2023)
+            Example: Reduction to Bipartite Matching
           </h2>
 
           <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-            <h3 className="text-lg font-semibold text-white mb-4">Problem:</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">Problem: Task Assignment</h3>
             <p className="text-gray-400 mb-4">
-              Given bipartite graph G = (L ∪ R, E), construct flow network to find maximum matching.
+              n workers and m tasks. Worker i can perform task j if (i,j) <In /> E.
+              Each worker can do at most k tasks. Each task needs exactly one worker.
+              Maximize number of completed tasks.
             </p>
 
-            <ExamSolution score="10/10">
-              <div className="bg-blue-500/10 rounded-xl p-6 border border-blue-500/30 mb-4">
-                <p className="font-semibold text-blue-400 mb-3">Construction:</p>
-                <ol className="space-y-3 text-sm">
-                  <li>
-                    <strong>1. Add source s and sink t</strong>
-                    <p className="ml-4 text-gray-400">Create new vertices s and t</p>
-                  </li>
-                  <li>
-                    <strong>2. Connect source to left side</strong>
-                    <p className="ml-4 text-gray-400">∀u ∈ L: add edge (s,u) with capacity 1</p>
-                  </li>
-                  <li>
-                    <strong>3. Original edges</strong>
-                    <p className="ml-4 text-gray-400">∀(u,v) ∈ E where u ∈ L, v ∈ R: add directed edge (u,v) with capacity 1</p>
-                  </li>
-                  <li>
-                    <strong>4. Connect right side to sink</strong>
-                    <p className="ml-4 text-gray-400">∀v ∈ R: add edge (v,t) with capacity 1</p>
-                  </li>
-                </ol>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-4 mt-4">
-                <div className="bg-green-500/10 rounded-lg p-4 border border-green-500/30">
-                  <p className="font-semibold text-green-400 mb-2">Why it works:</p>
-                  <ul className="text-sm space-y-1">
-                    <li>• Each vertex can match at most once (capacity 1)</li>
-                    <li>• Flow paths correspond to matched edges</li>
-                    <li>• Integer capacities → integer flow</li>
-                  </ul>
-                </div>
-                
-                <div className="bg-yellow-500/10 rounded-lg p-4 border border-yellow-500/30">
-                  <p className="font-semibold text-yellow-400 mb-2">Complexity:</p>
-                  <ul className="text-sm space-y-1">
-                    <li>• Network has |V| + 2 vertices</li>
-                    <li>• Network has |E| + |L| + |R| edges</li>
-                    <li>• Max flow value ≤ min(|L|, |R|)</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="mt-4 p-4 bg-purple-500/10 rounded-lg border border-purple-500/30">
-                <p className="text-sm text-purple-300">
-                  <strong>Theorem:</strong> Maximum flow value = size of maximum matching
-                </p>
-              </div>
-            </ExamSolution>
-          </div>
-        </div>
-      </section>
-
-      {/* Complete Example: True/False Statements */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Full Exam Solution: Flow Properties (2024)
-          </h2>
-
-          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-            <h3 className="text-lg font-semibold text-white mb-4">Statement:</h3>
-            <p className="text-gray-400 mb-4">
-              "In any execution of Ford-Fulkerson, once an edge becomes saturated (f(e) = c(e)), 
-              it remains saturated in all subsequent iterations."
-            </p>
-
-            <p className="font-semibold text-gray-300 mb-2">True or False? Prove or give counterexample.</p>
+            <div className="border-t border-slate-700 pt-4 mb-4">
+              <p className="font-semibold text-gray-300 mb-2">
+                Show how to reduce this to a max-flow problem.
+              </p>
+            </div>
 
             <ExamSolution score="10/10">
-              <p className="font-semibold text-red-400 mb-3">FALSE</p>
-
-              <div className="bg-red-500/10 rounded-xl p-6 border border-red-500/30 mb-4">
-                <p className="font-semibold text-red-400 mb-3">Counterexample:</p>
+              <p className="mb-3"><strong>Construction:</strong></p>
+              
+              <ol className="space-y-3 list-decimal list-inside">
+                <li>
+                  <strong>Create vertices:</strong>
+                  <ul className="ml-4 mt-1 space-y-1 text-sm">
+                    <li>• Source s and sink t</li>
+                    <li>• Vertex w<Sub base="i" sub="" /> for each worker i</li>
+                    <li>• Vertex t<Sub base="j" sub="" /> for each task j</li>
+                  </ul>
+                </li>
                 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <p className="text-sm font-semibold text-gray-300 mb-2">Network:</p>
-                    <div className="bg-slate-800/50 rounded p-3 font-mono text-xs">
-                      <p>s → a: capacity 2</p>
-                      <p>s → b: capacity 2</p>
-                      <p>a → b: capacity 1</p>
-                      <p>a → t: capacity 2</p>
-                      <p>b → t: capacity 2</p>
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <p className="text-sm font-semibold text-gray-300 mb-2">Execution:</p>
-                    <div className="text-sm space-y-2">
-                      <p><strong>Iteration 1:</strong></p>
-                      <p className="ml-4">Path s→a→b→t, flow 1</p>
-                      <p className="ml-4 text-yellow-300">Edge (a,b) saturated ✓</p>
-                      
-                      <p className="mt-2"><strong>Iteration 2:</strong></p>
-                      <p className="ml-4">Path s→b→a→t, flow 1</p>
-                      <p className="ml-4 text-red-300">Uses backward edge (b,a)</p>
-                      <p className="ml-4 text-red-300">Now f(a,b) = 0 ✗</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
+                <li>
+                  <strong>Add edges:</strong>
+                  <ul className="ml-4 mt-1 space-y-1 text-sm">
+                    <li>• (s, w<Sub base="i" sub="" />) with capacity k for each worker i</li>
+                    <li>• (w<Sub base="i" sub="" />, t<Sub base="j" sub="" />) with capacity 1 if (i,j) <In /> E</li>
+                    <li>• (t<Sub base="j" sub="" />, t) with capacity 1 for each task j</li>
+                  </ul>
+                </li>
+                
+                <li>
+                  <strong>Correspondence:</strong>
+                  <p className="ml-4 mt-1 text-sm">
+                    Maximum flow = maximum number of tasks assigned
+                  </p>
+                </li>
+              </ol>
+              
+              <div className="mt-4 p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
                 <p className="text-sm text-blue-300">
-                  <strong>Key insight:</strong> Backward edges in the residual network allow flow to be 
-                  "undone", so saturated edges can become unsaturated.
+                  <strong>Why it works:</strong> 
+                  <ul className="mt-2 space-y-1">
+                    <li>• Edge (s, w<Sub base="i" sub="" />) capacity k limits worker i to k tasks</li>
+                    <li>• Edge (t<Sub base="j" sub="" />, t) capacity 1 ensures task j assigned once</li>
+                    <li>• Unit capacities on matching edges ensure integral flow</li>
+                  </ul>
                 </p>
               </div>
             </ExamSolution>
@@ -287,148 +202,75 @@ export default function FlowTheoryPage() {
         </div>
       </section>
 
-      {/* Cloud Computing Example */}
+      {/* Key Theorems */}
       <section className="px-6 py-12 border-t border-slate-800">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Full Exam Solution: Batch Flow Computation (2022)
+            Key Theorems to Remember
           </h2>
 
-          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-            <h3 className="text-lg font-semibold text-white mb-4">Problem:</h3>
-            <p className="text-gray-400 mb-4">
-              You need to solve 50 max-flow problems. Cloud service charges €10 per computation.
-              How to compute all 50 flows with only one cloud call?
-            </p>
-
-            <ExamSolution score="10/10">
-              <div className="bg-purple-500/10 rounded-xl p-6 border border-purple-500/30 mb-4">
-                <p className="font-semibold text-purple-400 mb-3">Construction of Combined Network G*:</p>
-                
-                <ol className="space-y-3 text-sm">
-                  <li>
-                    <strong>1. Start with disjoint union</strong>
-                    <p className="ml-4 text-gray-400">
-                      G* = G<Sub base="1" sub="" /> ∪ G<Sub base="2" sub="" /> ∪ ... ∪ G<Sub base="50" sub="" />
-                    </p>
-                  </li>
-                  
-                  <li>
-                    <strong>2. Add super-source s*</strong>
-                    <p className="ml-4 text-gray-400">
-                      For each i: add edge (s*, s<Sub base="i" sub="" />) with capacity U<br/>
-                      where U = Σ<Sub base="e∈G_i" sub="" /> c(e) (sum of all capacities in G<Sub base="i" sub="" />)
-                    </p>
-                  </li>
-                  
-                  <li>
-                    <strong>3. Add super-sink t*</strong>
-                    <p className="ml-4 text-gray-400">
-                      For each i: add edge (t<Sub base="i" sub="" />, t*) with capacity U
-                    </p>
-                  </li>
-                </ol>
-              </div>
-
-              <div className="mt-4">
-                <p className="font-semibold text-white mb-2">Why it works:</p>
-                <ul className="space-y-2 text-sm">
-                  <li>
-                    • <strong className="text-blue-400">Independence:</strong> Networks remain disjoint except at s* and t*
-                  </li>
-                  <li>
-                    • <strong className="text-green-400">No bottleneck:</strong> U is large enough that s*→s<Sub base="i" sub="" /> never limits flow
-                  </li>
-                  <li>
-                    • <strong className="text-purple-400">Preservation:</strong> Max flow from s<Sub base="i" sub="" /> to t<Sub base="i" sub="" /> unchanged
-                  </li>
-                </ul>
-              </div>
-
-              <div className="mt-4 bg-yellow-500/10 rounded-lg p-4 border border-yellow-500/30">
-                <p className="font-semibold text-yellow-400 mb-2">Extraction:</p>
-                <p className="text-sm">
-                  After computing max flow f* in G*:
-                </p>
-                <p className="text-sm mt-2">
-                  For each network i: f<Sub base="i" sub="" />(e) = f*(e) for all e ∈ E<Sub base="i" sub="" />
-                </p>
-              </div>
-
-              <div className="mt-4 p-4 bg-green-500/10 rounded-lg border border-green-500/30">
-                <p className="text-green-400 font-semibold">Cost savings: €10 instead of €500!</p>
-              </div>
-            </ExamSolution>
-          </div>
-        </div>
-      </section>
-
-      {/* Common Patterns */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Key Patterns & Techniques
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-6">
             <div className="bg-blue-500/10 rounded-xl p-6 border border-blue-500/30">
-              <h3 className="font-semibold text-blue-400 mb-3">Flow-Matching Reduction</h3>
-              <div className="text-sm space-y-2 text-gray-300">
-                <p><strong>Standard construction:</strong></p>
-                <ul className="ml-4 space-y-1">
-                  <li>• Add s, t with capacity 1 edges</li>
-                  <li>• Original edges get capacity 1</li>
-                  <li>• Max flow = max matching size</li>
-                </ul>
-                <p className="text-xs text-gray-400 mt-2">
-                  Works because integral flow → 0/1 flow → matching
-                </p>
-              </div>
+              <h3 className="font-semibold text-blue-400 mb-3">Max-Flow Min-Cut Theorem</h3>
+              <MathDisplay block>
+                max {"{"} |f| : f is a flow {"}"} = min {"{"} c(S,T) : (S,T) is a cut {"}"}
+              </MathDisplay>
+              <p className="text-sm text-gray-300 mt-3">
+                The maximum flow value equals the capacity of the minimum cut.
+              </p>
             </div>
 
             <div className="bg-purple-500/10 rounded-xl p-6 border border-purple-500/30">
-              <h3 className="font-semibold text-purple-400 mb-3">Incremental Updates</h3>
-              <div className="text-sm space-y-2 text-gray-300">
-                <p><strong>When graph changes:</strong></p>
-                <ul className="ml-4 space-y-1">
-                  <li>• Start with existing flow</li>
-                  <li>• Only find new augmenting paths</li>
-                  <li>• At most k paths for k changes</li>
-                </ul>
-                <p className="text-xs text-gray-400 mt-2">
-                  Much faster than recomputing from scratch
-                </p>
-              </div>
+              <h3 className="font-semibold text-purple-400 mb-3">Flow Conservation</h3>
+              <p className="text-gray-300 mb-2">For all v ≠ s,t:</p>
+              <MathDisplay block>
+                <Sum /><Sub base="u" sub="" /> f(u,v) = <Sum /><Sub base="w" sub="" /> f(v,w)
+              </MathDisplay>
+              <p className="text-sm text-gray-400 mt-2">Inflow equals outflow at every internal vertex.</p>
             </div>
 
             <div className="bg-green-500/10 rounded-xl p-6 border border-green-500/30">
-              <h3 className="font-semibold text-green-400 mb-3">True/False Tricks</h3>
-              <div className="text-sm space-y-2 text-gray-300">
-                <p><strong>Common counterexamples:</strong></p>
-                <ul className="ml-4 space-y-1">
-                  <li>• Diamond graph (multiple paths)</li>
-                  <li>• Triangle (shows reversals)</li>
-                  <li>• Linear chain (edge ordering)</li>
-                </ul>
-                <p className="text-xs text-gray-400 mt-2">
-                  Simple graphs often suffice!
-                </p>
-              </div>
+              <h3 className="font-semibold text-green-400 mb-3">Integrality Theorem</h3>
+              <p className="text-gray-300">
+                If all capacities are integers, then there exists an integral maximum flow.
+                Ford-Fulkerson will find it.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Common Reduction Patterns */}
+      <section className="px-6 py-12 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-display font-bold text-white mb-6">
+            Common Reduction Patterns
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+              <h3 className="font-semibold text-white mb-3">Vertex Capacities</h3>
+              <p className="text-sm text-gray-300 mb-3">
+                To model vertex capacity c(v):
+              </p>
+              <ol className="text-sm space-y-1 text-gray-400">
+                <li>1. Split v into v<Sub base="in" sub="" /> and v<Sub base="out" sub="" /></li>
+                <li>2. Add edge (v<Sub base="in" sub="" />, v<Sub base="out" sub="" />) with capacity c(v)</li>
+                <li>3. Redirect all incoming edges to v<Sub base="in" sub="" /></li>
+                <li>4. Redirect all outgoing edges from v<Sub base="out" sub="" /></li>
+              </ol>
             </div>
 
-            <div className="bg-pink-500/10 rounded-xl p-6 border border-pink-500/30">
-              <h3 className="font-semibold text-pink-400 mb-3">Complexity Analysis</h3>
-              <div className="text-sm space-y-2 text-gray-300">
-                <p><strong>Key bounds:</strong></p>
-                <ul className="ml-4 space-y-1">
-                  <li>• Ford-Fulkerson: O(|E|·|f*|)</li>
-                  <li>• Each iteration: O(|E|)</li>
-                  <li>• Matching: |f*| ≤ min(|L|,|R|)</li>
-                </ul>
-                <p className="text-xs text-gray-400 mt-2">
-                  Always state complexity in your answer
-                </p>
-              </div>
+            <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+              <h3 className="font-semibold text-white mb-3">Multiple Sources/Sinks</h3>
+              <p className="text-sm text-gray-300 mb-3">
+                For multiple sources s<Sub base="1" sub="" />,...,s<Sub base="k" sub="" />:
+              </p>
+              <ol className="text-sm space-y-1 text-gray-400">
+                <li>1. Add super-source s</li>
+                <li>2. Add edges (s, s<Sub base="i" sub="" />) with capacity ∞</li>
+                <li>3. Similarly for multiple sinks</li>
+              </ol>
             </div>
           </div>
         </div>

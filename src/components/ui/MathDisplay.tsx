@@ -1,7 +1,30 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
+
+// Type definitions
+interface MathDisplayProps {
+  children: ReactNode
+  block?: boolean
+  className?: string
+}
+
+interface BaseSupProps {
+  base: ReactNode
+  sub?: ReactNode
+  sup?: ReactNode
+}
+
+interface AlgorithmBlockProps {
+  title?: string
+  children: ReactNode
+}
+
+interface AlgoLineProps {
+  indent?: number
+  children: ReactNode
+}
 
 // Mathematical notation components
-export function MathDisplay({ children, block = false, className = '' }) {
+export function MathDisplay({ children, block = false, className = '' }: MathDisplayProps) {
   return (
     <span className={`
       ${block ? 'block my-4 text-center overflow-x-auto' : 'inline'} 
@@ -15,14 +38,14 @@ export function MathDisplay({ children, block = false, className = '' }) {
 // Common mathematical symbols as components
 export const MathSymbols = {
   // Subscript notation
-  Sub: ({ base, sub }) => (
+  Sub: ({ base, sub = '' }: BaseSupProps) => (
     <span>
       {base}<sub className="text-xs">{sub}</sub>
     </span>
   ),
   
   // Superscript notation
-  Sup: ({ base, sup }) => (
+  Sup: ({ base, sup = '' }: BaseSupProps) => (
     <span>
       {base}<sup className="text-xs">{sup}</sup>
     </span>
@@ -49,7 +72,7 @@ export const MathSymbols = {
 }
 
 // Algorithm display component with proper formatting
-export function AlgorithmBlock({ title, children }) {
+export function AlgorithmBlock({ title, children }: AlgorithmBlockProps) {
   return (
     <div className="my-6 bg-slate-900/50 rounded-xl border border-slate-800 overflow-hidden">
       {title && (
@@ -67,7 +90,7 @@ export function AlgorithmBlock({ title, children }) {
 }
 
 // Line component for algorithms
-export function AlgoLine({ indent = 0, children }) {
+export function AlgoLine({ indent = 0, children }: AlgoLineProps) {
   return (
     <div style={{ paddingLeft: `${indent * 1.5}rem` }} className="text-gray-300">
       {children}
@@ -111,7 +134,7 @@ export default function MathNotationDemo() {
           <AlgoLine><strong>function</strong> EdmondsKarp(G, s, t):</AlgoLine>
           <AlgoLine indent={1}>maxFlow <RightArrow /> 0</AlgoLine>
           <AlgoLine indent={1}><strong>while</strong> path <RightArrow /> BFS(G, s, t):</AlgoLine>
-          <AlgoLine indent={2}>bottleneck <RightArrow /> min{<Sub base="c" sub="f" />(e) | e <In /> path}</AlgoLine>
+          <AlgoLine indent={2}>bottleneck <RightArrow /> min{"{"}<Sub base="c" sub="f" />(e) | e <In /> path{"}"}</AlgoLine>
           <AlgoLine indent={2}>maxFlow <RightArrow /> maxFlow + bottleneck</AlgoLine>
           <AlgoLine indent={2}>UpdateResidual(G, path, bottleneck)</AlgoLine>
           <AlgoLine indent={1}><strong>return</strong> maxFlow</AlgoLine>

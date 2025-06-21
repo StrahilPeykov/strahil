@@ -1,47 +1,14 @@
+'use client'
+
 import { motion } from 'framer-motion'
 import { Route, ChevronRight, AlertCircle, CheckCircle, Zap, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { PageWrapper } from '../../../../components/layout/PageWrapper'
 import { Badge } from '../../../../components/ui/Badge'
+import { MathDisplay, MathSymbols, AlgorithmBlock } from '../../../../components/ui/MathDisplay'
+import { ExamSolution } from '../../../../components/ui/AlgorithmComponents'
 
-// Mathematical notation components
-const MathDisplay = ({ children, block = false, className = '' }) => (
-  <span className={`${block ? 'block my-4 text-center' : 'inline'} font-mono text-blue-300 ${className}`}>
-    {children}
-  </span>
-)
-
-const Sub = ({ base, sub }) => (
-  <span>{base}<sub className="text-xs">{sub}</sub></span>
-)
-
-const Sup = ({ base, sup }) => (
-  <span>{base}<sup className="text-xs">{sup}</sup>
-)
-
-const ExamSolution = ({ children, score = "10/10" }) => (
-  <div className="mt-6 bg-green-500/5 border border-green-500/20 rounded-xl p-6">
-    <div className="flex items-center gap-2 mb-4">
-      <CheckCircle className="w-5 h-5 text-green-400" />
-      <span className="text-green-400 font-semibold">Full Solution</span>
-      <span className="text-xs text-gray-500">({score})</span>
-    </div>
-    <div className="space-y-4 text-gray-300">{children}</div>
-  </div>
-)
-
-const AlgorithmBlock = ({ title, children }) => (
-  <div className="my-6 bg-slate-900/50 rounded-xl border border-slate-800 overflow-hidden">
-    {title && (
-      <div className="px-4 py-2 bg-slate-800/50 border-b border-slate-800">
-        <span className="text-sm font-semibold text-purple-400">{title}</span>
-      </div>
-    )}
-    <pre className="p-4 font-mono text-sm text-gray-300 overflow-x-auto">
-      <code>{children}</code>
-    </pre>
-  </div>
-)
+const { Sub, Sup, Sum, In, ForAll, Geq, Leq } = MathSymbols
 
 export default function ShortestPathsPage() {
   return (
@@ -58,7 +25,7 @@ export default function ShortestPathsPage() {
           </Link>
 
           <div className="flex items-center gap-4 mb-6">
-            <div className="w-12 h-12 bg-orange-500/10 rounded-lg flex items-center justify-center text-orange-400">
+            <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center text-green-400">
               <Route className="w-6 h-6" />
             </div>
             <div>
@@ -68,9 +35,9 @@ export default function ShortestPathsPage() {
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <Badge variant="blue">Algorithm Modifications</Badge>
-            <Badge variant="purple">Proof Techniques</Badge>
-            <Badge variant="error">Hard Difficulty</Badge>
+            <Badge variant="green">Modified Weights</Badge>
+            <Badge variant="purple">Algorithm Analysis</Badge>
+            <Badge variant="warning">Medium Difficulty</Badge>
           </div>
         </div>
       </section>
@@ -79,35 +46,61 @@ export default function ShortestPathsPage() {
       <section className="px-6 py-12">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Exam Format & Key Technique
+            Exam Format & Expectations
           </h2>
 
-          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800 mb-6">
+          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
             <p className="text-gray-300 mb-4">
-              These questions modify classic algorithms (Bellman-Ford, Dijkstra, Johnson) to optimize different criteria:
+              Shortest-path questions typically involve:
             </p>
-            <ul className="space-y-2 text-gray-300">
-              <li>• Minimize number of edges (primary) and total weight (secondary)</li>
-              <li>• Count traffic lights or other edge properties</li>
-              <li>• Prove the modification works or provide counterexample</li>
-            </ul>
+            <ol className="space-y-3 list-decimal list-inside text-gray-300">
+              <li><strong className="text-white">Modified weight functions</strong> - Prove/disprove algorithm correctness</li>
+              <li><strong className="text-white">Special objectives</strong> - Minimize edges, then weight</li>
+              <li><strong className="text-white">Algorithm modifications</strong> - Adapt Dijkstra/Bellman-Ford</li>
+              <li><strong className="text-white">Correctness proofs</strong> - Show the modification works</li>
+            </ol>
+            <div className="mt-6 p-4 bg-green-500/10 rounded-lg border border-green-500/30">
+              <p className="text-sm text-green-300">
+                <strong>Key insight:</strong> Weight modifications often encode multiple objectives 
+                into a single weight function.
+              </p>
+            </div>
           </div>
+        </div>
+      </section>
 
-          <div className="bg-orange-500/10 rounded-xl p-6 border border-orange-500/30">
-            <div className="flex items-start gap-3">
-              <Zap className="w-5 h-5 text-orange-400 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-orange-400 font-semibold mb-2">The Big-C Technique</p>
-                <p className="text-sm text-gray-300 mb-3">
-                  Choose C larger than any possible path weight so the high-order term dominates:
-                </p>
-                <MathDisplay block>
-                  w'(e) = w(e) + C
-                </MathDisplay>
-                <p className="text-sm text-gray-400 mt-2">
-                  where C > sum of all original weights (often C = |V| × W or C = T + 1)
-                </p>
-              </div>
+      {/* Weight Modification Technique */}
+      <section className="px-6 py-12 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-display font-bold text-white mb-6">
+            The Weight Modification Technique
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-blue-500/10 rounded-xl p-6 border border-blue-500/30">
+              <h3 className="font-semibold text-blue-400 mb-3">Linear Combination</h3>
+              <p className="text-sm text-gray-300 mb-3">
+                Combine two objectives with different priorities:
+              </p>
+              <MathDisplay block>
+                w'(e) = α · primary(e) + secondary(e)
+              </MathDisplay>
+              <p className="text-sm text-gray-400 mt-2">
+                Choose α large enough that primary objective dominates
+              </p>
+            </div>
+
+            <div className="bg-purple-500/10 rounded-xl p-6 border border-purple-500/30">
+              <h3 className="font-semibold text-purple-400 mb-3">The Big-C Technique</h3>
+              <p className="text-sm text-gray-300 mb-3">
+                Choose C larger than any possible path weight:
+              </p>
+              <MathDisplay block>
+                w'(e) = w(e) + C
+              </MathDisplay>
+              <p className="text-sm text-gray-400 mt-2">
+                where C {">"} sum of all original weights
+              </p>
             </div>
           </div>
         </div>
@@ -145,169 +138,87 @@ export default function ShortestPathsPage() {
             </p>
 
             <ExamSolution score="10/10">
-              <p className="font-semibold text-white">The algorithm is CORRECT. Here's the proof:</p>
-
+              <p className="font-semibold text-white">The algorithm is CORRECT.</p>
+              
               <div className="mt-4">
-                <p className="font-semibold text-blue-400 mb-2">Part 1: P uses minimum number of edges</p>
+                <p className="font-semibold mb-2">Proof:</p>
                 
-                <p className="mb-2">Assume for contradiction that some path P' has fewer edges: |P'| < |P|.</p>
-                
-                <div className="bg-slate-800/50 rounded p-4 mb-3 space-y-2">
-                  <p>w'(P') = Σ<Sub base="e∈P'" sub="" /> w'(e)</p>
-                  <p className="ml-6">= Σ<Sub base="e∈P'" sub="" /> (w(e) + T + 1)</p>
-                  <p className="ml-6">= w(P') + |P'|·(T + 1)</p>
-                  <p className="ml-6">≤ T + |P'|·(T + 1) <span className="text-gray-500">(since w(P') ≤ T)</span></p>
-                  <p className="ml-6">< (|P'| + 1)·(T + 1)</p>
-                  <p className="ml-6">≤ |P|·(T + 1)</p>
-                  <p className="ml-6">≤ w'(P)</p>
-                </div>
-                
-                <p className="text-sm text-gray-400">
-                  This contradicts P being the shortest path under w'. Thus |P'| ≥ |P|.
+                <p className="mb-3">
+                  <strong>1. Weight transformation analysis:</strong>
                 </p>
-              </div>
-
-              <div className="mt-6">
-                <p className="font-semibold text-purple-400 mb-2">Part 2: Among minimum-edge paths, P has minimum weight</p>
+                <p className="ml-4 mb-3">
+                  For any path P with k edges and total original weight W:
+                </p>
+                <MathDisplay block className="ml-4 mb-3">
+                  w'(P) = <Sum /><Sub base="e∈P" sub="" /> w'(e) = <Sum /><Sub base="e∈P" sub="" /> (w(e) + T + 1) = W + k(T + 1)
+                </MathDisplay>
                 
-                <p className="mb-2">
-                  Let P' be another path with |P'| = |P| but w(P') < w(P).
+                <p className="mb-3">
+                  <strong>2. Edge count dominates:</strong>
+                </p>
+                <p className="ml-4 mb-3">
+                  Since T = <Sum /><Sub base="e∈E" sub="" /> w(e) and W <Leq /> T for any path:
+                </p>
+                <ul className="ml-8 space-y-1 mb-3">
+                  <li>• If path P<Sub base="1" sub="" /> has k<Sub base="1" sub="" /> edges</li>
+                  <li>• If path P<Sub base="2" sub="" /> has k<Sub base="2" sub="" /> edges with k<Sub base="1" sub="" /> {"<"} k<Sub base="2" sub="" /></li>
+                  <li>• Then: w'(P<Sub base="1" sub="" />) {"<"} k<Sub base="1" sub="" />(T+1) + T {"<"} k<Sub base="2" sub="" />(T+1) {"<"} w'(P<Sub base="2" sub="" />)</li>
+                </ul>
+                
+                <p className="mb-3">
+                  <strong>3. Weight tiebreaking:</strong>
+                </p>
+                <p className="ml-4 mb-3">
+                  For paths with the same number of edges k:
+                </p>
+                <p className="ml-8 mb-3">
+                  w'(P<Sub base="1" sub="" />) {"<"} w'(P<Sub base="2" sub="" />) ⟺ W<Sub base="1" sub="" /> + k(T+1) {"<"} W<Sub base="2" sub="" /> + k(T+1) ⟺ W<Sub base="1" sub="" /> {"<"} W<Sub base="2" sub="" />
                 </p>
                 
-                <div className="bg-slate-800/50 rounded p-4 mb-3">
-                  <p>w'(P') = w(P') + |P'|·(T + 1)</p>
-                  <p className="ml-6">= w(P') + |P|·(T + 1)</p>
-                  <p className="ml-6">< w(P) + |P|·(T + 1) = w'(P)</p>
-                </div>
-                
-                <p className="text-sm text-gray-400">
-                  This contradicts P being optimal under w'. Therefore w(P') ≥ w(P).
+                <p className="mb-3">
+                  <strong>4. Conclusion:</strong>
                 </p>
-              </div>
-
-              <div className="mt-4 p-4 bg-green-500/10 rounded-lg border border-green-500/30">
-                <p className="text-green-400 font-semibold">Conclusion:</p>
-                <p className="text-sm">The algorithm correctly finds a path with minimum edges, breaking ties by minimum weight. ✓</p>
+                <p className="ml-4">
+                  Dijkstra minimizes w'(P), which ensures P has minimum edges first, 
+                  then minimum weight among paths with that many edges. ✓
+                </p>
               </div>
             </ExamSolution>
           </div>
         </div>
       </section>
 
-      {/* Complete Example: Traffic Lights */}
+      {/* Another Example: Bottleneck Shortest Path */}
       <section className="px-6 py-12 border-t border-slate-800">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Full Exam Solution: Minimizing Traffic Lights (2023)
+            Example: Bottleneck Shortest Path
           </h2>
 
           <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
             <h3 className="text-lg font-semibold text-white mb-4">Problem:</h3>
-            <p className="text-gray-400 mb-3">
-              Alan wants a path with minimum traffic lights. Among such paths, he wants the shortest.
-              Traffic lights are on edges E' ⊆ E.
-            </p>
-
-            <p className="font-semibold text-gray-300 mb-2">
-              Design new weights w'(e) for Dijkstra to solve this problem.
-            </p>
-
-            <ExamSolution score="10/10">
-              <div className="bg-purple-500/10 rounded-xl p-6 border border-purple-500/30 mb-4">
-                <p className="font-semibold text-purple-400 mb-3">Weight Transformation:</p>
-                <div className="space-y-2">
-                  <p>Let C = |V| × W where W = max{w(e) | e ∈ E}</p>
-                  <p className="mt-3">For each edge e:</p>
-                  <div className="ml-4 space-y-1">
-                    <p>• If e ∉ E' (no traffic light): w'(e) = w(e)</p>
-                    <p>• If e ∈ E' (has traffic light): w'(e) = w(e) + C</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-4">
-                <p className="font-semibold text-white mb-2">Why this works:</p>
-                
-                <ul className="space-y-3 text-sm">
-                  <li>
-                    <strong className="text-blue-400">1. Traffic lights dominate:</strong>
-                    <p className="ml-4 text-gray-400">
-                      Any path with k traffic lights has weight ≥ k·C, which exceeds any path 
-                      with (k-1) lights since C > all possible path weights.
-                    </p>
-                  </li>
-                  <li>
-                    <strong className="text-purple-400">2. Original weights break ties:</strong>
-                    <p className="ml-4 text-gray-400">
-                      Among paths with equal traffic lights, the w(e) terms determine shortest.
-                    </p>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="mt-4 bg-yellow-500/10 rounded-lg p-4 border border-yellow-500/30">
-                <p className="font-semibold text-yellow-400 mb-2">Recovery from Dijkstra output:</p>
-                <p className="text-sm">
-                  If d(s,t) = final distance, then:
-                </p>
-                <ul className="text-sm mt-2 space-y-1">
-                  <li>• Number of traffic lights = ⌊d(s,t) / C⌋</li>
-                  <li>• Original path length = d(s,t) mod C</li>
-                </ul>
-              </div>
-            </ExamSolution>
-          </div>
-        </div>
-      </section>
-
-      {/* Edge Ordering in Bellman-Ford */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Bellman-Ford Edge Ordering Effects
-          </h2>
-
-          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-            <h3 className="text-lg font-semibold text-white mb-4">Key Concept:</h3>
             <p className="text-gray-400 mb-4">
-              The order of edge relaxation affects convergence speed, not correctness.
+              Find a path from s to t that minimizes the maximum edge weight on the path.
             </p>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-green-500/10 rounded-lg p-6 border border-green-500/30">
-                <h4 className="font-semibold text-green-400 mb-3">Fast Ordering</h4>
-                <p className="text-sm text-gray-300 mb-3">
-                  Relax edges in topological order (when possible)
-                </p>
-                <div className="bg-slate-800/50 rounded p-3">
-                  <p className="text-xs font-mono">
-                    Graph: s → a → b → c → t<br/>
-                    Order: (s,a), (a,b), (b,c), (c,t)<br/>
-                    Result: Converges in 1 iteration
-                  </p>
-                </div>
-              </div>
-
-              <div className="bg-red-500/10 rounded-lg p-6 border border-red-500/30">
-                <h4 className="font-semibold text-red-400 mb-3">Slow Ordering</h4>
-                <p className="text-sm text-gray-300 mb-3">
-                  Relax edges backwards along shortest paths
-                </p>
-                <div className="bg-slate-800/50 rounded p-3">
-                  <p className="text-xs font-mono">
-                    Graph: s → a → b → c → t<br/>
-                    Order: (c,t), (b,c), (a,b), (s,a)<br/>
-                    Result: Needs |V|-1 = 4 iterations
-                  </p>
-                </div>
-              </div>
+            <div className="bg-yellow-500/10 rounded-xl p-6 border border-yellow-500/30 mb-6">
+              <h4 className="font-semibold text-yellow-400 mb-2">Wrong Approach</h4>
+              <p className="text-gray-300">
+                Setting w'(e) = w(e)<Sup base="2" sup="" /> doesn't work! 
+                Squaring doesn't preserve the bottleneck property.
+              </p>
             </div>
 
-            <div className="mt-6 p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
-              <p className="text-sm text-blue-300">
-                <strong>Exam tip:</strong> For "design a graph where..." questions, use a simple chain. 
-                It's easy to analyze and clearly shows the difference.
+            <div className="bg-green-500/10 rounded-xl p-6 border border-green-500/30">
+              <h4 className="font-semibold text-green-400 mb-2">Correct Approach</h4>
+              <p className="text-gray-300 mb-2">
+                Can't solve with weight modification. Instead:
               </p>
+              <ol className="list-decimal list-inside text-sm text-gray-300 space-y-1">
+                <li>Binary search on the bottleneck value B</li>
+                <li>For each B, use BFS on subgraph with edges <Leq /> B</li>
+                <li>Find minimum B where path exists</li>
+              </ol>
             </div>
           </div>
         </div>
@@ -317,106 +228,87 @@ export default function ShortestPathsPage() {
       <section className="px-6 py-12 border-t border-slate-800">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Common Weight Transformations
+            Common Weight Modification Patterns
           </h2>
 
           <div className="space-y-6">
             <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-              <h3 className="text-lg font-semibold text-white mb-4">Pattern Recognition:</h3>
-              
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-slate-700">
-                    <th className="text-left py-2 text-sm font-semibold text-gray-300">Objective</th>
-                    <th className="text-left py-2 text-sm font-semibold text-gray-300">Transformation</th>
-                    <th className="text-left py-2 text-sm font-semibold text-gray-300">C Value</th>
-                  </tr>
-                </thead>
-                <tbody className="text-sm">
-                  <tr className="border-b border-slate-800">
-                    <td className="py-3 text-gray-400">Min edges, then weight</td>
-                    <td className="py-3 font-mono text-blue-300">w'(e) = w(e) + C</td>
-                    <td className="py-3 text-gray-400">C = T + 1</td>
-                  </tr>
-                  <tr className="border-b border-slate-800">
-                    <td className="py-3 text-gray-400">Min special edges</td>
-                    <td className="py-3 font-mono text-blue-300">w'(e) = w(e) + C·I(e)</td>
-                    <td className="py-3 text-gray-400">C = |V|·W</td>
-                  </tr>
-                  <tr className="border-b border-slate-800">
-                    <td className="py-3 text-gray-400">Max edges (counterex)</td>
-                    <td className="py-3 font-mono text-blue-300">w'(e) = w(e) - C</td>
-                    <td className="py-3 text-gray-400">Fails!</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 text-gray-400">Two criteria</td>
-                    <td className="py-3 font-mono text-blue-300">w'(e) = C₁·f₁(e) + f₂(e)</td>
-                    <td className="py-3 text-gray-400">C₁ >> max f₂</td>
-                  </tr>
-                </tbody>
-              </table>
+              <h3 className="font-semibold text-white mb-3">
+                Pattern 1: Minimize Primary, Then Secondary
+              </h3>
+              <MathDisplay block>
+                w'(e) = primary(e) · C + secondary(e)
+              </MathDisplay>
+              <p className="text-sm text-gray-400 mt-2">
+                where C {">"} max possible secondary cost
+              </p>
             </div>
 
-            <div className="bg-yellow-500/10 rounded-xl p-6 border border-yellow-500/30">
-              <h3 className="font-semibold text-yellow-400 mb-3">Recovery Formulas:</h3>
-              <div className="space-y-2 text-sm">
-                <p>Given final distance d = d(s,t) from modified Dijkstra:</p>
-                <ul className="mt-2 space-y-1 ml-4">
-                  <li>• Primary criterion count: ⌊d / C⌋</li>
-                  <li>• Secondary criterion value: d mod C</li>
-                  <li>• Original path can be reconstructed from parent pointers</li>
-                </ul>
-              </div>
+            <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+              <h3 className="font-semibold text-white mb-3">
+                Pattern 2: Count + Weight
+              </h3>
+              <MathDisplay block>
+                w'(e) = (T + 1) + w(e)
+              </MathDisplay>
+              <p className="text-sm text-gray-400 mt-2">
+                Minimizes edge count, breaks ties by weight
+              </p>
+            </div>
+
+            <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+              <h3 className="font-semibold text-white mb-3">
+                Pattern 3: Lexicographic Ordering
+              </h3>
+              <MathDisplay block>
+                w'(e) = C<Sup base="2" sup="" /> · metric1(e) + C · metric2(e) + metric3(e)
+              </MathDisplay>
+              <p className="text-sm text-gray-400 mt-2">
+                Ensures strict priority ordering between metrics
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Proof Techniques */}
+      {/* Tips Section */}
       <section className="px-6 py-12 border-t border-slate-800">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Proof Structure for Full Marks
+            Exam Strategy
           </h2>
 
-          <div className="bg-gradient-to-br from-orange-500/10 to-red-500/10 rounded-xl p-8 border border-orange-500/20">
-            <h3 className="font-semibold text-white mb-4">Standard Proof Template:</h3>
-            
-            <ol className="space-y-4">
-              <li className="flex items-start gap-3">
-                <span className="flex-shrink-0 w-8 h-8 bg-orange-500/20 rounded-full flex items-center justify-center text-sm font-semibold text-orange-400">1</span>
-                <div>
-                  <p className="font-medium text-white">State what you're proving</p>
-                  <p className="text-sm text-gray-400">"We prove the algorithm finds a path minimizing X then Y"</p>
-                </div>
-              </li>
-              
-              <li className="flex items-start gap-3">
-                <span className="flex-shrink-0 w-8 h-8 bg-orange-500/20 rounded-full flex items-center justify-center text-sm font-semibold text-orange-400">2</span>
-                <div>
-                  <p className="font-medium text-white">Prove primary criterion</p>
-                  <p className="text-sm text-gray-400">"Assume P' has better primary value..."</p>
-                  <p className="text-sm text-gray-400">"Show w'(P') < w'(P), contradiction"</p>
-                </div>
-              </li>
-              
-              <li className="flex items-start gap-3">
-                <span className="flex-shrink-0 w-8 h-8 bg-orange-500/20 rounded-full flex items-center justify-center text-sm font-semibold text-orange-400">3</span>
-                <div>
-                  <p className="font-medium text-white">Prove secondary criterion</p>
-                  <p className="text-sm text-gray-400">"Among paths with same primary, assume P' better..."</p>
-                  <p className="text-sm text-gray-400">"Again show contradiction"</p>
-                </div>
-              </li>
-              
-              <li className="flex items-start gap-3">
-                <span className="flex-shrink-0 w-8 h-8 bg-orange-500/20 rounded-full flex items-center justify-center text-sm font-semibold text-orange-400">4</span>
-                <div>
-                  <p className="font-medium text-white">Conclude</p>
-                  <p className="text-sm text-gray-400">"Therefore the algorithm is correct"</p>
-                </div>
-              </li>
-            </ol>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-green-500/10 rounded-xl p-6 border border-green-500/30">
+              <h3 className="font-semibold text-green-400 mb-3">Proving Correctness</h3>
+              <ol className="space-y-2 text-sm text-gray-300">
+                <li>1. Show how weights encode objectives</li>
+                <li>2. Prove primary objective dominates</li>
+                <li>3. Verify tiebreaking works correctly</li>
+                <li>4. Conclude algorithm finds optimal path</li>
+              </ol>
+            </div>
+
+            <div className="bg-red-500/10 rounded-xl p-6 border border-red-500/30">
+              <h3 className="font-semibold text-red-400 mb-3">Finding Counterexamples</h3>
+              <ol className="space-y-2 text-sm text-gray-300">
+                <li>1. Look for small graphs (3-4 nodes)</li>
+                <li>2. Try extreme weight values</li>
+                <li>3. Check if objectives conflict</li>
+                <li>4. Draw the example clearly</li>
+              </ol>
+            </div>
+          </div>
+
+          <div className="mt-6 p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
+            <div className="flex items-start gap-2">
+              <Zap className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-gray-300">
+                <strong className="text-blue-400">Quick check:</strong> If C isn't big enough 
+                (e.g., C = max weight instead of sum), the algorithm usually fails. 
+                This is a common source of counterexamples.
+              </p>
+            </div>
           </div>
         </div>
       </section>
