@@ -153,7 +153,6 @@ export const metadata: Metadata = {
     
     // Specialization keywords
     'Machine Learning Developer',
-    'AI-Driven Solutions',
     'Enterprise Integration',
     'System Integration',
     'Enterprise Applications',
