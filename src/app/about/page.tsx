@@ -18,20 +18,12 @@ const timeline = [
     gradient: 'from-blue-500 to-cyan-500'
   },
   {
-    year: '2024',
-    title: 'Full-Stack Developer',
-    description: 'Building scalable web applications and digital experiences',
+    year: '2023-2025',
+    title: 'Integration Engineer Intern',
+    description: 'Building enterprise solutions at ASML, world leader in semiconductor manufacturing',
     icon: Rocket,
     color: 'text-purple-400',
     gradient: 'from-purple-500 to-pink-500'
-  },
-  {
-    year: '2023',
-    title: 'ASML Internship',
-    description: 'Software engineering internship at leading semiconductor company',
-    icon: Code2,
-    color: 'text-pink-400',
-    gradient: 'from-pink-500 to-orange-500'
   },
   {
     year: '2021',
@@ -40,14 +32,22 @@ const timeline = [
     icon: Globe,
     color: 'text-green-400',
     gradient: 'from-green-500 to-teal-500'
+  },
+  {
+    year: '2015-2021',
+    title: 'High School',
+    description: 'Mathematics and Natural Sciences in Burgas, Bulgaria',
+    icon: Code2,
+    color: 'text-pink-400',
+    gradient: 'from-pink-500 to-orange-500'
   }
 ]
 
 const skills = [
-  { category: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'] },
-  { category: 'Backend', items: ['Python', 'Node.js', 'PostgreSQL', 'GraphQL', 'REST APIs'] },
-  { category: 'AI/ML', items: ['TensorFlow', 'PyTorch', 'OpenAI', 'Langchain', 'Computer Vision'] },
-  { category: 'Cloud', items: ['AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Serverless'] }
+  { category: 'Frontend', items: ['React', 'Next.js', 'Vue.js', 'TypeScript', 'Tailwind CSS'] },
+  { category: 'Backend', items: ['Python', 'Java', 'Node.js', 'Django', 'Spring Boot'] },
+  { category: 'Tools & Platforms', items: ['Azure DevOps', 'Docker', 'Git', 'Microsoft Graph'] },
+  { category: 'Databases', items: ['PostgreSQL', 'MongoDB', 'MySQL', 'Redis', 'SQL'] }
 ]
 
 const interests = [
@@ -174,8 +174,8 @@ export default function AboutPage() {
               A Bulgarian creative technologist based in Eindhoven, Netherlands. 
               I build digital experiences that live at the intersection of 
               <span className="text-blue-400"> technology</span>,
-              <span className="text-purple-400"> design</span>, and
-              <span className="text-pink-400"> human experience</span>.
+              <span className="text-purple-400"> engineering</span>, and
+              <span className="text-pink-400"> innovation</span>.
             </motion.p>
             
             <motion.div
@@ -185,9 +185,9 @@ export default function AboutPage() {
               className="flex flex-wrap gap-3 justify-center"
             >
               <Badge variant="blue">🇧🇬 Bulgarian</Badge>
-              <Badge variant="purple">📍 Eindhoven, NL</Badge>
-              <Badge variant="pink">🎓 MSc Complex Systems</Badge>
-              <Badge variant="default">💻 Full-Stack Dev</Badge>
+              <Badge variant="purple">Eindhoven, NL</Badge>
+              <Badge variant="pink">BSc Computer Science</Badge>
+              <Badge variant="default">ASML Intern</Badge>
             </motion.div>
           </div>
         </section>
@@ -221,14 +221,14 @@ export default function AboutPage() {
                     </p>
                     
                     <p>
-                      My journey took me to the Netherlands, where I pursued my Master's in 
-                      Complex Systems & Policy. This unique blend of technical skills and systems 
-                      thinking shapes how I approach every project.
+                      My journey took me to the Netherlands, where I pursued my Bachelor's in 
+                      Computer Science & Engineering at TU/e. This comprehensive education in 
+                      software engineering and systems thinking shapes how I approach every project.
                     </p>
                     
                     <p>
-                      Today, I work as a Full-Stack Developer, crafting experiences that bridge 
-                      the gap between complex technology and intuitive design. Every line of code 
+                      Currently, I work as an Software Engineer at ASML, where I'm developing 
+                      enterprise solutions that connect complex backend systems. Every line of code 
                       is an opportunity to create something meaningful.
                     </p>
                   </div>

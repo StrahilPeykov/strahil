@@ -74,7 +74,7 @@ const personalSchema = {
     "Machine Learning",
     "Web Development",
     "Software Engineering",
-    "Scalable Systems"
+    "Scalable Systems",
     "Django",
     "Spring Boot",
     "ETL Processes",
