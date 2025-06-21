@@ -1,54 +1,50 @@
-'use client'
-
 import { motion } from 'framer-motion'
-import { Code, ChevronRight, AlertCircle, CheckCircle, Lightbulb, ArrowLeft, FileText } from 'lucide-react'
+import { Code, ChevronRight, AlertCircle, CheckCircle, Lightbulb, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { PageWrapper } from '../../../../components/layout/PageWrapper'
 import { Badge } from '../../../../components/ui/Badge'
-import { CodeBlock } from '../../../../components/ui/CodeBlock'
 
-const examples = [
-  {
-    year: '2024 Resit',
-    problem: 'Activity Selection with Profits',
-    description: 'Select non-overlapping activities to maximize total profit',
-    subproblem: 'T[i] = maximum profit using first i activities, must include activity i',
-    recurrence: 'T[i] = p(a_i) + max{T[j] | a_j ∈ endsBefore(a_i)}',
-    keyInsight: 'Include current activity and find best compatible predecessor'
-  },
-  {
-    year: '2024',
-    problem: 'Text Recognition',
-    description: 'Split string into words to maximize total score',
-    subproblem: 'T[i] = maximum score for splitting first i characters',
-    recurrence: 'T[i] = max{T[j-1] + score(x_j...x_i) | 1 ≤ j ≤ i}',
-    keyInsight: 'Try all possible last words'
-  },
-  {
-    year: '2023 Resit',
-    problem: 'Tree Organization',
-    description: 'Build binary tree minimizing cost based on subtree sums',
-    subproblem: 'T[a,b] = minimum cost tree for elements x_a to x_b',
-    recurrence: 'T[a,b] = min{T[a,k] + T[k+1,b] + (L-R)² | a ≤ k < b}',
-    keyInsight: 'Try all split points for root'
-  },
-  {
-    year: '2023',
-    problem: 'Dividing the Loot',
-    description: 'Split items into 3 equal-value sets',
-    subproblem: 'T[i,x,y,z] = can we split first i items into sets with sums x,y,z?',
-    recurrence: 'T[i,x,y,z] = T[i-1,x-p_i,y,z] ∨ T[i-1,x,y-p_i,z] ∨ T[i-1,x,y,z-p_i]',
-    keyInsight: 'Item i goes to one of three thieves'
-  },
-  {
-    year: '2022',
-    problem: 'String Mixing',
-    description: 'Check if string Z is a mix of strings X and Y',
-    subproblem: 'T[i,j,k] = is z_1...z_k a mix of x_1...x_i and y_1...y_j?',
-    recurrence: 'Multiple cases based on last character origin',
-    keyInsight: 'Last character came from X or Y'
-  }
-]
+// Mathematical notation components
+const MathDisplay = ({ children, block = false, className = '' }) => (
+  <span className={`${block ? 'block my-4 text-center' : 'inline'} font-mono text-blue-300 ${className}`}>
+    {children}
+  </span>
+)
+
+const Sub = ({ base, sub }) => (
+  <span>{base}<sub className="text-xs">{sub}</sub></span>
+)
+
+const ExamSolution = ({ children, score = "10/10" }) => (
+  <div className="mt-6 bg-green-500/5 border border-green-500/20 rounded-xl p-6">
+    <div className="flex items-center gap-2 mb-4">
+      <CheckCircle className="w-5 h-5 text-green-400" />
+      <span className="text-green-400 font-semibold">Full Solution</span>
+      <span className="text-xs text-gray-500">({score})</span>
+    </div>
+    <div className="space-y-4 text-gray-300">{children}</div>
+  </div>
+)
+
+const RecurrenceBox = ({ children }) => (
+  <div className="bg-purple-500/10 border border-purple-500/30 rounded-xl p-6 my-4">
+    <div className="font-semibold text-purple-400 mb-3">Recurrence Relation:</div>
+    <div className="text-gray-200 font-mono text-sm space-y-2">{children}</div>
+  </div>
+)
+
+const AlgorithmBlock = ({ title, children }) => (
+  <div className="my-6 bg-slate-900/50 rounded-xl border border-slate-800 overflow-hidden">
+    {title && (
+      <div className="px-4 py-2 bg-slate-800/50 border-b border-slate-800">
+        <span className="text-sm font-semibold text-purple-400">{title}</span>
+      </div>
+    )}
+    <pre className="p-4 font-mono text-sm text-gray-300 overflow-x-auto">
+      <code>{children}</code>
+    </pre>
+  </div>
+)
 
 export default function DynamicProgrammingPage() {
   return (
@@ -82,347 +78,306 @@ export default function DynamicProgrammingPage() {
         </div>
       </section>
 
-      {/* Key Concepts */}
+      {/* Exam Format */}
       <section className="px-6 py-12">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            What You Need to Master
+            Exam Format & Expectations
           </h2>
 
-          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800 mb-8">
+          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
             <p className="text-gray-300 mb-4">
               Dynamic programming questions require you to:
             </p>
-            <div className="space-y-3">
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-white font-medium">Define subproblems clearly</p>
-                  <p className="text-sm text-gray-400">What does T[i], T[i,j], or T[...] represent?</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-white font-medium">Write recursive formulas</p>
-                  <p className="text-sm text-gray-400">Base cases and step cases with clear conditions</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-white font-medium">Provide pseudocode</p>
-                  <p className="text-sm text-gray-400">Bottom-up implementation with proper initialization</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-white font-medium">Explain your approach</p>
-                  <p className="text-sm text-gray-400">Brief reasoning for the recurrence relation</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-purple-500/10 rounded-xl p-6 border border-purple-500/30">
-            <div className="flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-purple-400 font-semibold mb-2">Critical Point</p>
-                <p className="text-sm text-gray-300">
-                  The subproblem definition is THE MOST IMPORTANT part. If you get this wrong, 
-                  everything else falls apart. Spend time understanding what information you need 
-                  to track.
-                </p>
-              </div>
+            <ol className="space-y-3 list-decimal list-inside text-gray-300">
+              <li><strong className="text-white">Define subproblems clearly</strong> - What does T[i], T[i,j], etc. represent?</li>
+              <li><strong className="text-white">Write recursive formula</strong> - Base cases and recurrence relation</li>
+              <li><strong className="text-white">Explain the recurrence</strong> - Brief reasoning why it works</li>
+              <li><strong className="text-white">Provide pseudocode</strong> - Bottom-up implementation (if asked)</li>
+            </ol>
+            
+            <div className="mt-6 p-4 bg-red-500/10 rounded-lg border border-red-500/30">
+              <p className="text-sm text-red-300">
+                <strong>Critical:</strong> The subproblem definition is the most important part. 
+                If you get this wrong, everything else falls apart!
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* DP Framework */}
+      {/* Complete Example: Text Recognition */}
       <section className="px-6 py-12 border-t border-slate-800">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Dynamic Programming Framework
+            Full Exam Solution: Text Recognition (2024)
+          </h2>
+
+          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+            <h3 className="text-lg font-semibold text-white mb-4">Problem Description:</h3>
+            <p className="text-gray-400 mb-3">
+              Given a string X = x<Sub base="1" sub="" />x<Sub base="2" sub="" />...x<Sub base="n" sub="" /> with spaces removed.
+              We have a function score(x<Sub base="i" sub="" />...x<Sub base="j" sub="" />) that returns the score of substring 
+              x<Sub base="i" sub="" />...x<Sub base="j" sub="" /> as a potential word.
+              Goal: Split X into words to maximize total score.
+            </p>
+            
+            <div className="bg-slate-800/50 rounded-lg p-4 mb-4">
+              <p className="text-sm text-gray-400">Example: "meetateight"</p>
+              <p className="text-sm font-mono text-gray-300">
+                score("meet") = 10, score("at") = 3, score("eight") = 2<br/>
+                Split: "meet at eight" → total score = 15
+              </p>
+            </div>
+
+            <p className="text-gray-400 mb-4">
+              <strong>Subproblem:</strong> For 0 ≤ i ≤ n, let T[i] = maximum total score for splitting x<Sub base="1" sub="" />...x<Sub base="i" sub="" />
+            </p>
+
+            <div className="border-t border-slate-700 pt-4">
+              <p className="font-semibold text-gray-300 mb-2">Question 3a: Give recursive formula for T[i]</p>
+            </div>
+
+            <ExamSolution score="7/7">
+              <RecurrenceBox>
+                <div><strong>Base case:</strong> T[0] = 0</div>
+                <div className="text-gray-500 text-xs mt-1">(empty prefix has score 0)</div>
+                
+                <div className="mt-4"><strong>Recurrence:</strong> For i > 0:</div>
+                <MathDisplay block>
+                  T[i] = max<Sub base="" sub="1≤j≤i" /> { T[j-1] + score(x<Sub base="j" sub="" />x<Sub base="j+1" sub="" />...x<Sub base="i" sub="" />) }
+                </MathDisplay>
+              </RecurrenceBox>
+
+              <div className="mt-4 p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
+                <p className="text-sm text-blue-300">
+                  <strong>Explanation:</strong> To find the best split of x<Sub base="1" sub="" />...x<Sub base="i" sub="" />, 
+                  we try every possible last word x<Sub base="j" sub="" />...x<Sub base="i" sub="" /> (for j = 1 to i).
+                  The total score is the score of this last word plus the optimal score for the remaining prefix x<Sub base="1" sub="" />...x<Sub base="j-1" sub="" />.
+                </p>
+              </div>
+            </ExamSolution>
+
+            <div className="border-t border-slate-700 pt-4 mt-8">
+              <p className="font-semibold text-gray-300 mb-2">Question 3b: Write pseudocode to print optimal split</p>
+            </div>
+
+            <ExamSolution score="3/3">
+              <AlgorithmBlock title="PrintSolution(X[1...n], T[0...n], i)">
+{`if i == 0:
+    return  // nothing to print
+    
+// Find j such that T[i] came from T[j-1] + score(X[j...i])
+for j = 1 to i:
+    if T[j-1] + score(X, j, i) == T[i]:
+        // Recursively print the prefix solution
+        if j-1 > 0:
+            PrintSolution(X, T, j-1)
+            print(' ')  // space between words
+        
+        // Print current word
+        print(X[j...i])
+        return`}
+              </AlgorithmBlock>
+
+              <p className="text-sm text-gray-400 mt-3">
+                <strong>Note:</strong> The algorithm finds the first j that gives the optimal value. 
+                We print the prefix solution first, then a space (if not the first word), then the current word.
+              </p>
+            </ExamSolution>
+          </div>
+        </div>
+      </section>
+
+      {/* Complete Example: Activity Selection with Profits */}
+      <section className="px-6 py-12 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-display font-bold text-white mb-6">
+            Full Exam Solution: Activity Selection with Profits (2024 Resit)
+          </h2>
+
+          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+            <h3 className="text-lg font-semibold text-white mb-4">Problem Description:</h3>
+            <p className="text-gray-400 mb-3">
+              Given n activities a<Sub base="1" sub="" />,...,a<Sub base="n" sub="" /> sorted by finish time where:
+            </p>
+            <ul className="list-disc list-inside text-gray-400 mb-4 space-y-1">
+              <li>s(a<Sub base="i" sub="" />): start time</li>
+              <li>f(a<Sub base="i" sub="" />): finish time (f(a<Sub base="1" sub="" />) < ... < f(a<Sub base="n" sub="" />))</li>
+              <li>p(a<Sub base="i" sub="" />): profit</li>
+            </ul>
+            <p className="text-gray-400 mb-4">
+              Goal: Select non-overlapping activities to maximize total profit.
+            </p>
+
+            <p className="text-gray-400 mb-4">
+              <strong>Subproblem:</strong> For 1 ≤ i ≤ n, let T[i] = maximum profit using activities from {a<Sub base="1" sub="" />,...,a<Sub base="i" sub="" />} 
+              that <strong>must include</strong> a<Sub base="i" sub="" />.
+            </p>
+
+            <div className="border-t border-slate-700 pt-4">
+              <p className="font-semibold text-gray-300 mb-2">Give recursive formula for T[i]</p>
+            </div>
+
+            <ExamSolution score="10/10">
+              <p className="mb-3">First, define the helper set:</p>
+              <MathDisplay block>
+                endsBefore(a<Sub base="i" sub="" />) = {a<Sub base="j" sub="" /> ∈ A | f(a<Sub base="j" sub="" />) < s(a<Sub base="i" sub="" />)}
+              </MathDisplay>
+              <p className="text-sm text-gray-400 mb-4">(activities that finish before a<Sub base="i" sub="" /> starts)</p>
+
+              <RecurrenceBox>
+                <div><strong>Base case:</strong> If endsBefore(a<Sub base="i" sub="" />) = ∅:</div>
+                <MathDisplay block>T[i] = p(a<Sub base="i" sub="" />)</MathDisplay>
+                
+                <div className="mt-4"><strong>Recurrence:</strong> If endsBefore(a<Sub base="i" sub="" />) ≠ ∅:</div>
+                <MathDisplay block>
+                  T[i] = p(a<Sub base="i" sub="" />) + max<Sub base="" sub="a_j ∈ endsBefore(a_i)" /> { T[j] }
+                </MathDisplay>
+              </RecurrenceBox>
+
+              <div className="mt-4 p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
+                <p className="text-sm text-blue-300">
+                  <strong>Explanation:</strong> Since we must include a<Sub base="i" sub="" />, we get profit p(a<Sub base="i" sub="" />).
+                  We can also include the best compatible predecessor a<Sub base="j" sub="" /> that ends before a<Sub base="i" sub="" /> starts.
+                  If no activity can precede a<Sub base="i" sub="" />, then T[i] = p(a<Sub base="i" sub="" />).
+                </p>
+              </div>
+
+              <div className="mt-4 p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
+                <p className="text-sm text-yellow-300">
+                  <strong>Final answer:</strong> max<Sub base="" sub="1≤i≤n" /> { T[i] }
+                </p>
+                <p className="text-xs text-gray-400 mt-1">
+                  (The optimal solution ends with some activity, so we take the best)
+                </p>
+              </div>
+            </ExamSolution>
+          </div>
+        </div>
+      </section>
+
+      {/* Common DP Patterns */}
+      <section className="px-6 py-12 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-display font-bold text-white mb-6">
+            Common DP Patterns & Templates
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Linear DP */}
+            <div className="bg-blue-500/10 rounded-xl p-6 border border-blue-500/30">
+              <h3 className="font-semibold text-blue-400 mb-3">Linear DP (1D)</h3>
+              <p className="text-sm text-gray-400 mb-3">Process elements in sequence</p>
+              <div className="bg-slate-800/50 rounded p-3 font-mono text-xs">
+                <p>T[0] = base_value</p>
+                <p className="mt-2">T[i] = best of:</p>
+                <p className="ml-4">- include a[i]: f(a[i]) + T[j]</p>
+                <p className="ml-4">- exclude a[i]: T[i-1]</p>
+              </div>
+              <p className="text-xs text-gray-500 mt-2">Examples: LIS, coin change, knapsack</p>
+            </div>
+
+            {/* Interval DP */}
+            <div className="bg-purple-500/10 rounded-xl p-6 border border-purple-500/30">
+              <h3 className="font-semibold text-purple-400 mb-3">Interval DP (2D)</h3>
+              <p className="text-sm text-gray-400 mb-3">Process subarrays [i,j]</p>
+              <div className="bg-slate-800/50 rounded p-3 font-mono text-xs">
+                <p>T[i,i] = base_value</p>
+                <p className="mt-2">T[i,j] = best over k:</p>
+                <p className="ml-4">T[i,k] + T[k+1,j] + merge_cost</p>
+              </div>
+              <p className="text-xs text-gray-500 mt-2">Examples: matrix chain, palindrome partition</p>
+            </div>
+
+            {/* String DP */}
+            <div className="bg-green-500/10 rounded-xl p-6 border border-green-500/30">
+              <h3 className="font-semibold text-green-400 mb-3">String DP</h3>
+              <p className="text-sm text-gray-400 mb-3">Compare/match strings</p>
+              <div className="bg-slate-800/50 rounded p-3 font-mono text-xs">
+                <p>T[0,j] = T[i,0] = base</p>
+                <p className="mt-2">T[i,j] = </p>
+                <p className="ml-4">if match: 1 + T[i-1,j-1]</p>
+                <p className="ml-4">else: max(T[i-1,j], T[i,j-1])</p>
+              </div>
+              <p className="text-xs text-gray-500 mt-2">Examples: LCS, edit distance, alignment</p>
+            </div>
+
+            {/* Knapsack DP */}
+            <div className="bg-pink-500/10 rounded-xl p-6 border border-pink-500/30">
+              <h3 className="font-semibold text-pink-400 mb-3">Knapsack-style</h3>
+              <p className="text-sm text-gray-400 mb-3">Track capacity constraints</p>
+              <div className="bg-slate-800/50 rounded p-3 font-mono text-xs">
+                <p>T[0,w] = 0</p>
+                <p className="mt-2">T[i,w] = max:</p>
+                <p className="ml-4">- take: v[i] + T[i-1,w-w[i]]</p>
+                <p className="ml-4">- skip: T[i-1,w]</p>
+              </div>
+              <p className="text-xs text-gray-500 mt-2">Examples: 0/1 knapsack, subset sum</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Key Success Tips */}
+      <section className="px-6 py-12 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-display font-bold text-white mb-6">
+            How to Score Full Marks
           </h2>
 
           <div className="space-y-6">
-            <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-              <h3 className="text-lg font-semibold text-white mb-4">1. Define Subproblems</h3>
-              <div className="space-y-3">
-                <p className="text-gray-300">Common patterns:</p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• <strong>Prefix:</strong> T[i] = solution for first i elements</li>
-                  <li>• <strong>Substring:</strong> T[i,j] = solution for elements i to j</li>
-                  <li>• <strong>With constraints:</strong> T[i,k] = solution for first i elements with constraint k</li>
-                  <li>• <strong>Multi-dimensional:</strong> T[i,j,k,...] = complex state tracking</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-              <h3 className="text-lg font-semibold text-white mb-4">2. Write Recurrence</h3>
-              <CodeBlock language="text">
-{`Base case: T[0] = ... (or T[0,0] = ..., etc.)
-
-Step case: T[i] = optimum over all valid choices {
-    value from choice + T[smaller subproblem]
-}`}
-              </CodeBlock>
-              <p className="text-sm text-gray-400 mt-3">
-                The recurrence should express how to build solution for size i from smaller subproblems.
-              </p>
-            </div>
-
-            <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-              <h3 className="text-lg font-semibold text-white mb-4">3. Implementation Pattern</h3>
-              <CodeBlock language="python">
-{`def solve_dp(input):
-    # Initialize DP table
-    T = create_table(dimensions)
-    
-    # Base cases
-    T[0] = base_value
-    
-    # Fill table bottom-up
-    for i in range(1, n+1):
-        T[i] = compute_from_recurrence(T, i)
-    
-    # Return answer
-    return T[n]  # or reconstruct solution`}
-              </CodeBlock>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Common Patterns */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Common DP Patterns
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-blue-500/10 rounded-xl p-6 border border-blue-500/30">
-              <h3 className="font-semibold text-blue-400 mb-3">Linear DP</h3>
-              <p className="text-sm text-gray-300 mb-3">Process elements in sequence</p>
-              <CodeBlock language="text">
-{`T[i] = best solution for a[1...i]
-T[i] = max/min {
-    include a[i]: f(a[i]) + T[j]
-    exclude a[i]: T[i-1]
-}`}
-              </CodeBlock>
-            </div>
-
-            <div className="bg-purple-500/10 rounded-xl p-6 border border-purple-500/30">
-              <h3 className="font-semibold text-purple-400 mb-3">Interval DP</h3>
-              <p className="text-sm text-gray-300 mb-3">Process subarrays/substrings</p>
-              <CodeBlock language="text">
-{`T[i,j] = best for a[i...j]
-T[i,j] = max/min {
-    split at k: T[i,k] + T[k+1,j] + cost
-}`}
-              </CodeBlock>
-            </div>
-
             <div className="bg-green-500/10 rounded-xl p-6 border border-green-500/30">
-              <h3 className="font-semibold text-green-400 mb-3">Knapsack-style</h3>
-              <p className="text-sm text-gray-300 mb-3">Track capacity/sum constraints</p>
-              <CodeBlock language="text">
-{`T[i,w] = best using items 1...i, capacity w
-T[i,w] = max {
-    take item i: v[i] + T[i-1,w-w[i]]
-    skip item i: T[i-1,w]
-}`}
-              </CodeBlock>
-            </div>
-
-            <div className="bg-pink-500/10 rounded-xl p-6 border border-pink-500/30">
-              <h3 className="font-semibold text-pink-400 mb-3">Boolean DP</h3>
-              <p className="text-sm text-gray-300 mb-3">Check if something is possible</p>
-              <CodeBlock language="text">
-{`T[i,j,k] = can we achieve state (j,k) using first i items?
-T[i,j,k] = T[i-1,j-x,k] OR 
-           T[i-1,j,k-x] OR ...`}
-              </CodeBlock>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Detailed Examples */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Past Exam Examples Explained
-          </h2>
-
-          <div className="space-y-8">
-            {examples.map((example, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-slate-900/50 rounded-xl p-6 border border-slate-800"
-              >
-                <div className="mb-4">
-                  <Badge variant="purple" size="sm" className="mb-2">{example.year}</Badge>
-                  <h3 className="text-xl font-semibold text-white">{example.problem}</h3>
-                  <p className="text-gray-400 mt-1">{example.description}</p>
-                </div>
-                
-                <div className="space-y-4">
-                  <div className="bg-slate-800/50 rounded-lg p-4">
-                    <p className="text-sm font-semibold text-purple-400 mb-1">Subproblem Definition:</p>
-                    <p className="text-sm font-mono text-gray-300">{example.subproblem}</p>
+              <h3 className="font-semibold text-green-400 mb-4">Step-by-Step Approach</h3>
+              <ol className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <span className="flex-shrink-0 w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center text-xs font-semibold text-green-400">1</span>
+                  <div>
+                    <p className="font-medium text-white">Define subproblems precisely</p>
+                    <p className="text-sm text-gray-400">T[i] = "the optimal value for..."</p>
                   </div>
-                  
-                  <div className="bg-slate-800/50 rounded-lg p-4">
-                    <p className="text-sm font-semibold text-blue-400 mb-1">Recurrence:</p>
-                    <p className="text-sm font-mono text-gray-300">{example.recurrence}</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="flex-shrink-0 w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center text-xs font-semibold text-green-400">2</span>
+                  <div>
+                    <p className="font-medium text-white">Identify all choices</p>
+                    <p className="text-sm text-gray-400">What decisions lead to T[i]?</p>
                   </div>
-                  
-                  <div className="flex items-start gap-2">
-                    <Lightbulb className="w-4 h-4 text-yellow-400 flex-shrink-0 mt-0.5" />
-                    <p className="text-sm text-gray-400">
-                      <span className="text-yellow-400 font-medium">Key insight:</span> {example.keyInsight}
-                    </p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="flex-shrink-0 w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center text-xs font-semibold text-green-400">3</span>
+                  <div>
+                    <p className="font-medium text-white">Write base cases</p>
+                    <p className="text-sm text-gray-400">Usually T[0] = 0 or similar</p>
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Common Mistakes */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Common Mistakes to Avoid
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-red-500/10 rounded-xl p-6 border border-red-500/30">
-              <h3 className="font-semibold text-red-400 mb-3">Wrong Subproblem ✗</h3>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li>• Missing necessary information in state</li>
-                <li>• Subproblem doesn't decompose properly</li>
-                <li>• Can't reconstruct solution from table</li>
-                <li>• Ambiguous definition</li>
-              </ul>
-              <p className="text-xs text-gray-400 mt-3">
-                Fix: Ask "what do I need to know to make the next decision?"
-              </p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="flex-shrink-0 w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center text-xs font-semibold text-green-400">4</span>
+                  <div>
+                    <p className="font-medium text-white">Express recurrence clearly</p>
+                    <p className="text-sm text-gray-400">Use max/min over all valid choices</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="flex-shrink-0 w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center text-xs font-semibold text-green-400">5</span>
+                  <div>
+                    <p className="font-medium text-white">Explain in one sentence</p>
+                    <p className="text-sm text-gray-400">"We try all possible..."</p>
+                  </div>
+                </li>
+              </ol>
             </div>
 
             <div className="bg-red-500/10 rounded-xl p-6 border border-red-500/30">
-              <h3 className="font-semibold text-red-400 mb-3">Index Errors ✗</h3>
+              <h3 className="font-semibold text-red-400 mb-3">Common Mistakes</h3>
               <ul className="space-y-2 text-sm text-gray-300">
-                <li>• Off-by-one in recurrence</li>
-                <li>• Accessing negative indices</li>
-                <li>• Wrong loop bounds</li>
-                <li>• Forgetting base cases</li>
+                <li>• <strong>Wrong subproblem:</strong> Missing information in state</li>
+                <li>• <strong>Index errors:</strong> Off-by-one, accessing T[-1]</li>
+                <li>• <strong>Missing cases:</strong> Forgetting "do nothing" option</li>
+                <li>• <strong>No explanation:</strong> Just formula without reasoning</li>
+                <li>• <strong>Wrong direction:</strong> max vs min confusion</li>
               </ul>
-              <p className="text-xs text-gray-400 mt-3">
-                Fix: Trace through small example by hand
-              </p>
             </div>
-
-            <div className="bg-red-500/10 rounded-xl p-6 border border-red-500/30">
-              <h3 className="font-semibold text-red-400 mb-3">Incomplete Cases ✗</h3>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li>• Missing some choices in max/min</li>
-                <li>• Forgetting "do nothing" option</li>
-                <li>• Not handling all transitions</li>
-                <li>• Wrong optimization direction</li>
-              </ul>
-              <p className="text-xs text-gray-400 mt-3">
-                Fix: List all possible decisions explicitly
-              </p>
-            </div>
-
-            <div className="bg-red-500/10 rounded-xl p-6 border border-red-500/30">
-              <h3 className="font-semibold text-red-400 mb-3">No Explanation ✗</h3>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li>• Formula without reasoning</li>
-                <li>• No intuition provided</li>
-                <li>• Missing what optimum means</li>
-                <li>• Unclear variable meanings</li>
-              </ul>
-              <p className="text-xs text-gray-400 mt-3">
-                Fix: One sentence explaining the logic
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Step-by-Step Strategy */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Step-by-Step Exam Strategy
-          </h2>
-
-          <div className="bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-xl p-8 border border-purple-500/20">
-            <ol className="space-y-4">
-              <li className="flex items-start gap-3">
-                <span className="flex-shrink-0 w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center text-sm font-semibold text-purple-400">1</span>
-                <div>
-                  <p className="font-medium text-white">Understand the problem</p>
-                  <p className="text-sm text-gray-400">What are we optimizing? What are the constraints?</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="flex-shrink-0 w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center text-sm font-semibold text-purple-400">2</span>
-                <div>
-                  <p className="font-medium text-white">Identify subproblems</p>
-                  <p className="text-sm text-gray-400">What smaller problems help solve the big one?</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="flex-shrink-0 w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center text-sm font-semibold text-purple-400">3</span>
-                <div>
-                  <p className="font-medium text-white">Define T[...] precisely</p>
-                  <p className="text-sm text-gray-400">What exactly does each entry represent?</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="flex-shrink-0 w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center text-sm font-semibold text-purple-400">4</span>
-                <div>
-                  <p className="font-medium text-white">Write base cases</p>
-                  <p className="text-sm text-gray-400">What are the smallest/simplest subproblems?</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="flex-shrink-0 w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center text-sm font-semibold text-purple-400">5</span>
-                <div>
-                  <p className="font-medium text-white">Derive recurrence</p>
-                  <p className="text-sm text-gray-400">How do we combine smaller solutions?</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="flex-shrink-0 w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center text-sm font-semibold text-purple-400">6</span>
-                <div>
-                  <p className="font-medium text-white">Verify on example</p>
-                  <p className="text-sm text-gray-400">Trace through a small instance</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="flex-shrink-0 w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center text-sm font-semibold text-purple-400">7</span>
-                <div>
-                  <p className="font-medium text-white">Write pseudocode</p>
-                  <p className="text-sm text-gray-400">Bottom-up implementation with clear loops</p>
-                </div>
-              </li>
-            </ol>
           </div>
         </div>
       </section>

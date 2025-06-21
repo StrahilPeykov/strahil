@@ -1,49 +1,37 @@
-'use client'
-
 import { motion } from 'framer-motion'
 import { Target, ChevronRight, AlertCircle, CheckCircle, Lightbulb, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { PageWrapper } from '../../../../components/layout/PageWrapper'
 import { Badge } from '../../../../components/ui/Badge'
-import { CodeBlock } from '../../../../components/ui/CodeBlock'
 
-const examples = [
-  {
-    year: '2024 Resit',
-    problem: 'Biathlon',
-    description: 'Minimize total event duration with swimming and running constraints',
-    lemma: 'Let P_i* be a participant whose running time is maximum. Then there is an optimal schedule in which P_i* swims first.',
-    insight: 'Put slowest runner first so they start running earliest'
-  },
-  {
-    year: '2024',
-    problem: 'Number Merging',
-    description: 'Merge numbers to minimize total cost where cost = sum of merged values',
-    lemma: 'Let x_i, x_j be two integers such that x_i + x_j is minimal. Then there is an optimal merge sequence starting with merging x_i and x_j.',
-    insight: 'Always merge the two smallest numbers first'
-  },
-  {
-    year: '2023 Resit',
-    problem: 'Assigning Oars to Rowers',
-    description: 'Assign oars to minimize total difference from preferences',
-    lemma: 'Let R_i* prefer the longest oar and O_j* be the longest oar. Then there is an optimal assignment where R_i* gets O_j*.',
-    insight: 'Match longest preference with longest oar'
-  },
-  {
-    year: '2023',
-    problem: 'Minimum Maximum Lateness',
-    description: 'Schedule tasks to minimize the maximum deadline violation',
-    lemma: 'Let X_i* be a task with the smallest deadline. Then there is an optimal schedule in which X_i* is executed first.',
-    insight: 'Earliest deadline first (EDF) strategy'
-  },
-  {
-    year: '2022',
-    problem: 'Hiking Schedule',
-    description: 'Maximize total rating of hikes with availability constraints',
-    lemma: 'Let H_i* be a hike with maximum rating. Then there is an optimal schedule where H_i* is done on day d_i* (when it becomes available).',
-    insight: 'Do highest-rated hikes as soon as possible'
-  }
-]
+// Mathematical notation components
+const MathDisplay = ({ children, block = false, className = '' }) => (
+  <span className={`${block ? 'block my-4 text-center' : 'inline'} font-mono text-blue-300 ${className}`}>
+    {children}
+  </span>
+)
+
+const Sub = ({ base, sub }) => (
+  <span>{base}<sub className="text-xs">{sub}</sub></span>
+)
+
+const ExamSolution = ({ children, score = "10/10" }) => (
+  <div className="mt-6 bg-green-500/5 border border-green-500/20 rounded-xl p-6">
+    <div className="flex items-center gap-2 mb-4">
+      <CheckCircle className="w-5 h-5 text-green-400" />
+      <span className="text-green-400 font-semibold">Full Solution</span>
+      <span className="text-xs text-gray-500">({score})</span>
+    </div>
+    <div className="space-y-4 text-gray-300">{children}</div>
+  </div>
+)
+
+const LemmaBox = ({ children }) => (
+  <div className="bg-purple-500/10 border border-purple-500/30 rounded-xl p-6 my-4">
+    <div className="font-semibold text-purple-400 mb-2">Greedy Choice Lemma:</div>
+    <div className="text-gray-200 font-mono text-sm">{children}</div>
+  </div>
+)
 
 export default function GreedyChoicePage() {
   return (
@@ -77,97 +65,167 @@ export default function GreedyChoicePage() {
         </div>
       </section>
 
-      {/* Key Concepts */}
+      {/* Exam Format */}
       <section className="px-6 py-12">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            What You Need to Know
+            Exam Format & Expectations
           </h2>
 
-          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800 mb-8">
-            <p className="text-gray-300 mb-4">
-              Greedy choice lemma questions require you to:
-            </p>
-            <div className="space-y-3">
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-white font-medium">Identify an optimal first choice</p>
-                  <p className="text-sm text-gray-400">Which element can always be chosen first in some optimal solution?</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-white font-medium">State the lemma mathematically</p>
-                  <p className="text-sm text-gray-400">Formal statement: "Let ... Then there exists an optimal solution where ..."</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-white font-medium">NO PROOF REQUIRED</p>
-                  <p className="text-sm text-gray-400">Just state the lemma correctly - no need to prove it works!</p>
-                </div>
+          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+            <div className="flex items-start gap-3 mb-4">
+              <AlertCircle className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="text-yellow-400 font-semibold mb-1">Important: NO PROOF REQUIRED</p>
+                <p className="text-gray-400 text-sm">You only need to state the lemma formally. No need to prove it works!</p>
               </div>
             </div>
-          </div>
-
-          <div className="bg-green-500/10 rounded-xl p-6 border border-green-500/30">
-            <div className="flex items-start gap-3">
-              <Lightbulb className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-green-400 font-semibold mb-2">Key Insight</p>
-                <p className="text-sm text-gray-300">
-                  The greedy choice is usually the "extreme" element in some sense: 
-                  smallest, largest, earliest, latest, etc. Think about what property 
-                  makes one choice "dominate" others.
-                </p>
-              </div>
+            
+            <p className="text-gray-300 mb-4">
+              The greedy choice lemma identifies which element can be chosen first in some optimal solution:
+            </p>
+            
+            <div className="bg-slate-800/50 rounded-lg p-4 font-mono text-sm">
+              <p className="text-purple-300">Let [element] be a [thing] such that [extremal property].</p>
+              <p className="text-purple-300">Then there exists an optimal [solution type] in which [element] is [placed where].</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Lemma Template */}
+      {/* Complete Examples with Solutions */}
       <section className="px-6 py-12 border-t border-slate-800">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Standard Lemma Format
+            Past Exam Examples with Full Solutions
           </h2>
 
-          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-            <h3 className="text-lg font-semibold text-white mb-4">Template</h3>
-            <CodeBlock language="text">
-{`Let [element] be a [thing] such that [property].
-Then there exists an optimal [solution type] in which [element] is [placed/chosen/scheduled] [where/when].`}
-            </CodeBlock>
+          {/* Example 1: Biathlon */}
+          <div className="mb-10">
+            <h3 className="text-xl font-semibold text-white mb-4">
+              Example 1: Biathlon Scheduling (2024 Resit)
+            </h3>
+            
+            <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+              <h4 className="font-semibold text-gray-300 mb-3">Problem Description:</h4>
+              <p className="text-gray-400 mb-3">
+                A biathlon with swimming (5km) and running (10km). Only one person can swim at a time,
+                but any number can run simultaneously. For each participant P<Sub base="i" sub="" />:
+              </p>
+              <ul className="list-disc list-inside text-gray-400 mb-4 space-y-1">
+                <li>S<Sub base="i" sub="" />: swimming time</li>
+                <li>R<Sub base="i" sub="" />: running time</li>
+              </ul>
+              <p className="text-gray-400 mb-4">
+                Goal: Find starting order that minimizes total event duration.
+              </p>
+              
+              <div className="border-t border-slate-700 pt-4">
+                <p className="font-semibold text-gray-300 mb-2">State the greedy choice lemma:</p>
+              </div>
 
-            <div className="mt-6 space-y-4">
-              <div>
-                <h4 className="font-medium text-purple-400 mb-2">Part 1: Identify the element</h4>
-                <p className="text-sm text-gray-400">
-                  Describe which specific item/task/person you're selecting based on some extremal property.
+              <ExamSolution score="10/10">
+                <LemmaBox>
+                  Let P<Sub base="i*" sub="" /> be a participant whose running time is maximum, 
+                  so that R<Sub base="i*" sub="" /> ≥ R<Sub base="j" sub="" /> for all j ∈ {1,...,n}.
+                  Then there exists an optimal schedule for the biathlon in which participant 
+                  P<Sub base="i*" sub="" /> is the first to swim.
+                </LemmaBox>
+                
+                <div className="mt-4 p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
+                  <p className="text-sm text-blue-300">
+                    <strong>Intuition:</strong> Put the slowest runner first so they start running earliest,
+                    minimizing the time from when the last person starts running to event completion.
+                  </p>
+                </div>
+              </ExamSolution>
+            </div>
+          </div>
+
+          {/* Example 2: Number Merging */}
+          <div className="mb-10">
+            <h3 className="text-xl font-semibold text-white mb-4">
+              Example 2: Number Merging (2024)
+            </h3>
+            
+            <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+              <h4 className="font-semibold text-gray-300 mb-3">Problem Description:</h4>
+              <p className="text-gray-400 mb-3">
+                Given n positive integers x<Sub base="1" sub="" />,...,x<Sub base="n" sub="" />. 
+                A merge removes two integers and replaces them with their sum. 
+                Cost of merge = sum of the two values. After n-1 merges, minimize total cost.
+              </p>
+              
+              <div className="bg-slate-800/50 rounded-lg p-4 mb-4">
+                <p className="text-sm text-gray-400 mb-2">Example with (7,8,9,10):</p>
+                <p className="text-sm font-mono text-gray-300">
+                  Merge 7,8 → 15 (cost 15)<br/>
+                  Merge 9,10 → 19 (cost 19)<br/>
+                  Merge 15,19 → 34 (cost 34)<br/>
+                  Total: 68 (optimal)
                 </p>
               </div>
-              <div>
-                <h4 className="font-medium text-purple-400 mb-2">Part 2: State the property</h4>
-                <p className="text-sm text-gray-400">
-                  What makes this element special? Usually it's maximum, minimum, earliest, etc.
-                </p>
+              
+              <div className="border-t border-slate-700 pt-4">
+                <p className="font-semibold text-gray-300 mb-2">State the greedy choice lemma:</p>
               </div>
-              <div>
-                <h4 className="font-medium text-purple-400 mb-2">Part 3: Claim existence</h4>
-                <p className="text-sm text-gray-400">
-                  "There exists an optimal solution" - not ALL optimal solutions, just at least one!
-                </p>
+
+              <ExamSolution score="10/10">
+                <LemmaBox>
+                  Let x<Sub base="i" sub="" />, x<Sub base="j" sub="" /> with i ≠ j be two integers 
+                  in the list such that x<Sub base="i" sub="" /> + x<Sub base="j" sub="" /> is minimal
+                  (i.e., as small as possible among all pairs).
+                  Then there exists an optimal merge sequence that starts by merging 
+                  x<Sub base="i" sub="" /> and x<Sub base="j" sub="" />.
+                </LemmaBox>
+                
+                <div className="mt-4 p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
+                  <p className="text-sm text-blue-300">
+                    <strong>Pattern:</strong> This is the Huffman coding pattern - always merge the two smallest elements.
+                  </p>
+                </div>
+              </ExamSolution>
+            </div>
+          </div>
+
+          {/* Example 3: Minimum Maximum Lateness */}
+          <div className="mb-10">
+            <h3 className="text-xl font-semibold text-white mb-4">
+              Example 3: Minimum Maximum Lateness (2023)
+            </h3>
+            
+            <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+              <h4 className="font-semibold text-gray-300 mb-3">Problem Description:</h4>
+              <p className="text-gray-400 mb-3">
+                Schedule n tasks X<Sub base="1" sub="" />,...,X<Sub base="n" sub="" /> where:
+              </p>
+              <ul className="list-disc list-inside text-gray-400 mb-4 space-y-1">
+                <li>t<Sub base="i" sub="" />: time to complete task i</li>
+                <li>d<Sub base="i" sub="" />: deadline for task i</li>
+                <li>L<Sub base="i" sub="" /> = max(0, C<Sub base="i" sub="" /> - d<Sub base="i" sub="" />) where C<Sub base="i" sub="" /> is completion time</li>
+              </ul>
+              <p className="text-gray-400 mb-4">
+                Goal: Minimize max{L<Sub base="1" sub="" />,...,L<Sub base="n" sub="" />}
+              </p>
+              
+              <div className="border-t border-slate-700 pt-4">
+                <p className="font-semibold text-gray-300 mb-2">State the greedy choice lemma:</p>
               </div>
-              <div>
-                <h4 className="font-medium text-purple-400 mb-2">Part 4: Specify placement</h4>
-                <p className="text-sm text-gray-400">
-                  Where/when is this element placed in the optimal solution?
-                </p>
-              </div>
+
+              <ExamSolution score="10/10">
+                <LemmaBox>
+                  Let X<Sub base="i*" sub="" /> be a task with the smallest deadline, 
+                  so that d<Sub base="i*" sub="" /> ≤ d<Sub base="j" sub="" /> for all j ∈ {1,...,n}.
+                  Then there exists an optimal schedule in which task X<Sub base="i*" sub="" /> 
+                  is executed first.
+                </LemmaBox>
+                
+                <div className="mt-4 p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
+                  <p className="text-sm text-blue-300">
+                    <strong>Strategy:</strong> Earliest Deadline First (EDF) - always schedule the task with the earliest deadline.
+                  </p>
+                </div>
+              </ExamSolution>
             </div>
           </div>
         </div>
@@ -177,143 +235,119 @@ Then there exists an optimal [solution type] in which [element] is [placed/chose
       <section className="px-6 py-12 border-t border-slate-800">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Common Greedy Patterns
+            Common Greedy Patterns to Recognize
           </h2>
 
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-blue-500/10 rounded-lg p-6 border border-blue-500/30">
               <h3 className="font-semibold text-blue-400 mb-3">Scheduling Problems</h3>
               <ul className="space-y-2 text-sm text-gray-300">
-                <li>• <strong>Earliest deadline first:</strong> Minimize lateness</li>
-                <li>• <strong>Shortest job first:</strong> Minimize average completion</li>
-                <li>• <strong>Highest weight/deadline ratio:</strong> Maximize weighted completion</li>
+                <li>• <strong>Minimize lateness:</strong> Choose earliest deadline</li>
+                <li>• <strong>Minimize completion:</strong> Choose shortest job</li>
+                <li>• <strong>Maximize value:</strong> Choose best value/time ratio</li>
+                <li>• <strong>Minimize idle time:</strong> Choose longest task</li>
               </ul>
             </div>
 
             <div className="bg-purple-500/10 rounded-lg p-6 border border-purple-500/30">
               <h3 className="font-semibold text-purple-400 mb-3">Selection Problems</h3>
               <ul className="space-y-2 text-sm text-gray-300">
-                <li>• <strong>Maximum value:</strong> When no constraints conflict</li>
-                <li>• <strong>Best ratio:</strong> Value per unit cost/weight</li>
-                <li>• <strong>Earliest finishing:</strong> Activity selection</li>
+                <li>• <strong>Activity selection:</strong> Choose earliest finish time</li>
+                <li>• <strong>Knapsack (fractional):</strong> Choose best value/weight</li>
+                <li>• <strong>Coin change:</strong> Choose largest denomination</li>
+                <li>• <strong>Interval covering:</strong> Choose rightmost point</li>
               </ul>
             </div>
 
             <div className="bg-green-500/10 rounded-lg p-6 border border-green-500/30">
               <h3 className="font-semibold text-green-400 mb-3">Matching Problems</h3>
               <ul className="space-y-2 text-sm text-gray-300">
-                <li>• <strong>Largest with largest:</strong> Often minimizes differences</li>
-                <li>• <strong>Nearest neighbor:</strong> For distance minimization</li>
-                <li>• <strong>Most constrained first:</strong> Avoid conflicts</li>
+                <li>• <strong>Minimize difference:</strong> Match largest with largest</li>
+                <li>• <strong>Load balancing:</strong> Assign to least loaded</li>
+                <li>• <strong>Pairing:</strong> Match extremes together</li>
+                <li>• <strong>Assignment:</strong> Choose most constrained first</li>
               </ul>
             </div>
 
             <div className="bg-pink-500/10 rounded-lg p-6 border border-pink-500/30">
-              <h3 className="font-semibold text-pink-400 mb-3">Merging/Building</h3>
+              <h3 className="font-semibold text-pink-400 mb-3">Construction Problems</h3>
               <ul className="space-y-2 text-sm text-gray-300">
-                <li>• <strong>Merge smallest:</strong> Huffman coding pattern</li>
-                <li>• <strong>Add to smallest:</strong> Load balancing</li>
-                <li>• <strong>Connect nearest:</strong> MST problems</li>
+                <li>• <strong>Huffman coding:</strong> Merge two smallest</li>
+                <li>• <strong>MST (Kruskal):</strong> Choose minimum edge</li>
+                <li>• <strong>MST (Prim):</strong> Choose minimum cut edge</li>
+                <li>• <strong>Shortest path:</strong> Choose minimum distance</li>
               </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Detailed Examples */}
+      {/* Key Formulation Tips */}
       <section className="px-6 py-12 border-t border-slate-800">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Past Exam Examples Analyzed
+            How to Write Perfect Lemmas
           </h2>
 
           <div className="space-y-6">
-            {examples.map((example, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-slate-900/50 rounded-xl p-6 border border-slate-800"
-              >
-                <div className="flex items-start justify-between mb-4">
+            <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+              <h3 className="text-lg font-semibold text-white mb-4">Checklist for Full Marks:</h3>
+              
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
                   <div>
-                    <Badge variant="purple" size="sm" className="mb-2">{example.year}</Badge>
-                    <h3 className="text-xl font-semibold text-white">{example.problem}</h3>
+                    <p className="font-medium text-white">1. Identify the element</p>
+                    <p className="text-sm text-gray-400">
+                      "Let x<Sub base="i*" sub="" /> be a/an [element type]..."
+                    </p>
                   </div>
                 </div>
                 
-                <p className="text-gray-400 mb-4">{example.description}</p>
-                
-                <div className="bg-slate-800/50 rounded-lg p-4 mb-4">
-                  <p className="text-sm font-mono text-gray-300">{example.lemma}</p>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-medium text-white">2. State the extremal property</p>
+                    <p className="text-sm text-gray-400">
+                      "...such that [property] ≥/≤ [property] for all other elements"
+                    </p>
+                  </div>
                 </div>
                 
-                <div className="flex items-start gap-2">
-                  <Lightbulb className="w-4 h-4 text-yellow-400 flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-gray-400">
-                    <span className="text-yellow-400 font-medium">Insight:</span> {example.insight}
-                  </p>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-medium text-white">3. Claim existence (not uniqueness)</p>
+                    <p className="text-sm text-gray-400">
+                      "Then there exists an optimal solution..." (not "the" optimal)
+                    </p>
+                  </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Tips and Warnings */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Exam Tips & Common Mistakes
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <div className="bg-green-500/10 rounded-xl p-6 border border-green-500/30">
-                <h3 className="font-semibold text-green-400 mb-3">Do This ✓</h3>
-                <ul className="space-y-2 text-sm text-gray-300">
-                  <li>• Think about extremal properties first</li>
-                  <li>• Consider what you're optimizing (min/max)</li>
-                  <li>• State "there exists" not "all"</li>
-                  <li>• Be precise about ties (e.g., "a task" vs "the task")</li>
-                  <li>• Keep the lemma simple and clear</li>
-                </ul>
-              </div>
-
-              <div className="bg-yellow-500/10 rounded-xl p-6 border border-yellow-500/30">
-                <h3 className="font-semibold text-yellow-400 mb-3">Watch Out ⚠️</h3>
-                <ul className="space-y-2 text-sm text-gray-300">
-                  <li>• The obvious choice isn't always right</li>
-                  <li>• Sometimes you need to think backwards</li>
-                  <li>• Consider if order matters (schedule vs selection)</li>
-                  <li>• Check if your lemma handles edge cases</li>
-                </ul>
+                
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-medium text-white">4. Specify the placement</p>
+                    <p className="text-sm text-gray-400">
+                      "...in which [element] is [scheduled first/chosen/assigned to...]"
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="space-y-4">
-              <div className="bg-red-500/10 rounded-xl p-6 border border-red-500/30">
-                <h3 className="font-semibold text-red-400 mb-3">Avoid This ✗</h3>
-                <ul className="space-y-2 text-sm text-gray-300">
-                  <li>• Don't try to prove the lemma</li>
-                  <li>• Don't describe the algorithm</li>
-                  <li>• Don't say "the optimal solution" (use "an")</li>
-                  <li>• Don't forget to specify the property clearly</li>
-                  <li>• Don't make it more complex than needed</li>
-                </ul>
-              </div>
-
-              <div className="bg-blue-500/10 rounded-xl p-6 border border-blue-500/30">
-                <h3 className="font-semibold text-blue-400 mb-3">Quick Check ✓</h3>
-                <p className="text-sm text-gray-300 mb-2">Your lemma should answer:</p>
-                <ul className="space-y-1 text-sm text-gray-400">
-                  <li>1. What element do we choose?</li>
-                  <li>2. What property does it have?</li>
-                  <li>3. Where does it go in the solution?</li>
-                  <li>4. Is it clear and unambiguous?</li>
-                </ul>
+            <div className="bg-yellow-500/10 rounded-xl p-6 border border-yellow-500/30">
+              <div className="flex items-start gap-3">
+                <Lightbulb className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-yellow-400 font-semibold mb-2">Common Mistakes to Avoid</p>
+                  <ul className="space-y-1 text-sm text-gray-300">
+                    <li>• Using "the optimal solution" instead of "an optimal solution"</li>
+                    <li>• Being vague about ties: use "a task" not "the task" if multiple could be minimal</li>
+                    <li>• Describing the algorithm instead of the choice</li>
+                    <li>• Forgetting to specify where the element goes</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>

@@ -1,67 +1,38 @@
-'use client'
-
 import { motion } from 'framer-motion'
-import { FileText, ChevronRight, AlertCircle, CheckCircle, Info, ArrowLeft, GitBranch } from 'lucide-react'
+import { GitBranch, ChevronRight, AlertCircle, CheckCircle, Info, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { PageWrapper } from '../../../../components/layout/PageWrapper'
 import { Badge } from '../../../../components/ui/Badge'
-import { CodeBlock } from '../../../../components/ui/CodeBlock'
 
-const concepts = [
-  {
-    title: 'Augmenting Path',
-    description: 'Path from s to t in residual network with positive capacity',
-    key: 'Foundation of Ford-Fulkerson method'
-  },
-  {
-    title: 'Residual Network',
-    description: 'Shows remaining capacity and ability to "undo" flow',
-    key: 'Forward edges: c(u,v) - f(u,v), Backward edges: f(v,u)'
-  },
-  {
-    title: 'Critical Edge',
-    description: 'Edge with minimum residual capacity on augmenting path',
-    key: 'Determines bottleneck flow value'
-  },
-  {
-    title: 'Edmonds-Karp',
-    description: 'BFS to find shortest augmenting path (fewest edges)',
-    key: 'Guarantees O(VE²) time complexity'
-  }
-]
+// Mathematical notation components
+const MathDisplay = ({ children, block = false, className = '' }) => (
+  <span className={`${block ? 'block my-4 text-center' : 'inline'} font-mono text-blue-300 ${className}`}>
+    {children}
+  </span>
+)
 
-const examples = [
-  {
-    year: '2024 Resit',
-    task: 'First iteration of Edmonds-Karp',
-    steps: [
-      'Find shortest s-t path using BFS',
-      'Identify all edges on the path',
-      'Mark critical edges (minimum capacity)',
-      'Note: Use forward edges only in first iteration'
-    ]
-  },
-  {
-    year: '2024',
-    task: 'Maximum critical edges criterion',
-    steps: [
-      'Find all possible augmenting paths',
-      'For each path, identify critical edges',
-      'Choose path with most critical edges',
-      'May differ from Edmonds-Karp choice'
-    ]
-  },
-  {
-    year: '2023 Resit',
-    task: 'Residual network analysis',
-    steps: [
-      'Calculate residual capacities',
-      'Forward edge: capacity - flow',
-      'Backward edge: flow value',
-      'Track inflow changes after augmentation'
-    ]
-  }
-]
+const Sub = ({ base, sub }) => (
+  <span>{base}<sub className="text-xs">{sub}</sub></span>
+)
+
+const ExamSolution = ({ children, score = "10/10" }) => (
+  <div className="mt-6 bg-green-500/5 border border-green-500/20 rounded-xl p-6">
+    <div className="flex items-center gap-2 mb-4">
+      <CheckCircle className="w-5 h-5 text-green-400" />
+      <span className="text-green-400 font-semibold">Full Solution</span>
+      <span className="text-xs text-gray-500">({score})</span>
+    </div>
+    <div className="space-y-4 text-gray-300">{children}</div>
+  </div>
+)
+
+const NetworkDiagram = ({ children }) => (
+  <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800 my-4">
+    <div className="font-mono text-sm space-y-1">
+      {children}
+    </div>
+  </div>
+)
 
 export default function FlowAlgorithmsPage() {
   return (
@@ -95,218 +66,240 @@ export default function FlowAlgorithmsPage() {
         </div>
       </section>
 
-      {/* Core Concepts */}
+      {/* Exam Format */}
       <section className="px-6 py-12">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Essential Concepts
+            Exam Format & Key Concepts
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-4 mb-8">
-            {concepts.map((concept, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-slate-900/50 rounded-lg p-6 border border-slate-800"
-              >
-                <h3 className="font-semibold text-cyan-400 mb-2">{concept.title}</h3>
-                <p className="text-sm text-gray-400 mb-3">{concept.description}</p>
-                <p className="text-xs text-gray-500 italic">{concept.key}</p>
-              </motion.div>
-            ))}
+          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800 mb-6">
+            <p className="text-gray-300 mb-4">
+              Flow algorithm questions typically ask you to:
+            </p>
+            <ol className="space-y-3 list-decimal list-inside text-gray-300">
+              <li><strong className="text-white">Find augmenting paths</strong> - Usually first iteration of Edmonds-Karp</li>
+              <li><strong className="text-white">Identify critical edges</strong> - Edges with minimum residual capacity on path</li>
+              <li><strong className="text-white">Analyze residual networks</strong> - Calculate residual capacities</li>
+              <li><strong className="text-white">Track flow changes</strong> - How vertex inflows change after augmentation</li>
+            </ol>
           </div>
 
           <div className="bg-cyan-500/10 rounded-xl p-6 border border-cyan-500/30">
             <div className="flex items-start gap-3">
               <Info className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-cyan-400 font-semibold mb-2">Key Insight</p>
-                <p className="text-sm text-gray-300">
-                  In exam problems, you'll typically work with the residual network. Remember:
-                  Forward edges have capacity - flow, backward edges have flow value.
-                  Critical edges are those with minimum residual capacity on the path.
-                </p>
+                <p className="text-cyan-400 font-semibold mb-2">Essential Formulas</p>
+                <div className="space-y-2 text-sm">
+                  <p>• <strong>Forward edge:</strong> c<Sub base="f" sub="" />(u,v) = c(u,v) - f(u,v)</p>
+                  <p>• <strong>Backward edge:</strong> c<Sub base="f" sub="" />(v,u) = f(u,v)</p>
+                  <p>• <strong>Critical edge:</strong> c<Sub base="f" sub="" />(e) = min{c<Sub base="f" sub="" />(e') | e' ∈ P}</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Residual Network */}
+      {/* Complete Example: Edmonds-Karp */}
       <section className="px-6 py-12 border-t border-slate-800">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Understanding Residual Networks
-          </h2>
-
-          <div className="space-y-6">
-            <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-              <h3 className="text-lg font-semibold text-white mb-4">Residual Capacity Rules</h3>
-              <div className="space-y-4">
-                <div className="bg-slate-800/50 rounded-lg p-4">
-                  <p className="font-medium text-blue-400 mb-2">Forward Edge (u,v) exists in original:</p>
-                  <CodeBlock language="text">
-{`residual_capacity(u,v) = capacity(u,v) - flow(u,v)
-Include edge if residual_capacity > 0`}
-                  </CodeBlock>
-                </div>
-                <div className="bg-slate-800/50 rounded-lg p-4">
-                  <p className="font-medium text-purple-400 mb-2">Backward Edge (u,v) is reverse of original (v,u):</p>
-                  <CodeBlock language="text">
-{`residual_capacity(u,v) = flow(v,u)
-Include edge if flow(v,u) > 0`}
-                  </CodeBlock>
-                </div>
-                <div className="bg-slate-800/50 rounded-lg p-4">
-                  <p className="font-medium text-green-400 mb-2">Neither direction exists in original:</p>
-                  <CodeBlock language="text">
-{`residual_capacity(u,v) = 0
-Do not include edge`}
-                  </CodeBlock>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-yellow-500/10 rounded-xl p-6 border border-yellow-500/30">
-              <h3 className="font-semibold text-yellow-400 mb-3">Common Exam Notation</h3>
-              <p className="text-sm text-gray-300 mb-3">
-                Edges often shown as <code className="text-yellow-400">flow/capacity</code>
-              </p>
-              <div className="space-y-2 text-sm">
-                <p>• <code>3/5</code> means flow=3, capacity=5, residual=2</p>
-                <p>• <code>0/4</code> means no flow yet, full capacity available</p>
-                <p>• <code>5/5</code> means saturated edge, residual=0</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Edmonds-Karp Algorithm */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Edmonds-Karp Algorithm
-          </h2>
-
-          <div className="space-y-6">
-            <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-              <h3 className="text-lg font-semibold text-white mb-4">Algorithm Steps</h3>
-              <CodeBlock language="python">
-{`def edmonds_karp(graph, source, sink):
-    max_flow = 0
-    
-    while True:
-        # 1. Find shortest augmenting path using BFS
-        path = bfs_find_path(graph, source, sink)
-        if not path:
-            break
-            
-        # 2. Find minimum residual capacity (bottleneck)
-        min_capacity = infinity
-        critical_edges = []
-        
-        for i in range(len(path) - 1):
-            u, v = path[i], path[i+1]
-            capacity = residual_capacity(u, v)
-            if capacity < min_capacity:
-                min_capacity = capacity
-                critical_edges = [(u, v)]
-            elif capacity == min_capacity:
-                critical_edges.append((u, v))
-        
-        # 3. Augment flow along path
-        max_flow += min_capacity
-        update_residual_network(path, min_capacity)
-    
-    return max_flow, critical_edges`}
-              </CodeBlock>
-            </div>
-
-            <div className="bg-blue-500/10 rounded-xl p-6 border border-blue-500/30">
-              <h3 className="font-semibold text-blue-400 mb-3">Finding Augmenting Paths</h3>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li>• Use BFS for shortest path (fewest edges)</li>
-                <li>• Only follow edges with positive residual capacity</li>
-                <li>• Path must go from source to sink</li>
-                <li>• In first iteration, no backward edges exist yet</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Critical Edges */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Identifying Critical Edges
+            Full Exam Solution: Edmonds-Karp First Iteration (2024 Resit)
           </h2>
 
           <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-            <div className="space-y-4">
-              <div>
-                <h3 className="font-semibold text-white mb-2">Definition</h3>
-                <p className="text-gray-400">
-                  A critical edge on an augmenting path is one whose residual capacity equals 
-                  the minimum residual capacity of all edges on that path.
-                </p>
-              </div>
+            <h3 className="text-lg font-semibold text-white mb-4">Given Network:</h3>
+            
+            <NetworkDiagram>
+              <div className="text-gray-400">Edges with capacities:</div>
+              <div>s → a: 10</div>
+              <div>s → b: 8</div>
+              <div>a → b: 5</div>
+              <div>a → c: 8</div>
+              <div>b → c: 7</div>
+              <div>b → t: 10</div>
+              <div>c → t: 10</div>
+            </NetworkDiagram>
 
-              <div className="bg-purple-500/10 rounded-lg p-4 border border-purple-500/30">
-                <p className="text-sm text-purple-400 font-medium mb-2">Example:</p>
-                <p className="text-sm text-gray-300">
-                  Path: s → a → b → t with residual capacities 5, 3, 7
+            <div className="mt-6">
+              <p className="font-semibold text-gray-300 mb-2">
+                Which augmenting path would Edmonds-Karp use in the first iteration? 
+                List edges and mark critical edges.
+              </p>
+            </div>
+
+            <ExamSolution score="10/10">
+              <div>
+                <p className="font-semibold text-white mb-2">Step 1: Find shortest path using BFS</p>
+                <p className="text-sm text-gray-400 mb-3">
+                  Edmonds-Karp uses BFS to find path with minimum number of edges:
                 </p>
-                <p className="text-sm text-gray-400 mt-1">
-                  Minimum = 3, so edge (a,b) is critical
-                </p>
+                
+                <div className="bg-slate-800/50 rounded p-4 mb-4">
+                  <p className="font-mono text-sm">
+                    BFS from s:<br/>
+                    - Distance 0: {s}<br/>
+                    - Distance 1: {a, b}<br/>
+                    - Distance 2: {c, t}<br/>
+                  </p>
+                  <p className="text-sm text-blue-300 mt-2">
+                    Shortest paths to t: s → b → t (2 edges)
+                  </p>
+                </div>
               </div>
 
               <div className="mt-4">
-                <h4 className="font-medium text-cyan-400 mb-2">Important Notes:</h4>
-                <ul className="space-y-1 text-sm text-gray-400">
-                  <li>• Multiple edges can be critical if they share the minimum capacity</li>
-                  <li>• Critical edges become saturated after augmentation</li>
-                  <li>• At least one critical edge disappears from residual network</li>
-                </ul>
+                <p className="font-semibold text-white mb-2">Step 2: Identify path and capacities</p>
+                <p className="mb-2">Path: s → b → t</p>
+                
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-slate-700">
+                      <th className="text-left py-2">Edge</th>
+                      <th className="text-left py-2">Capacity</th>
+                      <th className="text-left py-2">Critical?</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-slate-800">
+                      <td className="py-2 font-mono">(s,b)</td>
+                      <td className="py-2">8</td>
+                      <td className="py-2 text-green-400">✓ Critical</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 font-mono">(b,t)</td>
+                      <td className="py-2">10</td>
+                      <td className="py-2 text-gray-500">✗</td>
+                    </tr>
+                  </tbody>
+                </table>
+                
+                <p className="text-sm text-gray-400 mt-3">
+                  Bottleneck capacity = min{8, 10} = 8
+                </p>
               </div>
-            </div>
+
+              <div className="mt-4 p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
+                <p className="text-sm text-yellow-300">
+                  <strong>Answer:</strong> Path s → b → t with critical edge (s,b)
+                </p>
+              </div>
+            </ExamSolution>
           </div>
         </div>
       </section>
 
-      {/* Past Exam Patterns */}
+      {/* Complete Example: Residual Networks */}
       <section className="px-6 py-12 border-t border-slate-800">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Common Exam Questions
+            Full Exam Solution: Residual Network Analysis (2023 Resit)
           </h2>
 
-          <div className="space-y-6">
-            {examples.map((example, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-slate-900/50 rounded-xl p-6 border border-slate-800"
-              >
-                <Badge variant="purple" size="sm" className="mb-3">{example.year}</Badge>
-                <h3 className="text-lg font-semibold text-white mb-3">{example.task}</h3>
-                <div className="space-y-2">
-                  {example.steps.map((step, j) => (
-                    <div key={j} className="flex items-start gap-2">
-                      <span className="text-cyan-400 mt-0.5">•</span>
-                      <p className="text-sm text-gray-400">{step}</p>
-                    </div>
-                  ))}
+          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+            <h3 className="text-lg font-semibold text-white mb-4">Given Flow Network:</h3>
+            
+            <NetworkDiagram>
+              <div className="text-gray-400">Edges showing flow/capacity:</div>
+              <div>s → a: 4/5</div>
+              <div>s → d: 0/5</div>
+              <div>a → b: 3/4</div>
+              <div>a → e: 3/3</div>
+              <div>d → a: 2/3</div>
+              <div>h → g: 2/3</div>
+              <div>h → f: 1/4</div>
+              <div>f → t: 4/6</div>
+            </NetworkDiagram>
+
+            <div className="mt-6">
+              <p className="font-semibold text-gray-300 mb-2">
+                Question 4a: List critical edges on path P: s → g ← h → f → t
+              </p>
+            </div>
+
+            <ExamSolution score="5/5">
+              <p className="font-semibold text-white mb-2">Calculate residual capacities:</p>
+              
+              <table className="w-full text-sm mb-4">
+                <thead>
+                  <tr className="border-b border-slate-700">
+                    <th className="text-left py-2">Edge</th>
+                    <th className="text-left py-2">Type</th>
+                    <th className="text-left py-2">Residual Capacity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-slate-800">
+                    <td className="py-2 font-mono">(s,g)</td>
+                    <td className="py-2">Forward</td>
+                    <td className="py-2">0/3 → c<Sub base="f" sub="" /> = 3</td>
+                  </tr>
+                  <tr className="border-b border-slate-800">
+                    <td className="py-2 font-mono">(g,h)</td>
+                    <td className="py-2 text-purple-400">Backward</td>
+                    <td className="py-2">h→g has flow 2 → c<Sub base="f" sub="" /> = 2</td>
+                  </tr>
+                  <tr className="border-b border-slate-800">
+                    <td className="py-2 font-mono">(h,f)</td>
+                    <td className="py-2">Forward</td>
+                    <td className="py-2">1/4 → c<Sub base="f" sub="" /> = 3</td>
+                  </tr>
+                  <tr>
+                    <td className="py-2 font-mono">(f,t)</td>
+                    <td className="py-2">Forward</td>
+                    <td className="py-2">4/6 → c<Sub base="f" sub="" /> = 2</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p className="text-sm text-gray-400 mb-2">
+                Minimum residual capacity = min{3, 2, 3, 2} = 2
+              </p>
+              
+              <div className="p-4 bg-green-500/10 rounded-lg border border-green-500/30">
+                <p className="text-green-400 font-semibold">Critical edges: (g,h) and (f,t)</p>
+                <p className="text-xs text-gray-400 mt-1">Both have residual capacity 2</p>
+              </div>
+            </ExamSolution>
+
+            <div className="mt-8">
+              <p className="font-semibold text-gray-300 mb-2">
+                Question 4b: Which vertices have increased inflow after augmentation?
+              </p>
+            </div>
+
+            <ExamSolution score="5/5">
+              <p className="font-semibold text-white mb-2">Flow changes after augmenting by 2:</p>
+              
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="bg-slate-800/50 rounded p-4">
+                  <p className="text-sm font-semibold text-gray-400 mb-2">Edge updates:</p>
+                  <div className="text-sm font-mono space-y-1">
+                    <div>s → g: 0 → 2</div>
+                    <div>h → g: 2 → 0 (reversed)</div>
+                    <div>h → f: 1 → 3</div>
+                    <div>f → t: 4 → 6</div>
+                  </div>
                 </div>
-              </motion.div>
-            ))}
+                
+                <div className="bg-slate-800/50 rounded p-4">
+                  <p className="text-sm font-semibold text-gray-400 mb-2">Inflow changes:</p>
+                  <div className="text-sm space-y-1">
+                    <div>g: +2 -2 = 0 (no change)</div>
+                    <div>h: 0 (only outgoing)</div>
+                    <div className="text-green-400">f: +2 (increased)</div>
+                    <div className="text-green-400">t: +2 (increased)</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
+                <p className="text-sm text-yellow-300">
+                  <strong>Answer:</strong> Vertices f and t have increased inflow
+                </p>
+              </div>
+            </ExamSolution>
           </div>
         </div>
       </section>
@@ -315,110 +308,121 @@ Do not include edge`}
       <section className="px-6 py-12 border-t border-slate-800">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Alternative Path Selection
+            Non-Standard Path Selection (Common Exam Variation)
           </h2>
 
           <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-            <p className="text-gray-300 mb-4">
-              Sometimes exams ask for different path selection criteria than Edmonds-Karp:
-            </p>
-
-            <div className="space-y-4">
-              <div className="bg-blue-500/10 rounded-lg p-4 border border-blue-500/30">
-                <h4 className="font-medium text-blue-400 mb-2">Maximum bottleneck capacity</h4>
-                <p className="text-sm text-gray-400">
-                  Find path where minimum edge capacity is as large as possible
-                </p>
-              </div>
-
-              <div className="bg-purple-500/10 rounded-lg p-4 border border-purple-500/30">
-                <h4 className="font-medium text-purple-400 mb-2">Maximum number of edges</h4>
-                <p className="text-sm text-gray-400">
-                  Choose longest simple path (opposite of Edmonds-Karp)
-                </p>
-              </div>
-
-              <div className="bg-green-500/10 rounded-lg p-4 border border-green-500/30">
-                <h4 className="font-medium text-green-400 mb-2">Maximum critical edges</h4>
-                <p className="text-sm text-gray-400">
-                  Path with most edges at minimum capacity
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-6 p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
-              <p className="text-sm text-yellow-400">
-                💡 Always state clearly which path you chose and verify it meets the criterion!
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Inflow Analysis */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Vertex Inflow Analysis
-          </h2>
-
-          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-            <h3 className="text-lg font-semibold text-white mb-4">Common Question Type</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">Example: Maximum Critical Edges (2024)</h3>
+            
             <p className="text-gray-400 mb-4">
-              "List all vertices whose inflow increases after augmentation"
+              Instead of Edmonds-Karp, select path with maximum number of critical edges.
             </p>
 
-            <div className="bg-slate-800/50 rounded-lg p-4">
-              <h4 className="font-medium text-cyan-400 mb-3">How to solve:</h4>
+            <div className="bg-purple-500/10 rounded-xl p-6 border border-purple-500/30">
+              <p className="text-purple-400 font-semibold mb-3">Solution Approach:</p>
               <ol className="space-y-2 text-sm text-gray-300">
-                <li>1. For each vertex, calculate: <code>inflow = Σ flow(u,v) for all u</code></li>
-                <li>2. Apply augmentation along the given path</li>
-                <li>3. Recalculate inflows</li>
-                <li>4. List vertices where new inflow {'>'} old inflow</li>
+                <li>1. List ALL s-t paths in residual network</li>
+                <li>2. For each path, calculate bottleneck capacity</li>
+                <li>3. Count edges with capacity = bottleneck</li>
+                <li>4. Choose path with most critical edges</li>
               </ol>
-            </div>
-
-            <div className="mt-4 p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
-              <p className="text-sm text-blue-400 font-medium mb-2">Key insight:</p>
-              <p className="text-sm text-gray-300">
-                Only vertices on the augmenting path (except source) can have increased inflow.
-                Backward edges might decrease flow, which can affect inflow calculations.
-              </p>
+              
+              <div className="mt-4 p-3 bg-slate-800/50 rounded">
+                <p className="text-xs text-gray-400">
+                  <strong>Tip:</strong> If multiple paths tie, state this clearly and pick any one
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Exam Tips */}
+      {/* Key Algorithms Reference */}
       <section className="px-6 py-12 border-t border-slate-800">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Exam Strategy
+            Algorithm Quick Reference
           </h2>
 
           <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-blue-500/10 rounded-xl p-6 border border-blue-500/30">
+              <h3 className="font-semibold text-blue-400 mb-3">Edmonds-Karp</h3>
+              <div className="text-sm space-y-2 text-gray-300">
+                <p>1. Use BFS to find shortest augmenting path</p>
+                <p>2. Calculate bottleneck capacity</p>
+                <p>3. Augment flow along path</p>
+                <p>4. Update residual network</p>
+                <p className="text-xs text-gray-400 mt-2">Time: O(VE²)</p>
+              </div>
+            </div>
+
+            <div className="bg-purple-500/10 rounded-xl p-6 border border-purple-500/30">
+              <h3 className="font-semibold text-purple-400 mb-3">Residual Network Rules</h3>
+              <div className="text-sm space-y-2 text-gray-300">
+                <p><strong>Original edge (u,v):</strong></p>
+                <p className="ml-4">• Forward: c-f if c>f</p>
+                <p className="ml-4">• Backward: f if f>0</p>
+                <p className="text-xs text-gray-400 mt-2">Both can exist simultaneously!</p>
+              </div>
+            </div>
+
             <div className="bg-green-500/10 rounded-xl p-6 border border-green-500/30">
-              <h3 className="font-semibold text-green-400 mb-3">Quick Checklist ✓</h3>
+              <h3 className="font-semibold text-green-400 mb-3">Finding Critical Edges</h3>
+              <ol className="text-sm space-y-1 text-gray-300">
+                <li>1. Find all residual capacities on path</li>
+                <li>2. Bottleneck = minimum capacity</li>
+                <li>3. Critical = edges with capacity = bottleneck</li>
+                <li>4. Can have multiple critical edges!</li>
+              </ol>
+            </div>
+
+            <div className="bg-yellow-500/10 rounded-xl p-6 border border-yellow-500/30">
+              <h3 className="font-semibold text-yellow-400 mb-3">Inflow Analysis</h3>
+              <div className="text-sm space-y-1 text-gray-300">
+                <p>inflow(v) = Σ<Sub base="u" sub="" /> f(u,v)</p>
+                <p className="mt-2">After augmentation:</p>
+                <p>• Check each vertex on path</p>
+                <p>• Account for reversed edges</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Common Mistakes */}
+      <section className="px-6 py-12 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-display font-bold text-white mb-6">
+            Common Mistakes to Avoid
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-red-500/10 rounded-xl p-6 border border-red-500/30">
+              <h3 className="font-semibold text-red-400 mb-3">Calculation Errors</h3>
               <ul className="space-y-2 text-sm text-gray-300">
-                <li>• Draw the residual network clearly</li>
-                <li>• Mark flow/capacity on each edge</li>
-                <li>• Use BFS for Edmonds-Karp (shortest path)</li>
-                <li>• List path edges in order</li>
-                <li>• Calculate bottleneck carefully</li>
-                <li>• Mark ALL critical edges</li>
+                <li>• Using original network instead of residual</li>
+                <li>• Forgetting backward edges exist</li>
+                <li>• Wrong residual capacity formula</li>
+                <li>• Missing some critical edges</li>
               </ul>
             </div>
 
             <div className="bg-red-500/10 rounded-xl p-6 border border-red-500/30">
-              <h3 className="font-semibold text-red-400 mb-3">Common Mistakes ✗</h3>
+              <h3 className="font-semibold text-red-400 mb-3">Conceptual Errors</h3>
               <ul className="space-y-2 text-sm text-gray-300">
-                <li>• Using original network instead of residual</li>
-                <li>• Forgetting backward edges exist</li>
-                <li>• Wrong residual capacity calculation</li>
-                <li>• Missing some critical edges</li>
+                <li>• Confusing flow value with edge flow</li>
                 <li>• Not checking all paths for alternatives</li>
+                <li>• Assuming unique shortest path</li>
+                <li>• Forgetting capacity constraints</li>
               </ul>
             </div>
+          </div>
+
+          <div className="mt-6 p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
+            <p className="text-sm text-blue-300">
+              <strong>Pro tip:</strong> Always draw the residual network clearly. 
+              Label each edge with its residual capacity. This prevents most errors.
+            </p>
           </div>
         </div>
       </section>
