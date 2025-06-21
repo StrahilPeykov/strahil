@@ -152,7 +152,6 @@ export const metadata: Metadata = {
     'Tech Eindhoven',
     
     // Specialization keywords
-    'Machine Learning Developer',
     'Enterprise Integration',
     'System Integration',
     'Enterprise Applications',
