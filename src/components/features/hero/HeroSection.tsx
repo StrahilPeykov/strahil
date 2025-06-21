@@ -82,7 +82,7 @@ export function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
-            > creativity</motion.span>
+            > innovation</motion.span>
           </motion.p>
 
           <motion.p
