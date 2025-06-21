@@ -1,41 +1,14 @@
+'use client'
+
 import { motion } from 'framer-motion'
 import { FileText, ChevronRight, AlertCircle, CheckCircle, XCircle, ArrowLeft, Lightbulb } from 'lucide-react'
 import Link from 'next/link'
 import { PageWrapper } from '../../../../components/layout/PageWrapper'
 import { Badge } from '../../../../components/ui/Badge'
+import { MathDisplay, MathSymbols, AlgorithmBlock } from '../../../../components/ui/MathDisplay'
+import { ExamSolution, ProofBox } from '../../../../components/ui/AlgorithmComponents'
 
-// Mathematical notation components
-const MathDisplay = ({ children, block = false, className = '' }) => (
-  <span className={`${block ? 'block my-4 text-center' : 'inline'} font-mono text-blue-300 ${className}`}>
-    {children}
-  </span>
-)
-
-const Sub = ({ base, sub }) => (
-  <span>{base}<sub className="text-xs">{sub}</sub></span>
-)
-
-const Sup = ({ base, sup }) => (
-  <span>{base}<sup className="text-xs">{sup}</sup>
-)
-
-const ExamSolution = ({ children, score = "10/10" }) => (
-  <div className="mt-6 bg-green-500/5 border border-green-500/20 rounded-xl p-6">
-    <div className="flex items-center gap-2 mb-4">
-      <CheckCircle className="w-5 h-5 text-green-400" />
-      <span className="text-green-400 font-semibold">Full Solution</span>
-      <span className="text-xs text-gray-500">({score})</span>
-    </div>
-    <div className="space-y-4 text-gray-300">{children}</div>
-  </div>
-)
-
-const ProofBox = ({ title, children }) => (
-  <div className="bg-purple-500/10 rounded-xl p-6 border border-purple-500/30 my-4">
-    <div className="font-semibold text-purple-400 mb-3">{title}</div>
-    <div className="space-y-3 text-sm">{children}</div>
-  </div>
-)
+const { Sum, Sub, Sup, In, ForAll, Exists, Leq, Geq, RightArrow, LeftRightArrow } = MathSymbols
 
 export default function NPProofsPage() {
   return (
@@ -73,418 +46,268 @@ export default function NPProofsPage() {
       <section className="px-6 py-12">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Exam Format & Key Strategy
+            Exam Format & Expectations
           </h2>
 
-          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800 mb-6">
+          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
             <p className="text-gray-300 mb-4">
-              Given a reduction from an NP-complete problem, you must:
+              NP-hardness proof questions typically ask you to:
             </p>
-            <ol className="space-y-2 list-decimal list-inside text-gray-300">
-              <li><strong className="text-white">Understand the reduction</strong> - How is the new instance constructed?</li>
-              <li><strong className="text-white">Prove one direction</strong> - Usually "If F satisfiable → G has property X"</li>
-              <li><strong className="text-white">Write formal proof or counterexample</strong> - Full mathematical rigor required</li>
+            <ol className="space-y-3 list-decimal list-inside text-gray-300">
+              <li><strong className="text-white">Prove a statement is true</strong> - Usually about NP-hardness</li>
+              <li><strong className="text-white">Disprove with counterexample</strong> - Show the statement is false</li>
+              <li><strong className="text-white">Analyze special cases</strong> - When does a hard problem become easy?</li>
             </ol>
-          </div>
-
-          <div className="bg-yellow-500/10 rounded-xl p-6 border border-yellow-500/30">
-            <div className="flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="text-yellow-400 font-semibold mb-2">Critical Point</p>
-                <p className="text-sm text-gray-300">
-                  The claim might be FALSE! Always check with small examples first. 
-                  If you find a counterexample, that's the complete answer.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Complete Example: Graph Coloring (TRUE claim) */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Full Solution: Graph Coloring from 3-SAT (2024 Resit)
-          </h2>
-
-          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-            <h3 className="text-lg font-semibold text-white mb-4">Reduction (Given):</h3>
-            <p className="text-gray-400 mb-3">
-              From 3-CNF formula F with n variables and m clauses, construct graph G:
-            </p>
-            <ul className="list-disc list-inside text-gray-400 mb-4 space-y-1 text-sm">
-              <li>Variable vertices: t<Sub base="i" sub="" />, f<Sub base="i" sub="" />, d<Sub base="i" sub="" /> for each variable x<Sub base="i" sub="" /></li>
-              <li>Clause vertices: c<Sub base="j" sub="" /> for each clause C<Sub base="j" sub="" /></li>
-              <li>Edges: (t<Sub base="i" sub="" />, f<Sub base="i" sub="" />), dummy connections, clause-literal edges</li>
-            </ul>
-
-            <div className="bg-blue-500/10 rounded-lg p-4 mb-4 border border-blue-500/30">
-              <p className="font-semibold text-blue-400 mb-2">Claim:</p>
-              <p className="text-gray-300">
-                If F has a satisfying assignment, then G is (n+1)-colorable.
+            <div className="mt-6 p-4 bg-red-500/10 rounded-lg border border-red-500/30">
+              <p className="text-sm text-red-300">
+                <strong>Warning:</strong> This is often the hardest exercise. 
+                Focus on finding small counterexamples or using standard proof techniques.
               </p>
             </div>
-
-            <ExamSolution score="10/10">
-              <ProofBox title="Proof of Claim">
-                <p>
-                  <strong>Assume</strong> F is satisfiable. Let φ: {x<Sub base="1" sub="" />,...,x<Sub base="n" sub="" />} → {0,1} 
-                  be a satisfying assignment.
-                </p>
-
-                <div className="bg-slate-800/50 rounded p-4">
-                  <p className="font-semibold text-purple-300 mb-2">Define coloring κ: V → {1,2,...,n+1}:</p>
-                  
-                  <p className="mb-2"><strong>For variable vertices (i = 1,...,n):</strong></p>
-                  <ul className="ml-4 space-y-1 text-sm">
-                    <li>• κ(d<Sub base="i" sub="" />) = i</li>
-                    <li>• If φ(x<Sub base="i" sub="" />) = 0: κ(t<Sub base="i" sub="" />) = n+1, κ(f<Sub base="i" sub="" />) = i</li>
-                    <li>• If φ(x<Sub base="i" sub="" />) = 1: κ(t<Sub base="i" sub="" />) = i, κ(f<Sub base="i" sub="" />) = n+1</li>
-                  </ul>
-                  
-                  <p className="mt-3 mb-2"><strong>For clause vertices:</strong></p>
-                  <p className="ml-4 text-sm">
-                    For c<Sub base="j" sub="" />: Let x<Sub base="i" sub="" /> be the first variable (smallest index) 
-                    whose literal satisfies C<Sub base="j" sub="" /> under φ. Set κ(c<Sub base="j" sub="" />) = i.
-                  </p>
-                </div>
-
-                <p className="mt-4 font-semibold">Verification that κ is proper:</p>
-                
-                <div className="space-y-3 text-sm">
-                  <div>
-                    <strong className="text-blue-300">1. Edges (t<Sub base="i" sub="" />, f<Sub base="i" sub="" />):</strong>
-                    <p className="ml-4">One endpoint has color i, the other has color n+1 ⇒ different colors ✓</p>
-                  </div>
-                  
-                  <div>
-                    <strong className="text-green-300">2. Edges from d<Sub base="i" sub="" />:</strong>
-                    <ul className="ml-4 space-y-1">
-                      <li>• (d<Sub base="i" sub="" />, d<Sub base="ℓ" sub="" />): colors i vs ℓ where i ≠ ℓ ✓</li>
-                      <li>• (d<Sub base="i" sub="" />, t<Sub base="ℓ" sub="" />): colors i vs ℓ or n+1, both ≠ i ✓</li>
-                      <li>• (d<Sub base="i" sub="" />, f<Sub base="ℓ" sub="" />): colors i vs ℓ or n+1, both ≠ i ✓</li>
-                    </ul>
-                  </div>
-                  
-                  <div>
-                    <strong className="text-purple-300">3. Edges (c<Sub base="j" sub="" />, t<Sub base="i" sub="" />):</strong>
-                    <p className="ml-4">
-                      Exist only when x<Sub base="i" sub="" /> ∉ C<Sub base="j" sub="" />. 
-                      If φ(x<Sub base="i" sub="" />) = 0: colors n+1 vs i.
-                      If φ(x<Sub base="i" sub="" />) = 1: Since x<Sub base="i" sub="" /> satisfies C<Sub base="j" sub="" /> 
-                      but isn't the first, κ(c<Sub base="j" sub="" />) ≠ i ✓
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <strong className="text-yellow-300">4. Edges (c<Sub base="j" sub="" />, f<Sub base="i" sub="" />):</strong>
-                    <p className="ml-4">Similar argument with ¬x<Sub base="i" sub="" /> ✓</p>
-                  </div>
-                </div>
-
-                <p className="mt-4">
-                  All edges connect vertices of different colors. Therefore G is (n+1)-colorable. □
-                </p>
-              </ProofBox>
-            </ExamSolution>
           </div>
         </div>
       </section>
 
-      {/* Complete Example: Partition into Cliques (FALSE claim) */}
+      {/* Proof Techniques */}
       <section className="px-6 py-12 border-t border-slate-800">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Full Solution: Partition into Cliques (2024)
-          </h2>
-
-          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-            <h3 className="text-lg font-semibold text-white mb-4">Reduction (Given):</h3>
-            <p className="text-gray-400 mb-3">
-              From graph G = (V,E) for Minimum Vertex Cover, construct G' = (V',E'):
-            </p>
-            <ul className="list-disc list-inside text-gray-400 mb-4 space-y-1 text-sm">
-              <li>For each edge e ∈ E, create vertex v<Sub base="e" sub="" /> in V'</li>
-              <li>Connect v<Sub base="e" sub="" /> and v<Sub base="f" sub="" /> iff edges e and f share an endpoint in G</li>
-            </ul>
-
-            <div className="bg-blue-500/10 rounded-lg p-4 mb-4 border border-blue-500/30">
-              <p className="font-semibold text-blue-400 mb-2">Claim:</p>
-              <p className="text-gray-300">
-                If G' can be partitioned into k cliques, then G has a vertex cover of size k.
-              </p>
-            </div>
-
-            <ExamSolution score="10/10">
-              <p className="font-semibold text-red-400 text-lg mb-4">The claim is FALSE</p>
-
-              <ProofBox title="Counterexample">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <p className="font-semibold text-gray-300 mb-2">Original graph G:</p>
-                    <div className="bg-slate-800/50 rounded p-4">
-                      <p className="text-sm font-mono">
-                        Triangle with vertices {a,b,c}<br/>
-                        Edges: e = (a,b), f = (b,c), g = (a,c)
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <p className="font-semibold text-gray-300 mb-2">Constructed graph G':</p>
-                    <div className="bg-slate-800/50 rounded p-4">
-                      <p className="text-sm font-mono">
-                        Vertices: {v<Sub base="e" sub="" />, v<Sub base="f" sub="" />, v<Sub base="g" sub="" />}<br/>
-                        Forms a triangle (all connected)
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-4 grid md:grid-cols-2 gap-4">
-                  <div className="bg-green-500/10 rounded p-4 border border-green-500/30">
-                    <p className="font-semibold text-green-400 mb-2">G' property:</p>
-                    <p className="text-sm">
-                      Can be covered by k = 1 clique:<br/>
-                      {v<Sub base="e" sub="" />, v<Sub base="f" sub="" />, v<Sub base="g" sub="" />}
-                    </p>
-                  </div>
-                  
-                  <div className="bg-red-500/10 rounded p-4 border border-red-500/30">
-                    <p className="font-semibold text-red-400 mb-2">G property:</p>
-                    <p className="text-sm">
-                      Minimum vertex cover needs 2 vertices<br/>
-                      (any 2 vertices cover all 3 edges)
-                    </p>
-                  </div>
-                </div>
-
-                <p className="mt-4 text-center font-semibold">
-                  k = 1 but minimum vertex cover = 2 ⇒ Claim is false! ✗
-                </p>
-              </ProofBox>
-            </ExamSolution>
-          </div>
-        </div>
-      </section>
-
-      {/* Complete Example: String Mixing */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Full Solution: Longest Common Subsequence (2023 Resit)
-          </h2>
-
-          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-            <h3 className="text-lg font-semibold text-white mb-4">Reduction (Given):</h3>
-            <p className="text-gray-400 mb-3">
-              From graph G = (V,E) for Maximum Independent Set, construct k = m+1 sequences:
-            </p>
-            <ul className="list-disc list-inside text-gray-400 mb-4 space-y-1 text-sm">
-              <li>S[0] = (1,2,...,n) - all vertices in order</li>
-              <li>For each edge e<Sub base="j" sub="" /> = (v<Sub base="a" sub="" />,v<Sub base="b" sub="" />) with a < b:</li>
-              <li className="ml-6">S[j] = (1,...,a-1,a+1,...,n,1,...,b-1,b+1,...,n)</li>
-            </ul>
-
-            <div className="bg-blue-500/10 rounded-lg p-4 mb-4 border border-blue-500/30">
-              <p className="font-semibold text-blue-400 mb-2">Claim:</p>
-              <p className="text-gray-300">
-                If sequences have common subsequence of length r, then G has independent set of size r.
-              </p>
-            </div>
-
-            <ExamSolution score="10/10">
-              <p className="font-semibold text-green-400 text-lg mb-4">The claim is TRUE</p>
-
-              <ProofBox title="Proof">
-                <p>
-                  Let T* be a common subsequence of all k sequences with |T*| = r.
-                </p>
-
-                <p>
-                  <strong>Define:</strong> T = {v<Sub base="j" sub="" /> | integer j occurs in T*}
-                </p>
-
-                <div className="bg-slate-800/50 rounded p-4 my-3">
-                  <p className="text-sm">
-                    <strong>Key observation:</strong> Since S[0] = (1,2,...,n) with no repeats, 
-                    each integer appears at most once in T*. Thus |T| = r.
-                  </p>
-                </div>
-
-                <p className="font-semibold mb-2">Proof that T is independent:</p>
-                
-                <div className="bg-red-500/10 rounded p-4 border border-red-500/30">
-                  <p className="text-sm mb-2">
-                    <strong>Assume for contradiction:</strong> T is not independent.
-                  </p>
-                  <p className="text-sm">
-                    Then ∃ v<Sub base="a" sub="" />, v<Sub base="b" sub="" /> ∈ T with (v<Sub base="a" sub="" />,v<Sub base="b" sub="" />) ∈ E and a < b.
-                  </p>
-                </div>
-
-                <div className="mt-3 space-y-2 text-sm">
-                  <p>Let e<Sub base="j" sub="" /> = (v<Sub base="a" sub="" />,v<Sub base="b" sub="" />). 
-                     Look at sequence S[j]:</p>
-                  <ul className="ml-4 space-y-1">
-                    <li>• First half: 1,...,a-1,a+1,...,n (omits a)</li>
-                    <li>• Second half: 1,...,b-1,b+1,...,n (omits b)</li>
-                  </ul>
-                  
-                  <p className="mt-2">
-                    Therefore (a,b) is NOT a subsequence of S[j] - only (b,a) can appear.
-                  </p>
-                  
-                  <p>
-                    But in T*, we have a before b (since S[0] orders them this way).
-                    So T* contains (a,b) as a subsequence.
-                  </p>
-                  
-                  <p className="text-red-300">
-                    Contradiction: T* cannot be a subsequence of S[j] if it contains (a,b). ✗
-                  </p>
-                </div>
-
-                <p className="mt-4">
-                  Therefore T is an independent set of size r. □
-                </p>
-              </ProofBox>
-            </ExamSolution>
-          </div>
-        </div>
-      </section>
-
-      {/* Proof Writing Guidelines */}
-      <section className="px-6 py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-display font-bold text-white mb-6">
-            How to Write Perfect Proofs
+            Standard Proof Techniques
           </h2>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-green-500/10 rounded-xl p-6 border border-green-500/30">
-              <h3 className="font-semibold text-green-400 mb-4">Structure for TRUE Claims</h3>
-              <ol className="space-y-3 text-sm">
-                <li>
-                  <strong>1. State assumption</strong>
-                  <p className="text-gray-400">"Assume F is satisfiable..."</p>
-                </li>
-                <li>
-                  <strong>2. Introduce witness</strong>
-                  <p className="text-gray-400">"Let φ be a satisfying assignment"</p>
-                </li>
-                <li>
-                  <strong>3. Construct solution</strong>
-                  <p className="text-gray-400">"We define [solution] as follows..."</p>
-                </li>
-                <li>
-                  <strong>4. Verify all properties</strong>
-                  <p className="text-gray-400">"Check each constraint..."</p>
-                </li>
-                <li>
-                  <strong>5. Conclude</strong>
-                  <p className="text-gray-400">"Therefore [claim holds] □"</p>
-                </li>
+            <div className="bg-blue-500/10 rounded-xl p-6 border border-blue-500/30">
+              <h3 className="font-semibold text-blue-400 mb-3">Proving NP-Hardness</h3>
+              <ol className="space-y-2 text-sm text-gray-300">
+                <li>1. Start with known NP-hard problem A</li>
+                <li>2. Show reduction: A <Leq /><Sub base="p" sub="" /> B</li>
+                <li>3. Given instance of A, construct instance of B</li>
+                <li>4. Prove: A has solution <LeftRightArrow /> B has solution</li>
+                <li>5. Show reduction is polynomial time</li>
               </ol>
             </div>
 
             <div className="bg-red-500/10 rounded-xl p-6 border border-red-500/30">
-              <h3 className="font-semibold text-red-400 mb-4">Structure for FALSE Claims</h3>
-              <ol className="space-y-3 text-sm">
-                <li>
-                  <strong>1. State claim is false</strong>
-                  <p className="text-gray-400">"The claim is FALSE"</p>
-                </li>
-                <li>
-                  <strong>2. Present instance</strong>
-                  <p className="text-gray-400">"Consider graph G = ..."</p>
-                </li>
-                <li>
-                  <strong>3. Show first property</strong>
-                  <p className="text-gray-400">"F is satisfiable because..."</p>
-                </li>
-                <li>
-                  <strong>4. Show second fails</strong>
-                  <p className="text-gray-400">"But G does not have..."</p>
-                </li>
-                <li>
-                  <strong>5. State contradiction</strong>
-                  <p className="text-gray-400">"Since X but not Y, claim false"</p>
-                </li>
+              <h3 className="font-semibold text-red-400 mb-3">Finding Counterexamples</h3>
+              <ol className="space-y-2 text-sm text-gray-300">
+                <li>1. Look for small instances (3-5 vertices)</li>
+                <li>2. Try edge cases (empty graph, complete graph)</li>
+                <li>3. Check special structures (star, path, cycle)</li>
+                <li>4. Verify your example carefully</li>
+                <li>5. Show why the statement fails</li>
               </ol>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="mt-6 space-y-4">
-            <div className="bg-blue-500/10 rounded-xl p-6 border border-blue-500/30">
-              <h3 className="font-semibold text-blue-400 mb-3">Proof by Contradiction</h3>
-              <p className="text-sm text-gray-300">
-                Often useful for independence/conflict properties:
+      {/* Complete Example 1: Proving NP-Hardness */}
+      <section className="px-6 py-12 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-display font-bold text-white mb-6">
+            Past Exam Example: Weighted Vertex Cover (2024)
+          </h2>
+
+          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+            <h3 className="text-lg font-semibold text-white mb-4">Statement:</h3>
+            <p className="text-gray-400 mb-4">
+              "WEIGHTED-VERTEX-COVER is NP-hard: Given graph G = (V,E), vertex weights w: V → ℕ, 
+              and integer k, does G have a vertex cover of total weight <Leq /> k?"
+            </p>
+            
+            <p className="font-semibold text-gray-300 mb-2">
+              Prove this statement is TRUE.
+            </p>
+
+            <ExamSolution score="10/10">
+              <p className="font-semibold text-white mb-3">
+                Proof by reduction from VERTEX-COVER (known NP-complete):
               </p>
-              <ul className="mt-2 space-y-1 text-sm text-gray-400">
-                <li>• "Assume for contradiction that..."</li>
-                <li>• "Then there exist u,v such that..."</li>
-                <li>• "But this implies... contradiction!"</li>
+
+              <ProofBox title="Reduction">
+                <p>Given instance of VERTEX-COVER: Graph G = (V,E) and integer k.</p>
+                <p>Question: Does G have a vertex cover of size <Leq /> k?</p>
+              </ProofBox>
+
+              <p className="mt-4 mb-2"><strong>Construction:</strong></p>
+              <ul className="ml-4 space-y-2">
+                <li>• Use the same graph G</li>
+                <li>• Set w(v) = 1 for all v <In /> V</li>
+                <li>• Use the same k</li>
               </ul>
+
+              <p className="mt-4 mb-2"><strong>Correctness:</strong></p>
+              <p className="ml-4 mb-3">
+                G has vertex cover S of size <Leq /> k
+              </p>
+              <MathDisplay block className="ml-4 mb-3">
+                <LeftRightArrow /> |S| <Leq /> k
+              </MathDisplay>
+              <MathDisplay block className="ml-4 mb-3">
+                <LeftRightArrow /> <Sum /><Sub base="v∈S" sub="" /> w(v) = <Sum /><Sub base="v∈S" sub="" /> 1 = |S| <Leq /> k
+              </MathDisplay>
+              <p className="ml-4">
+                <LeftRightArrow /> G has weighted vertex cover of weight <Leq /> k
+              </p>
+
+              <p className="mt-4">
+                <strong>Time complexity:</strong> O(|V|) to assign weights. Polynomial. ✓
+              </p>
+
+              <p className="mt-4 text-sm text-gray-400">
+                Since VERTEX-COVER is NP-complete, WEIGHTED-VERTEX-COVER is NP-hard.
+              </p>
+            </ExamSolution>
+          </div>
+        </div>
+      </section>
+
+      {/* Complete Example 2: Counterexample */}
+      <section className="px-6 py-12 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-display font-bold text-white mb-6">
+            Example: Finding a Counterexample (2023)
+          </h2>
+
+          <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+            <h3 className="text-lg font-semibold text-white mb-4">Statement:</h3>
+            <p className="text-gray-400 mb-4">
+              "If a graph G has a Hamiltonian path, then removing any vertex from G 
+              leaves a graph with a Hamiltonian path."
+            </p>
+            
+            <p className="font-semibold text-gray-300 mb-2">
+              Prove this statement is FALSE by giving a counterexample.
+            </p>
+
+            <ExamSolution score="10/10">
+              <p className="font-semibold text-white mb-3">Counterexample:</p>
+              
+              <div className="bg-slate-800/50 rounded-lg p-4 mb-4">
+                <p className="mb-2">Consider the path graph P<Sub base="4" sub="" /> with vertices {"{"}a, b, c, d{"}"}:</p>
+                <div className="text-center font-mono my-3">
+                  a — b — c — d
+                </div>
+              </div>
+
+              <p className="mb-3">
+                <strong>1. G has a Hamiltonian path:</strong> a → b → c → d ✓
+              </p>
+
+              <p className="mb-3">
+                <strong>2. Remove vertex b:</strong>
+              </p>
+              <div className="ml-4 mb-3">
+                <p>Resulting graph G' has vertices {"{"}a, c, d{"}"} with edges:</p>
+                <div className="text-center font-mono my-2">
+                  a   c — d
+                </div>
+                <p className="text-sm text-gray-400">(no edge between a and c)</p>
+              </div>
+
+              <p className="mb-3">
+                <strong>3. G' has NO Hamiltonian path:</strong>
+              </p>
+              <ul className="ml-4 space-y-1">
+                <li>• To visit all vertices, must include a</li>
+                <li>• But a has degree 0 in G'</li>
+                <li>• So a must be endpoint of any Hamiltonian path</li>
+                <li>• But can't reach both c and d from a</li>
+              </ul>
+
+              <p className="mt-4 text-sm text-gray-400">
+                Therefore, the statement is FALSE. Removing vertex b from P<Sub base="4" sub="" /> 
+                creates a graph with no Hamiltonian path. ✗
+              </p>
+            </ExamSolution>
+          </div>
+        </div>
+      </section>
+
+      {/* Common Statement Types */}
+      <section className="px-6 py-12 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-display font-bold text-white mb-6">
+            Common Statement Types
+          </h2>
+
+          <div className="space-y-6">
+            <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+              <h3 className="font-semibold text-white mb-3">Type 1: Special Cases</h3>
+              <p className="text-gray-300 mb-2">
+                "Problem X remains NP-hard even when restricted to graphs with property Y"
+              </p>
+              <div className="mt-3 text-sm text-gray-400">
+                <strong>Approach:</strong> Reduce from general case, ensuring construction has property Y.
+              </div>
             </div>
 
-            <div className="bg-yellow-500/10 rounded-xl p-6 border border-yellow-500/30">
-              <div className="flex items-start gap-3">
-                <Lightbulb className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-yellow-400 font-semibold mb-2">Exam Strategy</p>
-                  <ul className="space-y-1 text-sm text-gray-300">
-                    <li>• Test claim on small examples first (triangle, K₄, path)</li>
-                    <li>• If seems false, find simplest counterexample</li>
-                    <li>• If seems true, construct solution systematically</li>
-                    <li>• Always verify ALL constraints explicitly</li>
-                  </ul>
-                </div>
+            <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+              <h3 className="font-semibold text-white mb-3">Type 2: Algorithm Claims</h3>
+              <p className="text-gray-300 mb-2">
+                "This greedy/simple algorithm solves NP-hard problem X"
+              </p>
+              <div className="mt-3 text-sm text-gray-400">
+                <strong>Approach:</strong> Almost always FALSE. Find small counterexample.
+              </div>
+            </div>
+
+            <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+              <h3 className="font-semibold text-white mb-3">Type 3: Structural Properties</h3>
+              <p className="text-gray-300 mb-2">
+                "If graph has property A, then it has property B"
+              </p>
+              <div className="mt-3 text-sm text-gray-400">
+                <strong>Approach:</strong> Try standard graphs (path, cycle, star, complete).
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Common Pitfalls */}
+      {/* Tips for Success */}
       <section className="px-6 py-12 border-t border-slate-800">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-display font-bold text-white mb-6">
-            Common Mistakes to Avoid
+            Strategies for Success
           </h2>
 
-          <div className="space-y-4">
-            <div className="flex items-start gap-3 p-4 bg-red-500/10 rounded-lg border border-red-500/30">
-              <XCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="font-semibold text-red-400">Assuming claim is true</p>
-                <p className="text-sm text-gray-300">Always check! Many exam claims are false.</p>
-              </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-green-500/10 rounded-xl p-6 border border-green-500/30">
+              <h3 className="font-semibold text-green-400 mb-3">Quick Checks</h3>
+              <ul className="space-y-2 text-sm text-gray-300">
+                <li>• If it claims P = NP, it's FALSE</li>
+                <li>• If it claims easy algorithm for NP-hard, it's FALSE</li>
+                <li>• Check small graphs first (n <Leq /> 5)</li>
+                <li>• Draw your examples clearly</li>
+                <li>• Verify edge cases</li>
+              </ul>
             </div>
 
-            <div className="flex items-start gap-3 p-4 bg-red-500/10 rounded-lg border border-red-500/30">
-              <XCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="font-semibold text-red-400">Vague construction</p>
-                <p className="text-sm text-gray-300">Be explicit: "Set color(v) = ..." not "color appropriately"</p>
-              </div>
+            <div className="bg-yellow-500/10 rounded-xl p-6 border border-yellow-500/30">
+              <h3 className="font-semibold text-yellow-400 mb-3">Time Management</h3>
+              <ul className="space-y-2 text-sm text-gray-300">
+                <li>• Spend max 20 minutes here</li>
+                <li>• If stuck, try the opposite (true → false)</li>
+                <li>• Small counterexamples = full points</li>
+                <li>• Don't overcomplicate proofs</li>
+                <li>• Move on if completely stuck</li>
+              </ul>
             </div>
+          </div>
 
-            <div className="flex items-start gap-3 p-4 bg-red-500/10 rounded-lg border border-red-500/30">
-              <XCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+          <div className="mt-6 p-4 bg-blue-500/10 rounded-lg border border-blue-500/30">
+            <div className="flex items-start gap-2">
+              <Lightbulb className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="font-semibold text-red-400">Skipping verification</p>
-                <p className="text-sm text-gray-300">Must check EVERY edge type, constraint, case</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 p-4 bg-red-500/10 rounded-lg border border-red-500/30">
-              <XCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="font-semibold text-red-400">Complex counterexamples</p>
-                <p className="text-sm text-gray-300">Triangle or K₄ usually suffice - keep it simple!</p>
+                <p className="text-sm text-blue-300 font-semibold mb-1">
+                  Exam Tip
+                </p>
+                <p className="text-sm text-gray-300">
+                  This exercise has high variance - sometimes easy, sometimes very hard.
+                  Don't panic if you can't solve it immediately. Often, a simple 3-4 vertex 
+                  counterexample is all you need.
+                </p>
               </div>
             </div>
           </div>
@@ -505,7 +328,7 @@ export default function NPProofsPage() {
             href="/courses/algorithms-exam-prep"
             className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
           >
-            Back to Overview
+            Back to Course Overview
             <ChevronRight className="w-4 h-4" />
           </Link>
         </div>
