@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Sparkles } from 'lucide-react'
+import { PenTool } from 'lucide-react'
 import { IdeaCard } from './IdeaCard'
 import { featuredIdeas } from '../../../data/ideas'
 
@@ -16,12 +16,12 @@ export function RecentIdeas() {
           transition={{ duration: 0.8 }}
         >
           <div className="flex items-center gap-2 mb-4">
-            <Sparkles className="w-6 h-6 text-purple-400" />
-            <span className="text-purple-400 font-mono text-sm">Recent Thoughts</span>
+            <PenTool className="w-6 h-6 text-pink-400" />
+            <span className="text-pink-400 font-mono text-sm">Recent Writing</span>
           </div>
           
           <h2 className="text-4xl lg:text-6xl font-display font-bold text-white mb-6">
-            Ideas & Writing
+            Articles & Thoughts
           </h2>
           
           <p className="text-gray-400 text-lg mb-16 max-w-2xl">

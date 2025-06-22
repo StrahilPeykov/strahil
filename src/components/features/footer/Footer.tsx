@@ -1,80 +1,73 @@
 import Link from 'next/link'
 import { SocialLinks } from './SocialLinks'
-import { navigationSections, additionalPages } from '../../../data/navigation'
+import { allNavigationItems } from '../../../data/navigation'
+import { Mail, MapPin, Download } from 'lucide-react'
 
 export function Footer() {
   return (
-    <footer className="border-t border-slate-800/50 py-16 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
-          {/* About */}
-          <div className="md:col-span-1">
-            <h3 className="font-display font-semibold text-white text-lg mb-4">About</h3>
-            <p className="text-gray-400 text-sm leading-relaxed mb-4">
-              Bulgarian Computer Science student and Software Engineer based in Eindhoven, NL. 
-              BSc Computer Science & Engineering at TU/e.
-            </p>
-            <Link 
-              href="/about"
-              className="text-purple-400 hover:text-purple-300 text-sm transition-colors"
-            >
-              Learn more →
-            </Link>
-          </div>
-          
-          {/* Main Pages */}
-          <div>
-            <h3 className="font-display font-semibold text-white text-lg mb-4">Pages</h3>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-              {navigationSections.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-gray-400 hover:text-purple-400 transition-colors text-sm"
-                >
-                  {link.label}
-                </Link>
-              ))}
+    <footer className="border-t border-slate-800/50 bg-slate-950">
+      <div className="py-12 px-6">
+        <div className="max-w-7xl mx-auto">
+          {/* Main footer content */}
+          <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+            {/* About/Contact */}
+            <div>
+              <h3 className="font-display font-bold text-lg text-white mb-3">
+                Strahil Peykov
+              </h3>
+              <p className="text-gray-400 text-sm mb-4">
+                Full-Stack Developer & Software Engineer
+              </p>
+              <div className="space-y-2 text-sm">
+                <div className="flex items-center gap-2 text-gray-400">
+                  <MapPin size={14} />
+                  <span>Eindhoven, Netherlands</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-400">
+                  <Mail size={14} />
+                  <a href="mailto:strahil.peykov@gmail.com" className="hover:text-purple-400 transition-colors">
+                    strahil.peykov@gmail.com
+                  </a>
+                </div>
+                <div className="flex items-center gap-2 text-gray-400">
+                  <Download size={14} />
+                  <a href="/cv.pdf" download className="hover:text-purple-400 transition-colors">
+                    Download CV
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            {/* Navigation */}
+            <div className="md:col-span-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-3">
+                {allNavigationItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+              
+              {/* Social links */}
+              <div className="mt-8 pt-8 border-t border-slate-800/50">
+                <SocialLinks />
+              </div>
             </div>
           </div>
           
-          {/* More */}
-          <div>
-            <h3 className="font-display font-semibold text-white text-lg mb-4">More</h3>
-            <div className="space-y-2">
-              {additionalPages.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="block text-gray-400 hover:text-purple-400 transition-colors text-sm"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-          
-          {/* Connect */}
-          <div>
-            <h3 className="font-display font-semibold text-white text-lg mb-4">Connect</h3>
-            <p className="text-gray-400 text-sm mb-4">
-              Let's build something amazing together.
-            </p>
-            <SocialLinks />
-          </div>
-        </div>
-        
-        {/* Bottom bar */}
-        <div className="pt-8 border-t border-slate-800/50">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-            <p>© 2025 Strahil Peykov. All rights reserved.</p>
-            <div className="flex items-center gap-2">
-              <span>Built with</span>
-              <span className="text-blue-400">Next.js</span>
-              <span>·</span>
-              <span className="text-purple-400">Tailwind CSS</span>
-              <span>·</span>
-              <span className="text-pink-400">MDX</span>
+          {/* Bottom bar */}
+          <div className="mt-8 pt-8 border-t border-slate-800/50 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+            <p>© 2025 Strahil Peykov</p>
+            <div className="flex items-center gap-4">
+              <Link href="/humans.txt" className="hover:text-gray-400 transition-colors">
+                Humans.txt
+              </Link>
+              <span>•</span>
+              <span>Built with Next.js & TypeScript</span>
             </div>
           </div>
         </div>

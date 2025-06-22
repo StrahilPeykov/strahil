@@ -1,203 +1,287 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { GraduationCap, Clock, Users, Star, ArrowRight, CheckCircle, BookOpen, Award, Zap } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { GraduationCap, BookOpen, Video, FileText, Search, Filter, ArrowRight, Clock, Users, Star, Sparkles, Download, ExternalLink } from 'lucide-react'
 import { PageWrapper } from '../../components/layout/PageWrapper'
 import { Badge } from '../../components/ui/Badge'
 import Link from 'next/link'
+import { useState, useMemo } from 'react'
 
-const courses = [
+// Combined resources: courses, guides, tools, etc.
+const resources = [
+  // Courses
   {
     id: 'algorithms-exam-prep',
+    type: 'course',
     title: 'Algorithms Exam Preparation',
-    subtitle: 'Master all 8 exercise types for your algorithms exam',
-    description: 'Comprehensive exam preparation covering all exercise types with real past exam questions and detailed solutions.',
-    longDescription: 'Prepare for your algorithms exam with focused practice on all 8 exercise types. Based on analysis of past exams, with full solutions and explanations for each type of problem you\'ll encounter.',
+    description: 'Master all 8 exercise types for your algorithms exam with real past exam questions and detailed solutions.',
     image: '/images/courses/algorithms.jpg',
     gradient: 'from-blue-500 to-cyan-500',
     duration: '4 weeks',
     lessons: 8,
     students: 0,
-    rating: 0,
     level: 'University',
     price: 'Free',
     status: 'published',
-    topics: [
-      'Backtracking',
-      'Greedy Choice Lemma',
-      'Dynamic Programming',
-      'Network Flow',
-      'Shortest-Path Algorithms',
-      'Flow Theory',
-      'NP-Completeness',
-      'NP-Hardness Proofs'
-    ],
-    outcomes: [
-      'Master all 8 exercise types',
-      'Understand exam patterns',
-      'Write formal proofs correctly',
-      'Achieve top marks'
-    ],
+    featured: true,
+    tags: ['Algorithms', 'Data Structures', 'Exam Prep'],
     link: '/courses/algorithms-exam-prep'
   },
   {
     id: 'web-security-fundamentals',
+    type: 'course',
     title: 'Web Security Fundamentals',
-    subtitle: 'Build secure applications from the ground up',
     description: 'Learn to identify and prevent common web vulnerabilities. Build applications that are secure by design.',
-    longDescription: 'Comprehensive security course covering OWASP Top 10, secure coding practices, and real-world attack scenarios. Learn to think like an attacker to better defend your applications.',
-    image: '/images/courses/security.jpg',
     gradient: 'from-red-500 to-orange-500',
     duration: '6 weeks',
     lessons: 36,
     students: 892,
-    rating: 4.8,
     level: 'Beginner',
     price: '$49',
     status: 'published',
-    topics: [
-      'OWASP Top 10',
-      'Authentication & Authorization',
-      'XSS & CSRF Prevention',
-      'SQL Injection',
-      'Secure APIs',
-      'Cryptography Basics'
-    ],
-    outcomes: [
-      'Identify security vulnerabilities',
-      'Implement secure authentication',
-      'Protect against common attacks',
-      'Security best practices'
-    ],
+    tags: ['Security', 'Web Development', 'OWASP'],
     link: '/courses/web-security-fundamentals'
   },
+  
+  // Guides/Resources
   {
-    id: 'system-design-interview',
-    title: 'System Design Interview Prep',
-    subtitle: 'Ace your next system design interview',
-    description: 'From basics to advanced patterns, learn how to design scalable systems and excel in technical interviews.',
-    longDescription: 'Prepare for system design interviews at top tech companies. Learn to design systems like URL shorteners, social networks, and distributed databases.',
-    image: '/images/courses/system-design.jpg',
-    gradient: 'from-purple-500 to-pink-500',
-    duration: '10 weeks',
-    lessons: 60,
-    students: 2156,
-    rating: 4.9,
-    level: 'Advanced',
-    price: '$99',
-    status: 'coming-soon',
-    launchDate: 'March 2024',
-    topics: [
-      'Scalability Principles',
-      'Load Balancing',
-      'Caching Strategies',
-      'Database Design',
-      'Microservices',
-      'Real-world Examples'
-    ],
-    outcomes: [
-      'Design scalable systems',
-      'Estimate capacity requirements',
-      'Choose right technologies',
-      'Communicate effectively'
-    ],
-    link: '/courses/system-design-interview'
+    id: 'system-design-handbook',
+    type: 'guide',
+    title: 'System Design Handbook',
+    description: 'Comprehensive guide to designing scalable systems. From basics to advanced patterns.',
+    gradient: 'from-indigo-500 to-purple-500',
+    pages: 120,
+    views: 23456,
+    lastUpdated: '2024-01-15',
+    status: 'published',
+    featured: true,
+    tags: ['System Design', 'Architecture', 'Scale'],
+    link: '/guides/system-design'
+  },
+  {
+    id: 'react-patterns',
+    type: 'guide',
+    title: 'Modern React Patterns',
+    description: 'Collection of battle-tested React patterns and best practices from production applications.',
+    gradient: 'from-blue-500 to-indigo-500',
+    pages: 85,
+    views: 18234,
+    lastUpdated: '2024-01-10',
+    status: 'published',
+    tags: ['React', 'Patterns', 'JavaScript'],
+    link: '/guides/react-patterns'
+  },
+  
+  // Video content
+  {
+    id: 'building-saas',
+    type: 'video-series',
+    title: 'Building a SaaS from Scratch',
+    description: 'Follow along as I build a complete SaaS application from idea to deployment.',
+    gradient: 'from-pink-500 to-purple-500',
+    episodes: 12,
+    totalViews: 45678,
+    duration: '8+ hours',
+    status: 'in-progress',
+    tags: ['SaaS', 'Full-Stack', 'Business'],
+    link: '/series/building-saas'
+  },
+  
+  // Downloads
+  {
+    id: 'dev-toolkit',
+    type: 'download',
+    title: 'Developer Productivity Toolkit',
+    description: 'My personal collection of scripts, configs, and tools for maximum productivity.',
+    gradient: 'from-green-500 to-teal-500',
+    downloads: 1234,
+    size: '2.3MB',
+    format: 'ZIP',
+    status: 'published',
+    tags: ['Productivity', 'Tools', 'Config'],
+    link: '/downloads/dev-toolkit'
   }
 ]
 
-function CourseCard({ course, index }: { course: typeof courses[0], index: number }) {
-  const isComingSoon = course.status === 'coming-soon'
+const types = [
+  { id: 'all', label: 'All Resources', icon: BookOpen },
+  { id: 'course', label: 'Courses', icon: GraduationCap },
+  { id: 'guide', label: 'Guides', icon: FileText },
+  { id: 'video-series', label: 'Videos', icon: Video },
+  { id: 'download', label: 'Downloads', icon: Download }
+]
+
+const levels = ['All', 'Beginner', 'Intermediate', 'Advanced', 'University']
+
+function ResourceCard({ resource, index }: { resource: typeof resources[0], index: number }) {
+  const typeConfig = {
+    course: { icon: GraduationCap, label: 'Course', color: 'text-purple-400' },
+    guide: { icon: FileText, label: 'Guide', color: 'text-blue-400' },
+    'video-series': { icon: Video, label: 'Video Series', color: 'text-pink-400' },
+    download: { icon: Download, label: 'Download', color: 'text-green-400' }
+  }
+
+  const config = typeConfig[resource.type as keyof typeof typeConfig]
+  const Icon = config.icon
 
   return (
-    <motion.div
+    <motion.article
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
-      className="group relative"
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.05 }}
+      className="group"
     >
-      <Link href={course.link}>
-        <div className="relative h-full bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-2xl overflow-hidden hover:border-purple-500/30 transition-all duration-300">
-          {/* Background gradient */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${course.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-          
-          {/* Image placeholder */}
-          <div className={`h-48 bg-gradient-to-br ${course.gradient} opacity-20 relative overflow-hidden`}>
+      <Link href={resource.link}>
+        <div className="relative h-full bg-slate-900/30 backdrop-blur-sm border border-slate-800 rounded-2xl overflow-hidden hover:border-purple-500/30 transition-all duration-300">
+          {/* Header with gradient */}
+          <div className={`h-48 bg-gradient-to-br ${resource.gradient} opacity-20 relative overflow-hidden`}>
             <div className="absolute inset-0 bg-slate-900/50" />
             <div className="absolute inset-0 flex items-center justify-center">
-              <GraduationCap className="w-20 h-20 text-white/30" />
+              <Icon className="w-20 h-20 text-white/20" />
             </div>
             
             {/* Status badge */}
             <div className="absolute top-4 right-4">
-              {isComingSoon ? (
-                <Badge variant="warning" size="sm">Coming Soon</Badge>
-              ) : (
-                <Badge variant="success" size="sm">{course.price}</Badge>
-              )}
+              <Badge 
+                variant={resource.status === 'published' ? 'success' : resource.status === 'in-progress' ? 'blue' : 'warning'} 
+                size="sm"
+              >
+                {resource.status === 'published' ? resource.price || 'Free' : resource.status}
+              </Badge>
             </div>
             
-            {/* Level badge */}
+            {/* Type badge */}
             <div className="absolute top-4 left-4">
-              <Badge variant="purple" size="sm">{course.level}</Badge>
+              <Badge variant="purple" size="sm">
+                {config.label}
+              </Badge>
             </div>
+            
+            {resource.featured && (
+              <div className="absolute bottom-4 left-4">
+                <Badge variant="warning" size="sm" className="flex items-center gap-1">
+                  <Sparkles className="w-3 h-3" />
+                  Featured
+                </Badge>
+              </div>
+            )}
           </div>
           
           {/* Content */}
           <div className="p-6">
-            <h3 className="text-xl font-semibold text-white mb-1 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all">
-              {course.title}
+            <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all">
+              {resource.title}
             </h3>
-            <p className="text-sm text-purple-400 mb-3">{course.subtitle}</p>
             <p className="text-gray-400 text-sm mb-4 line-clamp-2">
-              {course.description}
+              {resource.description}
             </p>
             
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-4 mb-4">
-              <div className="flex items-center gap-2 text-sm text-gray-500">
-                <Clock className="w-4 h-4" />
-                <span>{course.duration}</span>
+            {/* Metadata */}
+            <div className="space-y-3">
+              {/* Tags */}
+              <div className="flex flex-wrap gap-2">
+                {resource.tags.slice(0, 3).map((tag) => (
+                  <span key={tag} className="text-xs text-gray-500">
+                    #{tag.replace(/\s+/g, '')}
+                  </span>
+                ))}
               </div>
-              <div className="flex items-center gap-2 text-sm text-gray-500">
-                <BookOpen className="w-4 h-4" />
-                <span>{course.lessons} lessons</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-gray-500">
-                <Users className="w-4 h-4" />
-                <span>{course.students.toLocaleString()}</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-gray-500">
-                <Star className="w-4 h-4 text-yellow-400" />
-                <span>{course.rating}</span>
+              
+              {/* Stats */}
+              <div className="flex items-center gap-4 text-sm text-gray-500">
+                {resource.type === 'course' && (
+                  <>
+                    <span className="flex items-center gap-1">
+                      <Clock className="w-3 h-3" />
+                      {resource.duration}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Users className="w-3 h-3" />
+                      {resource.students}
+                    </span>
+                  </>
+                )}
+                {resource.type === 'guide' && (
+                  <>
+                    <span className="flex items-center gap-1">
+                      <FileText className="w-3 h-3" />
+                      {resource.pages} pages
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Users className="w-3 h-3" />
+                      {resource.views?.toLocaleString()}
+                    </span>
+                  </>
+                )}
+                {resource.type === 'video-series' && (
+                  <>
+                    <span className="flex items-center gap-1">
+                      <Video className="w-3 h-3" />
+                      {resource.episodes} episodes
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Clock className="w-3 h-3" />
+                      {resource.duration}
+                    </span>
+                  </>
+                )}
+                {resource.type === 'download' && (
+                  <>
+                    <span className="flex items-center gap-1">
+                      <Download className="w-3 h-3" />
+                      {resource.downloads} downloads
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <FileText className="w-3 h-3" />
+                      {resource.size}
+                    </span>
+                  </>
+                )}
               </div>
             </div>
             
             {/* CTA */}
-            <div className="flex items-center justify-between">
-              <span className="text-lg font-semibold text-white">
-                {isComingSoon ? course.launchDate : course.price}
+            <div className="mt-4 flex items-center justify-between">
+              <span className={`text-sm font-medium ${config.color}`}>
+                {resource.type === 'course' ? 'Start learning' : 
+                 resource.type === 'guide' ? 'Read guide' :
+                 resource.type === 'video-series' ? 'Watch now' :
+                 'Download'}
               </span>
-              <span className="flex items-center gap-1 text-purple-400 group-hover:gap-2 transition-all">
-                {isComingSoon ? 'Get notified' : 'View course'}
-                <ArrowRight className="w-4 h-4" />
-              </span>
+              <ArrowRight className="w-4 h-4 text-gray-600 group-hover:text-purple-400 transition-all group-hover:translate-x-1" />
             </div>
           </div>
         </div>
       </Link>
-    </motion.div>
+    </motion.article>
   )
 }
 
-export default function CoursesPage() {
-  const featuredCourse = courses[0]
+export default function LearnPage() {
+  const [selectedType, setSelectedType] = useState('all')
+  const [selectedLevel, setSelectedLevel] = useState('All')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [showFilters, setShowFilters] = useState(false)
+
+  const filteredResources = useMemo(() => {
+    return resources.filter(resource => {
+      const matchesType = selectedType === 'all' || resource.type === selectedType
+      const matchesLevel = selectedLevel === 'All' || (resource as any).level === selectedLevel
+      const matchesSearch = resource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          resource.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          resource.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
+      
+      return matchesType && matchesLevel && matchesSearch
+    })
+  }, [selectedType, selectedLevel, searchQuery])
 
   return (
     <PageWrapper>
       {/* Hero Section */}
       <section className="relative min-h-[50vh] flex items-center justify-center px-6 py-24 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 via-blue-500/5 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 via-violet-500/5 to-transparent" />
         </div>
         
         <div className="relative z-10 max-w-4xl mx-auto text-center">
@@ -216,9 +300,9 @@ export default function CoursesPage() {
             transition={{ delay: 0.1 }}
             className="text-5xl lg:text-7xl font-display font-bold text-white mb-6"
           >
-            Learn by
-            <span className="block bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-              Building
+            Learn &
+            <span className="block bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">
+              Grow
             </span>
           </motion.h1>
           
@@ -228,114 +312,148 @@ export default function CoursesPage() {
             transition={{ delay: 0.2 }}
             className="text-xl text-gray-400 max-w-2xl mx-auto"
           >
-            Practical courses designed to help you master complex topics through 
-            hands-on projects and real-world applications.
+            Courses, guides, and resources to help you level up your skills. 
+            From algorithms to system design, learn at your own pace.
           </motion.p>
         </div>
       </section>
       
-      {/* Featured Course */}
-      <section className="px-6 py-16 border-y border-slate-800">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center gap-2 mb-8">
-            <Zap className="w-5 h-5 text-yellow-400" />
-            <span className="text-yellow-400 font-mono text-sm">Featured Course</span>
-          </div>
-          
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <Badge variant="purple" className="mb-4">{featuredCourse.level}</Badge>
-              <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-4">
-                {featuredCourse.title}
-              </h2>
-              <p className="text-xl text-purple-400 mb-4">{featuredCourse.subtitle}</p>
-              <p className="text-gray-400 mb-6">{featuredCourse.longDescription}</p>
-              
-              {/* What you'll learn */}
-              <div className="mb-8">
-                <h3 className="text-lg font-semibold text-white mb-4">What you'll learn:</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {featuredCourse.outcomes.map((outcome, i) => (
-                    <div key={i} className="flex items-start gap-2">
-                      <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm text-gray-300">{outcome}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-4">
-                <Link
-                  href={featuredCourse.link}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold rounded-full hover:scale-105 transition-transform"
+      {/* Type selector */}
+      <section className="px-6 py-8 border-y border-slate-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-center gap-4 flex-wrap">
+            {types.map((type) => {
+              const Icon = type.icon
+              const isActive = selectedType === type.id
+              return (
+                <button
+                  key={type.id}
+                  onClick={() => setSelectedType(type.id)}
+                  className={`group flex items-center gap-2 px-5 py-2.5 rounded-full transition-all ${
+                    isActive 
+                      ? 'bg-purple-500/20 border border-purple-500/50 text-purple-400' 
+                      : 'border border-slate-800 text-gray-400 hover:text-white hover:border-slate-700'
+                  }`}
                 >
-                  Start learning
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-                <div className="text-sm text-gray-500">
-                  <div className="flex items-center gap-4">
-                    <span className="flex items-center gap-1">
-                      <Users className="w-4 h-4" />
-                      {featuredCourse.students.toLocaleString()} students
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Star className="w-4 h-4 text-yellow-400" />
-                      {featuredCourse.rating} rating
-                    </span>
-                  </div>
-                </div>
-              </div>
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-purple-400' : 'text-gray-500 group-hover:text-gray-300'}`} />
+                  <span className="text-sm font-medium">{type.label}</span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+      
+      {/* Search and Filters */}
+      <section className="px-6 py-8 sticky top-20 z-30 bg-slate-950/90 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row gap-4">
+            <div className="flex-1 relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+              <input
+                type="text"
+                placeholder="Search resources..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/50 transition-colors"
+              />
             </div>
             
-            <div className="relative">
-              <div className={`absolute inset-0 bg-gradient-to-br ${featuredCourse.gradient} blur-3xl opacity-20`} />
-              <div className={`relative bg-gradient-to-br ${featuredCourse.gradient} rounded-2xl p-8 bg-opacity-10 border border-purple-500/20`}>
-                <h4 className="text-xl font-semibold text-white mb-4">Course Topics</h4>
-                <div className="space-y-3">
-                  {featuredCourse.topics.map((topic, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center text-sm font-semibold text-purple-400">
-                        {i + 1}
-                      </div>
-                      <span className="text-gray-300">{topic}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className={`flex items-center gap-2 px-6 py-3 rounded-xl border transition-all ${
+                showFilters 
+                  ? 'bg-purple-500/10 border-purple-500/50 text-purple-400' 
+                  : 'bg-slate-900/50 border-slate-800 text-gray-400 hover:text-white hover:border-slate-700'
+              }`}
+            >
+              <Filter className="w-5 h-5" />
+              <span>Filters</span>
+            </button>
           </div>
+          
+          {/* Expanded filters */}
+          <AnimatePresence>
+            {showFilters && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden"
+              >
+                <div className="pt-6">
+                  <h3 className="text-sm font-medium text-gray-400 mb-3">Difficulty Level</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {levels.map((level) => (
+                      <button
+                        key={level}
+                        onClick={() => setSelectedLevel(level)}
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                          selectedLevel === level
+                            ? 'bg-purple-500/20 text-purple-400 border border-purple-500/50'
+                            : 'bg-slate-900/50 text-gray-400 border border-slate-800 hover:text-white hover:border-slate-700'
+                        }`}
+                      >
+                        {level}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </section>
       
-      {/* All Courses */}
+      {/* Resources Grid */}
       <section className="px-6 py-16">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-display font-bold text-white mb-8">All Courses</h2>
+        <div className="max-w-7xl mx-auto">
+          {/* Results count */}
+          <div className="mb-8">
+            <p className="text-gray-500">
+              {filteredResources.length} {filteredResources.length === 1 ? 'resource' : 'resources'} available
+            </p>
+          </div>
           
-          <div className="grid lg:grid-cols-3 gap-6">
-            {courses.map((course, i) => (
-              <CourseCard key={course.id} course={course} index={i} />
+          {/* Resources grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredResources.map((resource, index) => (
+              <ResourceCard key={resource.id} resource={resource} index={index} />
             ))}
           </div>
+          
+          {/* Empty state */}
+          {filteredResources.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-24"
+            >
+              <BookOpen className="w-16 h-16 text-gray-700 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-400 mb-2">No resources found</h3>
+              <p className="text-gray-500">Try adjusting your search or filters</p>
+            </motion.div>
+          )}
         </div>
       </section>
       
-      {/* CTA */}
+      {/* CTA Section */}
       <section className="px-6 py-16 border-t border-slate-800">
         <div className="max-w-4xl mx-auto text-center">
-          <Award className="w-12 h-12 text-purple-400 mx-auto mb-6" />
+          <Sparkles className="w-12 h-12 text-purple-400 mx-auto mb-4" />
           <h2 className="text-3xl font-display font-bold text-white mb-4">
             Can't find what you're looking for?
           </h2>
           <p className="text-gray-400 mb-8">
-            I'm always creating new courses based on community feedback. 
-            Let me know what topic you'd like to learn next!
+            I'm always creating new learning resources. Let me know what topics you'd like to see covered!
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 border-2 border-purple-500/30 text-purple-400 font-semibold rounded-full hover:bg-purple-500/10 hover:border-purple-500/50 transition-all"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-500 to-violet-500 text-white font-semibold rounded-full hover:scale-105 transition-transform"
           >
-            Request a course
+            Suggest a topic
+            <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
       </section>

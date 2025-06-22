@@ -15,7 +15,7 @@ export const ideas: IdeaPost[] = [
     excerpt: 'How machine learning is reshaping the developer experience',
     date: 'Jan 2024',
     readTime: '8 min',
-    url: '/ideas/ai-driven-development',
+    url: '/writing/ai-driven-development',
     featured: true
   },
   {
@@ -24,7 +24,7 @@ export const ideas: IdeaPost[] = [
     excerpt: 'Real-world insights from scaling applications to millions',
     date: 'Dec 2023', 
     readTime: '12 min',
-    url: '/ideas/building-for-scale',
+    url: '/writing/building-for-scale',
     featured: true
   },
   {
@@ -33,7 +33,7 @@ export const ideas: IdeaPost[] = [
     excerpt: 'Finding beauty in simplicity and intentional design',
     date: 'Nov 2023',
     readTime: '6 min', 
-    url: '/ideas/digital-minimalism',
+    url: '/writing/digital-minimalism',
     featured: true
   }
 ]

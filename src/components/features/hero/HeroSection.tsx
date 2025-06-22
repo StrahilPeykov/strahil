@@ -1,10 +1,9 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowUpRight, Mail, User } from 'lucide-react'
+import { ArrowRight, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { HeroBackground } from './HeroBackground'
-import { NavigationGrid } from './NavigationGrid'
 import { ScrollIndicator } from './ScrollIndicator'
 import { useScrollToSection } from '../../../hooks/useScrollToSection'
 
@@ -17,119 +16,114 @@ export function HeroSection() {
       <HeroBackground />
 
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto w-full">
-        {/* Subtle connection lines */}
-        <svg className="absolute inset-x-0 top-0 w-full h-32 pointer-events-none opacity-10" viewBox="0 0 800 200" preserveAspectRatio="xMidYMid slice">
-          <motion.path
-            d="M 50,150 Q 400,50 750,150"
-            fill="none"
-            stroke="url(#gradient)"
-            strokeWidth="2"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 2, ease: "easeInOut" }}
-          />
-          <defs>
-            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.3" />
-              <stop offset="50%" stopColor="#c084fc" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="#f472b6" stopOpacity="0.3" />
-            </linearGradient>
-          </defs>
-        </svg>
-
-        <div className="text-center mb-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.8 }}
-            className="mb-6"
-          >
-            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-display font-bold text-white mb-2 relative">
-              <motion.span
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                Strahil
-              </motion.span>
-              <motion.span
-                className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent inline-block"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                {' '}Peykov
-              </motion.span>
-            </h1>
-          </motion.div>
-
+      <div className="relative z-10 max-w-4xl mx-auto w-full text-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.8 }}
+          className="mb-8"
+        >
+          {/* Greeting */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: 0.2 }}
-            className="text-lg lg:text-2xl text-gray-400 mb-1 max-w-3xl mx-auto leading-relaxed"
+            transition={{ duration: 0.6 }}
+            className="text-purple-400 mb-4 text-lg"
           >
-            Full-Stack Developer crafting digital experiences at the intersection of
-            <motion.span
-              className="text-blue-400 font-medium"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-            > code</motion.span> and
-            <motion.span
-              className="text-purple-400 font-medium"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-            > innovation</motion.span>
+            Hello, I'm
           </motion.p>
 
+          {/* Name */}
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-display font-bold text-white mb-6 relative">
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Strahil
+            </motion.span>
+            <motion.span
+              className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent inline-block"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              {' '}Peykov
+            </motion.span>
+          </h1>
+
+          {/* Title */}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: 0.4 }}
+            className="text-2xl lg:text-3xl text-gray-300 mb-6 font-light"
+          >
+            Full-Stack Developer & Software Engineer
+          </motion.h2>
+
+          {/* Description */}
           <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: 0.5 }}
+            className="text-lg lg:text-xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed"
+          >
+            Building scalable solutions at the intersection of elegant code and innovative design. 
+            Currently crafting enterprise software at ASML.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            <Link
+              href="/work"
+              className="group relative overflow-hidden px-8 py-4 text-white font-semibold rounded-full transition-all hover:scale-105"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 transition-all group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <span className="relative z-10 flex items-center gap-2">
+                View My Work
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+
+            <Link
+              href="/about"
+              className="group relative overflow-hidden px-8 py-4 font-semibold rounded-full transition-all hover:scale-105"
+            >
+              <div className="absolute inset-0 border-2 border-purple-500/30 rounded-full transition-all group-hover:border-purple-500/50" />
+              <div className="absolute inset-0 bg-purple-500/0 group-hover:bg-purple-500/10 rounded-full transition-all" />
+              <span className="relative text-purple-400 group-hover:text-purple-300 transition-colors flex items-center gap-2">
+                Learn More About Me
+                <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+          </motion.div>
+
+          {/* Quick Links */}
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: 0.3 }}
-            className="text-gray-500 text-sm"
+            transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: 0.8 }}
+            className="mt-16 flex flex-wrap justify-center gap-6 text-sm"
           >
-            Navigate my digital universe below
-          </motion.p>
-        </div>
-
-        <NavigationGrid />
-
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20 sm:mb-16"
-        >
-          <Link
-            href="mailto:strahil.peykov@gmail.com"
-            className="group relative overflow-hidden px-6 py-3 text-white font-semibold rounded-full transition-all hover:scale-105"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 transition-all group-hover:scale-110" />
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
-              <div className="absolute inset-0 bg-white/10 blur-xl" />
-            </div>
-            <span className="relative z-10 flex items-center gap-2">
-              <Mail className="w-5 h-5" />
-              Get in touch
-              <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </span>
-          </Link>
-
-          <button
-            onClick={scrollToExplore}
-            className="group relative overflow-hidden px-6 py-3 font-semibold rounded-full transition-all hover:scale-105"
-          >
-            <div className="absolute inset-0 border-2 border-purple-500/30 rounded-full transition-all group-hover:border-purple-500/50" />
-            <div className="absolute inset-0 bg-purple-500/0 group-hover:bg-purple-500/10 rounded-full transition-all" />
-            <span className="relative text-purple-400 group-hover:text-purple-300 transition-colors">
-              Learn more
-            </span>
-          </button>
+            <Link href="/ideas" className="text-gray-500 hover:text-purple-400 transition-colors">
+              Recent Articles
+            </Link>
+            <span className="text-gray-700">•</span>
+            <Link href="/tools" className="text-gray-500 hover:text-purple-400 transition-colors">
+              Developer Tools
+            </Link>
+            <span className="text-gray-700">•</span>
+            <Link href="/contact" className="text-gray-500 hover:text-purple-400 transition-colors">
+              Get in Touch
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
 

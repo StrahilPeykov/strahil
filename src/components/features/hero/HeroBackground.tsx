@@ -3,15 +3,6 @@
 import { motion } from 'framer-motion'
 import { useMousePosition } from '../../../hooks/useMousePosition'
 
-const BACKGROUND_ELEMENTS = [
-  { text: 'WORK', size: '20vw', position: { top: '10%', left: '-5%' }, opacity: 0.2 },
-  { text: 'IDEAS', size: '18vw', position: { top: '30%', right: '-8%' }, opacity: 0.15 },
-  { text: 'PLAY', size: '15vw', position: { bottom: '20%', left: '10%' }, opacity: 0.1 },
-  { text: 'LIBRARY', size: '22vw', position: { bottom: '35%', right: '5%' }, opacity: 0.2 },
-  { text: 'MEDIA', size: '16vw', position: { top: '50%', left: '40%' }, opacity: 0.1 },
-  { text: 'CV', size: '12vw', position: { top: '70%', left: '-10%' }, opacity: 0.15 }
-]
-
 interface FloatingParticleProps {
   index: number
 }
@@ -54,33 +45,6 @@ export function HeroBackground() {
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* Large background text elements */}
-      <div className="absolute inset-0">
-        {BACKGROUND_ELEMENTS.map((element, index) => (
-          <motion.h2
-            key={element.text}
-            className="absolute font-display font-bold text-slate-800/20 select-none"
-            style={{
-              fontSize: element.size,
-              ...element.position,
-              opacity: element.opacity
-            }}
-            animate={{
-              x: [0, index % 2 === 0 ? -20 : 20, 0],
-              y: index > 2 ? [0, -15, 0] : undefined,
-              opacity: [element.opacity, element.opacity * 0.7, element.opacity]
-            }}
-            transition={{
-              duration: 20 + index * 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            {element.text}
-          </motion.h2>
-        ))}
-      </div>
-
       {/* Cosmic gradient overlay */}
       <div
         className="absolute inset-0"
@@ -94,9 +58,37 @@ export function HeroBackground() {
         }}
       />
 
+      {/* Animated orbs */}
+      <div className="absolute inset-0">
+        <motion.div
+          className="absolute top-20 -left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -50, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute bottom-20 -right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
+          animate={{
+            x: [0, -100, 0],
+            y: [0, 50, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      </div>
+
       {/* Floating particles */}
       <div className="absolute inset-0 overflow-hidden">
-        {Array.from({ length: 20 }, (_, i) => (
+        {Array.from({ length: 30 }, (_, i) => (
           <FloatingParticle key={i} index={i} />
         ))}
       </div>
@@ -105,7 +97,17 @@ export function HeroBackground() {
       <div
         className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300 opacity-40"
         style={{
-          background: `radial-gradient(800px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(147, 197, 253, 0.05), transparent 40%)`
+          background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(147, 197, 253, 0.06), transparent 40%)`
+        }}
+      />
+
+      {/* Grid pattern */}
+      <div 
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundSize: '100px 100px'
         }}
       />
     </div>
