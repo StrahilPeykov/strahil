@@ -127,7 +127,8 @@ export const metadata: Metadata = {
     default: 'Strahil Peykov - Software Engineer & Full-Stack Developer | TU/e Student',
     template: '%s | Strahil Peykov'
   },
-  description: 'Strahil Peykov is a Bulgarian Full-Stack Developer in Eindhoven, Netherlands. BSc Computer Science & Engineering from TU/e (2021-2025). Software Engineer at ASML. Building scalable web applications and digital experiences. Expert in React, Next.js, Python and Django.',  keywords: [
+  description: 'Strahil Peykov is a Bulgarian Full-Stack Developer in Eindhoven, Netherlands. BSc Computer Science & Engineering from TU/e (2021-2025). Software Engineer at ASML. Building scalable web applications and digital experiences. Expert in React, Next.js, Python and Django.',  
+  keywords: [
     // Primary branded keywords
     'Strahil Peykov',
     'Strahil',
@@ -228,15 +229,14 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
       { url: '/icons/favicon.svg', type: 'image/svg+xml' },
-      { url: '/icons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
       { url: '/icons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
     ],
     apple: [
       { url: '/icons/apple-touch-icon.png' },
     ],
-    shortcut: '/favicon.ico',
+    shortcut: '/icons/favicon-32x32.png',
   },
   // Removed: manifest: '/icons/site.webmanifest',
   category: 'Technology',
