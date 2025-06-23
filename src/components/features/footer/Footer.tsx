@@ -61,12 +61,8 @@ export function Footer() {
           
           {/* Bottom bar */}
           <div className="mt-8 pt-8 border-t border-slate-800/50 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-            <p>© 2025 Strahil Peykov</p>
+            <p>© 2025 Strahil Peykov, All Rights Reserved</p>
             <div className="flex items-center gap-4">
-              <Link href="/humans.txt" className="hover:text-gray-400 transition-colors">
-                Humans.txt
-              </Link>
-              <span>•</span>
               <span>Built with Next.js & TypeScript</span>
             </div>
           </div>
