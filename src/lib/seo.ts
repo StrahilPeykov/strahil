@@ -27,7 +27,7 @@ export const personalSchema = {
     "https://github.com/StrahilPeykov",
     "https://linkedin.com/in/strahil-peykov",
     "https://instagram.com/strahil.peykov",
-    "https://x.com/WerbenHS",
+    "https://x.com/StrahilGG",
     "https://tiktok.com/@strahil.peykov"
   ],
   "knowsAbout": [

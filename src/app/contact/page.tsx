@@ -57,7 +57,7 @@ const contactMethods = [
 const socialLinks = [
   { icon: Linkedin, href: 'https://linkedin.com/in/strahil-peykov', label: 'LinkedIn' },
   { icon: Github, href: 'https://github.com/StrahilPeykov', label: 'GitHub' },
-  { icon: Twitter, href: 'https://x.com/WerbenHS', label: 'Twitter' },
+  { icon: Twitter, href: 'https://x.com/StrahilGG', label: 'Twitter' },
   { icon: Instagram, href: 'https://instagram.com/strahil.peykov', label: 'Instagram' }
 ]
 

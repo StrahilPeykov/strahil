@@ -46,6 +46,6 @@ export const socialLinks: SocialLink[] = [
   { href: "https://linkedin.com/in/strahil-peykov", icon: Linkedin, label: "LinkedIn", external: true },
   { href: "https://instagram.com/strahil.peykov", icon: Instagram, label: "Instagram", external: true },
   { href: "https://tiktok.com/@strahil.peykov", icon: TikTokIcon, label: "TikTok", external: true },
-  { href: "https://x.com/WerbenHS", icon: Twitter, label: "X", external: true },
+  { href: "https://x.com/StrahilGG", icon: Twitter, label: "X", external: true },
   { href: "https://letterboxd.com/strahil_peykov", icon: LetterboxdIcon, label: "Letterboxd", external: true },
 ]

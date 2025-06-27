@@ -57,7 +57,7 @@ const personalSchema = {
     "https://github.com/StrahilPeykov",
     "https://linkedin.com/in/strahil-peykov",
     "https://instagram.com/strahil.peykov",
-    "https://x.com/WerbenHS",
+    "https://x.com/StrahilGG",
     "https://tiktok.com/@strahil.peykov",
     "https://letterboxd.com/strahil_peykov"
   ],
@@ -211,8 +211,8 @@ export const metadata: Metadata = {
     title: 'Strahil Peykov - Full-Stack Developer',
     description: 'Bulgarian Full-Stack Developer in Eindhoven, Netherlands. BSc Computer Science & Engineering at TU/e. Software Engineer at ASML.',
     images: ['/og-image.png'],
-    creator: '@WerbenHS',
-    site: '@WerbenHS',
+    creator: '@StrahilGG',
+    site: '@StrahilGG',
   },
   robots: {
     index: true,
