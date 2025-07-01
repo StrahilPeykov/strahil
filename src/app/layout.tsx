@@ -30,8 +30,8 @@ const personalSchema = {
   "alternateName": ["Strahil"],
   "jobTitle": "Full-Stack Developer",
   "description": "Bulgarian Full-Stack Developer based in Eindhoven, Netherlands. BSc Computer Science & Engineering from TU/e. Software Engineer at ASML. Expert in scalable web applications and enterprise software development.",
-  "url": "https://strahilpeykov.com",
-  "image": "https://strahilpeykov.com/og-image.png",
+  "url": "https://strahil.dev",
+  "image": "https://strahil.dev/og-image.png",
   "birthPlace": {
     "@type": "Country",
     "name": "Bulgaria"
@@ -105,7 +105,7 @@ const websiteSchema = {
   "@type": "WebSite",
   "name": "Strahil Peykov - Portfolio & Digital Garden",
   "alternateName": "Strahil Peykov",
-  "url": "https://strahilpeykov.com",
+  "url": "https://strahil.dev",
   "description": "Personal portfolio and digital garden of Strahil Peykov, Full-Stack Developer specializing in complex systems and AI-driven solutions",
   "author": {
     "@type": "Person",
@@ -113,7 +113,7 @@ const websiteSchema = {
   },
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://strahilpeykov.com/search?q={search_term_string}",
+    "target": "https://strahil.dev/search?q={search_term_string}",
     "query-input": "required name=search_term_string"
   },
   "sameAs": [
@@ -182,17 +182,17 @@ export const metadata: Metadata = {
     'European Developer',
     'Tech Consultant'
   ],
-  authors: [{ name: 'Strahil Peykov', url: 'https://strahilpeykov.com' }],
+  authors: [{ name: 'Strahil Peykov', url: 'https://strahil.dev' }],
   creator: 'Strahil Peykov',
   publisher: 'Strahil Peykov',
-  metadataBase: new URL('https://strahilpeykov.com'),
+  metadataBase: new URL('https://strahil.dev'),
   alternates: {
-    canonical: 'https://strahilpeykov.com',
+    canonical: 'https://strahil.dev',
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://strahilpeykov.com',
+    url: 'https://strahil.dev',
     title: 'Strahil Peykov - Full-Stack Developer & Software Engineer',
     description: 'Bulgarian Full-Stack Developer based in Eindhoven, Netherlands. BSc Computer Science & Engineering at TU/e. Software Engineer at ASML.',
     siteName: 'Strahil Peykov Portfolio',
@@ -301,19 +301,19 @@ export default function RootLayout({
         <meta property="og:country-name" content="Netherlands" />
         
         {/* Additional Twitter Cards */}
-        <meta name="twitter:domain" content="strahilpeykov.com" />
-        <meta name="twitter:url" content="https://strahilpeykov.com" />
+        <meta name="twitter:domain" content="strahil.dev" />
+        <meta name="twitter:url" content="https://strahil.dev" />
         
         {/* Link tags for SEO */}
-        <link rel="canonical" href="https://strahilpeykov.com" />
-        <link rel="alternate" type="application/rss+xml" title="Strahil Peykov RSS Feed" href="https://strahilpeykov.com/rss.xml" />
+        <link rel="canonical" href="https://strahil.dev" />
+        <link rel="alternate" type="application/rss+xml" title="Strahil Peykov RSS Feed" href="https://strahil.dev/rss.xml" />
         
         {/* DNS prefetch for performance */}
         <link rel="dns-prefetch" href="//github.com" />
         <link rel="dns-prefetch" href="//linkedin.com" />
         
         {/* Humans.txt reference */}
-        <link type="text/plain" rel="author" href="https://strahilpeykov.com/humans.txt" />
+        <link type="text/plain" rel="author" href="https://strahil.dev/humans.txt" />
       </head>
       <body className={cn(
         inter.variable,

@@ -15,19 +15,19 @@ export function ArticleSchema({ title, description, publishedDate, modifiedDate,
     "author": {
       "@type": "Person",
       "name": "Strahil Peykov",
-      "url": "https://strahilpeykov.com"
+      "url": "https://strahil.dev"
     },
     "publisher": {
       "@type": "Person",
       "name": "Strahil Peykov",
-      "url": "https://strahilpeykov.com"
+      "url": "https://strahil.dev"
     },
     "datePublished": publishedDate,
     "dateModified": modifiedDate || publishedDate,
-    "url": `https://strahilpeykov.com/${slug}`,
+    "url": `https://strahil.dev/${slug}`,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://strahilpeykov.com/${slug}`
+      "@id": `https://strahil.dev/${slug}`
     }
   }
 

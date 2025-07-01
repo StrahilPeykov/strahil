@@ -13,7 +13,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/'],
       },
     ],
-    sitemap: 'https://strahilpeykov.com/sitemap.xml',
-    host: 'https://strahilpeykov.com',
+    sitemap: 'https://strahil.dev/sitemap.xml',
+    host: 'https://strahil.dev',
   }
 }

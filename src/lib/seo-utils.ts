@@ -15,7 +15,7 @@ export function generateArticleSchema(article: {
     "author": {
       "@type": "Person",
       "name": "Strahil Peykov",
-      "url": "https://strahilpeykov.com",
+      "url": "https://strahil.dev",
       "jobTitle": "Full-Stack Developer",
       "address": {
         "@type": "PostalAddress",
@@ -26,14 +26,14 @@ export function generateArticleSchema(article: {
     "publisher": {
       "@type": "Person",
       "name": "Strahil Peykov",
-      "url": "https://strahilpeykov.com"
+      "url": "https://strahil.dev"
     },
     "datePublished": article.publishedDate,
     "dateModified": article.modifiedDate || article.publishedDate,
-    "url": `https://strahilpeykov.com/${article.slug}`,
+    "url": `https://strahil.dev/${article.slug}`,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://strahilpeykov.com/${article.slug}`
+      "@id": `https://strahil.dev/${article.slug}`
     },
     "keywords": article.tags?.join(', '),
     "timeRequired": article.readingTime?.text,

@@ -25,7 +25,7 @@ const tools = [
       'API access available'
     ],
     techStack: ['Next.js', 'Python', 'Elasticsearch', 'YouTube API'],
-    link: 'https://yt-search.strahilpeykov.com',
+    link: 'https://yt-search.strahil.dev',
     github: 'https://github.com/StrahilPeykov/yt-transcript-search',
     category: 'Productivity'
   },
@@ -47,7 +47,7 @@ const tools = [
       'VS Code extension'
     ],
     techStack: ['React', 'FastAPI', 'PostgreSQL', 'OpenAI'],
-    link: 'https://snippets.strahilpeykov.com',
+    link: 'https://snippets.strahil.dev',
     github: null,
     category: 'Development'
   },

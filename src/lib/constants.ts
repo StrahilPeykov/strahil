@@ -2,7 +2,7 @@ export const SITE_CONFIG = {
   name: 'Strahil Peykov',
   title: 'Full-Stack Developer & Digital Creator',
   description: 'Personal portfolio and digital garden of Strahil Peykov. Exploring code, design, and everything in between.',
-  url: 'https://strahilpeykov.com',
+  url: 'https://strahil.dev',
   author: {
     name: 'Strahil Peykov',
     email: 'strahil.peykov@gmail.com',

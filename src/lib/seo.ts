@@ -5,8 +5,8 @@ export const personalSchema = {
   "alternateName": ["Strahil"],
   "jobTitle": "Full-Stack Developer",
   "description": "Bulgarian Full-Stack Developer based in Eindhoven, Netherlands. Expert in complex systems, AI development, and scalable web applications.",
-  "url": "https://strahilpeykov.com",
-  "image": "https://strahilpeykov.com/images/strahil-peykov-profile.jpg",
+  "url": "https://strahil.dev",
+  "image": "https://strahil.dev/images/strahil-peykov-profile.jpg",
   "birthPlace": "Bulgaria",
   "worksFor": {
     "@type": "Organization",
