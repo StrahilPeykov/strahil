@@ -367,6 +367,23 @@ export default function ContactPage() {
                   </div>
                 </div>
                 
+                {/* Privacy Consent */}
+                <div className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    id="privacy-consent"
+                    required
+                    className="mt-1 w-4 h-4 bg-slate-900/50 border border-slate-700 rounded text-purple-500 focus:ring-purple-500 focus:ring-offset-0 focus:ring-2 cursor-pointer"
+                  />
+                  <label htmlFor="privacy-consent" className="text-sm text-gray-400 cursor-pointer">
+                    I agree to the{' '}
+                    <Link href="/privacy" className="text-purple-400 hover:text-purple-300 underline">
+                      privacy policy
+                    </Link>{' '}
+                    and understand how my data will be used.
+                  </label>
+                </div>
+                
                 {/* Submit Button */}
                 <AnimatePresence mode="wait">
                   {submitStatus === 'success' ? (

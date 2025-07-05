@@ -277,6 +277,7 @@ export default function WritingPage() {
                   type="email"
                   placeholder="your@email.com"
                   className="flex-1 px-6 py-3 bg-slate-800/50 border border-slate-700 rounded-full text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/50 transition-colors"
+                  required
                 />
                 <button
                   type="submit"
@@ -287,7 +288,11 @@ export default function WritingPage() {
               </form>
               
               <p className="text-xs text-gray-600 mt-4">
-                No spam, unsubscribe anytime.
+                By subscribing, you agree to receive emails about new articles and updates.
+                You can unsubscribe anytime. See our{' '}
+                <Link href="/privacy" className="text-purple-400 hover:text-purple-300 underline">
+                  privacy policy
+                </Link>.
               </p>
             </div>
           </motion.div>

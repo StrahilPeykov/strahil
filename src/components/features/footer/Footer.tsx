@@ -63,6 +63,16 @@ export function Footer() {
           <div className="mt-8 pt-8 border-t border-slate-800/50 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
             <p>© 2025 Strahil Peykov, All Rights Reserved</p>
             <div className="flex items-center gap-4">
+              <Link href="/privacy" className="hover:text-purple-400 transition-colors">
+                Privacy
+              </Link>
+              <Link href="/terms" className="hover:text-purple-400 transition-colors">
+                Terms
+              </Link>
+              <Link href="/cookies" className="hover:text-purple-400 transition-colors">
+                Cookies
+              </Link>
+              <span className="text-gray-700">•</span>
               <span>Built with Next.js & TypeScript</span>
             </div>
           </div>

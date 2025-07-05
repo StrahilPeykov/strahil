@@ -3,6 +3,9 @@ import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { cn } from '../lib/utils'
 import { ThemeProvider } from '../components/ThemeProvider'
+import { CookieConsentProvider } from '../components/providers/CookieConsentProvider'
+import { CookieBar } from '../components/features/cookies/CookieBar'
+import { AnalyticsScripts } from '../components/features/analytics/AnalyticsScripts'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -321,39 +324,47 @@ export default function RootLayout({
         jetbrainsMono.variable,
         'font-sans antialiased min-h-screen'
       )}>
-        <ThemeProvider defaultTheme="dark">
-          {/* Skip link for accessibility */}
-          <a 
-            href="#main-content" 
-            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-electric text-midnight px-4 py-2 rounded-md z-50 focus:outline-none focus:ring-2 focus:ring-electric"
-          >
-            Skip to main content
-          </a>
-          
-          {/* Main content wrapper with semantic markup */}
-          <div id="main-content" role="main">
-            {children}
-          </div>
-          
-          {/* Hidden schema markup for additional context */}
-          <div style={{ display: 'none' }}>
-            <span itemScope itemType="https://schema.org/Person">
-              <span itemProp="name">Strahil Peykov</span>
-              <span itemProp="jobTitle">Full-Stack Developer</span>
-              <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-                <span itemProp="addressLocality">Eindhoven</span>
-                <span itemProp="addressCountry">Netherlands</span>
+        <CookieConsentProvider>
+          <ThemeProvider defaultTheme="dark">
+            {/* Skip link for accessibility */}
+            <a 
+              href="#main-content" 
+              className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-electric text-midnight px-4 py-2 rounded-md z-50 focus:outline-none focus:ring-2 focus:ring-electric"
+            >
+              Skip to main content
+            </a>
+            
+            {/* Main content wrapper with semantic markup */}
+            <div id="main-content" role="main">
+              {children}
+            </div>
+            
+            {/* Cookie consent bar */}
+            <CookieBar />
+            
+            {/* Analytics scripts - only load after consent */}
+            <AnalyticsScripts />
+            
+            {/* Hidden schema markup for additional context */}
+            <div style={{ display: 'none' }}>
+              <span itemScope itemType="https://schema.org/Person">
+                <span itemProp="name">Strahil Peykov</span>
+                <span itemProp="jobTitle">Full-Stack Developer</span>
+                <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                  <span itemProp="addressLocality">Eindhoven</span>
+                  <span itemProp="addressCountry">Netherlands</span>
+                </span>
+                <span itemProp="alumniOf">BSc Computer Science & Engineering, TU/e</span>
+                <span itemProp="nationality">Bulgarian</span>
+                <span itemProp="knowsAbout">React</span>
+                <span itemProp="knowsAbout">Next.js</span>
+                <span itemProp="knowsAbout">Python</span>
+                <span itemProp="knowsAbout">AI Development</span>
+                <span itemProp="knowsAbout">Enterprise Integration</span>
               </span>
-              <span itemProp="alumniOf">BSc Computer Science & Engineering, TU/e</span>
-              <span itemProp="nationality">Bulgarian</span>
-              <span itemProp="knowsAbout">React</span>
-              <span itemProp="knowsAbout">Next.js</span>
-              <span itemProp="knowsAbout">Python</span>
-              <span itemProp="knowsAbout">AI Development</span>
-              <span itemProp="knowsAbout">Enterprise Integration</span>
-            </span>
-          </div>
-        </ThemeProvider>
+            </div>
+          </ThemeProvider>
+        </CookieConsentProvider>
       </body>
     </html>
   )
