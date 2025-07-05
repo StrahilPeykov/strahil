@@ -23,15 +23,6 @@ export function HeroSection() {
           transition={{ duration: shouldReduceMotion ? 0 : 0.8 }}
           className="mb-8"
         >
-          {/* Greeting */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-purple-400 mb-4 text-lg"
-          >
-            Hello, I'm
-          </motion.p>
 
           {/* Name */}
           <h1 className="text-6xl sm:text-7xl lg:text-8xl font-display font-bold text-white mb-6 relative">
