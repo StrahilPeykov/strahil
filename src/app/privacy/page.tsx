@@ -143,6 +143,29 @@ export default function PrivacyPage() {
                   </div>
                 </section>
 
+                {/* Newsletter Details */}
+                <section className="bg-slate-900/30 rounded-xl p-6">
+                  <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+                    <Mail className="w-5 h-5 text-purple-400" />
+                    Newsletter Subscription
+                  </h2>
+                  <div className="text-gray-300 space-y-3">
+                    <p>If you subscribe to our newsletter:</p>
+                    <ul className="list-disc list-inside ml-4 text-sm space-y-1">
+                      <li><strong>Frequency:</strong> Weekly updates (maximum)</li>
+                      <li><strong>Content:</strong> Tech insights, new articles, and project updates</li>
+                      <li><strong>Unsubscribe:</strong> One-click unsubscribe link in every email</li>
+                      <li><strong>No sharing:</strong> Your email is never shared with third parties</li>
+                    </ul>
+                    <p className="text-sm mt-3">
+                      To unsubscribe, click the link at the bottom of any newsletter or email{' '}
+                      <a href="mailto:strahil.peykov@gmail.com" className="text-blue-400 hover:text-blue-300">
+                        strahil.peykov@gmail.com
+                      </a>
+                    </p>
+                  </div>
+                </section>
+
                 {/* Security */}
                 <section className="bg-slate-900/30 rounded-xl p-6">
                   <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">

@@ -267,9 +267,13 @@ export default function WritingPage() {
                 Get new articles in your inbox
               </h2>
               
-              <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+              <p className="text-gray-400 mb-2 max-w-2xl mx-auto">
                 Join other developers getting my thoughts on technology, productivity, 
                 and building better software.
+              </p>
+              
+              <p className="text-sm text-purple-400 mb-8">
+                Weekly updates (at most) • No spam • Unsubscribe anytime
               </p>
               
               <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">

@@ -380,7 +380,11 @@ export default function ContactPage() {
                     <Link href="/privacy" className="text-purple-400 hover:text-purple-300 underline">
                       privacy policy
                     </Link>{' '}
-                    and understand how my data will be used.
+                    and{' '}
+                    <Link href="/terms" className="text-purple-400 hover:text-purple-300 underline">
+                      terms of service
+                    </Link>
+                    . I understand how my data will be used and that I can unsubscribe at any time.
                   </label>
                 </div>
                 

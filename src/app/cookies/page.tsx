@@ -83,12 +83,17 @@ export default function CookiesPage() {
                         <tbody>
                           <tr className="border-b border-slate-700/50">
                             <td className="p-3 font-mono text-xs">theme_preference</td>
-                            <td className="p-3">Remembers your theme choice</td>
+                            <td className="p-3">Remembers your theme choice (dark/light)</td>
+                            <td className="p-3">1 year</td>
+                          </tr>
+                          <tr className="border-b border-slate-700/50">
+                            <td className="p-3 font-mono text-xs">cookie_consent</td>
+                            <td className="p-3">Stores your cookie preferences</td>
                             <td className="p-3">1 year</td>
                           </tr>
                           <tr>
-                            <td className="p-3 font-mono text-xs">cookie_consent</td>
-                            <td className="p-3">Stores your cookie preferences</td>
+                            <td className="p-3 font-mono text-xs">cookie_consent_date</td>
+                            <td className="p-3">Records when you gave consent</td>
                             <td className="p-3">1 year</td>
                           </tr>
                         </tbody>
@@ -113,29 +118,32 @@ export default function CookiesPage() {
                         <thead>
                           <tr className="border-b border-slate-700">
                             <th className="text-left p-3 text-gray-400">Service</th>
+                            <th className="text-left p-3 text-gray-400">Cookies</th>
                             <th className="text-left p-3 text-gray-400">Purpose</th>
-                            <th className="text-left p-3 text-gray-400">Data Collected</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
                             <td className="p-3">
                               <span className="flex items-center gap-1">
-                                Analytics Provider
+                                Google Analytics
                                 <ExternalLink className="w-3 h-3 text-gray-500" />
                               </span>
                             </td>
-                            <td className="p-3">Website usage statistics</td>
-                            <td className="p-3">Page views, visit duration, device info</td>
+                            <td className="p-3 font-mono text-xs">
+                              _ga, _gid, _ga_*
+                            </td>
+                            <td className="p-3">
+                              Track page views, session duration, bounce rate (anonymized)
+                            </td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
                     
-                    <div className="mt-4 p-4 bg-purple-500/10 border border-purple-500/30 rounded-lg">
-                      <p className="text-sm text-purple-300">
-                        ⚡ Currently, this website does not use analytics cookies. If we add them in the future, 
-                        we'll ask for your consent first.
+                    <div className="mt-4 p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
+                      <p className="text-sm text-green-300">
+                        Google Analytics is configured with IP anonymization and no advertising features
                       </p>
                     </div>
                   </div>
