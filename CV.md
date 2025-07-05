@@ -24,10 +24,10 @@ Middle Name: Georgiev
 ---
 
 ##  Work Experience
-### Internship: Integration Engineer at ASML Netherlands B.V.
+### Internship: Software Engineer at ASML Netherlands B.V.
 
 #### Basic Information
-- **Position**: Integration Engineer Intern
+- **Position**: Software Engineer Intern
 - **Company**: ASML Netherlands B.V., Veldhoven
 - **Duration**: Dec 2023 - July 2025
 - **Project**: Integrate Low-code Application with IT Backend Systems
