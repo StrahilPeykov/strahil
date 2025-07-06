@@ -6,175 +6,176 @@ import { PageWrapper } from '../../components/layout/PageWrapper'
 import { Badge } from '../../components/ui/Badge'
 import Link from 'next/link'
 import { useRef, useState, useMemo } from 'react'
+import { projects as projectsData } from '../../data/projects'
 
-// Project data with more details
+// Map our actual projects to the format expected by this page
 const projects = [
   {
-    id: 'ai-analytics-platform',
-    title: 'AI Analytics Platform',
-    client: 'Fortune 500 Enterprise',
-    year: '2024',
-    description: 'Built a real-time data visualization platform with ML-powered insights, processing 10M+ daily events',
-    longDescription: 'Architected and developed a comprehensive analytics solution that revolutionized how the client understood their user behavior. The platform processes millions of events daily, providing real-time insights through beautiful, interactive dashboards.',
-    technologies: ['React', 'Python', 'TensorFlow', 'AWS', 'D3.js', 'PostgreSQL', 'Redis'],
+    id: 'carboninsight',
+    title: 'CarbonInsight',
+    client: 'EU AI REDGIO 5.0',
+    year: '2025',
+    description: 'Product Carbon Footprint & Digital Product Passport platform for manufacturing SMEs',
+    longDescription: 'Comprehensive web application enabling manufacturing SMEs to calculate Product Carbon Footprint (PCF) and generate standards-compliant Digital Product Passports (DPPs). Part of the EU-funded AI REDGIO 5.0 initiative.',
+    technologies: ['Django 5.2', 'Next.js 15', 'PostgreSQL', 'TypeScript', 'JWT Auth', 'GitLab CI/CD'],
     achievements: [
-      'Reduced data processing time by 85%',
-      'Increased user engagement by 120%',
-      'Saved $2M annually in operational costs'
+      'Successfully delivered complete PCF calculation platform',
+      'Implemented recursive emission calculations across supply chains',
+      'Achieved AAS and SCSN standards compliance'
     ],
     metrics: {
-      users: '50K+',
-      performance: '99.9%',
-      dataProcessed: '10M+/day'
+      compliance: '100%',
+      performance: 'Sub-second',
+      scope: 'EU-wide'
     },
-    image: '/images/projects/analytics.png',
-    gradient: 'from-blue-500 to-cyan-500',
-    category: 'AI/ML',
-    featured: true,
-    status: 'production',
-    link: '/work/ai-analytics-platform',
-    github: null,
-    live: 'https://analytics.example.com'
-  },
-  {
-    id: 'defi-dashboard',
-    title: 'DeFi Portfolio Tracker',
-    client: 'Web3 Startup',
-    year: '2023',
-    description: 'Cross-chain DeFi dashboard tracking $100M+ in assets across 8 blockchain networks',
-    longDescription: 'Created a sophisticated decentralized finance dashboard that aggregates portfolio data across multiple blockchain networks. Features real-time price tracking, yield farming analytics, and automated rebalancing suggestions.',
-    technologies: ['Next.js', 'Ethers.js', 'TheGraph', 'Solidity', 'TailwindCSS', 'Web3.js'],
-    achievements: [
-      'Supports 8 major blockchain networks',
-      '10,000+ active daily users',
-      'Zero security incidents since launch'
-    ],
-    metrics: {
-      users: '10K+',
-      tvl: '$100M+',
-      chains: '8'
-    },
-    image: '/images/projects/defi.png',
-    gradient: 'from-purple-500 to-pink-500',
-    category: 'Blockchain',
-    featured: true,
-    status: 'production',
-    link: '/work/defi-dashboard',
-    github: 'https://github.com/example/defi',
-    live: 'https://defi.example.com'
-  },
-  {
-    id: 'content-creation-suite',
-    title: 'AI Content Creation Suite',
-    client: 'Creative Agency',
-    year: '2023',
-    description: 'Multi-modal AI platform for generating marketing content, used by 500+ creators',
-    longDescription: 'Developed an AI-powered content creation platform that helps marketers and creators generate high-quality content across multiple formats. Integrates with GPT-4, DALL-E, and custom ML models.',
-    technologies: ['Vue.js', 'FastAPI', 'OpenAI', 'Stripe', 'Docker', 'Kubernetes'],
-    achievements: [
-      'Generated 1M+ pieces of content',
-      '95% customer satisfaction rate',
-      '$500K+ in revenue first year'
-    ],
-    metrics: {
-      content: '1M+',
-      satisfaction: '95%',
-      revenue: '$500K+'
-    },
-    image: '/images/projects/content.png',
-    gradient: 'from-pink-500 to-orange-500',
-    category: 'AI/ML',
-    featured: false,
-    status: 'production',
-    link: '/work/content-creation-suite',
-    github: null,
-    live: null
-  },
-  {
-    id: 'developer-tools-cli',
-    title: 'Developer Productivity CLI',
-    client: 'Open Source',
-    year: '2023',
-    description: 'Command-line tool that automates repetitive development tasks, saving hours daily',
-    longDescription: 'Built a comprehensive CLI tool that streamlines common development workflows. Features include automated testing, deployment scripts, and code generation.',
-    technologies: ['Node.js', 'TypeScript', 'Commander.js', 'Jest', 'GitHub Actions'],
-    achievements: [
-      '5K+ GitHub stars',
-      'Used by 100+ companies',
-      '50+ contributors'
-    ],
-    metrics: {
-      stars: '5K+',
-      downloads: '100K+',
-      contributors: '50+'
-    },
-    image: '/images/projects/cli.png',
-    gradient: 'from-green-500 to-teal-500',
-    category: 'Open Source',
-    featured: true,
-    status: 'active',
-    link: '/work/developer-tools-cli',
-    github: 'https://github.com/example/cli',
-    live: null
-  },
-  {
-    id: 'ecommerce-platform',
-    title: 'Next-Gen E-Commerce Platform',
-    client: 'Retail Giant',
-    year: '2022',
-    description: 'Headless commerce solution handling millions in daily transactions',
-    longDescription: 'Architected a scalable e-commerce platform using microservices architecture. Features include real-time inventory, personalized recommendations, and multi-currency support.',
-    technologies: ['React', 'Node.js', 'GraphQL', 'MongoDB', 'Elasticsearch', 'Stripe'],
-    achievements: [
-      'Handles 1M+ daily transactions',
-      'Reduced cart abandonment by 30%',
-      'Improved conversion rate by 45%'
-    ],
-    metrics: {
-      gmv: '$10M+',
-      conversion: '+45%',
-      performance: '50ms'
-    },
-    image: '/images/projects/ecommerce.png',
-    gradient: 'from-orange-500 to-red-500',
+    image: '/images/projects/carboninsight.png',
+    gradient: 'from-green-500 to-blue-500',
     category: 'Web Apps',
-    featured: false,
+    featured: true,
     status: 'production',
-    link: '/work/ecommerce-platform',
+    link: '/work/carboninsight',
     github: null,
-    live: 'https://shop.example.com'
+    live: 'https://carboninsight.strahil.dev'
   },
   {
-    id: 'healthcare-dashboard',
-    title: 'Healthcare Analytics Dashboard',
-    client: 'Medical Institution',
-    year: '2022',
-    description: 'HIPAA-compliant platform for patient data visualization and insights',
-    longDescription: 'Developed a secure healthcare analytics platform that helps medical professionals track patient outcomes and identify trends in treatment effectiveness.',
-    technologies: ['Angular', 'Python', 'Django', 'PostgreSQL', 'Chart.js', 'Docker'],
+    id: 'stayhub',
+    title: 'StayHub',
+    client: 'Personal Project',
+    year: '2025',
+    description: 'Modern hospitality management platform with microservices architecture and A/B testing',
+    longDescription: 'Comprehensive hospitality platform built with microservices architecture, demonstrating modern full-stack development practices and scalable system design.',
+    technologies: ['Java 21', 'Spring Boot', 'Next.js', 'PostgreSQL', 'Kubernetes', 'Redis'],
     achievements: [
-      'HIPAA compliant implementation',
-      'Reduced reporting time by 70%',
-      'Used by 500+ healthcare professionals'
+      'Built horizontally scalable system supporting 1000+ concurrent users',
+      'Sub-200ms response times under load',
+      'Comprehensive A/B testing framework with conversion tracking'
     ],
     metrics: {
-      users: '500+',
-      uptime: '99.99%',
-      compliance: 'HIPAA'
+      users: '1000+',
+      performance: '<200ms',
+      microservices: '5'
     },
-    image: '/images/projects/healthcare.png',
+    image: '/images/projects/stayhub.png',
     gradient: 'from-blue-500 to-indigo-500',
     category: 'Web Apps',
-    featured: false,
+    featured: true,
+    status: 'active',
+    link: '/work/stayhub',
+    github: 'https://github.com/StrahilPeykov/stayhub',
+    live: 'https://stayhub.strahil.dev'
+  },
+  {
+    id: 'rotorem',
+    title: 'RotoRem Website',
+    client: 'Home Appliance Repair Business',
+    year: '2024',
+    description: 'High-performance bilingual marketing website for local home appliance repair business',
+    longDescription: 'Designed and developed a blazing-fast, SEO-optimized website for a Bulgarian repair business, featuring bilingual content and lead generation.',
+    technologies: ['Astro 4', 'Tailwind CSS', 'Netlify', 'i18n', 'GitHub Actions'],
+    achievements: [
+      'Achieved 95+ Lighthouse scores across all metrics',
+      'First-page Google ranking for key local search terms',
+      'Sub-1-second page load times on 4G connections'
+    ],
+    metrics: {
+      performance: '95+',
+      loadTime: '<1s',
+      seo: 'Page 1'
+    },
+    image: '/images/projects/rotorem.png',
+    gradient: 'from-orange-500 to-red-500',
+    category: 'Web Apps',
+    featured: true,
     status: 'production',
-    link: '/work/healthcare-dashboard',
+    link: '/work/rotorem',
+    github: null,
+    live: 'https://www.rotorem.bg/'
+  },
+  {
+    id: 'safe-exam-browser',
+    title: 'Safe Exam Browser Security Research',
+    client: 'TU/e Course Project',
+    year: '2023',
+    description: 'Penetration testing of lockdown browsers with responsible vulnerability disclosure',
+    longDescription: 'Comprehensive security research identifying and responsibly disclosing multiple critical vulnerabilities in exam lockdown software.',
+    technologies: ['C++', 'C#', '.NET', 'DLL Injection', 'Reverse Engineering'],
+    achievements: [
+      'Discovered 5 major vulnerability classes',
+      'Acknowledged in official SEB v3.6.0 release notes',
+      'Created comprehensive technical documentation'
+    ],
+    metrics: {
+      vulnerabilities: '5',
+      impact: 'Critical',
+      recognition: 'Official'
+    },
+    image: '/images/projects/security.png',
+    gradient: 'from-red-500 to-purple-500',
+    category: 'Security',
+    featured: false,
+    status: 'completed',
+    link: '/work/safe-exam-browser',
+    github: null,
+    live: null
+  },
+  {
+    id: 'dbt-score',
+    title: 'dbt-score Open Source Contribution',
+    client: 'Picnic Supermarket',
+    year: '2024',
+    description: 'Added seed resource support to dbt metadata quality linter',
+    longDescription: 'Extended dbt-score functionality to support seed resources, enabling complete data quality assessment across all dbt resource types.',
+    technologies: ['Python', 'dbt', 'Test-Driven Development', 'Open Source'],
+    achievements: [
+      'Successfully merged PR #110',
+      'Added 4 new seed-specific linting rules',
+      'Full test coverage for new functionality'
+    ],
+    metrics: {
+      contribution: 'PR #110',
+      impact: 'Feature',
+      tests: '100%'
+    },
+    image: '/images/projects/opensource.png',
+    gradient: 'from-green-500 to-teal-500',
+    category: 'Open Source',
+    featured: false,
+    status: 'completed',
+    link: 'https://github.com/PicnicSupermarket/dbt-score/pull/110',
+    github: 'https://github.com/PicnicSupermarket/dbt-score',
+    live: null
+  },
+  {
+    id: 'hydrogen-safety',
+    title: 'Hydrogen Safety System Business',
+    client: 'TU/e Entrepreneurship',
+    year: '2024-2025',
+    description: 'Business development for innovative hydrogen leakage detection technology',
+    longDescription: 'Developed comprehensive business model for hydrogen safety technology through systematic market research and customer validation.',
+    technologies: ['Market Research', 'Business Model Canvas', 'Financial Modeling', 'Customer Discovery'],
+    achievements: [
+      'Conducted interviews with Tata Steel, Shell, Air Liquide',
+      'Developed business model with €594,600 first-year revenue projections',
+      'Achieved product-market fit validation through 6 iterations'
+    ],
+    metrics: {
+      market: '€120B',
+      revenue: '€594K',
+      interviews: '15+'
+    },
+    image: '/images/projects/business.png',
+    gradient: 'from-blue-500 to-green-500',
+    category: 'Business',
+    featured: false,
+    status: 'completed',
+    link: '/work/hydrogen-safety',
     github: null,
     live: null
   }
 ]
 
-const categories = ['All', 'Web Apps', 'AI/ML', 'Blockchain', 'Open Source']
-const statuses = ['All', 'Production', 'Active', 'Development']
+const categories = ['All', 'Web Apps', 'Security', 'Open Source', 'Business']
+const statuses = ['All', 'Production', 'Active', 'Completed']
 const viewModes = [
   { id: 'grid', icon: Grid3x3, label: 'Grid View' },
   { id: 'list', icon: List, label: 'List View' }
@@ -351,8 +352,8 @@ export default function WorkPage() {
             className="grid grid-cols-3 gap-8 max-w-2xl mx-auto"
           >
             {[
-              { number: '50+', label: 'Projects Completed' },
-              { number: '30M+', label: 'Users Impacted' },
+              { number: '10+', label: 'Projects Completed' },
+              { number: '5+', label: 'Open Source Contributions' },
               { number: '99.9%', label: 'Uptime Average' },
             ].map((stat, i) => (
               <div key={i} className="text-center">
@@ -414,19 +415,6 @@ export default function WorkPage() {
               <ProjectCard key={project.id} project={project} index={i} />
             ))}
           </div>
-          
-          {/* Load more */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mt-16 text-center"
-          >
-            <button className="group inline-flex items-center gap-2 px-6 py-3 border border-purple-500/30 text-purple-400 rounded-full hover:bg-purple-500/10 hover:border-purple-500/50 transition-all">
-              Load more projects
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </button>
-          </motion.div>
         </div>
       </section>
       
@@ -451,14 +439,3 @@ export default function WorkPage() {
     </PageWrapper>
   )
 }
-// we gotta add this to global CSS for the sliding animation
-const slideAnimation = `
-@keyframes slide {
-  0% {
-    transform: translateX(0) translateY(0);
-  }
-  100% {
-    transform: translateX(50px) translateY(-50px);
-  }
-}
-`
