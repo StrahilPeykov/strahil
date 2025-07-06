@@ -44,7 +44,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
         
         <Link 
-          href={project.url || `/work/${project.id}`}
+          href={project.url || `/projects/${project.id}`}
           className="inline-flex items-center gap-2 text-purple-400 hover:text-blue-400 transition-colors font-medium"
         >
           View case study

@@ -454,10 +454,10 @@ export default function AboutPage() {
                   </Link>
                   
                   <Link
-                    href="/work"
+                    href="/projects"
                     className="inline-flex items-center gap-2 px-8 py-4 border-2 border-purple-500/30 text-purple-400 font-semibold rounded-full hover:bg-purple-500/10 hover:border-purple-500/50 transition-all"
                   >
-                    View my work
+                    View my projects
                   </Link>
                 </div>
               </div>

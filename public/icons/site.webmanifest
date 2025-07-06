@@ -53,10 +53,10 @@
   ],
   "shortcuts": [
     {
-      "name": "Work Portfolio",
-      "short_name": "Work",
+      "name": "Projects Portfolio",
+      "short_name": "Projects",
       "description": "View my projects and case studies",
-      "url": "/work",
+      "url": "/projects",
       "icons": [
         {
           "src": "/icons/favicon-32x32.png",
@@ -67,9 +67,9 @@
     },
     {
       "name": "Ideas & Writing",
-      "short_name": "Ideas",
+      "short_name": "Notes",
       "description": "Read my thoughts and articles",
-      "url": "/ideas",
+      "url": "/notes",
       "icons": [
         {
           "src": "/icons/favicon-32x32.png",

@@ -13,18 +13,18 @@ export const allNavigationItems: NavigationItem[] = [
     gradient: 'from-blue-500/10 to-cyan-500/10'
   },
   {
-    id: 'work',
-    href: '/work',
-    label: 'Work',
+    id: 'projects',
+    href: '/projects',
+    label: 'Projects',
     icon: Briefcase,
     description: 'Portfolio & projects',
     color: '#c084fc',
     gradient: 'from-purple-500/10 to-purple-600/10'
   },
   {
-    id: 'writing',
-    href: '/writing',
-    label: 'Writing',
+    id: 'blog',
+    href: '/blog',
+    label: 'Blog',
     icon: PenTool,
     description: 'Articles & thoughts',
     color: '#f472b6',
@@ -80,7 +80,7 @@ export const allNavigationItems: NavigationItem[] = [
 ]
 
 // Primary navigation for header - the most important items
-export const primaryNavigation = ['about', 'work', 'writing', 'tools', 'contact']
+export const primaryNavigation = ['about', 'projects', 'blog', 'tools', 'contact']
 
 // For backwards compatibility
 export const headerNavItems = primaryNavigation

@@ -3,7 +3,7 @@ import readingTime from 'reading-time'
 
 export const CaseStudy = defineDocumentType(() => ({
   name: 'CaseStudy',
-  filePathPattern: `work/**/*.mdx`,
+  filePathPattern: `projects/**/*.mdx`,
   contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
@@ -39,7 +39,7 @@ export const CaseStudy = defineDocumentType(() => ({
 
 export const Note = defineDocumentType(() => ({
   name: 'Note',
-  filePathPattern: `ideas/**/*.mdx`,
+  filePathPattern: `notes/**/*.mdx`,
   contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },

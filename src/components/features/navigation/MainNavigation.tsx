@@ -17,7 +17,7 @@ export function MainNavigation() {
   const closeMobileMenu = () => setIsMobileMenuOpen(false)
   const closeMoreMenu = () => setIsMoreMenuOpen(false)
 
-  // Get primary nav items (5 items: About, Work, Writing, Tools, Contact)
+  // Get primary nav items (5 items: About, Projects, Blog, Tools, Contact)
   const primaryNavItems = allNavigationItems.filter(item => primaryNavigation.includes(item.id))
   
   // Secondary items for "More" (Learn, Play, Health)

@@ -25,7 +25,7 @@ export const projects: Project[] = [
     role: 'Full-Stack Developer & Project Lead',
     duration: 'Apr 2025 - Jul 2025',
     client: 'EU AI REDGIO 5.0',
-    url: '/work/carboninsight',
+    url: '/projects/carboninsight',
     live: 'https://carboninsight.strahil.dev'
   },
   {
@@ -37,7 +37,7 @@ export const projects: Project[] = [
     featured: true,
     role: 'Full-Stack Developer & Architect',
     duration: 'Jun 2025 - Present',
-    url: '/work/stayhub',
+    url: '/projects/stayhub',
     github: 'https://github.com/StrahilPeykov/stayhub',
     live: 'https://stayhub.strahil.dev'
   },
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     role: 'Full-Stack Developer & Designer',
     duration: '2024',
     client: 'Freelance Project',
-    url: '/work/rotorem',
+    url: '/projects/rotorem',
     live: 'https://www.rotorem.bg/'
   },
   {
@@ -63,7 +63,7 @@ export const projects: Project[] = [
     featured: false,
     role: 'Security Researcher',
     duration: 'Apr 2023 - Jun 2023',
-    url: '/work/safe-exam-browser'
+    url: '/projects/safe-exam-browser'
   },
   {
     id: 'dbt-score-contribution',
