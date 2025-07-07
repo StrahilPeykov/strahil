@@ -1,69 +1,15 @@
+// src/app/blog/page.tsx
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { PenTool, Search, Clock, Calendar, TrendingUp, BookOpen, Hash, ArrowUpRight, Filter, Eye, Heart, Bookmark, Share2, Coffee, Sparkles } from 'lucide-react'
+import { PenTool, Search, Clock, Calendar, TrendingUp, Eye, Heart, ArrowRight, Filter } from 'lucide-react'
 import { PageWrapper } from '../../components/layout/PageWrapper'
 import { Badge } from '../../components/ui/Badge'
 import Link from 'next/link'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
+import { getBlogListItems, type ContentListItem } from '../../lib/content'
 
-const allArticles = [
-  {
-    id: 'future-of-ai-development',
-    title: 'The Future of AI-Driven Development',
-    excerpt: 'How machine learning is reshaping the developer experience and what it means for the future of software engineering.',
-    content: 'Exploring the intersection of AI and software development, from GitHub Copilot to autonomous coding agents...',
-    date: '2024-01-15',
-    readTime: '8 min',
-    views: 12543,
-    likes: 234,
-    comments: 45,
-    tags: ['AI', 'Development', 'Future Tech'],
-    category: 'Technology',
-    featured: true,
-    gradient: 'from-blue-500 to-cyan-500',
-  },
-  {
-    id: 'building-for-scale',
-    title: 'Building for Scale: Lessons from Production',
-    excerpt: 'Real-world insights from scaling applications to millions of users. What works, what breaks, and what surprises.',
-    content: 'When you\'re building an app for thousands of users, everything changes. Here\'s what I learned...',
-    date: '2023-12-20',
-    readTime: '12 min',
-    views: 8342,
-    likes: 189,
-    comments: 23,
-    tags: ['Architecture', 'Performance', 'DevOps'],
-    category: 'Engineering',
-    featured: true,
-    gradient: 'from-purple-500 to-pink-500'
-  },
-  {
-    id: 'digital-minimalism-dev',
-    title: 'The Art of Digital Minimalism in Development',
-    excerpt: 'Finding beauty in simplicity and intentional design. How less code can mean more impact.',
-    content: 'In a world of endless frameworks and tools, sometimes the best solution is the simplest one...',
-    date: '2023-11-10',
-    readTime: '6 min',
-    views: 5678,
-    likes: 167,
-    comments: 19,
-    tags: ['Design', 'Philosophy', 'Best Practices'],
-    category: 'Thoughts',
-    featured: false,
-    gradient: 'from-green-500 to-teal-500'
-  },
-  // ... rest of the articles
-]
-
-const categories = ['All', 'Technology', 'Engineering', 'Development', 'Thoughts', 'Personal']
-const sortOptions = ['Latest', 'Popular', 'Most Liked', 'Most Discussed']
-
-function ArticleCard({ article, index, viewMode }: { article: typeof allArticles[0], index: number, viewMode: 'grid' | 'list' }) {
-  const [isBookmarked, setIsBookmarked] = useState(false)
-  const [isLiked, setIsLiked] = useState(false)
-
-  // Same card implementation as before
+function ArticleCard({ article, index }: { article: ContentListItem; index: number }) {
   return (
     <motion.article
       layout
@@ -73,9 +19,9 @@ function ArticleCard({ article, index, viewMode }: { article: typeof allArticles
       transition={{ delay: index * 0.05 }}
       className="group"
     >
-      <Link href={`/blog/${article.id}`}>
+      <Link href={`/blog/${article.slug}`}>
         <div className="relative h-full bg-slate-900/30 backdrop-blur-sm border border-slate-800 rounded-xl overflow-hidden hover:border-purple-500/30 transition-all duration-300">
-          <div className={`h-48 bg-gradient-to-br ${article.gradient} opacity-20 relative overflow-hidden`}>
+          <div className={`h-48 bg-gradient-to-br ${article.gradient || 'from-blue-500 to-purple-500'} opacity-20 relative overflow-hidden`}>
             <div className="absolute inset-0 bg-slate-900/50" />
             <div className="absolute bottom-4 left-4 px-3 py-1 bg-slate-900/80 backdrop-blur-sm rounded-full text-xs text-gray-300 flex items-center gap-1">
               <Clock className="w-3 h-3" />
@@ -86,9 +32,7 @@ function ArticleCard({ article, index, viewMode }: { article: typeof allArticles
           <div className="p-6">
             <div className="flex items-center gap-2 mb-3">
               <Badge variant="default" size="sm">{article.category}</Badge>
-              <span className="text-xs text-gray-500">
-                {new Date(article.date).toLocaleDateString('en', { month: 'short', day: 'numeric', year: 'numeric' })}
-              </span>
+              <span className="text-xs text-gray-500">{article.date}</span>
             </div>
             
             <h3 className="text-xl font-display font-semibold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all line-clamp-2">
@@ -100,17 +44,12 @@ function ArticleCard({ article, index, viewMode }: { article: typeof allArticles
             </p>
             
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3 text-sm text-gray-500">
-                <span className="flex items-center gap-1">
-                  <Eye className="w-3 h-3" />
-                  {article.views.toLocaleString()}
-                </span>
-                <span className="flex items-center gap-1">
-                  <Heart className="w-3 h-3" />
-                  {article.likes}
-                </span>
+              <div className="flex flex-wrap gap-2">
+                {article.tags.slice(0, 2).map(tag => (
+                  <span key={tag} className="text-xs text-gray-500">#{tag}</span>
+                ))}
               </div>
-              <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 text-purple-400 transition-all group-hover:translate-x-1 group-hover:-translate-y-1" />
+              <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 text-purple-400 transition-all group-hover:translate-x-1" />
             </div>
           </div>
         </div>
@@ -122,11 +61,26 @@ function ArticleCard({ article, index, viewMode }: { article: typeof allArticles
 export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
-  const [sortBy, setSortBy] = useState('Latest')
+  const [articles, setArticles] = useState<ContentListItem[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function loadArticles() {
+      const items = await getBlogListItems()
+      setArticles(items)
+      setLoading(false)
+    }
+    loadArticles()
+  }, [])
+
+  const categories = useMemo(() => {
+    const cats = new Set(['All'])
+    articles.forEach(article => cats.add(article.category))
+    return Array.from(cats)
+  }, [articles])
 
   const filteredArticles = useMemo(() => {
-    let filtered = allArticles.filter(article => {
+    return articles.filter(article => {
       const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           article.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           article.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
@@ -135,24 +89,7 @@ export default function BlogPage() {
       
       return matchesSearch && matchesCategory
     })
-
-    // Sort
-    switch (sortBy) {
-      case 'Popular':
-        filtered.sort((a, b) => b.views - a.views)
-        break
-      case 'Most Liked':
-        filtered.sort((a, b) => b.likes - a.likes)
-        break
-      case 'Most Discussed':
-        filtered.sort((a, b) => b.comments - a.comments)
-        break
-      default: // Latest
-        filtered.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    }
-
-    return filtered
-  }, [searchQuery, selectedCategory, sortBy])
+  }, [searchQuery, selectedCategory, articles])
 
   return (
     <PageWrapper>
@@ -212,15 +149,19 @@ export default function BlogPage() {
             </div>
             
             <div className="flex gap-2">
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-white focus:outline-none focus:border-purple-500/50 transition-colors appearance-none cursor-pointer"
-              >
-                {sortOptions.map(option => (
-                  <option key={option} value={option}>{option}</option>
-                ))}
-              </select>
+              {categories.map(cat => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                    selectedCategory === cat
+                      ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
+                      : 'text-gray-400 hover:text-white hover:bg-slate-800'
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
             </div>
           </div>
         </div>
@@ -235,70 +176,22 @@ export default function BlogPage() {
             </p>
           </div>
           
-          <motion.div 
-            layout
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            <AnimatePresence mode="popLayout">
-              {filteredArticles.map((article, index) => (
-                <ArticleCard key={article.id} article={article} index={index} viewMode={viewMode} />
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        </div>
-      </section>
-      
-      {/* Newsletter CTA */}
-      <section className="px-6 py-16 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-blue-500/10 blur-3xl" />
-            
-            <div className="relative bg-slate-900/50 backdrop-blur-sm border border-purple-500/20 rounded-3xl p-8 lg:p-12 text-center">
-              <Coffee className="w-12 h-12 text-purple-400 mx-auto mb-6" />
-              
-              <h2 className="text-3xl font-display font-bold text-white mb-4">
-                Get new articles in your inbox
-              </h2>
-              
-              <p className="text-gray-400 mb-2 max-w-2xl mx-auto">
-                Join other developers getting my thoughts on technology, productivity, 
-                and building better software.
-              </p>
-              
-              <p className="text-sm text-purple-400 mb-8">
-                Weekly updates (at most) • No spam • Unsubscribe anytime
-              </p>
-              
-              <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="flex-1 px-6 py-3 bg-slate-800/50 border border-slate-700 rounded-full text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/50 transition-colors"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold rounded-full hover:scale-105 transition-transform"
-                >
-                  Subscribe
-                </button>
-              </form>
-              
-              <p className="text-xs text-gray-600 mt-4">
-                By subscribing, you agree to receive emails about new articles and updates.
-                You can unsubscribe anytime. See our{' '}
-                <Link href="/privacy" className="text-purple-400 hover:text-purple-300 underline">
-                  privacy policy
-                </Link>.
-              </p>
+          {loading ? (
+            <div className="text-center py-20">
+              <p className="text-gray-500">Loading articles...</p>
             </div>
-          </motion.div>
+          ) : (
+            <motion.div 
+              layout
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+              <AnimatePresence mode="popLayout">
+                {filteredArticles.map((article, index) => (
+                  <ArticleCard key={article.slug} article={article} index={index} />
+                ))}
+              </AnimatePresence>
+            </motion.div>
+          )}
         </div>
       </section>
     </PageWrapper>
