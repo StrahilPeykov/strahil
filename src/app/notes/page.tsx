@@ -5,7 +5,8 @@ import { Brain, Heart, Code2, Lightbulb, BookOpen, Wrench, Coffee, Filter, Grid3
 import { PageWrapper } from '../../components/layout/PageWrapper'
 import { Badge } from '../../components/ui/Badge'
 import Link from 'next/link'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
+import { getNoteListItems, type ContentListItem } from '../../lib/content'
 
 const categories = [
   { id: 'all', label: 'All Notes', icon: Grid3x3 },
@@ -17,146 +18,8 @@ const categories = [
   { id: 'personal', label: 'Personal', icon: Coffee },
 ]
 
-const notes = [
-  // Theory of Mind
-  {
-    id: 'humans-not-truth-seeking',
-    title: 'Humans are not Truth-Seeking Machines',
-    excerpt: 'Why our brains are optimized for survival and social cohesion, not objective truth. Understanding the evolutionary basis of our cognitive biases.',
-    category: 'theory-of-mind',
-    tags: ['psychology', 'cognitive-science', 'philosophy'],
-    date: '2025-01-12',
-    featured: true,
-  },
-  {
-    id: 'constellation-of-beliefs',
-    title: 'The Constellation of Beliefs',
-    excerpt: 'How beliefs cluster together in predictable patterns and why changing one often requires reorganizing entire worldviews.',
-    category: 'theory-of-mind',
-    tags: ['psychology', 'belief-systems', 'epistemology'],
-    date: '2025-01-10',
-  },
-  {
-    id: 'aesthetic-vs-function',
-    title: 'Aesthetic vs Function in Decision Making',
-    excerpt: 'People often choose what feels right over what works. Exploring the tension between emotional and rational decision-making.',
-    category: 'theory-of-mind',
-    tags: ['psychology', 'decision-making', 'design'],
-    date: '2025-01-08',
-  },
-  {
-    id: 'social-incentives-beliefs',
-    title: 'Social Incentives Dictate Beliefs',
-    excerpt: 'The uncomfortable truth about how our social environment shapes what we believe far more than logic or evidence.',
-    category: 'theory-of-mind',
-    tags: ['sociology', 'psychology', 'incentives'],
-    date: '2025-01-05',
-  },
-  
-  // Philosophy & Beliefs
-  {
-    id: 'moral-positions',
-    title: 'My Moral Framework',
-    excerpt: 'Core principles that guide my ethical decisions: consequentialism tempered by individual rights, the importance of consent, and why intentions matter less than outcomes.',
-    category: 'philosophy',
-    tags: ['ethics', 'philosophy', 'personal'],
-    date: '2025-01-15',
-    featured: true,
-  },
-  {
-    id: 'college-degrees-worth',
-    title: 'Are College Degrees Still Worth It?',
-    excerpt: 'A data-driven analysis of the ROI on higher education in 2025. Spoiler: it depends entirely on what you study and where.',
-    category: 'philosophy',
-    tags: ['education', 'economics', 'career'],
-    date: '2025-01-03',
-  },
-  
-  // Project Ideas
-  {
-    id: 'projects-programmers-should-build',
-    title: 'Projects Every Programmer Should Build',
-    excerpt: 'Beyond todo apps: challenging projects that actually teach you system design, algorithms, and real-world problem solving.',
-    category: 'projects',
-    tags: ['programming', 'learning', 'projects'],
-    date: '2025-01-14',
-    featured: true,
-  },
-  {
-    id: 'ai-assisted-learning-platform',
-    title: 'Idea: AI-Assisted Learning Platform',
-    excerpt: 'Concept for a learning platform that adapts to individual learning styles using ML, but maintains focus on understanding over memorization.',
-    category: 'projects',
-    tags: ['ai', 'education', 'startup-ideas'],
-    date: '2025-01-11',
-  },
-  
-  // Recommendations
-  {
-    id: 'dev-tools-2025',
-    title: 'My Development Setup 2025',
-    excerpt: 'Complete breakdown of my development environment: hardware, software, and the workflows that keep me productive.',
-    category: 'recommendations',
-    tags: ['tools', 'productivity', 'setup'],
-    date: '2025-01-13',
-    featured: true,
-  },
-  {
-    id: 'news-sources',
-    title: 'Information Diet: Where I Get My News',
-    excerpt: 'Curated list of high-signal, low-noise information sources across tech, science, and global affairs.',
-    category: 'recommendations',
-    tags: ['media', 'news', 'resources'],
-    date: '2025-01-09',
-  },
-  {
-    id: 'hardware-setup',
-    title: 'Hardware That Matters',
-    excerpt: 'My complete hardware setup: from the M3 MacBook Pro to the mechanical keyboard that sparked a thousand commits.',
-    category: 'recommendations',
-    tags: ['hardware', 'setup', 'productivity'],
-    date: '2025-01-07',
-  },
-  
-  // Research Notes
-  {
-    id: 'stranger-camus-notes',
-    title: 'Notes on The Stranger by Camus',
-    excerpt: 'Exploring absurdism through Meursault: when indifference becomes a philosophical statement.',
-    category: 'research',
-    tags: ['literature', 'philosophy', 'camus'],
-    date: '2025-01-06',
-  },
-  {
-    id: 'third-reich-lessons',
-    title: 'Lessons from Studying the Third Reich',
-    excerpt: 'What the rise of Nazi Germany teaches us about propaganda, mass psychology, and the fragility of democratic institutions.',
-    category: 'research',
-    tags: ['history', 'politics', 'psychology'],
-    date: '2025-01-04',
-  },
-  {
-    id: 'international-law-primer',
-    title: 'International Law: A Practical Primer',
-    excerpt: 'Key concepts in international law that actually matter in the real world, from sovereignty to war crimes.',
-    category: 'research',
-    tags: ['law', 'international-relations', 'politics'],
-    date: '2025-01-02',
-  },
-  
-  // Personal
-  {
-    id: 'arguing-effectively',
-    title: 'What Years of Arguing Taught Me',
-    excerpt: "I've spent a great portion of my life arguing with people across all environments. Here's what I learned about changing minds.",
-    category: 'personal',
-    tags: ['communication', 'psychology', 'personal-growth'],
-    date: '2025-01-01',
-  },
-]
-
-function IdeaCard({ idea }: { idea: typeof notes[0] }) {
-  const categoryInfo = categories.find(c => c.id === idea.category)
+function IdeaCard({ idea }: { idea: ContentListItem }) {
+  const categoryInfo = categories.find(c => c.label.includes(idea.category)) || categories[0]
   const Icon = categoryInfo?.icon || Brain
   
   return (
@@ -165,15 +28,15 @@ function IdeaCard({ idea }: { idea: typeof notes[0] }) {
       animate={{ opacity: 1, y: 0 }}
       className="group"
     >
-      <Link href={`/notes/${idea.id}`}>
+      <Link href={`/notes/${idea.slug}`}>
         <div className="h-full bg-slate-900/30 backdrop-blur-sm border border-slate-800 rounded-xl p-6 hover:border-purple-500/30 transition-all">
           <div className="flex items-start justify-between mb-4">
             <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${
-              idea.category === 'theory-of-mind' ? 'from-blue-500/20 to-purple-500/20' :
-              idea.category === 'philosophy' ? 'from-purple-500/20 to-pink-500/20' :
-              idea.category === 'projects' ? 'from-green-500/20 to-teal-500/20' :
-              idea.category === 'recommendations' ? 'from-orange-500/20 to-red-500/20' :
-              idea.category === 'research' ? 'from-indigo-500/20 to-blue-500/20' :
+              idea.category === 'Theory of Mind' ? 'from-blue-500/20 to-purple-500/20' :
+              idea.category === 'Philosophy' ? 'from-purple-500/20 to-pink-500/20' :
+              idea.category === 'Projects' ? 'from-green-500/20 to-teal-500/20' :
+              idea.category === 'Recommendations' ? 'from-orange-500/20 to-red-500/20' :
+              idea.category === 'Research' ? 'from-indigo-500/20 to-blue-500/20' :
               'from-gray-500/20 to-gray-600/20'
             } flex items-center justify-center`}>
               <Icon className="w-5 h-5 text-gray-300" />
@@ -198,7 +61,7 @@ function IdeaCard({ idea }: { idea: typeof notes[0] }) {
               ))}
             </div>
             <time className="text-xs text-gray-600">
-              {new Date(idea.date).toLocaleDateString('en', { month: 'short', day: 'numeric' })}
+              {idea.date}
             </time>
           </div>
         </div>
@@ -211,16 +74,28 @@ export default function NotesPage() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
+  const [notes, setNotes] = useState<ContentListItem[]>([])
+  const [loading, setLoading] = useState(true)
+  
+  useEffect(() => {
+    async function loadNotes() {
+      const items = await getNoteListItems()
+      setNotes(items)
+      setLoading(false)
+    }
+    loadNotes()
+  }, [])
   
   const filteredNotes = useMemo(() => {
     return notes.filter(idea => {
-      const matchesCategory = selectedCategory === 'all' || idea.category === selectedCategory
+      const matchesCategory = selectedCategory === 'all' || 
+                            categories.find(c => c.id === selectedCategory)?.label.includes(idea.category)
       const matchesSearch = idea.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           idea.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           idea.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
       return matchesCategory && matchesSearch
     })
-  }, [selectedCategory, searchQuery])
+  }, [selectedCategory, searchQuery, notes])
   
   return (
     <PageWrapper>
@@ -331,7 +206,11 @@ export default function NotesPage() {
       {/* Notes Grid */}
       <section className="px-6 py-16">
         <div className="max-w-7xl mx-auto">
-          {filteredNotes.length === 0 ? (
+          {loading ? (
+            <div className="text-center py-20">
+              <p className="text-gray-500">Loading notes...</p>
+            </div>
+          ) : filteredNotes.length === 0 ? (
             <div className="text-center py-20">
               <p className="text-gray-500">No notes found matching your criteria.</p>
             </div>
@@ -342,7 +221,7 @@ export default function NotesPage() {
                 : 'space-y-4 max-w-4xl mx-auto'
             }>
               {filteredNotes.map(idea => (
-                <IdeaCard key={idea.id} idea={idea} />
+                <IdeaCard key={idea.slug} idea={idea} />
               ))}
             </div>
           )}

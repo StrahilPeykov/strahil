@@ -32,7 +32,7 @@ export async function generateStaticParams() {
   const notes = await getAllNotes()
   
   return notes.map((note) => ({
-    slug: note.content ? note.title.toLowerCase().replace(/\s+/g, '-') : '', // Generate slug from title
+    slug: note.slug,
   }))
 }
 
