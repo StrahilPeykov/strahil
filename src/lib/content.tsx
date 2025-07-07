@@ -10,6 +10,11 @@ interface ContentEntry {
   content: () => ReactNode
 }
 
+// Add slug to ArticleData when fetching
+export interface ArticleWithSlug extends ArticleData {
+  slug: string
+}
+
 // Import all your article content components
 const contentRegistry: ContentEntry[] = [
   // Blog posts
@@ -76,11 +81,12 @@ const contentRegistry: ContentEntry[] = [
 ]
 
 // Helper functions
-export async function getAllBlogPosts(): Promise<ArticleData[]> {
+export async function getAllBlogPosts(): Promise<ArticleWithSlug[]> {
   return contentRegistry
     .filter(entry => entry.type === 'blog')
     .map(entry => ({
       ...entry.metadata,
+      slug: entry.slug,
       content: entry.content(),
       backLink: '/blog',
       backLabel: 'Back to articles'
@@ -102,11 +108,12 @@ export async function getBlogPost(slug: string): Promise<ArticleData | null> {
   }
 }
 
-export async function getAllNotes(): Promise<ArticleData[]> {
+export async function getAllNotes(): Promise<ArticleWithSlug[]> {
   return contentRegistry
     .filter(entry => entry.type === 'note')
     .map(entry => ({
       ...entry.metadata,
+      slug: entry.slug,
       content: entry.content(),
       backLink: '/notes',
       backLabel: 'Back to notes'
@@ -139,6 +146,11 @@ export interface ContentListItem {
   category: string
   featured?: boolean
   gradient?: string
+}
+
+// Add slug to ArticleData when fetching
+export interface ArticleWithSlug extends ArticleData {
+  slug: string
 }
 
 export async function getBlogListItems(): Promise<ContentListItem[]> {
