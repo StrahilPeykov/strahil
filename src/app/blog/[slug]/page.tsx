@@ -1,4 +1,3 @@
-// src/app/blog/[slug]/page.tsx
 import { notFound } from 'next/navigation'
 import { ArticleTemplate } from '../../../components/templates/ArticleTemplate'
 import { getBlogPost } from '../../../lib/content'

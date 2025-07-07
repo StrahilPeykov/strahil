@@ -1,4 +1,3 @@
-// src/app/notes/[slug]/page.tsx
 import { notFound } from 'next/navigation'
 import { ArticleTemplate } from '../../../components/templates/ArticleTemplate'
 import { getNote, getAllNotes } from '../../../lib/content'

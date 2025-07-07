@@ -1,4 +1,3 @@
-// src/lib/content.tsx
 import { ReactNode } from 'react'
 import type { ArticleData } from '../components/templates/ArticleTemplate'
 

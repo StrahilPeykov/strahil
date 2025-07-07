@@ -1,4 +1,3 @@
-// src/app/about/page.tsx
 'use client'
 
 import { motion, useScroll, useTransform } from 'framer-motion'

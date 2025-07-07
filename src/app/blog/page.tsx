@@ -1,4 +1,3 @@
-// src/app/blog/page.tsx
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'

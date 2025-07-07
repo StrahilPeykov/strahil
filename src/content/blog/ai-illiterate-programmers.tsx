@@ -1,4 +1,3 @@
-// src/content/blog/ai-illiterate-programmers.tsx
 import { AlertTriangle, Code2, Brain } from 'lucide-react'
 
 export default function AIIlliterateProgrammersContent() {

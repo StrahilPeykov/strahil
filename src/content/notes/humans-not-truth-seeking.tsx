@@ -1,4 +1,3 @@
-// src/content/notes/humans-not-truth-seeking.tsx
 import { Brain, AlertTriangle, Users, Target, Shield, Lightbulb, TrendingUp } from 'lucide-react'
 import Link from 'next/link'
 

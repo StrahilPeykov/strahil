@@ -1,4 +1,3 @@
-// src/components/features/analytics/AnalyticsScripts.tsx
 'use client'
 
 import { useEffect } from 'react'
