@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: 'article',
       images: [
         {
-          url: '/og-image.png', // You can add project-specific images later
+          url: '/og-image.png',
           width: 1200,
           height: 630,
           alt: project.title,

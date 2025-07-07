@@ -1,11 +1,11 @@
 import { ReactNode } from 'react'
 import type { ProjectData } from '../components/templates/ProjectTemplate'
-import type { LucideIcon } from 'lucide-react'
 
 // Project registry
 interface ProjectEntry {
   slug: string
-  data: ProjectData
+  metadata: Partial<ProjectData>
+  content: () => ProjectData
 }
 
 // Add slug to ProjectData when fetching
@@ -13,22 +13,62 @@ export interface ProjectWithSlug extends ProjectData {
   slug: string
 }
 
-// Import project content components
+// Import all project content components
 const projectRegistry: ProjectEntry[] = [
   {
     slug: 'carboninsight',
-    data: require('../content/projects/carboninsight').default
+    metadata: {
+      title: 'CarbonInsight',
+      description: 'Product Carbon Footprint & Digital Product Passport platform for manufacturing SMEs',
+    },
+    content: () => require('../content/projects/carboninsight').default
   },
   {
     slug: 'stayhub',
-    data: require('../content/projects/stayhub').default
+    metadata: {
+      title: 'StayHub',
+      description: 'Modern hospitality management platform with microservices architecture and A/B testing',
+    },
+    content: () => require('../content/projects/stayhub').default
+  },
+  {
+    slug: 'rotorem',
+    metadata: {
+      title: 'RotoRem',
+      description: 'High-performance bilingual marketing website for home appliance repair business',
+    },
+    content: () => require('../content/projects/rotorem').default
+  },
+  {
+    slug: 'safe-exam-browser',
+    metadata: {
+      title: 'Safe Exam Browser Security Research',
+      description: 'Penetration testing of lockdown browsers with responsible vulnerability disclosure',
+    },
+    content: () => require('../content/projects/safe-exam-browser').default
+  },
+  {
+    slug: 'dbt-score',
+    metadata: {
+      title: 'dbt-score Open Source Contribution',
+      description: 'Added seed resource support to dbt metadata quality linter',
+    },
+    content: () => require('../content/projects/dbt-score').default
+  },
+  {
+    slug: 'hydrogen-safety',
+    metadata: {
+      title: 'Hydrogen Safety System Business',
+      description: 'Business development for innovative hydrogen leakage detection technology',
+    },
+    content: () => require('../content/projects/hydrogen-safety').default
   }
 ]
 
 // Helper functions
 export async function getAllProjects(): Promise<ProjectWithSlug[]> {
   return projectRegistry.map(entry => ({
-    ...entry.data,
+    ...entry.content(),
     slug: entry.slug
   }))
 }
@@ -38,7 +78,7 @@ export async function getProject(slug: string): Promise<ProjectData | null> {
   
   if (!entry) return null
   
-  return entry.data
+  return entry.content()
 }
 
 // For listing pages
@@ -55,15 +95,36 @@ export interface ProjectListItem {
 }
 
 export async function getProjectListItems(): Promise<ProjectListItem[]> {
-  return projectRegistry.map(entry => ({
-    slug: entry.slug,
-    title: entry.data.title,
-    description: entry.data.description,
-    tags: entry.data.techStack.categories.flatMap(cat => cat.technologies).slice(0, 4),
-    gradient: 'from-blue-500 to-purple-500', // You can customize per project
-    featured: true, // You can add this to the data
-    client: entry.data.details.client,
-    live: entry.data.links?.live,
-    github: entry.data.links?.github
-  }))
+  return projectRegistry.map(entry => {
+    const fullData = entry.content()
+    return {
+      slug: entry.slug,
+      title: fullData.title,
+      description: fullData.description,
+      tags: fullData.techStack.categories.flatMap(cat => cat.technologies).slice(0, 4),
+      gradient: getProjectGradient(entry.slug),
+      featured: isProjectFeatured(entry.slug),
+      client: fullData.details.client,
+      live: fullData.links?.live,
+      github: fullData.links?.github
+    }
+  })
+}
+
+// Helper functions for project metadata
+function getProjectGradient(slug: string): string {
+  const gradients = {
+    carboninsight: 'from-green-500 to-blue-500',
+    stayhub: 'from-blue-500 to-indigo-500',
+    rotorem: 'from-orange-500 to-red-500',
+    'safe-exam-browser': 'from-red-500 to-purple-500',
+    'dbt-score': 'from-green-500 to-teal-500',
+    'hydrogen-safety': 'from-blue-500 to-green-500'
+  }
+  return gradients[slug as keyof typeof gradients] || 'from-blue-500 to-purple-500'
+}
+
+function isProjectFeatured(slug: string): boolean {
+  const featured = ['carboninsight', 'stayhub', 'rotorem']
+  return featured.includes(slug)
 }

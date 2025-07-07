@@ -5,174 +5,8 @@ import { Code2, Sparkles, ArrowRight, ExternalLink, Github, Filter, Grid3x3, Lis
 import { PageWrapper } from '../../components/layout/PageWrapper'
 import { Badge } from '../../components/ui/Badge'
 import Link from 'next/link'
-import { useRef, useState, useMemo } from 'react'
-import { projects as projectsData } from '../../data/projects'
-
-// Map our actual projects to the format expected by this page
-const projects = [
-  {
-    id: 'carboninsight',
-    title: 'CarbonInsight',
-    client: 'EU AI REDGIO 5.0',
-    year: '2025',
-    description: 'Product Carbon Footprint & Digital Product Passport platform for manufacturing SMEs',
-    longDescription: 'Comprehensive web application enabling manufacturing SMEs to calculate Product Carbon Footprint (PCF) and generate standards-compliant Digital Product Passports (DPPs). Part of the EU-funded AI REDGIO 5.0 initiative.',
-    technologies: ['Django 5.2', 'Next.js 15', 'PostgreSQL', 'TypeScript', 'JWT Auth', 'GitLab CI/CD'],
-    achievements: [
-      'Successfully delivered complete PCF calculation platform',
-      'Implemented recursive emission calculations across supply chains',
-      'Achieved AAS and SCSN standards compliance'
-    ],
-    metrics: {
-      compliance: '100%',
-      performance: 'Sub-second',
-      scope: 'EU-wide'
-    },
-    image: '/images/projects/carboninsight.png',
-    gradient: 'from-green-500 to-blue-500',
-    category: 'Web Apps',
-    featured: true,
-    status: 'production',
-    link: '/projects/carboninsight',
-    github: null,
-    live: 'https://carboninsight.strahil.dev'
-  },
-  {
-    id: 'stayhub',
-    title: 'StayHub',
-    client: 'Personal Project',
-    year: '2025',
-    description: 'Modern hospitality management platform with microservices architecture and A/B testing',
-    longDescription: 'Comprehensive hospitality platform built with microservices architecture, demonstrating modern full-stack development practices and scalable system design.',
-    technologies: ['Java 21', 'Spring Boot', 'Next.js', 'PostgreSQL', 'Kubernetes', 'Redis'],
-    achievements: [
-      'Built horizontally scalable system supporting 1000+ concurrent users',
-      'Sub-200ms response times under load',
-      'Comprehensive A/B testing framework with conversion tracking'
-    ],
-    metrics: {
-      users: '1000+',
-      performance: '<200ms',
-      microservices: '5'
-    },
-    image: '/images/projects/stayhub.png',
-    gradient: 'from-blue-500 to-indigo-500',
-    category: 'Web Apps',
-    featured: true,
-    status: 'active',
-    link: '/projects/stayhub',
-    github: 'https://github.com/StrahilPeykov/stayhub',
-    live: 'https://stayhub.strahil.dev'
-  },
-  {
-    id: 'rotorem',
-    title: 'RotoRem Website',
-    client: 'Home Appliance Repair Business',
-    year: '2024',
-    description: 'High-performance bilingual marketing website for local home appliance repair business',
-    longDescription: 'Designed and developed a blazing-fast, SEO-optimized website for a Bulgarian repair business, featuring bilingual content and lead generation.',
-    technologies: ['Astro 4', 'Tailwind CSS', 'Netlify', 'i18n', 'GitHub Actions'],
-    achievements: [
-      'Achieved 95+ Lighthouse scores across all metrics',
-      'First-page Google ranking for key local search terms',
-      'Sub-1-second page load times on 4G connections'
-    ],
-    metrics: {
-      performance: '95+',
-      loadTime: '<1s',
-      seo: 'Page 1'
-    },
-    image: '/images/projects/rotorem.png',
-    gradient: 'from-orange-500 to-red-500',
-    category: 'Web Apps',
-    featured: true,
-    status: 'production',
-    link: '/projects/rotorem',
-    github: null,
-    live: 'https://www.rotorem.bg/'
-  },
-  {
-    id: 'safe-exam-browser',
-    title: 'Safe Exam Browser Security Research',
-    client: 'TU/e Course Project',
-    year: '2023',
-    description: 'Penetration testing of lockdown browsers with responsible vulnerability disclosure',
-    longDescription: 'Comprehensive security research identifying and responsibly disclosing multiple critical vulnerabilities in exam lockdown software.',
-    technologies: ['C++', 'C#', '.NET', 'DLL Injection', 'Reverse Engineering'],
-    achievements: [
-      'Discovered 5 major vulnerability classes',
-      'Acknowledged in official SEB v3.6.0 release notes',
-      'Created comprehensive technical documentation'
-    ],
-    metrics: {
-      vulnerabilities: '5',
-      impact: 'Critical',
-      recognition: 'Official'
-    },
-    image: '/images/projects/security.png',
-    gradient: 'from-red-500 to-purple-500',
-    category: 'Security',
-    featured: false,
-    status: 'completed',
-    link: '/projects/safe-exam-browser',
-    github: null,
-    live: null
-  },
-  {
-    id: 'dbt-score',
-    title: 'dbt-score Open Source Contribution',
-    client: 'Picnic Supermarket',
-    year: '2024',
-    description: 'Added seed resource support to dbt metadata quality linter',
-    longDescription: 'Extended dbt-score functionality to support seed resources, enabling complete data quality assessment across all dbt resource types.',
-    technologies: ['Python', 'dbt', 'Test-Driven Development', 'Open Source'],
-    achievements: [
-      'Successfully merged PR #110',
-      'Added 4 new seed-specific linting rules',
-      'Full test coverage for new functionality'
-    ],
-    metrics: {
-      contribution: 'PR #110',
-      impact: 'Feature',
-      tests: '100%'
-    },
-    image: '/images/projects/opensource.png',
-    gradient: 'from-green-500 to-teal-500',
-    category: 'Open Source',
-    featured: false,
-    status: 'completed',
-    link: 'https://github.com/PicnicSupermarket/dbt-score/pull/110',
-    github: 'https://github.com/PicnicSupermarket/dbt-score',
-    live: null
-  },
-  {
-    id: 'hydrogen-safety',
-    title: 'Hydrogen Safety System Business',
-    client: 'TU/e Entrepreneurship',
-    year: '2024-2025',
-    description: 'Business development for innovative hydrogen leakage detection technology',
-    longDescription: 'Developed comprehensive business model for hydrogen safety technology through systematic market research and customer validation.',
-    technologies: ['Market Research', 'Business Model Canvas', 'Financial Modeling', 'Customer Discovery'],
-    achievements: [
-      'Conducted interviews with Tata Steel, Shell, Air Liquide',
-      'Developed business model with €594,600 first-year revenue projections',
-      'Achieved product-market fit validation through 6 iterations'
-    ],
-    metrics: {
-      market: '€120B',
-      revenue: '€594K',
-      interviews: '15+'
-    },
-    image: '/images/projects/business.png',
-    gradient: 'from-blue-500 to-green-500',
-    category: 'Business',
-    featured: false,
-    status: 'completed',
-    link: '/projects/hydrogen-safety',
-    github: null,
-    live: null
-  }
-]
+import { useRef, useState, useEffect } from 'react'
+import { getProjectListItems, type ProjectListItem } from '../../lib/projects'
 
 const categories = ['All', 'Web Apps', 'Security', 'Open Source', 'Business']
 const statuses = ['All', 'Production', 'Active', 'Completed']
@@ -181,7 +15,7 @@ const viewModes = [
   { id: 'list', icon: List, label: 'List View' }
 ]
 
-function ProjectCard({ project, index }: { project: typeof projects[0], index: number }) {
+function ProjectCard({ project, index }: { project: ProjectListItem, index: number }) {
   const cardRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: cardRef,
@@ -219,9 +53,13 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
           {/* Project info overlay */}
           <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-slate-900 to-transparent">
             <div className="flex items-center gap-2 text-sm text-gray-400 mb-2">
-              <span>{project.client}</span>
-              <span>•</span>
-              <span>{project.year}</span>
+              {project.client && (
+                <>
+                  <span>{project.client}</span>
+                  <span>•</span>
+                </>
+              )}
+              <span>{project.featured ? 'Featured Project' : 'Project'}</span>
             </div>
             <h3 className="text-2xl font-display font-bold text-white">{project.title}</h3>
           </div>
@@ -235,14 +73,14 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
           
           {/* Tech stack */}
           <div className="flex flex-wrap gap-2 mb-6">
-            {project.technologies.slice(0, 4).map((tech) => (
+            {project.tags.map((tech) => (
               <Badge key={tech} variant="default" size="sm">
                 {tech}
               </Badge>
             ))}
-            {project.technologies.length > 4 && (
+            {project.tags.length < 4 && (
               <Badge variant="default" size="sm">
-                +{project.technologies.length - 4} more
+                ...more
               </Badge>
             )}
           </div>
@@ -250,7 +88,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
           {/* Actions */}
           <div className="flex items-center gap-4">
             <Link
-              href={project.link}
+              href={`/projects/${project.slug}`}
               className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors font-medium"
             >
               View case study
@@ -288,6 +126,18 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
 }
 
 export default function ProjectsPage() {
+  const [projects, setProjects] = useState<ProjectListItem[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function loadProjects() {
+      const items = await getProjectListItems()
+      setProjects(items)
+      setLoading(false)
+    }
+    loadProjects()
+  }, [])
+
   return (
     <PageWrapper>
       {/* Hero Section */}
@@ -391,18 +241,6 @@ export default function ProjectsPage() {
               <Sparkles className="w-5 h-5 text-purple-400" />
               <span className="text-purple-400 font-mono text-sm">Featured Projects</span>
             </div>
-            
-            {/* Category filters */}
-            <div className="flex gap-2 flex-wrap">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  className="px-4 py-2 text-sm font-medium text-gray-400 hover:text-white hover:bg-slate-800 rounded-full transition-all"
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -410,11 +248,17 @@ export default function ProjectsPage() {
       {/* Projects Grid */}
       <section className="px-6 py-24">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {projects.map((project, i) => (
-              <ProjectCard key={project.id} project={project} index={i} />
-            ))}
-          </div>
+          {loading ? (
+            <div className="text-center py-20">
+              <p className="text-gray-500">Loading projects...</p>
+            </div>
+          ) : (
+            <div className="grid lg:grid-cols-2 gap-12">
+              {projects.map((project, i) => (
+                <ProjectCard key={project.slug} project={project} index={i} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
       
