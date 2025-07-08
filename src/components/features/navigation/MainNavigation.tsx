@@ -4,12 +4,14 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useScrollPosition } from '../../../hooks/useScrollPosition'
 import { allNavigationItems, primaryNavigation } from '../../../data/navigation'
 import { MobileMenu } from './MobileMenu'
 import { FaviconLogo } from '../../ui/LogoIcon'
 
 export function MainNavigation() {
+  const pathname = usePathname()
   const isScrolled = useScrollPosition()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false)
@@ -22,6 +24,13 @@ export function MainNavigation() {
   
   // Secondary items for "More" (Learn, Play, Health)
   const moreItems = allNavigationItems.filter(item => !primaryNavigation.includes(item.id))
+
+  // Check if a nav item is active
+  const isActiveItem = (href: string) => {
+    if (href === '/' && pathname === '/') return true
+    if (href !== '/' && pathname.startsWith(href)) return true
+    return false
+  }
 
   return (
     <>
@@ -40,8 +49,8 @@ export function MainNavigation() {
               : 'px-2'
           }`}>
             <div className="flex items-center justify-between">
-              {/* Logo */}
-              <Link href="/" className="group flex items-center" aria-label="Strahil Peykov - Home">
+              {/* Enhanced Logo with Text */}
+              <Link href="/" className="group flex items-center gap-3" aria-label="Strahil Peykov - Home">
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-lg scale-150" />
                   <FaviconLogo 
@@ -50,21 +59,56 @@ export function MainNavigation() {
                     alt="SP"
                   />
                 </div>
+                
+                {/* Stylized "Strahil" text */}
+                <div className="relative overflow-hidden">
+                  <span className="font-display font-bold text-xl bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent transition-all duration-300 group-hover:from-blue-300 group-hover:to-purple-300">
+                    Strahil
+                  </span>
+                  
+                  {/* Subtle underline animation */}
+                  <div className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300 w-0 group-hover:w-full" />
+                </div>
               </Link>
 
               {/* Desktop menu */}
               <div className="hidden md:flex items-center gap-1">
-                {/* Primary nav - 5 items */}
-                {primaryNavItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="relative px-4 py-2 text-gray-400 hover:text-white transition-all group"
-                  >
-                    <span className="relative z-10 text-sm font-medium">{item.label}</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/10 group-hover:via-purple-500/10 group-hover:to-pink-500/10 rounded-full transition-all" />
-                  </Link>
-                ))}
+                {/* Primary nav - 5 items with active states */}
+                {primaryNavItems.map((item) => {
+                  const isActive = isActiveItem(item.href)
+                  
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="relative px-4 py-2 transition-all group"
+                    >
+                      <span className={`relative z-10 text-sm font-medium transition-colors ${
+                        isActive 
+                          ? 'text-white' 
+                          : 'text-gray-400 group-hover:text-white'
+                      }`}>
+                        {item.label}
+                      </span>
+                      
+                      {/* Active indicator */}
+                      <div className={`absolute inset-0 rounded-full transition-all duration-300 ${
+                        isActive
+                          ? 'bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 border border-purple-500/30'
+                          : 'bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/10 group-hover:via-purple-500/10 group-hover:to-pink-500/10'
+                      }`} />
+                      
+                      {/* Active state dot indicator */}
+                      {isActive && (
+                        <motion.div 
+                          layoutId="activeTab"
+                          className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-purple-400 rounded-full"
+                          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                        />
+                      )}
+                    </Link>
+                  )
+                })}
                 
                 {/* More dropdown for secondary items */}
                 {moreItems.length > 0 && (
@@ -94,14 +138,20 @@ export function MainNavigation() {
                           <div className="py-2">
                             {moreItems.map((item) => {
                               const Icon = item.icon
+                              const isActive = isActiveItem(item.href)
+                              
                               return (
                                 <Link
                                   key={item.href}
                                   href={item.href}
                                   onClick={closeMoreMenu}
-                                  className="flex items-center gap-3 px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-slate-800/50 transition-all"
+                                  className={`flex items-center gap-3 px-4 py-2 text-sm transition-all ${
+                                    isActive
+                                      ? 'text-white bg-purple-500/10 border-r-2 border-purple-400'
+                                      : 'text-gray-400 hover:text-white hover:bg-slate-800/50'
+                                  }`}
                                 >
-                                  <Icon size={16} className="text-gray-500" />
+                                  <Icon size={16} className={isActive ? 'text-purple-400' : 'text-gray-500'} />
                                   <div>
                                     <div className="font-medium">{item.label}</div>
                                     <div className="text-xs text-gray-600">{item.description}</div>
@@ -134,6 +184,7 @@ export function MainNavigation() {
         isOpen={isMobileMenuOpen} 
         onClose={closeMobileMenu}
         items={allNavigationItems}
+        currentPath={pathname}
       />
     </>
   )
