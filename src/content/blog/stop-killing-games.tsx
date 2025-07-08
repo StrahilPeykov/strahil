@@ -32,36 +32,7 @@ export default function StopKillingGamesContent() {
         it means to "own" a game. When you bought a Nintendo 64 cartridge, it was yours forever. 
         Today, you're essentially renting access to a server that can be shut down at any moment.
       </p>
-      
-      <div className="grid md:grid-cols-2 gap-6 my-8">
-        <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-          <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-            <Gamepad2 className="w-5 h-5 text-blue-400" />
-            Traditional Games
-          </h3>
-          <ul className="space-y-2 text-gray-400 text-sm">
-            <li>• Physical or downloadable product</li>
-            <li>• Works offline</li>
-            <li>• Playable forever</li>
-            <li>• Can be preserved</li>
-            <li>• True ownership</li>
-          </ul>
-        </div>
-        
-        <div className="bg-slate-900/50 rounded-xl p-6 border border-red-500/20">
-          <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-            <AlertTriangle className="w-5 h-5 text-red-400" />
-            Live Service Games
-          </h3>
-          <ul className="space-y-2 text-gray-400 text-sm">
-            <li>• Requires constant connection</li>
-            <li>• Server-dependent</li>
-            <li>• Can be killed anytime</li>
-            <li>• Lost to history</li>
-            <li>• Licensed access only</li>
-          </ul>
-        </div>
-      </div>
+
       
       <h2 className="text-3xl font-display font-bold text-white mt-12 mb-6">
         Why This Matters: Beyond Gaming
