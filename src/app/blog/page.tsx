@@ -6,7 +6,7 @@ import { PageWrapper } from '../../components/layout/PageWrapper'
 import { Badge } from '../../components/ui/Badge'
 import Link from 'next/link'
 import { useState, useMemo, useEffect } from 'react'
-import { getBlogListItems, type ContentListItem } from '../../lib/content' // Updated import
+import { getBlogListItems, type ContentListItem } from '../../lib/content'
 
 function ArticleCard({ article, index }: { article: ContentListItem; index: number }) {
   return (

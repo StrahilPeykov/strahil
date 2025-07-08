@@ -44,6 +44,5 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound()
   }
 
-  // Use the new unified ContentTemplate
   return <ContentTemplate content={post} />
 }

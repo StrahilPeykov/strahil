@@ -15,7 +15,7 @@ export const CaseStudy = defineDocumentType(() => ({
     client: { type: 'string', required: false },
     role: { type: 'string', required: false },
     duration: { type: 'string', required: false },
-    // New SEO fields
+    // SEO fields
     seoTitle: { type: 'string', required: false },
     seoDescription: { type: 'string', required: false },
     canonicalUrl: { type: 'string', required: false },
