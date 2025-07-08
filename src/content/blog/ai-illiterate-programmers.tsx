@@ -102,46 +102,8 @@ users.sort((a, b) => {
       </h2>
       
       <p>
-        You might think, "So what? If the code works, who cares how it was written?" Here's why 
-        it matters:
+        You might think, "So what? If the code works, who cares how it was written?" But it matters.
       </p>
-      
-      <ul className="space-y-4 my-6">
-        <li className="flex items-start gap-3">
-          <span className="text-purple-400 font-bold flex-shrink-0">1.</span>
-          <div>
-            <strong className="text-white">Debugging Becomes Impossible:</strong> When something 
-            breaks (and it always does), these developers can't fix it because they don't 
-            understand what they wrote.
-          </div>
-        </li>
-        
-        <li className="flex items-start gap-3">
-          <span className="text-purple-400 font-bold flex-shrink-0">2.</span>
-          <div>
-            <strong className="text-white">Security Vulnerabilities:</strong> AI often suggests 
-            code with subtle security flaws. Without understanding, developers blindly introduce 
-            vulnerabilities.
-          </div>
-        </li>
-        
-        <li className="flex items-start gap-3">
-          <span className="text-purple-400 font-bold flex-shrink-0">3.</span>
-          <div>
-            <strong className="text-white">Innovation Stagnates:</strong> True innovation comes 
-            from deep understanding. AI-dependent developers can only create variations of what 
-            already exists.
-          </div>
-        </li>
-        
-        <li className="flex items-start gap-3">
-          <span className="text-purple-400 font-bold flex-shrink-0">4.</span>
-          <div>
-            <strong className="text-white">Career Ceiling:</strong> Senior positions require 
-            architectural thinking and problem-solving skills that can't be outsourced to AI.
-          </div>
-        </li>
-      </ul>
       
       <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-6 my-8">
         <div className="flex items-start gap-3">
