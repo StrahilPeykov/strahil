@@ -6,7 +6,7 @@ const projectData: ProjectData = {
   title: 'Safe Exam Browser Security Research',
   tagline: 'Penetration testing of lockdown browsers with responsible vulnerability disclosure',
   description: 'Comprehensive security research identifying and responsibly disclosing multiple critical vulnerabilities in exam lockdown software.',
-  icon: Shield,
+  icon: 'Shield',
   badges: [
     { variant: 'error' as const, label: 'Security Research' },
     { variant: 'blue' as const, label: 'TU/e Course Project' }
@@ -28,17 +28,17 @@ const projectData: ProjectData = {
   },
   metrics: [
     {
-      icon: Bug,
+      icon: 'Bug',
       value: '5',
       label: 'Vulnerabilities Found'
     },
     {
-      icon: AlertTriangle,
+      icon: 'AlertTriangle',
       value: 'Critical',
       label: 'Impact Level'
     },
     {
-      icon: CheckCircle,
+      icon: 'CheckCircle',
       value: 'Official',
       label: 'Recognition'
     }

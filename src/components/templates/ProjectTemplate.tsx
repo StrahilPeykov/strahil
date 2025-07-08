@@ -1,7 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowLeft, ExternalLink, Github, Users, Zap, Calendar, MapPin } from 'lucide-react'
+import { ArrowLeft, ExternalLink, Github } from 'lucide-react'
+import * as Icons from 'lucide-react'
 import Link from 'next/link'
 import { PageWrapper } from '../layout/PageWrapper'
 import { Badge } from '../ui/Badge'
@@ -11,7 +12,7 @@ export interface ProjectData {
   title: string
   tagline: string
   description: string
-  icon: LucideIcon
+  icon: string
   badges: Array<{
     variant: 'blue' | 'purple' | 'pink' | 'success' | 'warning' | 'error'
     label: string
@@ -35,7 +36,7 @@ export interface ProjectData {
     }>
   }
   metrics?: Array<{
-    icon: LucideIcon
+    icon: string
     value: string
     label: string
   }>
@@ -54,7 +55,7 @@ interface ProjectTemplateProps {
 }
 
 export function ProjectTemplate({ project }: ProjectTemplateProps) {
-  const Icon = project.icon
+  const Icon = (Icons as any)[project.icon] as LucideIcon
 
   return (
     <PageWrapper>
@@ -217,7 +218,7 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
                 <h3 className="text-lg font-semibold text-white mb-4">Impact</h3>
                 <div className="space-y-4">
                   {project.metrics.map((metric, i) => {
-                    const MetricIcon = metric.icon
+                    const MetricIcon = (Icons as any)[metric.icon] as LucideIcon
                     return (
                       <div key={i} className="flex items-center gap-3">
                         <div className="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center">

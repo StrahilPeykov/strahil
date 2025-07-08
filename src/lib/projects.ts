@@ -21,7 +21,10 @@ const projectRegistry: ProjectEntry[] = [
       title: 'CarbonInsight',
       description: 'Product Carbon Footprint & Digital Product Passport platform for manufacturing SMEs',
     },
-    content: () => require('../content/projects/carboninsight').default
+    content: () => {
+      const Component = require('../content/projects/carboninsight').default
+      return Component
+    }
   },
   {
     slug: 'stayhub',
@@ -29,7 +32,10 @@ const projectRegistry: ProjectEntry[] = [
       title: 'StayHub',
       description: 'Modern hospitality management platform with microservices architecture and A/B testing',
     },
-    content: () => require('../content/projects/stayhub').default
+    content: () => {
+      const Component = require('../content/projects/stayhub').default
+      return Component
+    }
   },
   {
     slug: 'rotorem',
@@ -37,7 +43,10 @@ const projectRegistry: ProjectEntry[] = [
       title: 'RotoRem',
       description: 'High-performance bilingual marketing website for home appliance repair business',
     },
-    content: () => require('../content/projects/rotorem').default
+    content: () => {
+      const Component = require('../content/projects/rotorem').default
+      return Component
+    }
   },
   {
     slug: 'safe-exam-browser',
@@ -45,7 +54,10 @@ const projectRegistry: ProjectEntry[] = [
       title: 'Safe Exam Browser Security Research',
       description: 'Penetration testing of lockdown browsers with responsible vulnerability disclosure',
     },
-    content: () => require('../content/projects/safe-exam-browser').default
+    content: () => {
+      const Component = require('../content/projects/safe-exam-browser').default
+      return Component
+    }
   },
   {
     slug: 'dbt-score',
@@ -53,7 +65,10 @@ const projectRegistry: ProjectEntry[] = [
       title: 'dbt-score Open Source Contribution',
       description: 'Added seed resource support to dbt metadata quality linter',
     },
-    content: () => require('../content/projects/dbt-score').default
+    content: () => {
+      const Component = require('../content/projects/dbt-score').default
+      return Component
+    }
   },
   {
     slug: 'hydrogen-safety',
@@ -61,7 +76,10 @@ const projectRegistry: ProjectEntry[] = [
       title: 'Hydrogen Safety System Business',
       description: 'Business development for innovative hydrogen leakage detection technology',
     },
-    content: () => require('../content/projects/hydrogen-safety').default
+    content: () => {
+      const Component = require('../content/projects/hydrogen-safety').default
+      return Component
+    }
   }
 ]
 
