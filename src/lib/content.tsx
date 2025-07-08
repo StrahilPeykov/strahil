@@ -43,18 +43,18 @@ const contentRegistry: ContentEntry[] = [
     slug: 'stop-killing-games',
     type: 'blog',
     metadata: {
-      title: 'The Stop Killing Games Movement:',
-      subtitle: 'A Developer\'s Perspective',
-      excerpt: 'When publishers shut down game servers, they\'re not just ending a service—they\'re destroying digital culture. Here\'s why the movement matters.',
-      date: 'January 18, 2025',
-      readTime: '10 min read',
+      title: 'Stop Killing Games:',
+      subtitle: 'Why Digital Ownership Rights Matter',
+      excerpt: 'The European initiative fighting game publishers who destroy purchased products. From The Crew\'s demise to the Pirate Software controversy—here\'s what\'s really at stake.',
+      date: 'June 27, 2025',
+      readTime: '12 min read',
       author: 'Strahil Peykov',
-      tags: ['Gaming', 'Digital Rights', 'Preservation', 'Technology'],
-      category: 'Gaming',
+      tags: ['Gaming', 'Digital Rights', 'Consumer Protection', 'EU Policy', 'Game Preservation'],
+      category: 'Digital Rights',
       badges: [
-        { variant: 'purple' as const, label: 'Gaming' },
         { variant: 'blue' as const, label: 'Digital Rights' },
-        { variant: 'error' as const, label: 'Current Events' }
+        { variant: 'purple' as const, label: 'EU Policy' },
+        { variant: 'warning' as const, label: 'Analysis' }
       ]
     },
     content: () => {

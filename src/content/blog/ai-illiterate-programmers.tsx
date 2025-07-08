@@ -176,7 +176,7 @@ users.sort((a, b) => {
       
       <p>
         The future belongs to developers who can leverage AI while maintaining deep technical 
-        knowledge—those who can think critically, solve complex problems, and understand not 
+        knowledge, those who can think critically, solve complex problems, and understand not 
         just <em>what</em> their code does, but <em>why</em> it works.
       </p>
       
@@ -187,7 +187,7 @@ users.sort((a, b) => {
           'The AI said this would work.' The former leads to learning; the latter leads 
           to digital illiteracy."
         </p>
-        <p className="text-sm text-gray-500 mt-4">— Me, probably overthinking in the shower</p>
+        <p className="text-sm text-gray-500 mt-4">— Me</p>
       </div>
     </div>
   )

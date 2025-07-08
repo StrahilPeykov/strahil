@@ -4,19 +4,7 @@ import Link from 'next/link'
 export default function StopKillingGamesContent() {
   return (
     <div className="space-y-6 text-gray-300">
-      <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-6 mb-8">
-        <div className="flex items-start gap-3">
-          <Gamepad2 className="w-6 h-6 text-red-400 flex-shrink-0 mt-1" />
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-2">Digital Destruction in Progress</h3>
-            <p className="text-gray-300">
-              When publishers shut down game servers, they're not just ending a service—they're 
-              destroying digital culture. And unlike a discontinued book or movie, these games 
-              disappear forever, taking years of player investment with them.
-            </p>
-          </div>
-        </div>
-      </div>
+
       
       <p className="text-xl leading-relaxed">
         Imagine buying a book, only to have the publisher break into your house months later 
@@ -57,34 +45,13 @@ export default function StopKillingGamesContent() {
         which became a perfect example of everything wrong with the current system.
       </p>
       
-      <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800 my-8">
-        <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-          <Calendar className="w-6 h-6 text-red-400" />
-          Timeline of Destruction
-        </h3>
-        <div className="space-y-3 text-sm">
-          <div className="flex items-center gap-3">
-            <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-            <span className="text-gray-400">December 14, 2023:</span>
-            <span className="text-white">Ubisoft delists The Crew from digital platforms</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
-            <span className="text-gray-400">December 2023:</span>
-            <span className="text-white">Microtransaction sales suspended</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-2 h-2 bg-red-400 rounded-full"></div>
-            <span className="text-gray-400">March 31, 2024:</span>
-            <span className="text-white">Servers shut down permanently</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-2 h-2 bg-red-600 rounded-full"></div>
-            <span className="text-gray-400">Post-shutdown:</span>
-            <span className="text-white">Licenses revoked with no refunds or game file access</span>
-          </div>
-        </div>
-      </div>
+      <p>
+        The timeline was swift and merciless: On December 14, 2023, Ubisoft delisted The Crew 
+        from digital platforms and suspended microtransaction sales. By March 31, 2024, the 
+        servers were shut down permanently. Post-shutdown, Ubisoft began revoking licenses 
+        from players who had purchased the game—with no refunds offered and no way to download 
+        the game files.
+      </p>
       
       <p>
         This wasn't just a server shutdown—it was systematic erasure. Players who had purchased 
@@ -152,25 +119,15 @@ export default function StopKillingGamesContent() {
         of their client-server architecture.
       </p>
       
-      <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-6 my-8">
-        <div className="flex items-start gap-3">
-          <Zap className="w-6 h-6 text-blue-400 flex-shrink-0 mt-1" />
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-2">The Technical Truth</h3>
-            <p className="text-gray-300 mb-4">
-              Most modern online games use client-server architecture where the client sends input 
-              and the server processes logic and sends back results. This prevents cheating since 
-              important calculations never happen on player machines.
-            </p>
-            <p className="text-gray-300">
-              However, Thor's claim that "all of the math, all of the game, everything happens on 
-              the server" isn't entirely accurate. While servers are the ultimate authority, clients 
-              still make predictions locally for responsiveness and receive more information than 
-              what's displayed (which is why wallhacks are possible).
-            </p>
-          </div>
-        </div>
-      </div>
+      <p>
+        Most modern online games use client-server architecture where the client sends input 
+        and the server processes logic and sends back results. This prevents cheating since 
+        important calculations never happen on player machines. However, Thor's claim that 
+        "all of the math, all of the game, everything happens on the server" isn't entirely 
+        accurate. While servers are the ultimate authority, clients still make predictions 
+        locally for responsiveness and receive more information than what's displayed 
+        (which is why wallhacks are possible).
+      </p>
       
       <p>
         More importantly, preservation doesn't require massive rearchitecture. Publishers could 
@@ -219,24 +176,14 @@ export default function StopKillingGamesContent() {
         responding earlier to prevent "drama farming" that might delegitimize the movement.
       </p>
       
-      <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-6 my-8">
-        <div className="flex items-start gap-3">
-          <AlertTriangle className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-2">The Misinformation Problem</h3>
-            <p className="text-gray-300 mb-4">
-              Scott revealed that Pirate Software had fundamentally misunderstood the initiative 
-              on stream, claiming it was specifically about single-player DRM when it actually 
-              addresses the broader issue of purchased games being remotely disabled.
-            </p>
-            <p className="text-gray-300">
-              Despite the published videos still misrepresenting the initiative, Pirate Software 
-              has shown little willingness to acknowledge these errors or their detrimental impact 
-              on the movement.
-            </p>
-          </div>
-        </div>
-      </div>
+      <p>
+        Scott revealed that Pirate Software had fundamentally misunderstood the initiative 
+        on stream, claiming it was specifically about single-player DRM when it actually 
+        addresses the broader issue of purchased games being remotely disabled. Despite 
+        the published videos still misrepresenting the initiative, Pirate Software has 
+        shown little willingness to acknowledge these errors or their detrimental impact 
+        on the movement.
+      </p>
       
       <h2 className="text-3xl font-display font-bold text-white mt-12 mb-6">
         What's Really at Stake
@@ -269,23 +216,11 @@ export default function StopKillingGamesContent() {
           European Commission response
         </a>, the standard "terminate at any time for any reason" clauses might violate 
         Directive 93/13/EEC, which <em>"prohibits unfair terms causing a significant imbalance 
-        in the parties' rights and obligations to the detriment of consumers."</em>
+        in the parties' rights and obligations to the detriment of consumers."</em> The Commission 
+        specifically noted that <em>"Terms such as those related to the unilateral modification 
+        or termination by the trader of a contract of indeterminate duration without reasonable 
+        notice may be deemed unfair subject to a case-by-case assessment."</em>
       </p>
-      
-      <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-6 my-8">
-        <div className="flex items-start gap-3">
-          <Shield className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-2">Legal Precedent</h3>
-            <p className="text-gray-300">
-              The Commission specifically noted that <em>"Terms such as those related to the 
-              unilateral modification or termination by the trader of a contract of indeterminate 
-              duration without reasonable notice may be deemed unfair subject to a case-by-case 
-              assessment."</em>
-            </p>
-          </div>
-        </div>
-      </div>
       
       <h2 className="text-3xl font-display font-bold text-white mt-12 mb-6">
         What You Can Still Do
@@ -384,7 +319,7 @@ export default function StopKillingGamesContent() {
               href="https://petition.parliament.uk/petitions/702074" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 ml-2 underline"
+              className="text-purple-400 hover:text-purple-300 ml-2 underline"
             >
               Sign the parliamentary petition
             </a>
@@ -395,7 +330,7 @@ export default function StopKillingGamesContent() {
               href="https://citizens-initiative.europa.eu/initiatives/details/2024/000007_en" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-green-400 hover:text-green-300 ml-2 underline"
+              className="text-purple-400 hover:text-purple-300 ml-2 underline"
             >
               Support the Citizens' Initiative
             </a>
