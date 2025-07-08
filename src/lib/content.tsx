@@ -99,6 +99,12 @@ export async function getAllBlogPosts(): Promise<ArticleWithSlug[]> {
       backLink: '/blog',
       backLabel: 'Back to articles'
     }))
+    .sort((a, b) => {
+      // Parse dates and sort from newest to oldest
+      const dateA = new Date(a.date)
+      const dateB = new Date(b.date)
+      return dateB.getTime() - dateA.getTime()
+    })
 }
 
 export async function getBlogPost(slug: string): Promise<ArticleData | null> {
@@ -126,6 +132,12 @@ export async function getAllNotes(): Promise<ArticleWithSlug[]> {
       backLink: '/notes',
       backLabel: 'Back to notes'
     }))
+    .sort((a, b) => {
+      // Parse dates and sort from newest to oldest
+      const dateA = new Date(a.date)
+      const dateB = new Date(b.date)
+      return dateB.getTime() - dateA.getTime()
+    })
 }
 
 export async function getNote(slug: string): Promise<ArticleData | null> {
@@ -156,11 +168,6 @@ export interface ContentListItem {
   gradient?: string
 }
 
-// Add slug to ArticleData when fetching
-export interface ArticleWithSlug extends ArticleData {
-  slug: string
-}
-
 export async function getBlogListItems(): Promise<ContentListItem[]> {
   return contentRegistry
     .filter(entry => entry.type === 'blog')
@@ -175,6 +182,12 @@ export async function getBlogListItems(): Promise<ContentListItem[]> {
       featured: true, // You can add this to metadata
       gradient: 'from-blue-500 to-purple-500' // You can customize per post
     }))
+    .sort((a, b) => {
+      // Parse dates and sort from newest to oldest
+      const dateA = new Date(a.date)
+      const dateB = new Date(b.date)
+      return dateB.getTime() - dateA.getTime()
+    })
 }
 
 export async function getNoteListItems(): Promise<ContentListItem[]> {
@@ -191,4 +204,10 @@ export async function getNoteListItems(): Promise<ContentListItem[]> {
       featured: false,
       gradient: 'from-purple-500 to-pink-500'
     }))
+    .sort((a, b) => {
+      // Parse dates and sort from newest to oldest
+      const dateA = new Date(a.date)
+      const dateB = new Date(b.date)
+      return dateB.getTime() - dateA.getTime()
+    })
 }
