@@ -45,7 +45,7 @@ const contentRegistry: ContentEntry[] = [
     metadata: {
       title: 'Stop Killing Games:',
       subtitle: 'Why Digital Ownership Rights Matter',
-      excerpt: 'The European initiative fighting game publishers who destroy purchased products. From The Crew\'s demise to the Pirate Software controversy—here\'s what\'s really at stake.',
+      excerpt: 'The European initiative fighting game publishers who destroy purchased products. From The Crew\'s demise to the Pirate Software controversy, here\'s what\'s really at stake.',
       date: 'June 27, 2025',
       readTime: '12 min read',
       author: 'Strahil Peykov',

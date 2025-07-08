@@ -20,7 +20,7 @@ export default function HumansNotTruthSeekingContent() {
       </div>
       
       <p className="text-xl leading-relaxed">
-        This isn't cynicism—it's biology. Understanding this fundamental reality about human 
+        This isn't cynicism, it's biology. Understanding this fundamental reality about human 
         cognition is the first step to having more productive conversations and, paradoxically, 
         getting closer to truth.
       </p>
@@ -86,7 +86,7 @@ export default function HumansNotTruthSeekingContent() {
             <h4 className="font-semibold text-white mb-2">Tribal Truth</h4>
             <p className="text-gray-300">
               We instinctively adopt beliefs that align with our "tribe." This isn't 
-              stupidity—it's a survival mechanism. In ancestral environments, being cast 
+              stupidity, it's a survival mechanism. In ancestral environments, being cast 
               out from your group meant death.
             </p>
           </div>
@@ -173,7 +173,7 @@ export default function HumansNotTruthSeekingContent() {
           <h3 className="text-lg font-semibold text-white mb-3">The Intelligence Trap</h3>
           <p className="text-gray-300 mb-3">
             Surprisingly, the most intelligent people are often the hardest to convince. 
-            They're not better at finding truth—they're better at rationalizing their 
+            They're not better at finding truth, they're better at rationalizing their 
             existing beliefs. Their intelligence becomes a tool for sophisticated 
             self-deception.
           </p>
@@ -200,7 +200,7 @@ export default function HumansNotTruthSeekingContent() {
       </h2>
       
       <p>
-        Understanding that humans aren't truth-seeking machines isn't cause for despair—it's 
+        Understanding that humans aren't truth-seeking machines isn't cause for despair, it's 
         the beginning of wisdom. Here's how to work with human nature instead of against it:
       </p>
       
@@ -277,7 +277,7 @@ export default function HumansNotTruthSeekingContent() {
           internal biases.
         </p>
         <p className="text-gray-300 italic">
-          The goal isn't to become perfectly rational beings—that's impossible. The goal 
+          The goal isn't to become perfectly rational beings, that's impossible. The goal 
           is to be slightly less wrong tomorrow than we are today. And that starts with 
           admitting we're not designed to be right.
         </p>

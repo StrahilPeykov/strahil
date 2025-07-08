@@ -34,7 +34,7 @@ export const articles: Article[] = [
   {
     id: 'stop-killing-games',
     title: 'The Stop Killing Games Movement: A Developer\'s Perspective',
-    excerpt: 'When publishers shut down game servers, they\'re not just ending a service—they\'re destroying digital culture. Here\'s why the movement matters.',
+    excerpt: 'When publishers shut down game servers, they\'re not just ending a service, they\'re destroying digital culture. Here\'s why the movement matters.',
     date: '2025-01-18',
     readTime: '10 min',
     views: 8456,

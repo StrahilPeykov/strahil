@@ -49,12 +49,12 @@ export default function StopKillingGamesContent() {
         The timeline was swift and merciless: On December 14, 2023, Ubisoft delisted The Crew 
         from digital platforms and suspended microtransaction sales. By March 31, 2024, the 
         servers were shut down permanently. Post-shutdown, Ubisoft began revoking licenses 
-        from players who had purchased the game—with no refunds offered and no way to download 
+        from players who had purchased the game, with no refunds offered and no way to download 
         the game files.
       </p>
       
       <p>
-        This wasn't just a server shutdown—it was systematic erasure. Players who had purchased 
+        This wasn't just a server shutdown, it was systematic erasure. Players who had purchased 
         the game lost all access, despite having paid full price for what was marketed as a 
         purchase. No refunds were offered, no offline mode was provided, and the game files 
         themselves became inaccessible.
@@ -132,7 +132,7 @@ export default function StopKillingGamesContent() {
       <p>
         More importantly, preservation doesn't require massive rearchitecture. Publishers could 
         release server binaries or offer lightweight self-hosting versions. The client wouldn't 
-        need reworking since it's already built to communicate with servers—whether official or 
+        need reworking since it's already built to communicate with servers, whether official or 
         player-hosted.
       </p>
       
@@ -155,7 +155,7 @@ export default function StopKillingGamesContent() {
       <p>
         This misses the fundamental point: <strong className="text-white">if people want to play 
         these games, why not let them?</strong> Gaming history is filled with communities that have 
-        kept "dead" games alive for decades. The question isn't whether everyone will play them—it's 
+        kept "dead" games alive for decades. The question isn't whether everyone will play them, it's 
         whether we should allow entire pieces of digital culture to be erased forever.
       </p>
       
@@ -190,7 +190,7 @@ export default function StopKillingGamesContent() {
       </h2>
       
       <p>
-        The core issue isn't licensing transparency—it's the hostile terms themselves. Take Blizzard's 
+        The core issue isn't licensing transparency, it's the hostile terms themselves. Take Blizzard's 
         license agreement, which states they <em>"reserve the right to terminate this Agreement at 
         any time for any reason, or for no reason, with or without notice to you."</em> The language 
         is clear, but the terms are fundamentally anti-consumer.
@@ -295,7 +295,7 @@ export default function StopKillingGamesContent() {
         </p>
         <p className="text-gray-300 italic">
           In a world where digital goods can vanish at a publisher's whim, the right to preserve 
-          what we've purchased isn't radical—it's fundamental.
+          what we've purchased isn't radical, it's fundamental.
         </p>
       </div>
       
