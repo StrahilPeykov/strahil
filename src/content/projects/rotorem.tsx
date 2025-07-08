@@ -6,7 +6,7 @@ const projectData: ProjectData = {
   title: 'StayHub',
   tagline: 'Modern Hospitality Management Platform with microservices architecture, real-time availability, and A/B testing capabilities',
   description: 'Comprehensive hospitality management platform built with microservices architecture, demonstrating modern full-stack development practices and scalable system design.',
-  icon: Hotel,
+  icon: 'Hotel',
   badges: [
     { variant: 'blue' as const, label: 'Personal Project' },
     { variant: 'success' as const, label: 'Live Demo' }
@@ -40,17 +40,17 @@ const projectData: ProjectData = {
   },
   metrics: [
     {
-      icon: Zap,
+      icon: 'Zap',
       value: '<200ms',
       label: 'Response Time'
     },
     {
-      icon: Users,
+      icon: 'Users',
       value: '1000+',
       label: 'Concurrent Users'
     },
     {
-      icon: Database,
+      icon: 'Database',
       value: '5',
       label: 'Microservices'
     }

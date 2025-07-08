@@ -6,7 +6,7 @@ const projectData: ProjectData = {
   title: 'Hydrogen Safety System Business',
   tagline: 'Business development for innovative hydrogen leakage detection technology',
   description: 'Developed comprehensive business model for hydrogen safety technology through systematic market research and customer validation.',
-  icon: Flame,
+  icon: 'Flame',
   badges: [
     { variant: 'purple' as const, label: 'Business Development' },
     { variant: 'success' as const, label: 'TU/e Entrepreneurship' }
@@ -28,17 +28,17 @@ const projectData: ProjectData = {
   },
   metrics: [
     {
-      icon: DollarSign,
+      icon: 'DollarSign',
       value: '€120B',
       label: 'Market Size'
     },
     {
-      icon: TrendingUp,
+      icon: 'TrendingUp',
       value: '€594K',
       label: 'Year 1 Revenue'
     },
     {
-      icon: Users,
+      icon: 'Users',
       value: '15+',
       label: 'Customer Interviews'
     }

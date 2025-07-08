@@ -1,4 +1,4 @@
-import { TreePine, Shield, Database, Users, Award, Zap } from 'lucide-react'
+import { Shield, Database, Users, Award, Zap } from 'lucide-react'
 import { Badge } from '../../components/ui/Badge'
 import type { ProjectData } from '../../components/templates/ProjectTemplate'
 
@@ -6,7 +6,7 @@ const projectData: ProjectData = {
   title: 'CarbonInsight',
   tagline: 'Product Carbon Footprint & Digital Product Passport Platform for Manufacturing SMEs',
   description: 'Comprehensive web application enabling manufacturing SMEs to calculate Product Carbon Footprint (PCF) and generate standards-compliant Digital Product Passports (DPPs). Part of the EU-funded AI REDGIO 5.0 initiative.',
-  icon: TreePine,
+  icon: 'TreePine',
   badges: [
     { variant: 'success' as const, label: "Bachelor's End Project" }
   ],
@@ -37,17 +37,17 @@ const projectData: ProjectData = {
   },
   metrics: [
     {
-      icon: Zap,
+      icon: 'Zap',
       value: '100%',
       label: 'Standards Compliance'
     },
     {
-      icon: Users,
+      icon: 'Users',
       value: 'SME-Ready',
       label: 'Non-technical UI'
     },
     {
-      icon: Award,
+      icon: 'Award',
       value: 'EU Initiative',
       label: 'AI REDGIO 5.0'
     }

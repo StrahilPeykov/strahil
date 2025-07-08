@@ -34,7 +34,10 @@ const contentRegistry: ContentEntry[] = [
         { variant: 'purple' as const, label: 'Technology' }
       ]
     },
-    content: () => require('../content/blog/ai-illiterate-programmers').default
+    content: () => {
+      const Component = require('../content/blog/ai-illiterate-programmers').default
+      return <Component />
+    }
   },
   {
     slug: 'stop-killing-games',
@@ -54,7 +57,10 @@ const contentRegistry: ContentEntry[] = [
         { variant: 'error' as const, label: 'Current Events' }
       ]
     },
-    content: () => require('../content/blog/stop-killing-games').default
+    content: () => {
+      const Component = require('../content/blog/stop-killing-games').default
+      return <Component />
+    }
   },
   
   // Notes
@@ -75,7 +81,10 @@ const contentRegistry: ContentEntry[] = [
         { variant: 'pink' as const, label: 'Philosophy' }
       ]
     },
-    content: () => require('../content/notes/humans-not-truth-seeking').default
+    content: () => {
+      const Component = require('../content/notes/humans-not-truth-seeking').default
+      return <Component />
+    }
   }
 ]
 

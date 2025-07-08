@@ -6,7 +6,7 @@ const projectData: ProjectData = {
   title: 'dbt-score Open Source Contribution',
   tagline: 'Added seed resource support to dbt metadata quality linter',
   description: 'Extended dbt-score functionality to support seed resources, enabling complete data quality assessment across all dbt resource types.',
-  icon: GitPullRequest,
+  icon: 'GitPullRequest',
   badges: [
     { variant: 'success' as const, label: 'Open Source' },
     { variant: 'purple' as const, label: 'Merged PR' }
@@ -31,17 +31,17 @@ const projectData: ProjectData = {
   },
   metrics: [
     {
-      icon: GitPullRequest,
+      icon: 'GitPullRequest',
       value: 'PR #110',
       label: 'Contribution'
     },
     {
-      icon: Code2,
+      icon: 'Code2',
       value: 'Feature',
       label: 'Impact Level'
     },
     {
-      icon: TestTube,
+      icon: 'TestTube',
       value: '100%',
       label: 'Test Coverage'
     }
