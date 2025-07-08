@@ -98,14 +98,7 @@ export function MainNavigation() {
                           : 'bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/10 group-hover:via-purple-500/10 group-hover:to-pink-500/10'
                       }`} />
                       
-                      {/* Active state dot indicator */}
-                      {isActive && (
-                        <motion.div 
-                          layoutId="activeTab"
-                          className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-purple-400 rounded-full"
-                          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                        />
-                      )}
+
                     </Link>
                   )
                 })}
