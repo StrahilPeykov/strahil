@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { ArticleTemplate } from '../../../components/templates/ArticleTemplate'
+import { NoteTemplate } from '../../../components/templates/ContentTemplate'
 import { getNote, getAllNotes } from '../../../lib/content'
 import type { Metadata } from 'next'
 
@@ -43,5 +43,6 @@ export default async function NotePage({ params }: PageProps) {
     notFound()
   }
 
-  return <ArticleTemplate article={note} />
+  // Use the specialized NoteTemplate (which uses ContentTemplate under the hood)
+  return <NoteTemplate note={note} />
 }

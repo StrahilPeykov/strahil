@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { PenTool, ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import { getBlogListItems, type ContentListItem } from '../../../lib/content'
+import { getBlogListItems, type ContentListItem } from '../../../lib/content' // Updated import
 
 interface ArticleCardProps {
   article: ContentListItem
@@ -52,7 +52,7 @@ export function RecentArticles() {
     async function loadArticles() {
       try {
         const blogItems = await getBlogListItems()
-        // Show the most recent 3 articles
+        // Show the most recent 3 articles (already sorted by date)
         setArticles(blogItems.slice(0, 3))
       } catch (error) {
         console.error('Failed to load articles:', error)

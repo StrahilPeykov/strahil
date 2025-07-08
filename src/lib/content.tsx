@@ -1,22 +1,49 @@
 import { ReactNode } from 'react'
-import type { ArticleData } from '../components/templates/ArticleTemplate'
+import type { BaseContentData } from '../components/templates/ContentTemplate'
+// Content registry types
+type ContentType = 'blog' | 'note'
 
-// Content registry - this could be replaced with MDX files or a CMS
 interface ContentEntry {
   slug: string
-  type: 'blog' | 'note'
-  metadata: Omit<ArticleData, 'content' | 'backLink' | 'backLabel'>
+  type: ContentType
+  metadata: Omit<BaseContentData, 'content' | 'backLink' | 'backLabel'>
   content: () => ReactNode
 }
 
-// Add slug to ArticleData when fetching
-export interface ArticleWithSlug extends ArticleData {
+export interface ArticleWithSlug extends BaseContentData {
   slug: string
 }
 
-// Import all your article content components
+export interface ContentListItem {
+  slug: string
+  title: string
+  excerpt: string
+  date: string
+  readTime: string
+  tags: string[]
+  category: string
+  featured?: boolean
+  gradient?: string
+}
+
+// Content type configurations
+const CONTENT_CONFIG = {
+  blog: {
+    backLink: '/blog',
+    backLabel: 'Back to articles',
+    defaultFeatured: true,
+    defaultGradient: 'from-blue-500 to-purple-500'
+  },
+  note: {
+    backLink: '/notes',
+    backLabel: 'Back to notes',
+    defaultFeatured: false,
+    defaultGradient: 'from-purple-500 to-pink-500'
+  }
+} as const
+
+// Content registry
 const contentRegistry: ContentEntry[] = [
-  // Blog posts
   {
     slug: 'ai-illiterate-programmers',
     type: 'blog',
@@ -30,8 +57,8 @@ const contentRegistry: ContentEntry[] = [
       tags: ['AI', 'Programming', 'Education', 'Technology'],
       category: 'Technology',
       badges: [
-        { variant: 'warning' as const, label: 'Opinion' },
-        { variant: 'purple' as const, label: 'Technology' }
+        { variant: 'warning', label: 'Opinion' },
+        { variant: 'purple', label: 'Technology' }
       ]
     },
     content: () => {
@@ -52,9 +79,9 @@ const contentRegistry: ContentEntry[] = [
       tags: ['Gaming', 'Digital Rights', 'Consumer Protection', 'EU Policy', 'Game Preservation'],
       category: 'Digital Rights',
       badges: [
-        { variant: 'blue' as const, label: 'Digital Rights' },
-        { variant: 'purple' as const, label: 'EU Policy' },
-        { variant: 'warning' as const, label: 'Analysis' }
+        { variant: 'blue', label: 'Digital Rights' },
+        { variant: 'purple', label: 'EU Policy' },
+        { variant: 'warning', label: 'Analysis' }
       ]
     },
     content: () => {
@@ -62,8 +89,6 @@ const contentRegistry: ContentEntry[] = [
       return <Component />
     }
   },
-  
-  // Notes
   {
     slug: 'humans-not-truth-seeking',
     type: 'note',
@@ -76,9 +101,9 @@ const contentRegistry: ContentEntry[] = [
       tags: ['psychology', 'cognitive-science', 'philosophy'],
       category: 'Theory of Mind',
       badges: [
-        { variant: 'blue' as const, label: 'Theory of Mind' },
-        { variant: 'purple' as const, label: 'Psychology' },
-        { variant: 'pink' as const, label: 'Philosophy' }
+        { variant: 'blue', label: 'Theory of Mind' },
+        { variant: 'purple', label: 'Psychology' },
+        { variant: 'pink', label: 'Philosophy' }
       ]
     },
     content: () => {
@@ -88,126 +113,77 @@ const contentRegistry: ContentEntry[] = [
   }
 ]
 
-// Helper functions
-export async function getAllBlogPosts(): Promise<ArticleWithSlug[]> {
-  return contentRegistry
-    .filter(entry => entry.type === 'blog')
-    .map(entry => ({
-      ...entry.metadata,
-      slug: entry.slug,
-      content: entry.content(),
-      backLink: '/blog',
-      backLabel: 'Back to articles'
-    }))
-    .sort((a, b) => {
-      // Parse dates and sort from newest to oldest
-      const dateA = new Date(a.date)
-      const dateB = new Date(b.date)
-      return dateB.getTime() - dateA.getTime()
-    })
+// Utility functions
+function sortByDateDesc<T extends { date: string }>(items: T[]): T[] {
+  return items.sort((a, b) => {
+    const dateA = new Date(a.date)
+    const dateB = new Date(b.date)
+    return dateB.getTime() - dateA.getTime()
+  })
 }
 
-export async function getBlogPost(slug: string): Promise<ArticleData | null> {
-  const entry = contentRegistry.find(
-    entry => entry.type === 'blog' && entry.slug === slug
-  )
-  
-  if (!entry) return null
-  
+function getContentByType(type: ContentType): ContentEntry[] {
+  return contentRegistry.filter(entry => entry.type === type)
+}
+
+function mapToArticleData(entry: ContentEntry): BaseContentData {
+  const config = CONTENT_CONFIG[entry.type]
   return {
     ...entry.metadata,
     content: entry.content(),
-    backLink: '/blog',
-    backLabel: 'Back to articles'
+    backLink: config.backLink,
+    backLabel: config.backLabel
   }
 }
 
-export async function getAllNotes(): Promise<ArticleWithSlug[]> {
-  return contentRegistry
-    .filter(entry => entry.type === 'note')
-    .map(entry => ({
-      ...entry.metadata,
-      slug: entry.slug,
-      content: entry.content(),
-      backLink: '/notes',
-      backLabel: 'Back to notes'
-    }))
-    .sort((a, b) => {
-      // Parse dates and sort from newest to oldest
-      const dateA = new Date(a.date)
-      const dateB = new Date(b.date)
-      return dateB.getTime() - dateA.getTime()
-    })
+function mapToListItem(entry: ContentEntry): ContentListItem {
+  const config = CONTENT_CONFIG[entry.type]
+  return {
+    slug: entry.slug,
+    title: entry.metadata.title + (entry.metadata.subtitle ? ' ' + entry.metadata.subtitle : ''),
+    excerpt: entry.metadata.excerpt,
+    date: entry.metadata.date,
+    readTime: entry.metadata.readTime,
+    tags: entry.metadata.tags,
+    category: entry.metadata.category,
+    featured: config.defaultFeatured,
+    gradient: config.defaultGradient
+  }
 }
 
-export async function getNote(slug: string): Promise<ArticleData | null> {
+// Generic content retrieval functions
+async function getAllContentByType(type: ContentType): Promise<ArticleWithSlug[]> {
+  const entries = getContentByType(type)
+  const articles = entries.map(entry => ({
+    ...mapToArticleData(entry),
+    slug: entry.slug
+  }))
+  return sortByDateDesc(articles)
+}
+
+async function getContentBySlug(type: ContentType, slug: string): Promise<BaseContentData | null> {
   const entry = contentRegistry.find(
-    entry => entry.type === 'note' && entry.slug === slug
+    entry => entry.type === type && entry.slug === slug
   )
   
   if (!entry) return null
-  
-  return {
-    ...entry.metadata,
-    content: entry.content(),
-    backLink: '/notes',
-    backLabel: 'Back to notes'
-  }
+  return mapToArticleData(entry)
 }
 
-// For listing pages
-export interface ContentListItem {
-  slug: string
-  title: string
-  excerpt: string
-  date: string
-  readTime: string
-  tags: string[]
-  category: string
-  featured?: boolean
-  gradient?: string
+async function getContentListByType(type: ContentType): Promise<ContentListItem[]> {
+  const entries = getContentByType(type)
+  const listItems = entries.map(mapToListItem)
+  return sortByDateDesc(listItems)
 }
 
-export async function getBlogListItems(): Promise<ContentListItem[]> {
-  return contentRegistry
-    .filter(entry => entry.type === 'blog')
-    .map(entry => ({
-      slug: entry.slug,
-      title: entry.metadata.title + (entry.metadata.subtitle ? ' ' + entry.metadata.subtitle : ''),
-      excerpt: entry.metadata.excerpt,
-      date: entry.metadata.date,
-      readTime: entry.metadata.readTime,
-      tags: entry.metadata.tags,
-      category: entry.metadata.category,
-      featured: true, // You can add this to metadata
-      gradient: 'from-blue-500 to-purple-500' // You can customize per post
-    }))
-    .sort((a, b) => {
-      // Parse dates and sort from newest to oldest
-      const dateA = new Date(a.date)
-      const dateB = new Date(b.date)
-      return dateB.getTime() - dateA.getTime()
-    })
-}
+// Public API - specific functions for each content type
+export const getAllBlogPosts = () => getAllContentByType('blog')
+export const getBlogPost = (slug: string) => getContentBySlug('blog', slug)
+export const getBlogListItems = () => getContentListByType('blog')
 
-export async function getNoteListItems(): Promise<ContentListItem[]> {
-  return contentRegistry
-    .filter(entry => entry.type === 'note')
-    .map(entry => ({
-      slug: entry.slug,
-      title: entry.metadata.title + (entry.metadata.subtitle ? ' ' + entry.metadata.subtitle : ''),
-      excerpt: entry.metadata.excerpt,
-      date: entry.metadata.date,
-      readTime: entry.metadata.readTime,
-      tags: entry.metadata.tags,
-      category: entry.metadata.category,
-      featured: false,
-      gradient: 'from-purple-500 to-pink-500'
-    }))
-    .sort((a, b) => {
-      // Parse dates and sort from newest to oldest
-      const dateA = new Date(a.date)
-      const dateB = new Date(b.date)
-      return dateB.getTime() - dateA.getTime()
-    })
-}
+export const getAllNotes = () => getAllContentByType('note')
+export const getNote = (slug: string) => getContentBySlug('note', slug)
+export const getNoteListItems = () => getContentListByType('note')
+
+// Backwards compatibility types
+export type ArticleData = BaseContentData

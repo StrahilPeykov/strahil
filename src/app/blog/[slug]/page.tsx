@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { ArticleTemplate } from '../../../components/templates/ArticleTemplate'
+import { ContentTemplate } from '../../../components/templates/ContentTemplate'
 import { getBlogPost } from '../../../lib/content'
 import type { Metadata } from 'next'
 
@@ -44,5 +44,6 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound()
   }
 
-  return <ArticleTemplate article={post} />
+  // Use the new unified ContentTemplate
+  return <ContentTemplate content={post} />
 }
