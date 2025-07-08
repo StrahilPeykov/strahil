@@ -187,7 +187,6 @@ users.sort((a, b) => {
           'The AI said this would work.' The former leads to learning; the latter leads 
           to digital illiteracy."
         </p>
-        <p className="text-sm text-gray-500 mt-4">— Me</p>
       </div>
     </div>
   )
