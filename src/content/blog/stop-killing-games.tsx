@@ -1,270 +1,406 @@
-import { AlertTriangle, Gamepad2, Shield, Scale, TrendingUp, Globe, CheckCircle, Clock } from 'lucide-react'
+import { Gamepad2, AlertTriangle, Shield, Users, Zap, ExternalLink, Calendar, Clock } from 'lucide-react'
+import Link from 'next/link'
 
 export default function StopKillingGamesContent() {
   return (
     <div className="space-y-6 text-gray-300">
       <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-6 mb-8">
         <div className="flex items-start gap-3">
-          <AlertTriangle className="w-6 h-6 text-red-400 flex-shrink-0 mt-1" />
+          <Gamepad2 className="w-6 h-6 text-red-400 flex-shrink-0 mt-1" />
           <div>
-            <h3 className="text-lg font-semibold text-white mb-2">Recent Example</h3>
+            <h3 className="text-lg font-semibold text-white mb-2">Digital Destruction in Progress</h3>
             <p className="text-gray-300">
-              Ubisoft just announced they're shutting down "The Crew" servers on March 31, 2024. 
-              A game people paid full price for will become completely unplayable. This isn't 
-              just about one game—it's about the precedent we're setting for digital ownership.
+              When publishers shut down game servers, they're not just ending a service—they're 
+              destroying digital culture. And unlike a discontinued book or movie, these games 
+              disappear forever, taking years of player investment with them.
             </p>
           </div>
         </div>
       </div>
       
       <p className="text-xl leading-relaxed">
-        As developers, we pour years of our lives into creating digital worlds. We obsess over 
-        every pixel, every line of code, every user interaction. So why are we okay with these 
-        creations having built-in expiration dates?
+        Imagine buying a book, only to have the publisher break into your house months later 
+        to burn it. Sounds absurd, right? Yet this is exactly what's happening in the gaming 
+        world today, and most of us have accepted it as normal.
       </p>
       
       <h2 className="text-3xl font-display font-bold text-white mt-12 mb-6">
-        The Problem: Games as a Service, Death as a Feature
+        The Movement That's Fighting Back
       </h2>
       
       <p>
-        The shift from games as products to games as services has fundamentally changed what 
-        it means to "own" a game. When you bought a Nintendo 64 cartridge, it was yours forever. 
-        Today, you're essentially renting access to a server that can be shut down at any moment.
+        <a 
+          href="https://citizens-initiative.europa.eu/initiatives/details/2024/000007_en" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-purple-400 hover:text-purple-300 underline"
+        >
+          Stop Killing Games
+        </a> is a European Citizens' Initiative launched on June 19, 2024, by Ross Scott. 
+        Officially registered as <strong className="text-white">ECI(2024)000007</strong>, 
+        it's calling on the European Commission to require video game publishers in the EU 
+        to keep games functional and playable even after they cease supporting them.
       </p>
-
+      
+      <p>
+        At its core, this isn't about forcing publishers to run servers indefinitely. 
+        It's about challenging the practice of selling products as "purchases" when they're 
+        effectively just temporary licenses that can be revoked without warning or compensation.
+      </p>
       
       <h2 className="text-3xl font-display font-bold text-white mt-12 mb-6">
-        Why This Matters: Beyond Gaming
+        The Crew: A Case Study in Digital Destruction
       </h2>
       
       <p>
-        This isn't just about gamers losing access to their favorite titles. It's about:
+        The movement's legal action centers around Ubisoft's handling of "The Crew," 
+        which became a perfect example of everything wrong with the current system.
       </p>
       
-      <div className="space-y-6 my-8">
-        <div className="flex items-start gap-4">
-          <div className="w-10 h-10 rounded-full bg-purple-500/10 flex items-center justify-center flex-shrink-0">
-            <Globe className="w-5 h-5 text-purple-400" />
+      <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800 my-8">
+        <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+          <Calendar className="w-6 h-6 text-red-400" />
+          Timeline of Destruction
+        </h3>
+        <div className="space-y-3 text-sm">
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+            <span className="text-gray-400">December 14, 2023:</span>
+            <span className="text-white">Ubisoft delists The Crew from digital platforms</span>
           </div>
-          <div>
-            <h4 className="font-semibold text-white mb-2">Cultural Preservation</h4>
-            <p className="text-gray-300">
-              Games are cultural artifacts. When we lose them, we lose part of our digital 
-              heritage. Imagine if we couldn't watch classic films because the studios decided 
-              to destroy all copies.
-            </p>
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+            <span className="text-gray-400">December 2023:</span>
+            <span className="text-white">Microtransaction sales suspended</span>
           </div>
-        </div>
-        
-        <div className="flex items-start gap-4">
-          <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0">
-            <Scale className="w-5 h-5 text-blue-400" />
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+            <span className="text-gray-400">March 31, 2024:</span>
+            <span className="text-white">Servers shut down permanently</span>
           </div>
-          <div>
-            <h4 className="font-semibold text-white mb-2">Consumer Rights</h4>
-            <p className="text-gray-300">
-              When you pay $70 for a game, you should own something. The current model is 
-              like buying a car that the manufacturer can remotely disable whenever they 
-              want.
-            </p>
-          </div>
-        </div>
-        
-        <div className="flex items-start gap-4">
-          <div className="w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center flex-shrink-0">
-            <TrendingUp className="w-5 h-5 text-green-400" />
-          </div>
-          <div>
-            <h4 className="font-semibold text-white mb-2">Environmental Impact</h4>
-            <p className="text-gray-300">
-              Planned obsolescence in games encourages constant consumption. Players are 
-              forced to buy new games not because they want to, but because their old ones 
-              were killed.
-            </p>
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 bg-red-600 rounded-full"></div>
+            <span className="text-gray-400">Post-shutdown:</span>
+            <span className="text-white">Licenses revoked with no refunds or game file access</span>
           </div>
         </div>
       </div>
       
+      <p>
+        This wasn't just a server shutdown—it was systematic erasure. Players who had purchased 
+        the game lost all access, despite having paid full price for what was marketed as a 
+        purchase. No refunds were offered, no offline mode was provided, and the game files 
+        themselves became inaccessible.
+      </p>
+      
+      <p>
+        The most troubling part? <strong className="text-white">The same fate awaits games like 
+        Need for Speed (2015)</strong> unless something changes. These aren't isolated incidents; 
+        they're a business model.
+      </p>
+      
       <h2 className="text-3xl font-display font-bold text-white mt-12 mb-6">
-        The Technical Reality: It Doesn't Have to Be This Way
+        The Pirate Software Controversy
       </h2>
       
       <p>
-        As a developer, I know the technical arguments publishers make are largely bullshit. 
+        The movement faced significant pushback when Pirate Software (Thor) released a critical 
+        video titled <a 
+          href="https://youtu.be/ioqSvLqB46Y?si=6Iwo-uy_3nt9fGRG" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-purple-400 hover:text-purple-300 underline"
+        >
+          "Stop Killing Games"
+        </a> on August 6, 2024. His critique centered on what he perceived as the initiative's 
+        vagueness and potential damage to live service games.
       </p>
       
       <div className="bg-slate-900/30 rounded-xl p-6 border border-slate-800 my-8">
-        <h3 className="text-lg font-semibold text-white mb-4">Common Excuses vs Reality</h3>
-        
-        <div className="space-y-4">
-          <div>
-            <p className="text-red-400 font-medium mb-1">"It's too expensive to maintain servers"</p>
-            <p className="text-gray-400 text-sm">
-              <strong className="text-green-400">Reality:</strong> Release server binaries. 
-              Let the community run them. Counter-Strike 1.6 servers still run today, 
-              maintained by fans at zero cost to Valve.
-            </p>
-          </div>
-          
-          <div>
-            <p className="text-red-400 font-medium mb-1">"The game architecture requires our servers"</p>
-            <p className="text-gray-400 text-sm">
-              <strong className="text-green-400">Reality:</strong> Most "always-online" 
-              requirements are artificial. The game logic usually runs fine locally—the 
-              server dependency is often just DRM with extra steps.
-            </p>
-          </div>
-          
-          <div>
-            <p className="text-red-400 font-medium mb-1">"It would hurt sales of our new games"</p>
-            <p className="text-gray-400 text-sm">
-              <strong className="text-green-400">Reality:</strong> If your new game can't 
-              compete with a 10-year-old title running on community servers, maybe make 
-              better games?
-            </p>
-          </div>
-        </div>
+        <h3 className="text-lg font-semibold text-white mb-3">The Misunderstanding</h3>
+        <p className="text-gray-400 mb-4">
+          Thor quoted the official objectives summary:
+        </p>
+        <blockquote className="border-l-4 border-purple-500 pl-4 italic text-gray-300 bg-slate-800/50 p-4 rounded-r-lg">
+          "This initiative calls to require publishers that sell or license videogames to consumers 
+          in the European Union [...] to leave said videogames in a functional (playable) state. 
+          [...] The initiative seeks to prevent the remote disabling of videogames by the publishers, 
+          before providing reasonable means to continue functioning of said videogames without the 
+          involvement from the side of the publisher."
+        </blockquote>
+        <p className="text-gray-400 mt-4">
+          His criticism: <em>"this isn't always possible in all video games and it doesn't call out 
+          the specific practice that this is supposedly trying to defeat. It is incredibly vague 
+          and will damage all live service games."</em>
+        </p>
       </div>
       
+      <p>
+        But here's the crucial point Thor missed: <strong className="text-white">this vagueness 
+        is intentional and necessary</strong>. Stop Killing Games is a European Citizen's Initiative, 
+        not a law or legislative proposal. It's a formal request to start a conversation and ask 
+        the European Commission to consider drafting legislation.
+      </p>
+      
       <h2 className="text-3xl font-display font-bold text-white mt-12 mb-6">
-        What the Stop Killing Games Movement Wants
+        Technical Reality vs. Misconceptions
       </h2>
       
       <p>
-        The movement, spearheaded by Ross Scott (of Freeman's Mind fame), isn't asking for 
-        the impossible. The demands are simple and reasonable:
+        One of Thor's main technical arguments deserves closer examination. He claimed that keeping 
+        games like League of Legends functional would require rearchitecting the entire game because 
+        of their client-server architecture.
       </p>
-      
-      <ol className="space-y-4 my-8">
-        <li className="flex items-start gap-3">
-          <span className="text-purple-400 font-bold flex-shrink-0">1.</span>
-          <div>
-            <strong className="text-white">End-of-Life Plans:</strong> When shutting down 
-            a game, publishers must provide a way for customers to continue playing. This 
-            could be server binaries, offline patches, or peer-to-peer functionality.
-          </div>
-        </li>
-        
-        <li className="flex items-start gap-3">
-          <span className="text-purple-400 font-bold flex-shrink-0">2.</span>
-          <div>
-            <strong className="text-white">Clear Disclosure:</strong> Games that will become 
-            unplayable must clearly state this at point of sale. No more hiding it in 
-            50-page EULAs.
-          </div>
-        </li>
-        
-        <li className="flex items-start gap-3">
-          <span className="text-purple-400 font-bold flex-shrink-0">3.</span>
-          <div>
-            <strong className="text-white">Legal Protection:</strong> Legislation preventing 
-            companies from rendering purchased software intentionally non-functional.
-          </div>
-        </li>
-      </ol>
       
       <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-6 my-8">
         <div className="flex items-start gap-3">
-          <Shield className="w-6 h-6 text-blue-400 flex-shrink-0 mt-1" />
+          <Zap className="w-6 h-6 text-blue-400 flex-shrink-0 mt-1" />
           <div>
-            <h3 className="text-lg font-semibold text-white mb-2">EU Citizens: You Can Help</h3>
-            <p className="text-gray-300 mb-3">
-              The movement is pushing for an EU Citizens' Initiative. If successful, this 
-              would force the European Commission to consider legislation protecting games 
-              from being killed.
+            <h3 className="text-lg font-semibold text-white mb-2">The Technical Truth</h3>
+            <p className="text-gray-300 mb-4">
+              Most modern online games use client-server architecture where the client sends input 
+              and the server processes logic and sends back results. This prevents cheating since 
+              important calculations never happen on player machines.
             </p>
-            <a 
-              href="https://www.stopkillinggames.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
-            >
-              Learn more and sign the petition
-              <Shield className="w-4 h-4" />
-            </a>
+            <p className="text-gray-300">
+              However, Thor's claim that "all of the math, all of the game, everything happens on 
+              the server" isn't entirely accurate. While servers are the ultimate authority, clients 
+              still make predictions locally for responsiveness and receive more information than 
+              what's displayed (which is why wallhacks are possible).
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <p>
+        More importantly, preservation doesn't require massive rearchitecture. Publishers could 
+        release server binaries or offer lightweight self-hosting versions. The client wouldn't 
+        need reworking since it's already built to communicate with servers—whether official or 
+        player-hosted.
+      </p>
+      
+      <p>
+        <strong className="text-white">The real obstacle isn't technical; it's legal and commercial.</strong> 
+        Publishers simply don't want to provide these options because they prefer controlled obsolescence.
+      </p>
+      
+      <h2 className="text-3xl font-display font-bold text-white mt-12 mb-6">
+        Addressing the "Why Preserve Dead Games?" Question
+      </h2>
+      
+      <p>
+        In his follow-up video on August 8, Thor questioned the value of preserving "dead" multiplayer 
+        games: <em>"when a multiplayer game dies... why would you want to preserve a game in that 
+        state? You want to take down these live service games, put them up on a private server and 
+        then play it with a couple of people?"</em>
+      </p>
+      
+      <p>
+        This misses the fundamental point: <strong className="text-white">if people want to play 
+        these games, why not let them?</strong> Gaming history is filled with communities that have 
+        kept "dead" games alive for decades. The question isn't whether everyone will play them—it's 
+        whether we should allow entire pieces of digital culture to be erased forever.
+      </p>
+      
+      <h2 className="text-3xl font-display font-bold text-white mt-12 mb-6">
+        The Current State: Fighting for Digital Rights
+      </h2>
+      
+      <p>
+        On June 23, 2025, Ross Scott released <a 
+          href="https://youtu.be/HIfRLujXtUo?si=lLQN2WOl24gAp7Dr" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-purple-400 hover:text-purple-300 underline"
+        >
+          "The end of Stop Killing Games,"
+        </a> acknowledging that the initiative was toward its finish line with limited success. 
+        Scott addressed the Pirate Software controversy directly, explaining that he'd avoided 
+        responding earlier to prevent "drama farming" that might delegitimize the movement.
+      </p>
+      
+      <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-6 my-8">
+        <div className="flex items-start gap-3">
+          <AlertTriangle className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-2">The Misinformation Problem</h3>
+            <p className="text-gray-300 mb-4">
+              Scott revealed that Pirate Software had fundamentally misunderstood the initiative 
+              on stream, claiming it was specifically about single-player DRM when it actually 
+              addresses the broader issue of purchased games being remotely disabled.
+            </p>
+            <p className="text-gray-300">
+              Despite the published videos still misrepresenting the initiative, Pirate Software 
+              has shown little willingness to acknowledge these errors or their detrimental impact 
+              on the movement.
+            </p>
           </div>
         </div>
       </div>
       
       <h2 className="text-3xl font-display font-bold text-white mt-12 mb-6">
-        What We Can Do as Developers
+        What's Really at Stake
       </h2>
       
       <p>
-        If you're building online games, here's how you can be part of the solution:
+        The core issue isn't licensing transparency—it's the hostile terms themselves. Take Blizzard's 
+        license agreement, which states they <em>"reserve the right to terminate this Agreement at 
+        any time for any reason, or for no reason, with or without notice to you."</em> The language 
+        is clear, but the terms are fundamentally anti-consumer.
       </p>
       
-      <div className="space-y-4 my-8">
-        <div className="bg-slate-900/50 rounded-xl p-6 border border-green-500/20">
-          <h4 className="font-semibold text-white mb-3">Design for Longevity</h4>
-          <ul className="space-y-2 text-gray-300 text-sm">
-            <li>• Build with eventual community hosting in mind</li>
-            <li>• Separate game logic from proprietary backend services</li>
-            <li>• Document your server architecture</li>
-            <li>• Use standard protocols where possible</li>
-          </ul>
-        </div>
-        
-        <div className="bg-slate-900/50 rounded-xl p-6 border border-green-500/20">
-          <h4 className="font-semibold text-white mb-3">Plan Your Exit Strategy</h4>
-          <ul className="space-y-2 text-gray-300 text-sm">
-            <li>• Have an end-of-life plan from day one</li>
-            <li>• Budget for creating offline/community versions</li>
-            <li>• Consider open-sourcing server code when sunsetting</li>
-            <li>• Build tools for community server management</li>
-          </ul>
+      <p>
+        For centuries, basic commerce has operated on simple principles: when you pay money, you 
+        either keep what you bought or, for services, you're told when access ends. Most online-only 
+        games violate both principles.
+      </p>
+      
+      <h2 className="text-3xl font-display font-bold text-white mt-12 mb-6">
+        Legal Framework: A Glimmer of Hope
+      </h2>
+      
+      <p>
+        There's reason for optimism in EU law. According to a <a 
+          href="https://www.europarl.europa.eu/doceo/document/P-9-2024-001352-ASW_EN.html" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-purple-400 hover:text-purple-300 underline"
+        >
+          European Commission response
+        </a>, the standard "terminate at any time for any reason" clauses might violate 
+        Directive 93/13/EEC, which <em>"prohibits unfair terms causing a significant imbalance 
+        in the parties' rights and obligations to the detriment of consumers."</em>
+      </p>
+      
+      <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-6 my-8">
+        <div className="flex items-start gap-3">
+          <Shield className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-2">Legal Precedent</h3>
+            <p className="text-gray-300">
+              The Commission specifically noted that <em>"Terms such as those related to the 
+              unilateral modification or termination by the trader of a contract of indeterminate 
+              duration without reasonable notice may be deemed unfair subject to a case-by-case 
+              assessment."</em>
+            </p>
+          </div>
         </div>
       </div>
       
       <h2 className="text-3xl font-display font-bold text-white mt-12 mb-6">
-        The Bigger Picture
+        What You Can Still Do
       </h2>
       
       <p>
-        This movement isn't anti-developer or even anti-publisher. It's pro-preservation, 
-        pro-consumer, and ultimately pro-gaming. When games can live forever, everyone wins:
+        Despite the challenges, the movement isn't over. There are two crucial opportunities 
+        that could change the course of gaming history:
       </p>
       
-      <ul className="space-y-3 my-6">
-        <li className="flex items-start gap-2">
-          <span className="text-green-400 mt-1">•</span>
-          <span><strong className="text-white">Players</strong> get to keep what they paid for</span>
-        </li>
-        <li className="flex items-start gap-2">
-          <span className="text-green-400 mt-1">•</span>
-          <span><strong className="text-white">Developers</strong> see their work preserved</span>
-        </li>
-        <li className="flex items-start gap-2">
-          <span className="text-green-400 mt-1">•</span>
-          <span><strong className="text-white">Publishers</strong> build goodwill and trust</span>
-        </li>
-        <li className="flex items-start gap-2">
-          <span className="text-green-400 mt-1">•</span>
-          <span><strong className="text-white">Culture</strong> gains permanent artifacts</span>
-        </li>
-      </ul>
+      <div className="grid md:grid-cols-2 gap-6 my-8">
+        <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+          <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+            <Users className="w-5 h-5 text-blue-400" />
+            UK Government Petition
+          </h3>
+          <p className="text-gray-400 text-sm mb-4">
+            A <a 
+              href="https://petition.parliament.uk/petitions/702074" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300 underline"
+            >
+              government petition
+            </a> can bring this issue before UK Parliament for debate.
+          </p>
+          <div className="flex items-center gap-2 text-xs text-gray-500">
+            <ExternalLink className="w-3 h-3" />
+            <span>Sign the UK petition</span>
+          </div>
+        </div>
+        
+        <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+          <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+            <Shield className="w-5 h-5 text-purple-400" />
+            European Citizens' Initiative
+          </h3>
+          <p className="text-gray-400 text-sm mb-4">
+            The EU initiative remains the most powerful tool available, with potential to set 
+            global precedent through consumer protection laws.
+          </p>
+          <div className="flex items-center gap-2 text-xs text-gray-500">
+            <ExternalLink className="w-3 h-3" />
+            <span>Support the EU initiative</span>
+          </div>
+        </div>
+      </div>
+      
+      <h2 className="text-3xl font-display font-bold text-white mt-12 mb-6">
+        Why This Matters Beyond Gaming
+      </h2>
+      
+      <p>
+        The Stop Killing Games movement represents something larger than gaming preservation. 
+        It's about establishing digital ownership rights in an increasingly digital world. 
+        If we accept that publishers can revoke access to products we've purchased without 
+        recourse, we're setting a precedent that extends far beyond entertainment.
+      </p>
+      
+      <p>
+        This is about the fundamental nature of ownership in the digital age. When everything 
+        becomes a "service," nothing truly belongs to us anymore. The games industry is simply 
+        the testing ground for this new reality.
+      </p>
       
       <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl p-8 mt-12 border border-purple-500/20">
-        <h3 className="text-xl font-semibold text-white mb-4">Final Thoughts</h3>
+        <h3 className="text-xl font-semibold text-white mb-4">The Bottom Line</h3>
         <p className="text-gray-300 mb-4">
-          We're at a crossroads. We can accept a future where games are temporary, where 
-          our digital culture has an expiration date set by corporate accountants. Or we 
-          can demand better.
+          Stop Killing Games isn't asking for the impossible. It's not demanding eternal server 
+          support or free maintenance. It's asking for something simpler: that when you buy 
+          something, you should be able to keep it.
         </p>
         <p className="text-gray-300 italic">
-          The games we create today will be someone's childhood memories tomorrow. Let's 
-          make sure those memories don't come with a kill switch.
+          In a world where digital goods can vanish at a publisher's whim, the right to preserve 
+          what we've purchased isn't radical—it's fundamental.
         </p>
       </div>
       
       <div className="mt-12 p-6 bg-slate-900/30 rounded-xl border border-slate-800">
-        <h3 className="text-lg font-semibold text-white mb-3">Learn More</h3>
-        <ul className="space-y-2 text-gray-300">
-          <li>• <a href="https://www.stopkillinggames.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">Stop Killing Games Official Site</a></li>
-          <li>• <a href="https://www.youtube.com/watch?v=tUAX0gnZ3Nw" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">Ross Scott's Original Video</a></li>
-          <li>• <a href="https://www.europarl.europa.eu/citizens-initiative/home" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">EU Citizens' Initiative Info</a></li>
-        </ul>
+        <h3 className="text-lg font-semibold text-white mb-3">Take Action</h3>
+        <div className="space-y-3">
+          <div>
+            <strong className="text-white">Learn more:</strong>
+            <a 
+              href="https://www.stopkillinggames.com/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-purple-400 hover:text-purple-300 ml-2 underline"
+            >
+              StopKillingGames.com
+            </a>
+          </div>
+          <div>
+            <strong className="text-white">UK residents:</strong>
+            <a 
+              href="https://petition.parliament.uk/petitions/702074" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300 ml-2 underline"
+            >
+              Sign the parliamentary petition
+            </a>
+          </div>
+          <div>
+            <strong className="text-white">EU citizens:</strong>
+            <a 
+              href="https://citizens-initiative.europa.eu/initiatives/details/2024/000007_en" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-green-400 hover:text-green-300 ml-2 underline"
+            >
+              Support the Citizens' Initiative
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   )
