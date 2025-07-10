@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "strahilpeykov.com"
+        }
+      ],
+      "destination": "https://strahil.dev",
+      "statusCode": 301
+    }
+  ]
+}
