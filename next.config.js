@@ -7,6 +7,15 @@ const nextConfig = {
   images: {
     domains: ['images.unsplash.com'], // Add other image domains as needed
   },
+  async redirects() {
+    return [
+      {
+        source: '/:path*',          // match everything, including the root URL
+        destination: 'https://strahil.dev/:path*',
+        permanent: true            // = HTTP 301
+      },
+    ];
+  },
   async headers() {
     return [
       {
