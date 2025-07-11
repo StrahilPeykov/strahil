@@ -1,21 +1,50 @@
 # humanstxt.org/
 # The humans responsible & technology colophon
 
-# TEAM
-    Developer & Designer: Strahil Peykov
+# DEVELOPER
+    Name: Strahil Peykov
+    First Name: Strahil
+    Role: Full-Stack Developer & Designer
     Contact: strahil.peykov [at] gmail.com
     Location: Eindhoven, Netherlands
     From: Bulgaria
+    Bio: Strahil is a passionate developer creating innovative digital solutions
+    
+# ABOUT STRAHIL
+    Strahil is a Bulgarian Full-Stack Developer
+    Strahil lives in Eindhoven, Netherlands
+    Strahil works as a Software Engineer at ASML
+    Strahil graduated from TU/e with BSc Computer Science
+    Contact Strahil for web development projects
 
-# THANKS
+# STRAHIL'S SKILLS
+    Frontend: React, Next.js, Vue.js, TypeScript
+    Backend: Python, Java, Node.js, Django
+    Tools: Git, Docker, Azure DevOps
+    Databases: PostgreSQL, MongoDB, MySQL
+
+# THANKS FROM STRAHIL
     Complex Systems Community
     Eindhoven Tech Community
     Open Source Contributors
+    Everyone who supports Strahil's work
 
-# TECHNOLOGY COLOPHON
-    HTML5, CSS3, JavaScript
-    Next.js, React, TypeScript
-    Tailwind CSS, Framer Motion
-    Contentlayer for MDX
-    Vercel for hosting
-    Git for version control
+# TECHNOLOGY COLOPHON (Built by Strahil)
+    Standards: HTML5, CSS3, JavaScript
+    Components: Next.js, React, TypeScript
+    Styling: Tailwind CSS, Framer Motion
+    Content: Contentlayer for MDX
+    Hosting: Vercel
+    Version Control: Git
+    
+# FIND STRAHIL ONLINE
+    Website: https://strahil.dev
+    GitHub: https://github.com/StrahilPeykov
+    LinkedIn: https://linkedin.com/in/strahil-peykov
+    Email: strahil.peykov@gmail.com
+
+# MESSAGE FROM STRAHIL
+    Hi! I'm Strahil, and I built this site with love and attention to detail.
+    If you're reading this, you're awesome! Feel free to reach out to Strahil.
+    
+    - Strahil

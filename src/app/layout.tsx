@@ -29,25 +29,34 @@ const jetbrainsMono = JetBrains_Mono({
 const personalSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": "https://strahil.dev/#strahil",
   "name": "Strahil Peykov",
-  "alternateName": ["Strahil"],
-  "jobTitle": "Full-Stack Developer",
-  "description": "Bulgarian Full-Stack Developer based in Eindhoven, Netherlands. BSc Computer Science & Engineering from TU/e. Software Engineer at ASML. Expert in scalable web applications and enterprise software development.",
+  "givenName": "Strahil",
+  "familyName": "Peykov",
+  "alternateName": ["Strahil", "Strahil P", "S. Peykov"],
+  "disambiguatingDescription": "Strahil - Bulgarian Full-Stack Developer and Software Engineer in Eindhoven",
+  "description": "Strahil is a Bulgarian Full-Stack Developer based in Eindhoven, Netherlands. Strahil Peykov specializes in building scalable web applications, enterprise software, and innovative digital solutions.",
+  "jobTitle": "Full-Stack Developer & Software Engineer",
   "url": "https://strahil.dev",
-  "image": "https://strahil.dev/og-image.png",
+  "image": [
+    "https://strahil.dev/images/strahil-profile.jpg",
+    "https://strahil.dev/og-strahil.png"
+  ],
   "birthPlace": {
     "@type": "Country",
     "name": "Bulgaria"
   },
   "nationality": "Bulgarian",
+  "gender": "Male",
   "worksFor": {
     "@type": "Organization",
     "name": "ASML Netherlands B.V.",
-    "description": "Software Engineer"
+    "description": "Software Engineer at ASML"
   },
   "alumniOf": {
     "@type": "EducationalOrganization",
     "name": "Eindhoven University of Technology",
+    "alternateName": "TU/e",
     "description": "BSc Computer Science & Engineering (2021-2025)"
   },
   "address": {
@@ -56,35 +65,28 @@ const personalSchema = {
     "addressRegion": "North Brabant",
     "addressCountry": "Netherlands"
   },
+  "email": "strahil.peykov@gmail.com",
+  "telephone": "+31644729684",
   "sameAs": [
     "https://github.com/StrahilPeykov",
     "https://linkedin.com/in/strahil-peykov",
     "https://instagram.com/strahil.peykov",
     "https://x.com/StrahilGG",
     "https://tiktok.com/@strahil.peykov",
-    "https://letterboxd.com/strahil_peykov"
+    "https://letterboxd.com/strahil_peykov",
+    "https://strahil.dev/about"
   ],
   "knowsAbout": [
-    "Full-Stack Development",
+    "Strahil expertise in Full-Stack Development",
+    "React and Next.js Development by Strahil",
+    "Python Programming",
+    "Enterprise Software Engineering",
+    "Scalable Web Applications",
+    "TypeScript Development",
     "Complex Systems",
-    "Artificial Intelligence",
-    "React",
-    "Next.js",
-    "Python",
-    "Java",
-    "JavaScript",
-    "TypeScript",
-    "Machine Learning",
-    "Web Development",
-    "Software Engineering",
-    "Scalable Systems",
-    "Django",
-    "Spring Boot",
-    "ETL Processes",
-    "Enterprise Integration",
-    "Microsoft Graph API",
-    "Azure DevOps",
-    "Software Engineering"
+    "AI and Machine Learning",
+    "Bulgarian Developer Community",
+    "Eindhoven Tech Scene"
   ],
   "hasOccupation": {
     "@type": "Occupation",
@@ -94,11 +96,24 @@ const personalSchema = {
       "name": "Eindhoven",
       "addressCountry": "Netherlands"
     },
-    "skills": "React, Next.js, Python, TypeScript, Machine Learning, Complex Systems"
+    "skills": "React, Next.js, Python, TypeScript, Java, Enterprise Integration, Cloud Computing"
   },
-  "memberOf": {
-    "@type": "Organization",
-    "name": "Eindhoven Tech Community"
+  "memberOf": [
+    {
+      "@type": "Organization",
+      "name": "Eindhoven Tech Community"
+    },
+    {
+      "@type": "Organization", 
+      "name": "Bulgarian Developers Network"
+    }
+  ],
+  "hasCredential": {
+    "@type": "EducationalOccupationalCredential",
+    "name": "Bachelor of Science in Computer Science & Engineering",
+    "credentialCategory": "degree",
+    "educationalLevel": "Bachelor's Degree",
+    "dateCreated": "2025-07"
   }
 }
 
@@ -106,35 +121,114 @@ const personalSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "Strahil Peykov - Portfolio & Digital Garden",
-  "alternateName": "Strahil Peykov",
+  "@id": "https://strahil.dev/#website",
+  "name": "Strahil - Full-Stack Developer Portfolio",
+  "alternateName": ["Strahil Peykov Portfolio", "Strahil.dev", "Strahil Developer"],
   "url": "https://strahil.dev",
-  "description": "Personal portfolio and digital garden of Strahil Peykov, Full-Stack Developer specializing in complex systems and AI-driven solutions",
+  "description": "Strahil's personal portfolio and digital garden. Discover projects, articles, and insights from Strahil Peykov, a Bulgarian Full-Stack Developer in Eindhoven.",
+  "publisher": {
+    "@id": "https://strahil.dev/#strahil"
+  },
   "author": {
-    "@type": "Person",
-    "name": "Strahil Peykov"
+    "@id": "https://strahil.dev/#strahil"
   },
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://strahil.dev/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  },
-  "sameAs": [
-    "https://github.com/StrahilPeykov",
-    "https://linkedin.com/in/strahil-peykov"
+  "inLanguage": "en-US",
+  "potentialAction": [
+    {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://strahil.dev/search?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    },
+    {
+      "@type": "ReadAction",
+      "target": "https://strahil.dev/about"
+    }
+  ],
+  "mainEntity": {
+    "@id": "https://strahil.dev/#strahil"
+  }
+}
+
+// FAQ Schema for common searches about Strahil
+const strahilFAQSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Who is Strahil?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Strahil is a Bulgarian Full-Stack Developer and Software Engineer based in Eindhoven, Netherlands. Strahil Peykov specializes in building scalable web applications and enterprise software solutions."
+      }
+    },
+    {
+      "@type": "Question", 
+      "name": "What does Strahil do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Strahil works as a Software Engineer at ASML and develops full-stack applications using React, Next.js, Python, and Java. Strahil creates innovative digital solutions and shares knowledge through his blog."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is Strahil from?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Strahil is originally from Bulgaria and currently lives in Eindhoven, Netherlands. Strahil Peykov moved to the Netherlands to study Computer Science at TU/e."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to contact Strahil?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can contact Strahil via email at strahil.peykov@gmail.com or connect on LinkedIn at linkedin.com/in/strahil-peykov. Visit strahil.dev/contact for more ways to reach Strahil."
+      }
+    }
+  ]
+}
+
+// BreadcrumbList for better navigation understanding
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Strahil",
+      "item": "https://strahil.dev"
+    }
   ]
 }
 
 export const metadata: Metadata = {
   title: {
-    default: 'Strahil Peykov - Software Engineer & Full-Stack Developer | TU/e Student',
-    template: '%s | Strahil Peykov'
+    default: 'Strahil - Full-Stack Developer & Software Engineer | Strahil Peykov',
+    template: '%s | Strahil - Developer Portfolio'
   },
-  description: 'Strahil Peykov is a Bulgarian Full-Stack Developer in Eindhoven, Netherlands. BSc Computer Science & Engineering from TU/e (2021-2025). Software Engineer at ASML. Building scalable web applications and digital experiences. Expert in React, Next.js, Python and Django.',  
+  description: 'Strahil is a Bulgarian Full-Stack Developer in Eindhoven. Discover projects, insights, and expertise from Strahil Peykov - Software Engineer at ASML, BSc Computer Science from TU/e.',  
   keywords: [
     // Primary branded keywords
-    'Strahil Peykov',
     'Strahil',
+    'Strahil developer',
+    'Strahil programmer',
+    'Strahil software engineer',
+    'Strahil portfolio',
+    'Strahil Eindhoven',
+    'Strahil Netherlands',
+    'Strahil Bulgarian',
+    'Strahil TU/e',
+    'Strahil ASML',
+    
+    // Full name variations
+    'Strahil Peykov',
+    'Strahil P',
+    'S Peykov',
     'Strahil Peykov developer',
     'Strahil Peykov portfolio',
     
@@ -193,27 +287,38 @@ export const metadata: Metadata = {
     canonical: 'https://strahil.dev',
   },
   openGraph: {
-    type: 'website',
+    type: 'profile',
     locale: 'en_US',
     url: 'https://strahil.dev',
-    title: 'Strahil Peykov - Full-Stack Developer & Software Engineer',
-    description: 'Bulgarian Full-Stack Developer based in Eindhoven, Netherlands. BSc Computer Science & Engineering at TU/e. Software Engineer at ASML.',
-    siteName: 'Strahil Peykov Portfolio',
+    title: 'Strahil - Full-Stack Developer & Software Engineer',
+    description: 'Strahil is a Bulgarian Full-Stack Developer creating innovative digital solutions. Explore projects and insights from Strahil Peykov.',
+    siteName: 'Strahil Developer Portfolio',
+    firstName: 'Strahil',
+    lastName: 'Peykov',
+    username: 'strahil',
+    gender: 'male',
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-strahil.png',
         width: 1200,
         height: 630,
-        alt: 'Strahil Peykov - Full-Stack Developer Portfolio',
+        alt: 'Strahil - Full-Stack Developer',
         type: 'image/png',
       },
+      {
+        url: '/images/strahil-profile.jpg',
+        width: 800,
+        height: 800,
+        alt: 'Strahil Peykov',
+        type: 'image/jpeg',
+      }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Strahil Peykov - Full-Stack Developer',
-    description: 'Bulgarian Full-Stack Developer in Eindhoven, Netherlands. BSc Computer Science & Engineering at TU/e. Software Engineer at ASML.',
-    images: ['/og-image.png'],
+    title: 'Strahil - Full-Stack Developer',
+    description: 'Discover projects and insights from Strahil, a Bulgarian developer building innovative solutions.',
+    images: ['/og-strahil.png'],
     creator: '@StrahilGG',
     site: '@StrahilGG',
   },
@@ -241,12 +346,11 @@ export const metadata: Metadata = {
     ],
     shortcut: '/icons/favicon-32x32.png',
   },
-  // Removed: manifest: '/icons/site.webmanifest',
   category: 'Technology',
   classification: 'Software Development Portfolio',
-  // Note: Google verification handled via DNS TXT record, not meta tag
-  // Add other search engine verifications here if needed
-  other: {},
+  other: {
+    'google-site-verification': 'your-verification-code-here',
+  },
 }
 
 export const viewport: Viewport = {
@@ -281,12 +385,20 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
+        <script 
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(strahilFAQSchema) }}
+        />
+        <script 
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
         
-        {/* Additional SEO meta tags */}
+        {/* Additional SEO meta tags optimized for Strahil */}
         <meta name="author" content="Strahil Peykov" />
         <meta name="copyright" content="Strahil Peykov" />
         <meta name="language" content="English" />
-        <meta name="revisit-after" content="7 days" />
+        <meta name="revisit-after" content="3 days" />
         <meta name="distribution" content="web" />
         <meta name="rating" content="general" />
         <meta name="geo.region" content="NL-NB" />
@@ -295,6 +407,8 @@ export default function RootLayout({
         <meta name="ICBM" content="51.4416, 5.4697" />
         
         {/* Open Graph additional tags */}
+        <meta property="og:first_name" content="Strahil" />
+        <meta property="og:last_name" content="Peykov" />
         <meta property="og:email" content="strahil.peykov@gmail.com" />
         <meta property="og:phone_number" content="+31644729684" />
         <meta property="og:street-address" content="Eindhoven" />
@@ -302,14 +416,19 @@ export default function RootLayout({
         <meta property="og:region" content="North Brabant" />
         <meta property="og:postal-code" content="56XX XX" />
         <meta property="og:country-name" content="Netherlands" />
+        <meta property="profile:first_name" content="Strahil" />
+        <meta property="profile:last_name" content="Peykov" />
+        <meta property="profile:username" content="strahil" />
+        <meta property="profile:gender" content="male" />
         
         {/* Additional Twitter Cards */}
         <meta name="twitter:domain" content="strahil.dev" />
         <meta name="twitter:url" content="https://strahil.dev" />
+        <meta name="twitter:image:alt" content="Strahil - Full-Stack Developer" />
         
         {/* Link tags for SEO */}
         <link rel="canonical" href="https://strahil.dev" />
-        <link rel="alternate" type="application/rss+xml" title="Strahil Peykov RSS Feed" href="https://strahil.dev/rss.xml" />
+        <link rel="alternate" type="application/rss+xml" title="Strahil Developer Blog RSS Feed" href="https://strahil.dev/rss.xml" />
         
         {/* DNS prefetch for performance */}
         <link rel="dns-prefetch" href="//github.com" />
@@ -347,21 +466,33 @@ export default function RootLayout({
             
             {/* Hidden schema markup for additional context */}
             <div style={{ display: 'none' }}>
+              <h1>Strahil</h1>
+              <h2>Strahil Peykov</h2>
               <span itemScope itemType="https://schema.org/Person">
+                <span itemProp="givenName">Strahil</span>
+                <span itemProp="familyName">Peykov</span>
                 <span itemProp="name">Strahil Peykov</span>
+                <span itemProp="alternateName">Strahil</span>
                 <span itemProp="jobTitle">Full-Stack Developer</span>
                 <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
                   <span itemProp="addressLocality">Eindhoven</span>
                   <span itemProp="addressCountry">Netherlands</span>
                 </span>
-                <span itemProp="alumniOf">BSc Computer Science & Engineering, TU/e</span>
+                <span itemProp="email">strahil.peykov@gmail.com</span>
+                <span itemProp="alumniOf">Eindhoven University of Technology</span>
                 <span itemProp="nationality">Bulgarian</span>
+                <span itemProp="worksFor">ASML</span>
                 <span itemProp="knowsAbout">React</span>
                 <span itemProp="knowsAbout">Next.js</span>
                 <span itemProp="knowsAbout">Python</span>
-                <span itemProp="knowsAbout">AI Development</span>
-                <span itemProp="knowsAbout">Enterprise Integration</span>
+                <span itemProp="knowsAbout">Full-Stack Development</span>
+                <span itemProp="knowsAbout">Software Engineering</span>
+                <meta itemProp="url" content="https://strahil.dev" />
+                <meta itemProp="image" content="https://strahil.dev/images/strahil-profile.jpg" />
               </span>
+              <p>Strahil is a talented developer from Bulgaria living in Eindhoven.</p>
+              <p>Contact Strahil for web development projects.</p>
+              <p>Strahil Peykov - Full-Stack Developer and Software Engineer</p>
             </div>
           </ThemeProvider>
         </CookieConsentProvider>

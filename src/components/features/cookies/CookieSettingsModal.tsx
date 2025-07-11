@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
 import { useCookieConsent } from '../../providers/CookieConsentProvider'
@@ -11,10 +11,30 @@ interface CookieSettingsModalProps {
 }
 
 export function CookieSettingsModal({ isOpen, onClose }: CookieSettingsModalProps) {
-  const { consentType, updateConsent } = useCookieConsent()
-  const [analyticsEnabled, setAnalyticsEnabled] = useState(consentType === 'accepted')
+  // Initialize with null to handle SSR
+  const [analyticsEnabled, setAnalyticsEnabled] = useState<boolean | null>(null)
+  const [isMounted, setIsMounted] = useState(false)
+  
+  // Use the hook conditionally after mounting
+  const cookieContext = isMounted ? useCookieConsent() : null
+  const consentType = cookieContext?.consentType
+  const updateConsent = cookieContext?.updateConsent
+  
+  // Set mounted state
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+  
+  // Initialize analytics state after mounting
+  useEffect(() => {
+    if (isMounted && consentType !== null) {
+      setAnalyticsEnabled(consentType === 'accepted')
+    }
+  }, [isMounted, consentType])
   
   const handleSave = () => {
+    if (!updateConsent || analyticsEnabled === null) return
+    
     const newConsent = analyticsEnabled ? 'accepted' : 'rejected'
     updateConsent(newConsent)
     onClose()
@@ -23,6 +43,11 @@ export function CookieSettingsModal({ isOpen, onClose }: CookieSettingsModalProp
     if (consentType === 'accepted' && newConsent === 'rejected') {
       setTimeout(() => window.location.reload(), 100)
     }
+  }
+
+  // Don't render until mounted to avoid hydration issues
+  if (!isMounted) {
+    return null
   }
 
   return (
@@ -78,9 +103,10 @@ export function CookieSettingsModal({ isOpen, onClose }: CookieSettingsModalProp
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input
                         type="checkbox"
-                        checked={analyticsEnabled}
+                        checked={analyticsEnabled === true}
                         onChange={(e) => setAnalyticsEnabled(e.target.checked)}
                         className="sr-only peer"
+                        disabled={analyticsEnabled === null}
                       />
                       <div className="w-9 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-purple-600"></div>
                     </label>
@@ -102,6 +128,7 @@ export function CookieSettingsModal({ isOpen, onClose }: CookieSettingsModalProp
                 <button
                   onClick={handleSave}
                   className="flex-1 px-4 py-2 text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 rounded-lg transition-all"
+                  disabled={!updateConsent}
                 >
                   Save preferences
                 </button>
