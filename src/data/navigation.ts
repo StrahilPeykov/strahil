@@ -1,4 +1,4 @@
-import { Briefcase, PenTool, User, Mail, Wrench, GraduationCap, Heart, Gamepad2 } from 'lucide-react'
+import { Briefcase, PenTool, User, Mail, Wrench, GraduationCap, Heart, Gamepad2, Brain } from 'lucide-react'
 import type { NavigationItem } from '../types/navigation'
 
 export const allNavigationItems: NavigationItem[] = [
@@ -50,6 +50,15 @@ export const allNavigationItems: NavigationItem[] = [
   },
   
   // Secondary pages - these go in "More" dropdown
+  {
+    id: 'notes',
+    href: '/notes',
+    label: 'Notes',
+    icon: Brain,
+    description: 'Ideas & observations',
+    color: '#8b5cf6',
+    gradient: 'from-violet-500/10 to-purple-500/10'
+  },
   {
     id: 'courses',
     href: '/courses',
