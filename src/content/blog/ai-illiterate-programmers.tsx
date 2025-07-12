@@ -9,7 +9,7 @@ export default function AIIlliterateProgrammersContent() {
           <div>
             <h3 className="text-lg font-semibold text-white mb-2">The Silent Crisis</h3>
             <p className="text-gray-300">
-              A junior developer recently asked me: "Why would I learn how quicksort works when 
+              Some juniors are asking recently "Why would I learn how quicksort works when 
               GitHub Copilot can write it for me?" This question encapsulates a growing problem 
               in our industry.
             </p>
@@ -28,7 +28,7 @@ export default function AIIlliterateProgrammersContent() {
       </h2>
       
       <p>
-        I've been coding for over a decade, and I've seen the landscape change dramatically. 
+        I've been coding for a few years, and I've seen the landscape change dramatically. 
         When I started, Stack Overflow was the go-to resource. You'd search for a problem, 
         find similar issues, understand the solutions, and adapt them to your needs. The key 
         word here is <strong className="text-white">understand</strong>.
