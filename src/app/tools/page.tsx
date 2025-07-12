@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Wrench, Search, Users, Zap, ArrowRight, ExternalLink, Github, Star, TrendingUp, Code } from 'lucide-react'
+import { Wrench, Search, Users, Zap, ArrowRight, ExternalLink, Github, Star, TrendingUp, Code, Download, Shield, Archive } from 'lucide-react'
 import { PageWrapper } from '../../components/layout/PageWrapper'
 import { Badge } from '../../components/ui/Badge'
 import Link from 'next/link'
@@ -30,26 +30,28 @@ const tools = [
     category: 'Productivity'
   },
   {
-    id: 'code-snippet-manager',
-    title: 'Smart Snippet Manager',
-    tagline: 'Your code, organized and searchable',
-    description: 'AI-powered code snippet organizer with syntax highlighting, smart search, and team collaboration features.',
-    longDescription: 'Stop losing your valuable code snippets. This tool uses AI to categorize, tag, and make your code instantly searchable.',
-    gradient: 'from-green-500 to-teal-500',
-    icon: Code,
-    status: 'beta',
-    users: 890,
-    snippets: '50K+',
+    id: 'obsidian-publish-downloader',
+    title: 'Obsidian Publish Downloader',
+    tagline: 'Archive any Obsidian Publish vault instantly',
+    description: 'Download complete offline copies of Obsidian Publish sites. Perfect for backing up your own vaults or accessing openly-licensed content offline.',
+    longDescription: 'A privacy-focused tool that lets you create local archives of Obsidian Publish vaults. Fully compliant with EU regulations and respects content ownership.',
+    gradient: 'from-purple-500 to-violet-500',
+    icon: Download,
+    status: 'live',
+    users: 50,
+    downloads: '1K+',
     features: [
-      'AI-powered categorization',
-      'Syntax highlighting for 50+ languages',
-      'Team sharing & collaboration',
-      'VS Code extension'
+      'One-click vault archiving',
+      'ZIP/TAR format options',
+      'Legal compliance checks',
+      'Owner opt-out support',
+      'Progress tracking',
+      'Robots.txt compliant'
     ],
-    techStack: ['React', 'FastAPI', 'PostgreSQL', 'OpenAI'],
-    link: 'https://snippets.strahil.dev',
-    github: null,
-    category: 'Development'
+    techStack: ['Next.js', 'Redis', 'TypeScript', 'Vercel'],
+    link: 'https://obsidian.strahil.dev',
+    github: 'https://github.com/StrahilPeykov/obsidian-publish-downloader',
+    category: 'Productivity'
   },
   {
     id: 'performance-analyzer',
@@ -143,10 +145,10 @@ function ToolCard({ tool, index }: { tool: typeof tools[0], index: number }) {
                 {tool.searches} searches
               </span>
             )}
-            {tool.snippets && (
+            {tool.downloads && (
               <span className="flex items-center gap-1">
-                <Code className="w-4 h-4" />
-                {tool.snippets} saved
+                <Download className="w-4 h-4" />
+                {tool.downloads} downloads
               </span>
             )}
             {tool.waitlist && (
