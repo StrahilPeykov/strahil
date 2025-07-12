@@ -4,8 +4,9 @@ export interface NavigationItem {
   id: string
   href: string
   label: string
-  icon: LucideIcon // More specific typing for Lucide icons
+  icon: LucideIcon
   description: string
   color: string
   gradient: string
+  hidden?: boolean // Optional property to hide items temporarily
 }

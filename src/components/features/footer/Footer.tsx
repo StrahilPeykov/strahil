@@ -48,7 +48,7 @@ export function Footer() {
               {/* Navigation */}
               <div className="md:col-span-2">
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-3">
-                  {allNavigationItems.map((item) => (
+                  {allNavigationItems.filter(item => !item.hidden).map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}

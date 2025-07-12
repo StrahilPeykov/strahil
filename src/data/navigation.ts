@@ -84,7 +84,8 @@ export const allNavigationItems: NavigationItem[] = [
     icon: Heart,
     description: 'Fitness & wellness',
     color: '#ef4444',
-    gradient: 'from-red-500/10 to-pink-500/10'
+    gradient: 'from-red-500/10 to-pink-500/10',
+    hidden: true // Temporarily hidden
   }
 ]
 

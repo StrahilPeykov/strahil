@@ -20,10 +20,14 @@ export function MainNavigation() {
   const closeMoreMenu = () => setIsMoreMenuOpen(false)
 
   // Get primary nav items (5 items: About, Projects, Blog, Tools, Contact)
-  const primaryNavItems = allNavigationItems.filter(item => primaryNavigation.includes(item.id))
+  const primaryNavItems = allNavigationItems.filter(item => 
+    primaryNavigation.includes(item.id) && !item.hidden
+  )
   
-  // Secondary items for "More" (Learn, Play, Health)
-  const moreItems = allNavigationItems.filter(item => !primaryNavigation.includes(item.id))
+  // Secondary items for "More" (Learn, Play, Health) - filter out hidden items
+  const moreItems = allNavigationItems.filter(item => 
+    !primaryNavigation.includes(item.id) && !item.hidden
+  )
 
   // Check if a nav item is active
   const isActiveItem = (href: string) => {
@@ -176,7 +180,7 @@ export function MainNavigation() {
       <MobileMenu 
         isOpen={isMobileMenuOpen} 
         onClose={closeMobileMenu}
-        items={allNavigationItems}
+        items={allNavigationItems.filter(item => !item.hidden)}
         currentPath={pathname}
       />
     </>
