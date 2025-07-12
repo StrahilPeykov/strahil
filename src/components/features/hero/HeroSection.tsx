@@ -60,7 +60,7 @@ export function HeroSection() {
             transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: 0.5 }}
             className="text-lg lg:text-xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            Building software at ASML.
+            Building scalable solutions and software at ASML.
           </motion.p>
 
           {/* CTAs */}

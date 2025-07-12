@@ -45,6 +45,29 @@ const CONTENT_CONFIG = {
 // Content registry
 const contentRegistry: ContentEntry[] = [
   {
+    slug: 'blame-game',
+    type: 'blog',
+    metadata: {
+      title: 'The Blame Game:',
+      subtitle: 'Big Bad Men and Our Quest for Simplicity',
+      excerpt: 'Why conspiracy theories are so appealing and what they reveal about human nature. An exploration of our tendency to find simple explanations for complex problems.',
+      date: 'September 12, 2023',
+      readTime: '15 min read',
+      author: 'Strahil Peykov',
+      tags: ['Psychology', 'Society', 'Conspiracy Theories', 'Human Nature', 'Philosophy'],
+      category: 'Philosophy',
+      badges: [
+        { variant: 'purple', label: 'Philosophy' },
+        { variant: 'blue', label: 'Psychology' },
+        { variant: 'warning', label: 'Analysis' }
+      ]
+    },
+    content: () => {
+      const Component = require('../content/blog/blame-game').default
+      return <Component />
+    }
+  },
+  {
     slug: 'ai-illiterate-programmers',
     type: 'blog',
     metadata: {
