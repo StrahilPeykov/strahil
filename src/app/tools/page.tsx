@@ -16,8 +16,8 @@ const tools = [
     gradient: 'from-red-500 to-pink-500',
     icon: Search,
     status: 'live',
-    users: 5678,
-    searches: '100K+',
+    users: 12,
+    searches: '10K+',
     features: [
       'Full-text search across channels',
       'Timestamp navigation',
