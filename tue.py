@@ -54,7 +54,7 @@ courses = [
     ("Intercultural design",                       "DCB210","26 Jun 2025", 7, 5),
     ("ID Green – sustainability",                  "DDB180","26 Jun 2025", 7, 5),
     ("Designing business processes",               "1JZK40", "01 Jul 2025", 7, 5),
-    ("Security",                                   "2IRR40","24 Jun 2025", 7, 5),
+    ("Security",                                   "2IRR40","12 Aug 2025", 7, 5),
 ]
 
 # Build DataFrame
