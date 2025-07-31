@@ -388,7 +388,7 @@ export default function ObsidianDownloaderPage() {
             <div className="text-gray-400 text-sm">Availability</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-white">< 5min</div>
+            <div className="text-3xl font-bold text-white">{'<'} 5min</div>
             <div className="text-gray-400 text-sm">Average Time</div>
           </div>
         </motion.div>
