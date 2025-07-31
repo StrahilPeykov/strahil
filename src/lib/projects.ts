@@ -16,6 +16,17 @@ export interface ProjectWithSlug extends ProjectData {
 // Import all project content components
 const projectRegistry: ProjectEntry[] = [
   {
+    slug: 'frameguessr',
+    metadata: {
+      title: 'FrameGuessr',
+      description: 'Daily movie and TV show guessing game with audio hints, blur effects, and social sharing',
+    },
+    content: () => {
+      const Component = require('../content/projects/frameguessr').default
+      return Component
+    }
+  },
+  {
     slug: 'carboninsight',
     metadata: {
       title: 'CarbonInsight',
@@ -132,6 +143,7 @@ export async function getProjectListItems(): Promise<ProjectListItem[]> {
 // Helper functions for project metadata
 function getProjectGradient(slug: string): string {
   const gradients = {
+    frameguessr: 'from-yellow-500 to-orange-500',
     carboninsight: 'from-green-500 to-blue-500',
     stayhub: 'from-blue-500 to-indigo-500',
     rotorem: 'from-orange-500 to-red-500',
@@ -143,6 +155,6 @@ function getProjectGradient(slug: string): string {
 }
 
 function isProjectFeatured(slug: string): boolean {
-  const featured = ['carboninsight', 'stayhub', 'rotorem']
+  const featured = ['frameguessr', 'carboninsight', 'stayhub']
   return featured.includes(slug)
 }

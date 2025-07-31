@@ -11,6 +11,7 @@ const projectData: ProjectData = {
     { variant: 'success' as const, label: "Live" }
   ],
   links: {
+    demo: 'https://frameguessr.com',
     live: 'https://frameguessr.com',
     github: 'https://github.com/StrahilPeykov/frameguessr'
   },
