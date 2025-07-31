@@ -1,5 +1,3 @@
-import { Film, Users, Gamepad2, Award, Zap, Music } from 'lucide-react'
-import { Badge } from '../../components/ui/Badge'
 import type { ProjectData } from '../../components/templates/ProjectTemplate'
 
 const projectData: ProjectData = {
@@ -9,7 +7,8 @@ const projectData: ProjectData = {
   icon: 'Film',
   badges: [
     { variant: 'warning' as const, label: "Daily Game" },
-    { variant: 'purple' as const, label: "Entertainment" }
+    { variant: 'purple' as const, label: "Entertainment" },
+    { variant: 'success' as const, label: "Live" }
   ],
   links: {
     live: 'https://frameguessr.com',
@@ -19,7 +18,7 @@ const projectData: ProjectData = {
     role: 'Full-Stack Developer & Designer',
     context: 'Personal Project',
     timeline: '2025',
-    status: 'Live'
+    status: 'Live & Active'
   },
   techStack: {
     categories: [
@@ -50,17 +49,24 @@ const projectData: ProjectData = {
     },
     {
       icon: 'Award',
-      value: '100%',
+      value: '99.9%',
       label: 'Uptime'
     }
   ],
   content: {
     overview: (
-      <p className="text-gray-400">
-        FrameGuessr combines the appeal of daily puzzle games like Wordle with cinema knowledge, 
-        creating an engaging guessing game where players identify movies and TV shows from 
-        progressively clearer image hints, enhanced with soundtrack previews and social sharing features.
-      </p>
+      <div className="space-y-4">
+        <p className="text-gray-400">
+          FrameGuessr combines the appeal of daily puzzle games like Wordle with cinema knowledge, 
+          creating an engaging guessing game where players identify movies and TV shows from 
+          progressively clearer image hints, enhanced with soundtrack previews and social sharing features.
+        </p>
+        <p className="text-gray-400">
+          Built as a full-stack web application, FrameGuessr demonstrates advanced frontend interactions, 
+          API integrations, database management, and user experience design, all wrapped in a cinema-themed 
+          interface that makes film discovery fun and social.
+        </p>
+      </div>
     ),
     challenge: (
       <div className="space-y-4 text-gray-400">
@@ -70,20 +76,24 @@ const projectData: ProjectData = {
         </p>
         <ul className="space-y-2">
           <li className="flex items-start gap-2">
-            <Film className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
-            <span>Progressive blur system that maintains visual appeal while providing fair difficulty scaling</span>
+            <span className="w-2 h-2 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></span>
+            <span><strong>Progressive blur system</strong> that maintains visual appeal while providing fair difficulty scaling</span>
           </li>
           <li className="flex items-start gap-2">
-            <Music className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
-            <span>Integration of audio hints with copyright-compliant preview system via Deezer API</span>
+            <span className="w-2 h-2 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></span>
+            <span><strong>Audio integration</strong> with copyright-compliant preview system via Deezer API</span>
           </li>
           <li className="flex items-start gap-2">
-            <Users className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
-            <span>Intelligent search system for movie/TV show identification with fuzzy matching</span>
+            <span className="w-2 h-2 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></span>
+            <span><strong>Intelligent search</strong> for movie/TV show identification with fuzzy matching</span>
           </li>
           <li className="flex items-start gap-2">
-            <Zap className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
-            <span>Daily challenge generation and result sharing without spoilers</span>
+            <span className="w-2 h-2 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></span>
+            <span><strong>Daily challenge generation</strong> and result sharing without spoilers</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="w-2 h-2 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></span>
+            <span><strong>Rate limiting and abuse prevention</strong> while maintaining smooth UX</span>
           </li>
         </ul>
       </div>
@@ -103,8 +113,8 @@ const projectData: ProjectData = {
               while providing fair progression from heavily obscured to clearly visible.
             </p>
             <div className="flex flex-wrap gap-2">
-              <Badge variant="blue" size="sm">CSS Filters</Badge>
-              <Badge variant="blue" size="sm">Image Processing</Badge>
+              <span className="text-xs px-2 py-1 bg-blue-500/10 text-blue-400 rounded">CSS Filters</span>
+              <span className="text-xs px-2 py-1 bg-blue-500/10 text-blue-400 rounded">Image Processing</span>
             </div>
           </div>
           
@@ -115,8 +125,8 @@ const projectData: ProjectData = {
               time-limited playback, and fallback handling.
             </p>
             <div className="flex flex-wrap gap-2">
-              <Badge variant="purple" size="sm">Deezer API</Badge>
-              <Badge variant="purple" size="sm">Web Audio</Badge>
+              <span className="text-xs px-2 py-1 bg-purple-500/10 text-purple-400 rounded">Deezer API</span>
+              <span className="text-xs px-2 py-1 bg-purple-500/10 text-purple-400 rounded">Web Audio</span>
             </div>
           </div>
           
@@ -127,8 +137,8 @@ const projectData: ProjectData = {
               result ranking by popularity and relevance.
             </p>
             <div className="flex flex-wrap gap-2">
-              <Badge variant="success" size="sm">TMDB API</Badge>
-              <Badge variant="success" size="sm">Fuzzy Search</Badge>
+              <span className="text-xs px-2 py-1 bg-green-500/10 text-green-400 rounded">TMDB API</span>
+              <span className="text-xs px-2 py-1 bg-green-500/10 text-green-400 rounded">Fuzzy Search</span>
             </div>
           </div>
           
@@ -139,73 +149,92 @@ const projectData: ProjectData = {
               and streak tracking for returning players.
             </p>
             <div className="flex flex-wrap gap-2">
-              <Badge variant="warning" size="sm">Share API</Badge>
-              <Badge variant="warning" size="sm">Local Storage</Badge>
+              <span className="text-xs px-2 py-1 bg-yellow-500/10 text-yellow-400 rounded">Share API</span>
+              <span className="text-xs px-2 py-1 bg-yellow-500/10 text-yellow-400 rounded">Local Storage</span>
             </div>
           </div>
         </div>
       </div>
     ),
     features: (
-      <ul className="space-y-3 text-gray-400">
-        <li>• <strong>Daily Challenges:</strong> New movie/TV show every day with curated image selection</li>
-        <li>• <strong>Three-Tier Hint System:</strong> Progressive blur reduction from heavily obscured to clear</li>
-        <li>• <strong>Audio Hints:</strong> Soundtrack previews with time-limited playback</li>
-        <li>• <strong>Smart Search:</strong> Real-time movie/TV show search with intelligent ranking</li>
-        <li>• <strong>Historical Access:</strong> Play previous days' challenges with date navigation</li>
-        <li>• <strong>Social Sharing:</strong> Spoiler-free result sharing with visual progress indicators</li>
-        <li>• <strong>Responsive Design:</strong> Optimized experience across all device sizes</li>
-        <li>• <strong>Performance Optimized:</strong> Edge functions, caching, and image optimization</li>
-      </ul>
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold text-white mb-3">Core Features</h3>
+        <ul className="space-y-3 text-gray-400">
+          <li>• <strong>Daily Challenges:</strong> New movie/TV show every day with curated image selection</li>
+          <li>• <strong>Three-Tier Hint System:</strong> Progressive blur reduction from heavily obscured to clear</li>
+          <li>• <strong>Audio Hints:</strong> Soundtrack previews with time-limited playback controls</li>
+          <li>• <strong>Smart Search:</strong> Real-time movie/TV show search with intelligent ranking</li>
+          <li>• <strong>Historical Access:</strong> Play previous days' challenges with date navigation</li>
+          <li>• <strong>Social Sharing:</strong> Spoiler-free result sharing with visual progress indicators</li>
+          <li>• <strong>Responsive Design:</strong> Optimized experience across all device sizes</li>
+          <li>• <strong>Performance Optimized:</strong> Edge functions, caching, and image optimization</li>
+          <li>• <strong>Guess Validation:</strong> Server-side validation with comprehensive error handling</li>
+          <li>• <strong>Rate Protection:</strong> Built-in rate limiting and abuse prevention</li>
+        </ul>
+      </div>
     ),
     implementation: (
-      <div className="space-y-4">
+      <div className="space-y-6">
         <div className="bg-slate-900/30 rounded-xl p-6 border border-slate-800">
-          <h3 className="text-lg font-semibold text-white mb-3">Architecture</h3>
+          <h3 className="text-lg font-semibold text-white mb-3">System Architecture</h3>
           <pre className="text-sm text-gray-400 font-mono overflow-x-auto">
-{`Frontend (Next.js 15)      Backend APIs
-    │                          │
-    ├─ Game UI                ├─ /api/daily
-    ├─ Search System          ├─ /api/search  
-    ├─ Audio Player           ├─ /api/audio
+{`Frontend (Next.js 15)      Backend APIs               External Services
+    │                          │                          │
+    ├─ Game UI                ├─ /api/daily              ├─ TMDB API
+    ├─ Search System          ├─ /api/search             ├─ Deezer API
+    ├─ Audio Player           ├─ /api/audio              └─ Image CDN
     ├─ Share System           ├─ /api/guess
     └─ Date Navigation        └─ Rate Limiting
 
-External Services             Data Layer
+Database (Supabase)          Deployment
     │                          │
-    ├─ TMDB API               ├─ Supabase
-    ├─ Deezer API             ├─ Daily Movies
-    └─ Image CDN              └─ User Progress`}</pre>
+    ├─ Daily Movies           ├─ Vercel Edge
+    ├─ User Progress          ├─ PostgreSQL
+    └─ Analytics              └─ CDN Caching`}</pre>
         </div>
         
         <div>
-          <h3 className="text-lg font-semibold text-white mb-3">Key Technical Achievements</h3>
+          <h3 className="text-lg font-semibold text-white mb-3">Technical Highlights</h3>
           <ul className="space-y-2 text-gray-400">
-            <li>• Custom blur progression algorithm maintaining visual appeal across all difficulty levels</li>
-            <li>• Sophisticated audio streaming with fallback handling and cross-browser compatibility</li>
-            <li>• Intelligent search debouncing and result caching for optimal user experience</li>
-            <li>• Comprehensive rate limiting and API protection against abuse</li>
-            <li>• Server-side validation with client-side optimistic updates</li>
-            <li>• Daily challenge generation system with automatic content rotation</li>
+            <li>• <strong>Custom Blur Algorithm:</strong> Three-level blur progression maintaining visual appeal</li>
+            <li>• <strong>Audio Streaming:</strong> Seamless integration with Deezer API and fallback handling</li>
+            <li>• <strong>Search Intelligence:</strong> Debounced queries with popularity-based ranking</li>
+            <li>• <strong>Rate Limiting:</strong> Comprehensive API protection using Next.js middleware</li>
+            <li>• <strong>Server Validation:</strong> Client-optimistic updates with server-side verification</li>
+            <li>• <strong>Daily Generation:</strong> Automated content rotation with database management</li>
+            <li>• <strong>Share System:</strong> Spoiler-free result encoding for social sharing</li>
+            <li>• <strong>Performance:</strong> Edge functions, image optimization, and aggressive caching</li>
           </ul>
         </div>
       </div>
     ),
     results: (
-      <div className="grid md:grid-cols-3 gap-6">
-        <div className="text-center">
-          <div className="text-4xl font-bold text-yellow-400 mb-2">Live</div>
-          <div className="text-gray-400">Production deployment with daily updates</div>
+      <div className="space-y-6">
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="text-center">
+            <div className="text-4xl font-bold text-yellow-400 mb-2">Live</div>
+            <div className="text-gray-400">Production deployment with daily updates</div>
+          </div>
+          
+          <div className="text-center">
+            <div className="text-4xl font-bold text-orange-400 mb-2">Engaging</div>
+            <div className="text-gray-400">Progressive hint system maintains challenge</div>
+          </div>
+          
+          <div className="text-center">
+            <div className="text-4xl font-bold text-red-400 mb-2">Social</div>
+            <div className="text-gray-400">Spoiler-free sharing drives engagement</div>
+          </div>
         </div>
         
-        <div className="text-center">
-          <div className="text-4xl font-bold text-orange-400 mb-2">Engaging</div>
-          <div className="text-gray-400">Progressive hint system maintains challenge</div>
-        </div>
-        
-        <div className="text-center">
-          <div className="text-4xl font-bold text-red-400 mb-2">Social</div>
-          <div className="text-gray-400">Spoiler-free sharing drives engagement</div>
+        <div className="mt-8 p-6 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 rounded-xl border border-yellow-500/20">
+          <h3 className="text-lg font-semibold text-white mb-3">Project Impact</h3>
+          <p className="text-gray-400">
+            FrameGuessr demonstrates full-stack development capabilities through a production-ready 
+            entertainment application. The project showcases API integration, real-time features, 
+            database design, and user experience optimization - all delivered through a polished, 
+            engaging interface that combines technical complexity with accessibility.
+          </p>
         </div>
       </div>
     )

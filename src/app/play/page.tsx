@@ -16,7 +16,9 @@ const experiments = [
     gradient: 'from-yellow-500 to-orange-500',
     tags: ['Game', 'Next.js', 'Entertainment'],
     difficulty: 'Advanced',
-    status: 'live'
+    status: 'live',
+    external: true,
+    url: 'https://frameguessr.com'
   },
   {
     id: 'particle-physics',
@@ -345,7 +347,7 @@ export default function PlayPage() {
               className="grid grid-cols-3 gap-6 max-w-md mx-auto"
             >
               <div className="text-center">
-                <div className="text-3xl font-display font-bold text-white mb-1">12</div>
+                <div className="text-3xl font-display font-bold text-white mb-1">13</div>
                 <div className="text-sm text-gray-500">Experiments</div>
               </div>
               <div className="text-center">
@@ -380,6 +382,10 @@ export default function PlayPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {experiments.map((experiment, index) => {
                 const Icon = experiment.icon
+                const href = experiment.external ? experiment.url : `/play/${experiment.id}`
+                const target = experiment.external ? '_blank' : undefined
+                const rel = experiment.external ? 'noopener noreferrer' : undefined
+                
                 return (
                   <motion.div
                     key={experiment.id}

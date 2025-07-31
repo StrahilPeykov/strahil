@@ -26,7 +26,7 @@ export const projects: Project[] = [
     duration: '2025',
     url: '/projects/frameguessr',
     live: 'https://frameguessr.com',
-    github: 'https://github.com/yourusername/frameguessr' // Update with actual GitHub URL
+    github: 'https://github.com/StrahilPeykov/frameguessr'
   },
   {
     id: 'carboninsight',
