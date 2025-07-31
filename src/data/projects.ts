@@ -16,6 +16,19 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: 'frameguessr',
+    title: 'FrameGuessr',
+    description: 'Daily movie and TV show guessing game with audio hints, blur effects, and social sharing',
+    technologies: ['Next.js', 'TypeScript', 'Supabase', 'TMDB API', 'Deezer API'],
+    gradient: 'from-yellow-500/10 to-orange-500/10',
+    featured: true,
+    role: 'Full-Stack Developer & Designer',
+    duration: '2025',
+    url: '/projects/frameguessr',
+    live: 'https://frameguessr.com',
+    github: 'https://github.com/yourusername/frameguessr' // Update with actual GitHub URL
+  },
+  {
     id: 'carboninsight',
     title: 'CarbonInsight',
     description: 'Product Carbon Footprint & Digital Product Passport platform for manufacturing SMEs',

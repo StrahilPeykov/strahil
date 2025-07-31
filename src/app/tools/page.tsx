@@ -36,20 +36,20 @@ const tools = [
     description: 'Download complete offline copies of Obsidian Publish sites. Perfect for backing up your own vaults or accessing openly-licensed content offline.',
     longDescription: 'A privacy-focused tool that lets you create local archives of Obsidian Publish vaults. Fully compliant with EU regulations and respects content ownership.',
     gradient: 'from-purple-500 to-violet-500',
-    icon: Download,
+    icon: Archive,
     status: 'live',
     users: 50,
-    downloads: '1K+',
+    downloads: '100+',
     features: [
       'One-click vault archiving',
-      'ZIP/TAR format options',
       'Legal compliance checks',
       'Owner opt-out support',
       'Progress tracking',
-      'Robots.txt compliant'
+      'Robots.txt compliant',
+      'EU/Dutch law compliant'
     ],
-    techStack: ['Next.js', 'Redis', 'TypeScript', 'Vercel'],
-    link: 'https://obsidian.strahil.dev',
+    techStack: ['Next.js', 'Redis', 'TypeScript', 'Archiver'],
+    link: '/tools/obsidian-downloader',
     github: 'https://github.com/StrahilPeykov/obsidian-publish-downloader',
     category: 'Productivity'
   },
@@ -165,12 +165,12 @@ function ToolCard({ tool, index }: { tool: typeof tools[0], index: number }) {
               <>
                 <a
                   href={tool.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={tool.link.startsWith('http') ? "_blank" : undefined}
+                  rel={tool.link.startsWith('http') ? "noopener noreferrer" : undefined}
                   className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white font-medium rounded-full hover:scale-105 transition-transform"
                 >
                   Try it now
-                  <ExternalLink className="w-4 h-4" />
+                  {tool.link.startsWith('http') && <ExternalLink className="w-4 h-4" />}
                 </a>
                 {tool.github && (
                   <a
@@ -272,16 +272,16 @@ export default function ToolsPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-4">
-                {tools[0].title}
+                {tools[1].title}
               </h2>
-              <p className="text-xl text-purple-400 mb-4">{tools[0].tagline}</p>
-              <p className="text-gray-400 mb-6">{tools[0].longDescription}</p>
+              <p className="text-xl text-purple-400 mb-4">{tools[1].tagline}</p>
+              <p className="text-gray-400 mb-6">{tools[1].longDescription}</p>
               
               <div className="grid grid-cols-2 gap-6 mb-8">
                 <div>
                   <h3 className="text-sm font-semibold text-gray-300 mb-2">Built with</h3>
                   <div className="flex flex-wrap gap-2">
-                    {tools[0].techStack.map((tech) => (
+                    {tools[1].techStack.map((tech) => (
                       <Badge key={tech} variant="default" size="sm">{tech}</Badge>
                     ))}
                   </div>
@@ -289,25 +289,23 @@ export default function ToolsPage() {
                 <div>
                   <h3 className="text-sm font-semibold text-gray-300 mb-2">Stats</h3>
                   <div className="space-y-1 text-sm text-gray-400">
-                    <div>{tools[0].users?.toLocaleString() || '0'} active users</div>
-                    <div>{tools[0].searches} searches performed</div>
+                    <div>{tools[1].users?.toLocaleString() || '0'} active users</div>
+                    <div>{tools[1].downloads} downloads</div>
                   </div>
                 </div>
               </div>
               
               <div className="flex items-center gap-4">
-                <a
-                  href={tools[0].link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-500 to-pink-500 text-white font-semibold rounded-full hover:scale-105 transition-transform"
+                <Link
+                  href={tools[1].link}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-violet-500 text-white font-semibold rounded-full hover:scale-105 transition-transform"
                 >
                   Try it now
-                  <ExternalLink className="w-5 h-5" />
-                </a>
-                {tools[0].github && (
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+                {tools[1].github && (
                   <a
-                    href={tools[0].github}
+                    href={tools[1].github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-3 border border-slate-700 text-gray-300 font-medium rounded-full hover:bg-slate-800 transition-colors"
@@ -320,14 +318,14 @@ export default function ToolsPage() {
             </div>
             
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-pink-500/20 blur-3xl" />
-              <div className="relative bg-slate-900/50 backdrop-blur-sm border border-red-500/20 rounded-2xl p-8">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-violet-500/20 blur-3xl" />
+              <div className="relative bg-slate-900/50 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-8">
                 <h3 className="text-xl font-semibold text-white mb-4">Features</h3>
                 <ul className="space-y-3">
-                  {tools[0].features.map((feature, i) => (
+                  {tools[1].features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Zap className="w-3 h-3 text-red-400" />
+                      <div className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <Zap className="w-3 h-3 text-purple-400" />
                       </div>
                       <span className="text-gray-300">{feature}</span>
                     </li>

@@ -1,13 +1,23 @@
 'use client'
 
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion'
-import { Gamepad2, Sparkles, Zap, Palette, Music, Binary, Shapes, MousePointer, ArrowRight, RefreshCw, Brain } from 'lucide-react'
+import { Film, Gamepad2, Sparkles, Zap, Palette, Music, Binary, Shapes, MousePointer, ArrowRight, RefreshCw, Brain } from 'lucide-react'
 import { PageWrapper } from '../../components/layout/PageWrapper'
 import { Badge } from '../../components/ui/Badge'
 import Link from 'next/link'
 import { useState, useEffect, useCallback } from 'react'
 
 const experiments = [
+  {
+    id: 'frameguessr',
+    title: 'FrameGuessr',
+    description: 'Daily movie & TV guessing game with progressive blur hints and soundtracks',
+    icon: Film,
+    gradient: 'from-yellow-500 to-orange-500',
+    tags: ['Game', 'Next.js', 'Entertainment'],
+    difficulty: 'Advanced',
+    status: 'live'
+  },
   {
     id: 'particle-physics',
     title: 'Particle Physics',
