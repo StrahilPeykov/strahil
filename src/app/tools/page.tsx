@@ -16,8 +16,6 @@ const tools = [
     gradient: 'from-red-500 to-pink-500',
     icon: Search,
     status: 'live',
-    users: 12,
-    searches: '10K+',
     features: [
       'Full-text search across channels',
       'Timestamp navigation',
@@ -38,8 +36,6 @@ const tools = [
     gradient: 'from-purple-500 to-violet-500',
     icon: Archive,
     status: 'live',
-    users: 50,
-    downloads: '100+',
     features: [
       'One-click vault archiving',
       'Legal compliance checks',
@@ -63,7 +59,6 @@ const tools = [
     icon: TrendingUp,
     status: 'development',
     expectedLaunch: 'Q2 2024',
-    waitlist: 234,
     features: [
       'Core Web Vitals tracking',
       'Bundle size analysis',
@@ -130,32 +125,14 @@ function ToolCard({ tool, index }: { tool: typeof tools[0], index: number }) {
           </ul>
         </div>
         
-        {/* Stats */}
+        {/* Tech stack */}
         <div className="px-6 pb-6">
-          <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
-            {tool.users && (
-              <span className="flex items-center gap-1">
-                <Users className="w-4 h-4" />
-                {tool.users.toLocaleString()} users
-              </span>
-            )}
-            {tool.searches && (
-              <span className="flex items-center gap-1">
-                <Search className="w-4 h-4" />
-                {tool.searches} searches
-              </span>
-            )}
-            {tool.downloads && (
-              <span className="flex items-center gap-1">
-                <Download className="w-4 h-4" />
-                {tool.downloads} downloads
-              </span>
-            )}
-            {tool.waitlist && (
-              <span className="flex items-center gap-1">
-                <Users className="w-4 h-4" />
-                {tool.waitlist} on waitlist
-              </span>
+          <div className="flex flex-wrap gap-2 mb-6">
+            {tool.techStack.slice(0, 3).map((tech) => (
+              <Badge key={tech} variant="blue" className="text-xs">{tech}</Badge>
+            ))}
+            {tool.techStack.length > 3 && (
+              <Badge variant="blue" className="text-xs">+{tool.techStack.length - 3} more</Badge>
             )}
           </div>
           
@@ -189,7 +166,7 @@ function ToolCard({ tool, index }: { tool: typeof tools[0], index: number }) {
                 href={tool.link}
                 className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 border border-purple-500/30 text-purple-400 font-medium rounded-full hover:bg-purple-500/10 hover:border-purple-500/50 transition-all"
               >
-                Join waitlist
+                Coming soon
                 <ArrowRight className="w-4 h-4" />
               </Link>
             )}
@@ -287,10 +264,10 @@ export default function ToolsPage() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-300 mb-2">Stats</h3>
+                  <h3 className="text-sm font-semibold text-gray-300 mb-2">Status</h3>
                   <div className="space-y-1 text-sm text-gray-400">
-                    <div>{tools[1].users?.toLocaleString() || '0'} active users</div>
-                    <div>{tools[1].downloads} downloads</div>
+                    <div>Live & Active</div>
+                    <div>EU Compliant</div>
                   </div>
                 </div>
               </div>

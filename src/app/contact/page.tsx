@@ -86,7 +86,6 @@ interface FormData {
   company: string
   subject: string
   message: string
-  budget: string
 }
 
 export default function ContactPage() {
@@ -95,8 +94,7 @@ export default function ContactPage() {
     email: '',
     company: '',
     subject: '',
-    message: '',
-    budget: ''
+    message: ''
   })
   
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -120,8 +118,7 @@ export default function ContactPage() {
         email: '',
         company: '',
         subject: '',
-        message: '',
-        budget: ''
+        message: ''
       })
       setSubmitStatus('idle')
     }, 3000)
@@ -187,7 +184,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl lg:text-7xl font-display font-bold text-white mb-6"
+            className="text-5xl lg:text-7xl font-display font-bold leading-none text-white mb-6"
           >
             Let's Start a
             <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
@@ -210,7 +207,7 @@ export default function ContactPage() {
       {/* Contact Methods */}
       <section className="px-6 py-16 border-y border-slate-800">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {contactMethods.map((method) => {
               const Icon = method.icon
               const Component = method.href ? Link : 'div'
@@ -221,19 +218,20 @@ export default function ContactPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: method.delay }}
+                  className="h-full"
                 >
                   <Component
                     href={method.href || '#'}
-                    className="group block"
+                    className="group block h-full"
                     target={method.href?.startsWith('http') ? '_blank' : undefined}
                     rel={method.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
                   >
-                    <div className="relative p-6 rounded-xl bg-slate-900/50 backdrop-blur-sm border border-slate-800 hover:border-purple-500/30 transition-all duration-300">
+                    <div className="relative p-6 rounded-xl bg-slate-900/50 backdrop-blur-sm border border-slate-800 hover:border-purple-500/30 transition-all duration-300 h-full flex flex-col">
                       <div className={`absolute inset-0 bg-gradient-to-br ${method.gradient} opacity-0 group-hover:opacity-10 rounded-xl transition-opacity`} />
                       
-                      <Icon className={`w-8 h-8 ${method.color} mb-3`} />
-                      <h3 className="text-sm text-gray-500 mb-1">{method.label}</h3>
-                      <p className="text-white font-medium">{method.value}</p>
+                      <Icon className={`w-8 h-8 ${method.color} mb-3 flex-shrink-0`} />
+                      <h3 className="text-sm text-gray-500 mb-1 flex-shrink-0">{method.label}</h3>
+                      <p className="text-white font-medium text-sm leading-relaxed break-words">{method.value}</p>
                     </div>
                   </Component>
                 </motion.div>
@@ -313,8 +311,8 @@ export default function ContactPage() {
                   </div>
                 </div>
                 
-                {/* Company & Budget */}
-                <div className="grid md:grid-cols-2 gap-6">
+                {/* Company */}
+                <div className="grid md:grid-cols-1 gap-6">
                   <input
                     type="text"
                     name="company"
@@ -323,19 +321,6 @@ export default function ContactPage() {
                     className="w-full px-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/50 transition-all"
                     placeholder="Company (optional)"
                   />
-                  
-                  <select
-                    name="budget"
-                    value={formData.budget}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/50 transition-all appearance-none cursor-pointer"
-                  >
-                    <option value="">Budget range</option>
-                    <option value="<10k">&lt; €10k</option>
-                    <option value="10k-25k">€10k - €25k</option>
-                    <option value="25k-50k">€25k - €50k</option>
-                    <option value="50k+">€50k+</option>
-                  </select>
                 </div>
                 
                 {/* Subject */}

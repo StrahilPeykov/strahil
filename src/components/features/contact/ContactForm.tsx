@@ -23,7 +23,6 @@ interface FormData {
   company: string
   subject: string
   message: string
-  budget: string
 }
 
 // Add your reCAPTCHA site key here
@@ -35,8 +34,7 @@ export function ContactForm() {
     email: '',
     company: '',
     subject: '',
-    message: '',
-    budget: ''
+    message: ''
   })
   
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -85,8 +83,7 @@ export function ContactForm() {
           email: '',
           company: '',
           subject: '',
-          message: '',
-          budget: ''
+          message: ''
         })
         setAgreedToTerms(false)
         setSubmitStatus('idle')
@@ -169,8 +166,8 @@ export function ContactForm() {
           </div>
         </div>
         
-        {/* Company & Budget */}
-        <div className="grid md:grid-cols-2 gap-6">
+        {/* Company */}
+        <div className="grid md:grid-cols-1 gap-6">
           <input
             type="text"
             name="company"
@@ -179,19 +176,6 @@ export function ContactForm() {
             className="w-full px-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/50 transition-all"
             placeholder="Company (optional)"
           />
-          
-          <select
-            name="budget"
-            value={formData.budget}
-            onChange={handleChange}
-            className="w-full px-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/50 transition-all appearance-none cursor-pointer"
-          >
-            <option value="">Budget range</option>
-            <option value="<10k">&lt; €10k</option>
-            <option value="10k-25k">€10k - €25k</option>
-            <option value="25k-50k">€25k - €50k</option>
-            <option value="50k+">€50k+</option>
-          </select>
         </div>
         
         {/* Subject */}

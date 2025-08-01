@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion'
-import { Film, Gamepad2, Sparkles, Zap, Palette, Music, Binary, Shapes, MousePointer, ArrowRight, RefreshCw, Brain } from 'lucide-react'
+import { Film, Gamepad2, Sparkles, Zap, ArrowRight, ExternalLink, Github, Star, TrendingUp, Code, Download, Shield, Archive } from 'lucide-react'
 import { PageWrapper } from '../../components/layout/PageWrapper'
 import { Badge } from '../../components/ui/Badge'
 import Link from 'next/link'
@@ -11,74 +11,70 @@ const experiments = [
   {
     id: 'frameguessr',
     title: 'FrameGuessr',
+    tagline: 'Search any YouTube channel like a database',
     description: 'Daily movie & TV guessing game with progressive blur hints and soundtracks',
-    icon: Film,
+    longDescription: 'Built with developers and researchers in mind, this tool indexes and searches through thousands of hours of YouTube content in seconds.',
     gradient: 'from-yellow-500 to-orange-500',
-    tags: ['Game', 'Next.js', 'Entertainment'],
-    difficulty: 'Advanced',
+    icon: Film,
     status: 'live',
-    external: true,
-    url: 'https://frameguessr.com'
+    users: 12,
+    searches: '10K+',
+    features: [
+      'Full-text search across channels',
+      'Timestamp navigation',
+      'Export search results',
+      'API access available'
+    ],
+    techStack: ['Next.js', 'Python', 'Elasticsearch', 'YouTube API'],
+    link: 'https://frameguessr.com',
+    github: 'https://github.com/StrahilPeykov/frameguessr',
+    category: 'Productivity'
   },
   {
-    id: 'particle-physics',
-    title: 'Particle Physics',
-    description: 'Interactive gravity simulation with thousands of particles',
-    icon: Sparkles,
-    gradient: 'from-blue-500 to-cyan-500',
-    tags: ['Canvas', 'Physics', 'Interactive'],
-    difficulty: 'Advanced',
-    status: 'live'
+    id: 'obsidian-publish-downloader',
+    title: 'Obsidian Publish Downloader',
+    tagline: 'Archive any Obsidian Publish vault instantly',
+    description: 'Download complete offline copies of Obsidian Publish sites. Perfect for backing up your own vaults or accessing openly-licensed content offline.',
+    longDescription: 'A privacy-focused tool that lets you create local archives of Obsidian Publish vaults. Fully compliant with EU regulations and respects content ownership.',
+    gradient: 'from-purple-500 to-violet-500',
+    icon: Archive,
+    status: 'live',
+    users: 50,
+    downloads: '100+',
+    features: [
+      'One-click vault archiving',
+      'Legal compliance checks',
+      'Owner opt-out support',
+      'Progress tracking',
+      'Robots.txt compliant',
+      'EU/Dutch law compliant'
+    ],
+    techStack: ['Next.js', 'Redis', 'TypeScript', 'Archiver'],
+    link: '/tools/obsidian-downloader',
+    github: 'https://github.com/StrahilPeykov/obsidian-publish-downloader',
+    category: 'Productivity'
   },
   {
-    id: 'color-generator',
-    title: 'Cosmic Color Generator',
-    description: 'AI-powered color palette generator with export features',
-    icon: Palette,
-    gradient: 'from-purple-500 to-pink-500',
-    tags: ['Colors', 'AI', 'Design'],
-    difficulty: 'Intermediate',
-    status: 'live'
-  },
-  {
-    id: 'sound-visualizer',
-    title: 'Audio Visualizer',
-    description: 'Real-time audio visualization using Web Audio API',
-    icon: Music,
-    gradient: 'from-green-500 to-teal-500',
-    tags: ['Audio', 'Canvas', 'Real-time'],
-    difficulty: 'Advanced',
-    status: 'beta'
-  },
-  {
-    id: 'binary-rain',
-    title: 'Binary Rain',
-    description: 'Matrix-style animation with customizable parameters',
-    icon: Binary,
-    gradient: 'from-green-500 to-emerald-500',
-    tags: ['Animation', 'Canvas', 'Classic'],
-    difficulty: 'Beginner',
-    status: 'live'
-  },
-  {
-    id: '3d-shapes',
-    title: '3D Shape Morpher',
-    description: 'WebGL shape morphing with gesture controls',
-    icon: Shapes,
-    gradient: 'from-orange-500 to-red-500',
-    tags: ['3D', 'WebGL', 'Animation'],
-    difficulty: 'Expert',
-    status: 'development'
-  },
-  {
-    id: 'cursor-effects',
-    title: 'Cursor Magic',
-    description: 'Collection of creative cursor effects and trails',
-    icon: MousePointer,
-    gradient: 'from-indigo-500 to-purple-500',
-    tags: ['CSS', 'JavaScript', 'Effects'],
-    difficulty: 'Intermediate',
-    status: 'live'
+    id: 'performance-analyzer',
+    title: 'Web Performance Analyzer',
+    tagline: 'Make your sites blazing fast',
+    description: 'Comprehensive performance analysis tool that provides actionable insights to optimize your web applications.',
+    longDescription: 'Get detailed performance metrics, optimization suggestions, and track improvements over time.',
+    gradient: 'from-blue-500 to-purple-500',
+    icon: TrendingUp,
+    status: 'development',
+    expectedLaunch: 'Q2 2024',
+    waitlist: 234,
+    features: [
+      'Core Web Vitals tracking',
+      'Bundle size analysis',
+      'Performance budgets',
+      'Historical tracking'
+    ],
+    techStack: ['Lighthouse', 'Puppeteer', 'D3.js', 'Node.js'],
+    link: '/tools/performance-analyzer',
+    github: null,
+    category: 'Performance'
   }
 ]
 
@@ -327,7 +323,7 @@ export default function PlayPage() {
                   )}
                   {activeDemo === 'binary' && (
                     <div className="text-center">
-                      <Binary className="w-24 h-24 text-green-400 mx-auto mb-4" />
+                      <Code className="w-24 h-24 text-green-400 mx-auto mb-4" />
                       <p className="text-gray-400">Matrix-style animation</p>
                     </div>
                   )}
@@ -337,27 +333,6 @@ export default function PlayPage() {
               <p className="text-sm text-gray-500 text-center">
                 This is just a preview. Click on any experiment below to see the full version!
               </p>
-            </motion.div>
-            
-            {/* Quick Stats */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="grid grid-cols-3 gap-6 max-w-md mx-auto"
-            >
-              <div className="text-center">
-                <div className="text-3xl font-display font-bold text-white mb-1">13</div>
-                <div className="text-sm text-gray-500">Experiments</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-display font-bold text-purple-400 mb-1">5k+</div>
-                <div className="text-sm text-gray-500">Interactions</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-display font-bold text-pink-400 mb-1">∞</div>
-                <div className="text-sm text-gray-500">Possibilities</div>
-              </div>
             </motion.div>
           </div>
         </section>
@@ -382,9 +357,9 @@ export default function PlayPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {experiments.map((experiment, index) => {
                 const Icon = experiment.icon
-                const href = experiment.external ? experiment.url : `/play/${experiment.id}`
-                const target = experiment.external ? '_blank' : undefined
-                const rel = experiment.external ? 'noopener noreferrer' : undefined
+                const href = experiment.link.startsWith('http') ? experiment.link : `/play/${experiment.id}`
+                const target = experiment.link.startsWith('http') ? '_blank' : undefined
+                const rel = experiment.link.startsWith('http') ? 'noopener noreferrer' : undefined
                 
                 return (
                   <motion.div
@@ -397,7 +372,7 @@ export default function PlayPage() {
                     onMouseLeave={() => setHoveredExperiment(null)}
                     className="group relative"
                   >
-                    <Link href={`/play/${experiment.id}`}>
+                    <Link href={href} target={target} rel={rel}>
                       <div className="relative h-full bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 hover:border-purple-500/30 transition-all duration-300 overflow-hidden">
                         {/* Background gradient */}
                         <div className={`absolute inset-0 bg-gradient-to-br ${experiment.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
@@ -448,15 +423,12 @@ export default function PlayPage() {
                         {/* Tags and difficulty */}
                         <div className="flex items-center justify-between">
                           <div className="flex flex-wrap gap-2">
-                            {experiment.tags.slice(0, 2).map((tag) => (
+                            {experiment.techStack.slice(0, 2).map((tag) => (
                               <span key={tag} className="text-xs text-gray-500">
                                 #{tag}
                               </span>
                             ))}
                           </div>
-                          <span className="text-xs text-gray-600">
-                            {experiment.difficulty}
-                          </span>
                         </div>
                         
                         {/* Hover indicator */}
@@ -531,7 +503,7 @@ export default function PlayPage() {
                   <div className="relative h-80 bg-gradient-to-br from-yellow-500/10 to-orange-500/10 rounded-2xl flex items-center justify-center">
                     {/* Placeholder for visualization */}
                     <div className="text-center">
-                      <Brain className="w-32 h-32 text-yellow-400/30 mx-auto mb-4" />
+                      <Sparkles className="w-32 h-32 text-yellow-400/30 mx-auto mb-4" />
                       <p className="text-gray-500">Interactive preview here</p>
                     </div>
                   </div>

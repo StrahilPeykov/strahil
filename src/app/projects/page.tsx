@@ -193,27 +193,6 @@ export default function ProjectsPage() {
             From concept to deployment, I build scalable solutions that push boundaries 
             and deliver exceptional user experiences.
           </motion.p>
-          
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="grid grid-cols-3 gap-8 max-w-2xl mx-auto"
-          >
-            {[
-              { number: '10+', label: 'Projects Completed' },
-              { number: '5+', label: 'Open Source Contributions' },
-              { number: '99.9%', label: 'Uptime Average' },
-            ].map((stat, i) => (
-              <div key={i} className="text-center">
-                <div className="text-3xl font-display font-bold text-white mb-1">
-                  {stat.number}
-                </div>
-                <div className="text-sm text-gray-500">{stat.label}</div>
-              </div>
-            ))}
-          </motion.div>
         </div>
         
         {/* Scroll indicator */}
