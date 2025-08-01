@@ -231,7 +231,7 @@ export default function ContactPage() {
                       
                       <Icon className={`w-8 h-8 ${method.color} mb-3 flex-shrink-0`} />
                       <h3 className="text-sm text-gray-500 mb-1 flex-shrink-0">{method.label}</h3>
-                      <p className="text-white font-medium text-sm leading-relaxed break-words">{method.value}</p>
+                      <p className="text-white font-medium text-sm leading-relaxed break-normal">{method.value}</p>
                     </div>
                   </Component>
                 </motion.div>
