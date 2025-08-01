@@ -25,6 +25,13 @@ interface FormData {
   message: string
 }
 
+interface ApiResponse {
+  success?: boolean
+  error?: string
+  message?: string
+  id?: string
+}
+
 // Add your reCAPTCHA site key here
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
 
@@ -39,6 +46,7 @@ export function ContactForm() {
   
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
   const [focusedField, setFocusedField] = useState<string | null>(null)
   const [agreedToTerms, setAgreedToTerms] = useState(false)
 
@@ -46,33 +54,44 @@ export function ContactForm() {
     e.preventDefault()
     
     if (!agreedToTerms) {
-      alert('Please agree to the privacy policy and terms of service')
+      setErrorMessage('Please agree to the privacy policy and terms of service')
+      setSubmitStatus('error')
       return
     }
     
     setIsSubmitting(true)
+    setSubmitStatus('idle')
+    setErrorMessage('')
     
     try {
-      // If reCAPTCHA is enabled, get token
+      // Get reCAPTCHA token if available
       let recaptchaToken = ''
       if (RECAPTCHA_SITE_KEY && window.grecaptcha) {
         try {
           recaptchaToken = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'submit' })
         } catch (error) {
-          console.error('reCAPTCHA error:', error)
+          console.warn('reCAPTCHA error:', error)
         }
       }
       
-      // Simulate API call (replace with actual API endpoint)
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
-      // In production, send data to your API:
-      // const response = await fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ ...formData, recaptchaToken })
-      // })
-      
+      // Send form data to API
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          recaptchaToken
+        })
+      })
+
+      const data: ApiResponse = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message')
+      }
+
       setIsSubmitting(false)
       setSubmitStatus('success')
       
@@ -88,9 +107,11 @@ export function ContactForm() {
         setAgreedToTerms(false)
         setSubmitStatus('idle')
       }, 3000)
+      
     } catch (error) {
       setIsSubmitting(false)
       setSubmitStatus('error')
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to send message. Please try again.')
     }
   }
 
@@ -99,6 +120,12 @@ export function ContactForm() {
       ...prev,
       [e.target.name]: e.target.value
     }))
+    
+    // Clear error when user starts typing
+    if (submitStatus === 'error') {
+      setSubmitStatus('idle')
+      setErrorMessage('')
+    }
   }
 
   return (
@@ -203,7 +230,7 @@ export function ContactForm() {
             placeholder="Tell me about your project..."
           />
           <div className="absolute bottom-3 right-3 text-xs text-gray-600">
-            {formData.message.length}/500
+            {formData.message.length}/1000
           </div>
         </div>
         
@@ -262,10 +289,15 @@ export function ContactForm() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="flex items-center gap-2 text-red-400 justify-center"
+              className="flex flex-col items-center gap-2 text-red-400 justify-center"
             >
-              <AlertCircle className="w-5 h-5" />
-              <span>Something went wrong. Please try again.</span>
+              <div className="flex items-center gap-2">
+                <AlertCircle className="w-5 h-5" />
+                <span>Failed to send message</span>
+              </div>
+              {errorMessage && (
+                <p className="text-sm text-red-300 text-center">{errorMessage}</p>
+              )}
             </motion.div>
           ) : (
             <motion.button
