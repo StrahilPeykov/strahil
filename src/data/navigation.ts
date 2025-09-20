@@ -66,7 +66,8 @@ export const allNavigationItems: NavigationItem[] = [
     icon: GraduationCap,
     description: 'Courses & resources',
     color: '#8b5cf6',
-    gradient: 'from-violet-500/10 to-purple-500/10'
+    gradient: 'from-violet-500/10 to-purple-500/10',
+    hidden: true
   },
   {
     id: 'play',

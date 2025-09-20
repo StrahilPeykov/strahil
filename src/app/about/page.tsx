@@ -51,7 +51,7 @@ const skills = [
 
 const interests = [
   { icon: Dumbbell, label: 'Fitness', description: 'Powerlifting & Calisthenics' },
-  { icon: Palette, label: 'Aesthetics', description: 'Film & Website Projects' },
+  { icon: Palette, label: 'Art', description: 'Film & Website Projects' },
   { icon: BookOpenCheck, label: 'Ideas', description: 'Philosophy and Politics' },
   { icon: Music, label: 'Music', description: 'Piano & Drums' }
 ]
@@ -170,8 +170,8 @@ export default function AboutPage() {
               transition={{ delay: 0.2 }}
               className="text-xl text-gray-400 max-w-2xl mx-auto mb-8"
             >
-              A Bulgarian creative technologist based in Amsterdam, Netherlands. 
-              I build digital experiences that live at the intersection of 
+              A techie based in Amsterdam, Netherlands. 
+              I have interest it
               <span className="text-blue-400"> technology</span>,
               <span className="text-purple-400"> engineering</span>, and
               <span className="text-pink-400"> innovation</span>.
@@ -208,21 +208,20 @@ export default function AboutPage() {
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">
-                    From Bulgaria to the
-                    <span className="text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text"> Netherlands</span>
+                    About
+                    <span className="text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text"> Me</span>
                   </h2>
                   
                   <div className="space-y-4 text-gray-400">
                     <p>
                       Born and raised in Bulgaria, I've always been fascinated by how things work. 
                       This curiosity led me to explore the world of technology, where I discovered 
-                      my passion for building digital solutions that matter.
+                      my passion for building all sorts of tools.
                     </p>
                     
                     <p>
                       My journey took me to the Netherlands, where I pursued my Bachelor's in 
-                      Computer Science & Engineering at TU/e. This comprehensive education in 
-                      software engineering and systems thinking shapes how I approach every project.
+                      Computer Science & Engineering at TU/e.
                     </p>
                     
                     <p>
@@ -307,7 +306,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-12 text-center">
-                Technical Expertise
+                Technical Experience
               </h2>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -344,39 +343,6 @@ export default function AboutPage() {
           </div>
         </section>
         
-        {/* Values Section */}
-        <section className="px-6 py-24 relative">
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent" />
-          
-          <div className="max-w-6xl mx-auto relative">
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-12 text-center">
-                What Drives Me
-              </h2>
-              
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {values.map((value, index) => (
-                  <motion.div
-                    key={value.title}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="text-center group"
-                  >
-                    <div className={`w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${value.color} opacity-20 group-hover:opacity-30 transition-opacity`} />
-                    <h3 className="text-lg font-semibold text-white mb-2">{value.title}</h3>
-                    <p className="text-sm text-gray-400">{value.description}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
         
         {/* Interests Section */}
         <section className="px-6 py-24">

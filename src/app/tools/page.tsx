@@ -232,8 +232,7 @@ export default function ToolsPage() {
             transition={{ delay: 0.2 }}
             className="text-xl text-gray-400 max-w-2xl mx-auto"
           >
-            Powerful tools built to solve real problems. Making developers' 
-            lives easier, one tool at a time.
+            Some cool tools I made.
           </motion.p>
         </div>
       </section>

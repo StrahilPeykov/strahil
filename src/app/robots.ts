@@ -6,13 +6,13 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/private/', '/admin/', '/_next/', '/api/private/'],
+        disallow: ['/private/', '/admin/', '/_next/', '/api/private/', '/courses'],
         crawlDelay: 0, // No delay for faster indexing
       },
       {
         userAgent: 'Googlebot',
         allow: '/', // Allow everything for Google
-        disallow: ['/admin/', '/api/private/'],
+        disallow: ['/admin/', '/api/private/', '/courses'],
         crawlDelay: 0,
       },
       {
