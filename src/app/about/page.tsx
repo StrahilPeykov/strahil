@@ -94,42 +94,14 @@ export default function AboutPage() {
       <div ref={containerRef}>
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center justify-center px-6 py-32 overflow-hidden">
-          {/* Animated background */}
+          {/* Subtle motion backdrop (no gradients) */}
           <motion.div 
             style={{ y, opacity }}
             className="absolute inset-0"
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 via-purple-500/5 to-transparent" />
-            
-            {/* Neural network visualization */}
-            <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 800 600">
-              {[...Array(20)].map((_, i) => {
-                const x1 = Math.random() * 800
-                const y1 = Math.random() * 600
-                const x2 = Math.random() * 800
-                const y2 = Math.random() * 600
-                return (
-                  <motion.line
-                    key={i}
-                    x1={x1}
-                    y1={y1}
-                    x2={x2}
-                    y2={y2}
-                    stroke="url(#gradient)"
-                    strokeWidth="1"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ pathLength: 1, opacity: 0.3 }}
-                    transition={{ duration: 2 + i * 0.1, repeat: Infinity, repeatType: 'reverse' }}
-                  />
-                )
-              })}
-              <defs>
-                <linearGradient id="gradient">
-                  <stop offset="0%" stopColor="#60a5fa" />
-                  <stop offset="100%" stopColor="#c084fc" />
-                </linearGradient>
-              </defs>
-            </svg>
+            <div className="absolute inset-0 opacity-[0.03]" style={{
+              backgroundImage: `radial-gradient(circle at 20% 15%, rgba(60,159,255,0.15) 0%, transparent 55%)`
+            }} />
           </motion.div>
           
           <div className="relative z-10 max-w-4xl mx-auto text-center">
@@ -141,10 +113,10 @@ export default function AboutPage() {
             >
               {/* Profile image placeholder */}
               <div className="relative mx-auto w-48 h-48 mb-8">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-2xl opacity-50 animate-pulse" />
-                <div className="relative w-full h-full bg-gradient-to-br from-blue-500 to-purple-500 rounded-full p-1">
-                  <div className="w-full h-full bg-slate-900 rounded-full flex items-center justify-center">
-                    <span className="text-6xl font-display font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                <div className="absolute inset-0 rounded-full blur-2xl opacity-40" style={{ boxShadow: '0 0 60px rgba(60,159,255,0.25)' }} />
+                <div className="relative w-full h-full rounded-full p-1 border border-outline bg-bg-soft">
+                  <div className="w-full h-full rounded-full flex items-center justify-center">
+                    <span className="text-6xl font-display font-bold text-ink">
                       SP
                     </span>
                   </div>
@@ -156,25 +128,23 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-5xl lg:text-7xl font-display font-bold text-white mb-6"
+              className="text-5xl lg:text-7xl font-display font-bold text-ink mb-6 tracking-tight"
             >
               Hey, I'm
-              <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Strahil
-              </span>
+              <span className="block">Strahil</span>
             </motion.h1>
             
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-xl text-gray-400 max-w-2xl mx-auto mb-8"
+              className="text-xl text-ink/75 max-w-2xl mx-auto mb-8"
             >
               A techie based in Amsterdam, Netherlands. 
               I have interest it
-              <span className="text-blue-400"> technology</span>,
-              <span className="text-purple-400"> engineering</span>, and
-              <span className="text-pink-400"> innovation</span>.
+              <span className="text-ink/80"> technology</span>,
+              <span className="text-ink/80"> engineering</span>, and
+              <span className="text-ink/80"> innovation</span>.
             </motion.p>
             
             <motion.div
@@ -201,15 +171,15 @@ export default function AboutPage() {
               className="mb-16"
             >
               <div className="flex items-center gap-2 mb-4">
-                <Sparkles className="w-5 h-5 text-purple-400" />
-                <span className="text-purple-400 font-mono text-sm">My Story</span>
+                <Sparkles className="w-5 h-5 text-white" />
+                <span className="text-white font-mono text-sm">My Story</span>
               </div>
               
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">
+                  <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6 tracking-tight">
                     About
-                    <span className="text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text"> Me</span>
+                    <span className="text-white"> Me</span>
                   </h2>
                   
                   <div className="space-y-4 text-gray-400">
@@ -231,13 +201,12 @@ export default function AboutPage() {
                 </div>
                 
                 <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-3xl" />
-                  <div className="relative bg-slate-900/50 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-8">
-                    <Quote className="w-12 h-12 text-purple-400/20 mb-4" />
-                    <blockquote className="text-lg text-gray-300 italic mb-4">
+                  <div className="relative bg-bg-soft/80 backdrop-blur-sm border border-outline rounded-2xl p-8">
+                    <Quote className="w-12 h-12 text-white/30 mb-4" />
+                    <blockquote className="text-lg text-white/80 italic mb-4">
                       "The best way to predict the future is to invent it."
                     </blockquote>
-                    <cite className="text-sm text-gray-500">— Alan Kay</cite>
+                    <cite className="text-sm text-white/60">— Alan Kay</cite>
                   </div>
                 </div>
               </div>
@@ -247,7 +216,7 @@ export default function AboutPage() {
         
         {/* Timeline Section */}
         <section className="px-6 py-24 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/50 to-transparent" />
+          <div className="absolute inset-0" />
           
           <div className="max-w-4xl mx-auto relative">
             <motion.div
@@ -255,13 +224,13 @@ export default function AboutPage() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-12 text-center">
+              <h2 className="text-3xl lg:text-4xl font-display font-bold text-ink mb-12 text-center tracking-tight">
                 My Journey
               </h2>
               
               <div className="relative">
                 {/* Timeline line */}
-                <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500" />
+                <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-glow/30" />
                 
                 {/* Timeline items */}
                 <div className="space-y-12">
@@ -277,16 +246,16 @@ export default function AboutPage() {
                         className="relative flex gap-6"
                       >
                         {/* Icon */}
-                        <div className={`relative z-10 w-16 h-16 bg-slate-900 rounded-full flex items-center justify-center border-4 border-slate-950`}>
-                          <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${item.gradient} opacity-20 absolute`} />
-                          <Icon className={`w-6 h-6 ${item.color} relative z-10`} />
+                        <div className={`relative z-10 w-16 h-16 bg-bg-soft rounded-full flex items-center justify-center border-4 border-outline`}>
+                          <div className={`w-12 h-12 rounded-full bg-white/10 absolute`} />
+                          <Icon className={`w-6 h-6 text-white relative z-10`} />
                         </div>
                         
                         {/* Content */}
                         <div className="flex-1 pb-8">
-                          <span className="text-sm text-gray-500 font-mono">{item.year}</span>
-                          <h3 className="text-xl font-semibold text-white mb-1">{item.title}</h3>
-                          <p className="text-gray-400">{item.description}</p>
+                          <span className="text-sm text-ink/60 font-mono">{item.year}</span>
+                          <h3 className="text-xl font-semibold text-ink mb-1">{item.title}</h3>
+                          <p className="text-ink/70">{item.description}</p>
                         </div>
                       </motion.div>
                     )
@@ -305,7 +274,7 @@ export default function AboutPage() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-12 text-center">
+              <h2 className="text-3xl lg:text-4xl font-display font-bold text-ink mb-12 text-center">
                 Technical Experience
               </h2>
               
@@ -319,18 +288,18 @@ export default function AboutPage() {
                     transition={{ delay: index * 0.1 }}
                     className="group relative"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity bg-glow/0" />
                     
-                    <div className="relative bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-xl p-6 hover:border-purple-500/30 transition-all">
-                      <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                        <Code2 className="w-5 h-5 text-purple-400" />
+                    <div className="relative bg-bg-soft/80 backdrop-blur-sm border border-outline rounded-xl p-6 hover:shadow-glow hover:border-glow/40 transition-all">
+                      <h3 className="text-lg font-semibold text-ink mb-4 flex items-center gap-2">
+                        <Code2 className="w-5 h-5 text-white" />
                         {skill.category}
                       </h3>
                       
                       <div className="space-y-2">
                         {skill.items.map((item) => (
-                          <div key={item} className="text-sm text-gray-400 flex items-center gap-2">
-                            <div className="w-1.5 h-1.5 bg-purple-400 rounded-full" />
+                          <div key={item} className="text-sm text-ink/70 flex items-center gap-2">
+                            <div className="w-1.5 h-1.5 bg-white/40 rounded-full" />
                             {item}
                           </div>
                         ))}
@@ -352,7 +321,7 @@ export default function AboutPage() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-12 text-center">
+              <h2 className="text-3xl lg:text-4xl font-display font-bold text-ink mb-12 text-center">
                 Beyond the Code
               </h2>
               
@@ -369,12 +338,12 @@ export default function AboutPage() {
                       className="group cursor-pointer"
                     >
                       <div className="relative">
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity bg-glow/5" />
                         
-                        <div className="relative bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 text-center hover:border-purple-500/30 transition-all">
-                          <Icon className="w-8 h-8 text-purple-400 mx-auto mb-3" />
-                          <h3 className="font-semibold text-white mb-1">{interest.label}</h3>
-                          <p className="text-xs text-gray-500">{interest.description}</p>
+                        <div className="relative bg-bg-soft/80 backdrop-blur-sm border border-outline rounded-2xl p-6 text-center hover:shadow-glow hover:border-glow/40 transition-all">
+                          <Icon className="w-8 h-8 text-white mx-auto mb-3" />
+                          <h3 className="font-semibold text-ink mb-1">{interest.label}</h3>
+                          <p className="text-xs text-ink/60">{interest.description}</p>
                         </div>
                       </div>
                     </motion.div>
@@ -394,12 +363,12 @@ export default function AboutPage() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 blur-3xl" />
+              <div className="absolute inset-0 opacity-[0.03]" />
               
               <div className="relative">
                 <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">
                   Let's Create Something
-                  <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"> Together</span>
+                  <span> Together</span>
                 </h2>
                 
                 <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
@@ -408,19 +377,16 @@ export default function AboutPage() {
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link
-                    href="/contact"
-                    className="group inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-full hover:scale-105 transition-transform"
-                  >
-                    Get in touch
-                    <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  <Link href="/contact" className="inline-flex">
+                    <span className="relative inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold bg-glow text-white shadow-glow transition-transform hover:scale-[1.02]">
+                      Get in touch
+                    </span>
                   </Link>
-                  
-                  <Link
-                    href="/projects"
-                    className="inline-flex items-center gap-2 px-8 py-4 border-2 border-purple-500/30 text-purple-400 font-semibold rounded-full hover:bg-purple-500/10 hover:border-purple-500/50 transition-all"
-                  >
-                    View my projects
+
+                  <Link href="/projects" className="inline-flex">
+                    <span className="relative inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold border border-outline text-white hover:shadow-[inset_0_0_0_9999px_rgba(60,159,255,0.06)] transition-transform hover:scale-[1.02]">
+                      View my projects
+                    </span>
                   </Link>
                 </div>
               </div>

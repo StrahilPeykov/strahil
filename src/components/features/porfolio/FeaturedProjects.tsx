@@ -9,7 +9,7 @@ import { featuredProjects } from '../../../data/projects'
 export function FeaturedProjects() {
   return (
     <section className="py-32 px-6 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/50 to-transparent" />
+      <div className="absolute inset-0" />
       
       <div className="max-w-7xl mx-auto relative">
         <motion.div
@@ -19,15 +19,15 @@ export function FeaturedProjects() {
           transition={{ duration: 0.8 }}
         >
           <div className="flex items-center gap-2 mb-4">
-            <Code2 className="w-6 h-6 text-blue-400" />
-            <span className="text-blue-400 font-mono text-sm">Featured Projects</span>
+            <Code2 className="w-6 h-6 text-white" />
+            <span className="text-white font-mono text-sm">Featured Projects</span>
           </div>
           
           <h2 className="text-4xl lg:text-6xl font-display font-bold text-white mb-6">
             Selected Projects
           </h2>
           
-          <p className="text-gray-400 text-lg mb-16 max-w-2xl">
+          <p className="text-white/80 text-lg mb-16 max-w-2xl">
             Building scalable solutions that push the boundaries of what's possible on the web
           </p>
           
@@ -46,7 +46,7 @@ export function FeaturedProjects() {
           >
             <Link 
               href="/projects"
-              className="inline-flex items-center gap-2 text-gray-400 hover:text-purple-400 transition-colors"
+              className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors"
             >
               View all projects
               <ArrowUpRight className="w-4 h-4" />

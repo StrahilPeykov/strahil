@@ -115,10 +115,10 @@ const levels = ['All', 'Beginner', 'Intermediate', 'Advanced', 'University']
 
 function ResourceCard({ resource, index }: { resource: typeof resources[0], index: number }) {
   const typeConfig = {
-    course: { icon: GraduationCap, label: 'Course', color: 'text-purple-400' },
-    guide: { icon: FileText, label: 'Guide', color: 'text-blue-400' },
-    'video-series': { icon: Video, label: 'Video Series', color: 'text-pink-400' },
-    download: { icon: Download, label: 'Download', color: 'text-green-400' }
+    course: { icon: GraduationCap, label: 'Course', color: 'text-white' },
+    guide: { icon: FileText, label: 'Guide', color: 'text-white' },
+    'video-series': { icon: Video, label: 'Video Series', color: 'text-white' },
+    download: { icon: Download, label: 'Download', color: 'text-white' }
   }
 
   const config = typeConfig[resource.type as keyof typeof typeConfig]
@@ -133,10 +133,10 @@ function ResourceCard({ resource, index }: { resource: typeof resources[0], inde
       className="group"
     >
       <Link href={resource.link}>
-        <div className="relative h-full bg-slate-900/30 backdrop-blur-sm border border-slate-800 rounded-2xl overflow-hidden hover:border-purple-500/30 transition-all duration-300">
+        <div className="relative h-full bg-bg-soft/80 backdrop-blur-sm border border-outline rounded-2xl overflow-hidden hover:shadow-glow hover:border-glow/35 transition-all duration-300">
           {/* Header with gradient */}
-          <div className={`h-48 bg-gradient-to-br ${resource.gradient} opacity-20 relative overflow-hidden`}>
-            <div className="absolute inset-0 bg-slate-900/50" />
+          <div className={`h-48 relative overflow-hidden bg-bg-soft`}>
+            <div className="absolute inset-0 opacity-[0.06]" style={{ boxShadow: 'inset 0 0 120px rgba(60,159,255,0.12)' }} />
             <div className="absolute inset-0 flex items-center justify-center">
               <Icon className="w-20 h-20 text-white/20" />
             </div>
@@ -153,7 +153,7 @@ function ResourceCard({ resource, index }: { resource: typeof resources[0], inde
             
             {/* Type badge */}
             <div className="absolute top-4 left-4">
-              <Badge variant="purple" size="sm">
+              <Badge variant="default" size="sm">
                 {config.label}
               </Badge>
             </div>
@@ -170,7 +170,7 @@ function ResourceCard({ resource, index }: { resource: typeof resources[0], inde
           
           {/* Content */}
           <div className="p-6">
-            <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all">
+            <h3 className="text-xl font-semibold text-white mb-2 transition-colors">
               {resource.title}
             </h3>
             <p className="text-gray-400 text-sm mb-4 line-clamp-2">
@@ -243,13 +243,13 @@ function ResourceCard({ resource, index }: { resource: typeof resources[0], inde
             
             {/* CTA */}
             <div className="mt-4 flex items-center justify-between">
-              <span className={`text-sm font-medium ${config.color}`}>
+              <span className={`text-sm font-medium text-white`}>
                 {resource.type === 'course' ? 'Start learning' : 
                  resource.type === 'guide' ? 'Read guide' :
                  resource.type === 'video-series' ? 'Watch now' :
                  'Download'}
               </span>
-              <ArrowRight className="w-4 h-4 text-gray-600 group-hover:text-purple-400 transition-all group-hover:translate-x-1" />
+              <ArrowRight className="w-4 h-4 text-white/60 group-hover:text-white transition-all group-hover:translate-x-1" />
             </div>
           </div>
         </div>
@@ -281,7 +281,7 @@ export default function LearnPage() {
       {/* Hero Section */}
       <section className="relative min-h-[50vh] flex items-center justify-center px-6 py-24 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 via-violet-500/5 to-transparent" />
+          <div className="absolute inset-0" />
         </div>
         
         <div className="relative z-10 max-w-4xl mx-auto text-center">
@@ -291,7 +291,7 @@ export default function LearnPage() {
             transition={{ duration: 0.5 }}
             className="mb-6"
           >
-            <GraduationCap className="w-16 h-16 text-purple-400 mx-auto mb-6" />
+            <GraduationCap className="w-16 h-16 text-white mx-auto mb-6" />
           </motion.div>
           
           <motion.h1
@@ -301,16 +301,14 @@ export default function LearnPage() {
             className="text-5xl lg:text-7xl font-display font-bold text-white mb-6"
           >
             Learn &
-            <span className="block bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">
-              Grow
-            </span>
+            <span className="block">Grow</span>
           </motion.h1>
           
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-gray-400 max-w-2xl mx-auto"
+            className="text-xl text-white/80 max-w-2xl mx-auto"
           >
             Courses, guides, and resources to help you level up your skills. 
             From algorithms to system design, learn at your own pace.
@@ -319,7 +317,7 @@ export default function LearnPage() {
       </section>
       
       {/* Type selector */}
-      <section className="px-6 py-8 border-y border-slate-800">
+      <section className="px-6 py-8 border-y border-outline">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-center gap-4 flex-wrap">
             {types.map((type) => {
@@ -331,11 +329,11 @@ export default function LearnPage() {
                   onClick={() => setSelectedType(type.id)}
                   className={`group flex items-center gap-2 px-5 py-2.5 rounded-full transition-all ${
                     isActive 
-                      ? 'bg-purple-500/20 border border-purple-500/50 text-purple-400' 
-                      : 'border border-slate-800 text-gray-400 hover:text-white hover:border-slate-700'
+                      ? 'bg-glow/15 border border-glow/30 text-white' 
+                      : 'border border-outline text-white/70 hover:text-white hover:border-white/30'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-purple-400' : 'text-gray-500 group-hover:text-gray-300'}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-white/60 group-hover:text-white'}`} />
                   <span className="text-sm font-medium">{type.label}</span>
                 </button>
               )
@@ -345,7 +343,7 @@ export default function LearnPage() {
       </section>
       
       {/* Search and Filters */}
-      <section className="px-6 py-8 sticky top-20 z-30 bg-slate-950/90 backdrop-blur-xl">
+      <section className="px-6 py-8 sticky top-20 z-30 bg-bg/90 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="flex-1 relative">
@@ -355,7 +353,7 @@ export default function LearnPage() {
                 placeholder="Search resources..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/50 transition-colors"
+                className="w-full pl-12 pr-4 py-3 bg-bg-soft/70 border border-outline rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-glow/50 transition-colors"
               />
             </div>
             
@@ -363,8 +361,8 @@ export default function LearnPage() {
               onClick={() => setShowFilters(!showFilters)}
               className={`flex items-center gap-2 px-6 py-3 rounded-xl border transition-all ${
                 showFilters 
-                  ? 'bg-purple-500/10 border-purple-500/50 text-purple-400' 
-                  : 'bg-slate-900/50 border-slate-800 text-gray-400 hover:text-white hover:border-slate-700'
+                  ? 'bg-glow/10 border-glow/30 text-white' 
+                  : 'bg-bg-soft/70 border-outline text-white/70 hover:text-white hover:border-white/30'
               }`}
             >
               <Filter className="w-5 h-5" />
@@ -383,7 +381,7 @@ export default function LearnPage() {
                 className="overflow-hidden"
               >
                 <div className="pt-6">
-                  <h3 className="text-sm font-medium text-gray-400 mb-3">Difficulty Level</h3>
+                  <h3 className="text-sm font-medium text-white/70 mb-3">Difficulty Level</h3>
                   <div className="flex flex-wrap gap-2">
                     {levels.map((level) => (
                       <button
@@ -391,8 +389,8 @@ export default function LearnPage() {
                         onClick={() => setSelectedLevel(level)}
                         className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                           selectedLevel === level
-                            ? 'bg-purple-500/20 text-purple-400 border border-purple-500/50'
-                            : 'bg-slate-900/50 text-gray-400 border border-slate-800 hover:text-white hover:border-slate-700'
+                            ? 'bg-glow/15 text-white border border-glow/30'
+                            : 'bg-bg-soft/70 text-white/70 border border-outline hover:text-white'
                         }`}
                       >
                         {level}
@@ -439,21 +437,20 @@ export default function LearnPage() {
       </section>
       
       {/* CTA Section */}
-      <section className="px-6 py-16 border-t border-slate-800">
+      <section className="px-6 py-16 border-t border-outline">
         <div className="max-w-4xl mx-auto text-center">
-          <Sparkles className="w-12 h-12 text-purple-400 mx-auto mb-4" />
+          <Sparkles className="w-12 h-12 text-white mx-auto mb-4" />
           <h2 className="text-3xl font-display font-bold text-white mb-4">
             Can't find what you're looking for?
           </h2>
-          <p className="text-gray-400 mb-8">
+          <p className="text-white/80 mb-8">
             I'm always creating new learning resources. Let me know what topics you'd like to see covered!
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-500 to-violet-500 text-white font-semibold rounded-full hover:scale-105 transition-transform"
-          >
-            Suggest a topic
-            <ArrowRight className="w-5 h-5" />
+          <Link href="/contact" className="inline-flex">
+            <span className="relative inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold bg-glow text-white shadow-glow transition-transform hover:scale-[1.02]">
+              Suggest a topic
+              <ArrowRight className="w-5 h-5" />
+            </span>
           </Link>
         </div>
       </section>

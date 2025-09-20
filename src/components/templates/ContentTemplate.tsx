@@ -77,7 +77,7 @@ function ContentHeader({ content, config }: { content: BaseContentData; config: 
           <h1 className={titleClassName}>
             <span className="break-words">{content.title}</span>
             {content.subtitle && (
-              <span className="block text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text break-words">
+              <span className="block break-words text-white/80">
                 {' '}{content.subtitle}
               </span>
             )}
@@ -109,7 +109,7 @@ function ContentHeader({ content, config }: { content: BaseContentData; config: 
               )}
               {metadataItems.includes('category') && (
                 <div className="flex items-center gap-2">
-                  <span className="text-purple-400 break-words">{content.category}</span>
+                  <span className="text-white break-words">{content.category}</span>
                 </div>
               )}
             </div>
@@ -156,7 +156,7 @@ function ContentFooter({
   
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6">
-      <div className="mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-slate-800">
+      <div className="mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-outline">
         {customActions ? (
           customActions
         ) : (
@@ -172,7 +172,7 @@ function ContentFooter({
                   <span>Save</span>
                 </button>
               </div>
-              <button className="flex items-center gap-2 px-4 py-2 bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 rounded-full transition-colors text-sm">
+              <button className="flex items-center gap-2 px-4 py-2 bg-glow/10 hover:bg-glow/15 text-white rounded-full transition-colors text-sm">
                 <Share2 className="w-4 h-4 flex-shrink-0" />
                 <span>Share</span>
               </button>

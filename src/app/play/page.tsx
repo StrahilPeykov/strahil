@@ -239,7 +239,7 @@ export default function PlayPage() {
           <div className="absolute inset-0">
             {activeDemo === 'particles' && <ParticleField />}
             {activeDemo === 'binary' && <BinaryRain />}
-            <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 via-blue-500/5 to-transparent" />
+            <div className="absolute inset-0" />
           </div>
           
           {/* Mouse follower */}
@@ -263,7 +263,7 @@ export default function PlayPage() {
               transition={{ duration: 0.5 }}
               className="mb-8"
             >
-              <Gamepad2 className="w-16 h-16 text-purple-400 mx-auto mb-6" />
+              <Gamepad2 className="w-16 h-16 text-white mx-auto mb-6" />
             </motion.div>
             
             <motion.h1
@@ -273,9 +273,7 @@ export default function PlayPage() {
               className="text-5xl lg:text-7xl font-display font-bold text-white mb-6"
             >
               Experimental
-              <span className="block bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
-                Playground
-              </span>
+              <span className="block">Playground</span>
             </motion.h1>
             
             <motion.p
@@ -293,7 +291,7 @@ export default function PlayPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="bg-slate-900/50 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-8 mb-8"
+              className="bg-bg-soft/80 backdrop-blur-sm border border-outline rounded-2xl p-8 mb-8"
             >
               <div className="mb-6">
                 <div className="flex justify-center gap-2 mb-6">
@@ -303,8 +301,8 @@ export default function PlayPage() {
                       onClick={() => setActiveDemo(demo)}
                       className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                         activeDemo === demo
-                          ? 'bg-purple-500 text-white'
-                          : 'text-gray-400 hover:text-white'
+                          ? 'bg-glow/15 text-white border border-glow/30'
+                          : 'text-white/70 hover:text-white'
                       }`}
                     >
                       {demo.charAt(0).toUpperCase() + demo.slice(1)}
@@ -317,13 +315,13 @@ export default function PlayPage() {
                   {activeDemo === 'colors' && <ColorWheel />}
                   {activeDemo === 'particles' && (
                     <div className="text-center">
-                      <Sparkles className="w-24 h-24 text-purple-400 mx-auto mb-4 animate-pulse" />
+                      <Sparkles className="w-24 h-24 text-white mx-auto mb-4 animate-pulse" />
                       <p className="text-gray-400">Move your mouse around!</p>
                     </div>
                   )}
                   {activeDemo === 'binary' && (
                     <div className="text-center">
-                      <Code className="w-24 h-24 text-green-400 mx-auto mb-4" />
+                      <Code className="w-24 h-24 text-white mx-auto mb-4" />
                       <p className="text-gray-400">Matrix-style animation</p>
                     </div>
                   )}
@@ -407,13 +405,13 @@ export default function PlayPage() {
                         
                         {/* Icon */}
                         <div className="mb-4">
-                          <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${experiment.gradient} p-2.5 group-hover:scale-110 transition-transform`}>
+                          <div className={`w-12 h-12 rounded-xl bg-bg-soft/70 border border-outline p-2.5 group-hover:scale-110 transition-transform`}>
                             <Icon className="w-full h-full text-white" />
                           </div>
                         </div>
                         
                         {/* Content */}
-                        <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all">
+                        <h3 className="text-xl font-semibold text-white mb-2 transition-all">
                           {experiment.title}
                         </h3>
                         <p className="text-gray-400 text-sm mb-4">
@@ -433,7 +431,7 @@ export default function PlayPage() {
                         
                         {/* Hover indicator */}
                         <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-all">
-                          <ArrowRight className="w-5 h-5 text-purple-400" />
+                          <ArrowRight className="w-5 h-5 text-white" />
                         </div>
                       </div>
                     </Link>
@@ -445,7 +443,7 @@ export default function PlayPage() {
         </section>
         
         {/* Featured Experiment */}
-        <section className="px-6 py-24 border-t border-slate-800">
+        <section className="px-6 py-24 border-t border-outline">
           <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0 }}
@@ -453,7 +451,7 @@ export default function PlayPage() {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <Zap className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
+              <Zap className="w-12 h-12 text-white mx-auto mb-4" />
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-4">
                 Featured Experiment
               </h2>
@@ -465,9 +463,9 @@ export default function PlayPage() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 blur-3xl" />
+              <div className="absolute inset-0 opacity-[0.03]" />
               
-              <div className="relative bg-slate-900/50 backdrop-blur-sm border border-yellow-500/20 rounded-3xl p-8 lg:p-12 overflow-hidden">
+              <div className="relative bg-bg-soft/80 backdrop-blur-sm border border-outline rounded-3xl p-8 lg:p-12 overflow-hidden">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   <div>
                     <Badge variant="warning" className="mb-4">Featured This Week</Badge>
@@ -481,29 +479,29 @@ export default function PlayPage() {
                     </p>
                     
                     <div className="flex flex-wrap gap-2 mb-8">
-                      <Badge variant="purple">TensorFlow.js</Badge>
-                      <Badge variant="blue">D3.js</Badge>
-                      <Badge variant="pink">WebGL</Badge>
+                      <Badge variant="default">TensorFlow.js</Badge>
+                      <Badge variant="default">D3.js</Badge>
+                      <Badge variant="default">WebGL</Badge>
                     </div>
                     
                     <div className="flex gap-4">
                       <Link
                         href="/play/neural-network"
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-semibold rounded-full hover:scale-105 transition-transform"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-glow text-white font-semibold rounded-xl hover:scale-105 transition-transform"
                       >
                         Try it now
                         <ArrowRight className="w-5 h-5" />
                       </Link>
-                      <button className="inline-flex items-center gap-2 px-6 py-3 border-2 border-yellow-500/30 text-yellow-400 font-semibold rounded-full hover:bg-yellow-500/10 hover:border-yellow-500/50 transition-all">
+                      <button className="inline-flex items-center gap-2 px-6 py-3 border border-outline text-white font-semibold rounded-xl hover:bg-white/5 transition-all">
                         View source
                       </button>
                     </div>
                   </div>
                   
-                  <div className="relative h-80 bg-gradient-to-br from-yellow-500/10 to-orange-500/10 rounded-2xl flex items-center justify-center">
+                  <div className="relative h-80 bg-bg-soft/70 border border-outline rounded-2xl flex items-center justify-center">
                     {/* Placeholder for visualization */}
                     <div className="text-center">
-                      <Sparkles className="w-32 h-32 text-yellow-400/30 mx-auto mb-4" />
+                      <Sparkles className="w-32 h-32 text-white/40 mx-auto mb-4" />
                       <p className="text-gray-500">Interactive preview here</p>
                     </div>
                   </div>
@@ -524,16 +522,15 @@ export default function PlayPage() {
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-6">
                 Got an idea for an experiment?
               </h2>
-              <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+              <p className="text-white/80 mb-8 max-w-2xl mx-auto">
                 I'm always looking for new creative coding challenges. 
                 If you have an idea or want to collaborate on something fun, let's talk!
               </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full hover:scale-105 transition-transform"
-              >
-                Share your idea
-                <Sparkles className="w-5 h-5" />
+              <Link href="/contact" className="inline-flex">
+                <span className="relative inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold bg-glow text-white shadow-glow transition-transform hover:scale-[1.02]">
+                  Share your idea
+                  <Sparkles className="w-5 h-5" />
+                </span>
               </Link>
             </motion.div>
           </div>

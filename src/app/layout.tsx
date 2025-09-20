@@ -440,14 +440,14 @@ export default function RootLayout({
         inter.variable,
         spaceGrotesk.variable,
         jetbrainsMono.variable,
-        'font-sans antialiased min-h-screen'
+        'font-sans antialiased min-h-screen bg-bg text-ink'
       )}>
         <CookieConsentProvider>
           <ThemeProvider defaultTheme="dark">
             {/* Skip link for accessibility */}
             <a 
               href="#main-content" 
-              className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-electric text-midnight px-4 py-2 rounded-md z-50 focus:outline-none focus:ring-2 focus:ring-electric"
+              className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-glow text-bg px-4 py-2 rounded-md z-50 focus:outline-none focus:ring-2 focus:ring-glow"
             >
               Skip to main content
             </a>

@@ -12,12 +12,12 @@ export function Card({
   hoverable = true,
   ...props 
 }: CardProps) {
-  const baseClasses = "bg-midnight-light rounded-lg p-6 transition-all duration-300"
+  const baseClasses = "bg-bg-soft rounded-xl p-6 transition-all duration-200 border border-outline"
   const variantClasses = {
-    default: "border border-electric/10",
-    featured: "border border-electric/30"
+    default: "",
+    featured: "shadow-glow"
   }
-  const hoverClasses = hoverable ? "hover:border-electric/30 hover:shadow-2xl hover:shadow-electric/10" : ""
+  const hoverClasses = hoverable ? "hover:shadow-glow hover:border-glow/40" : ""
   
   return (
     <div 

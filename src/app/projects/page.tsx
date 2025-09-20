@@ -34,13 +34,13 @@ function ProjectCard({ project, index }: { project: ProjectListItem, index: numb
       transition={{ delay: index * 0.1 }}
       className="group relative"
     >
-      {/* Background gradient */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-10 blur-2xl group-hover:opacity-20 transition-opacity duration-500`} />
+      {/* Subtle local glow */}
+      <div className={`absolute inset-0 opacity-[0.06]`} style={{ boxShadow: 'inset 0 0 160px rgba(60,159,255,0.15)' }} />
       
-      <div className="relative bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition-all duration-300">
+      <div className="relative bg-bg-soft/80 backdrop-blur-sm border border-outline rounded-2xl overflow-hidden hover:shadow-glow hover:border-glow/35 transition-all duration-300">
         {/* Image placeholder with gradient */}
-        <div className={`h-64 bg-gradient-to-br ${project.gradient} opacity-20 relative overflow-hidden`}>
-          <div className="absolute inset-0 bg-slate-900/50" />
+        <div className={`h-64 relative overflow-hidden bg-bg-soft`}>
+          <div className="absolute inset-0 opacity-[0.06]" style={{ boxShadow: 'inset 0 0 120px rgba(60,159,255,0.12)' }} />
           
           {/* Animated pattern */}
           <div className="absolute inset-0 opacity-30">
@@ -51,7 +51,7 @@ function ProjectCard({ project, index }: { project: ProjectListItem, index: numb
           </div>
           
           {/* Project info overlay */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-slate-900 to-transparent">
+          <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent">
             <div className="flex items-center gap-2 text-sm text-gray-400 mb-2">
               {project.client && (
                 <>
@@ -67,7 +67,7 @@ function ProjectCard({ project, index }: { project: ProjectListItem, index: numb
         
         {/* Content */}
         <div className="p-6">
-          <p className="text-gray-400 mb-4">
+          <p className="text-ink/75 mb-4">
             {project.description}
           </p>
           
@@ -89,7 +89,7 @@ function ProjectCard({ project, index }: { project: ProjectListItem, index: numb
           <div className="flex items-center gap-4">
             <Link
               href={`/projects/${project.slug}`}
-              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors font-medium"
+              className="inline-flex items-center gap-2 text-white hover:text-white transition-colors font-medium"
             >
               View case study
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -144,7 +144,7 @@ export default function ProjectsPage() {
       <section className="relative min-h-[60vh] flex items-center justify-center px-6 py-32 overflow-hidden">
         {/* Animated background */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 via-purple-500/5 to-transparent" />
+          <div className="absolute inset-0" />
           <motion.div
             className="absolute inset-0"
             animate={{
@@ -169,7 +169,7 @@ export default function ProjectsPage() {
             transition={{ duration: 0.5 }}
             className="mb-6"
           >
-            <Code2 className="w-16 h-16 text-blue-400 mx-auto mb-6" />
+            <Code2 className="w-16 h-16 text-white mx-auto mb-6" />
           </motion.div>
           
           <motion.h1
@@ -179,16 +179,14 @@ export default function ProjectsPage() {
             className="text-5xl lg:text-7xl font-display font-bold text-white mb-6"
           >
             Crafting Digital
-            <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Experiences
-            </span>
+            <span className="block">Experiences</span>
           </motion.h1>
           
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-gray-400 max-w-2xl mx-auto mb-8"
+            className="text-xl text-white/80 max-w-2xl mx-auto mb-8"
           >
             From concept to deployment, I build scalable solutions that push boundaries 
             and deliver exceptional user experiences.
@@ -202,23 +200,23 @@ export default function ProjectsPage() {
           transition={{ delay: 1 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
-          <div className="w-6 h-10 border-2 border-purple-400/30 rounded-full p-1">
+          <div className="w-6 h-10 border-2 border-outline rounded-full p-1">
             <motion.div
               animate={{ y: [0, 16, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1.5 h-1.5 bg-gradient-to-b from-blue-400 to-purple-400 rounded-full mx-auto"
+              className="w-1.5 h-1.5 bg-white/60 rounded-full mx-auto"
             />
           </div>
         </motion.div>
       </section>
       
       {/* Filter Section */}
-      <section className="px-6 py-8 border-y border-slate-800">
+      <section className="px-6 py-8 border-y border-outline">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-purple-400" />
-              <span className="text-purple-400 font-mono text-sm">Featured Projects</span>
+              <Sparkles className="w-5 h-5 text-white" />
+              <span className="text-white font-mono text-sm">Featured Projects</span>
             </div>
           </div>
         </div>
@@ -250,12 +248,11 @@ export default function ProjectsPage() {
           <p className="text-gray-400 mb-8">
             Let's discuss how we can work together to bring your ideas to life.
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-full hover:scale-105 transition-transform"
-          >
-            Start a conversation
-            <ArrowRight className="w-5 h-5" />
+          <Link href="/contact" className="inline-flex">
+            <span className="relative inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold bg-glow text-white shadow-glow transition-transform hover:scale-[1.02]">
+              Start a conversation
+              <ArrowRight className="w-5 h-5" />
+            </span>
           </Link>
         </div>
       </section>

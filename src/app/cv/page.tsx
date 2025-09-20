@@ -102,7 +102,7 @@ export default function CVPage() {
       <div ref={containerRef}>
         {/* Progress Bar */}
         <motion.div 
-          className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 z-50"
+          className="fixed top-0 left-0 right-0 h-1 bg-glow z-50"
           style={{ width: progressWidth }}
         />
         
@@ -110,14 +110,14 @@ export default function CVPage() {
         <section className="relative min-h-[80vh] flex items-center justify-center px-6 py-32 overflow-hidden">
           {/* Animated background */}
           <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 via-purple-500/5 to-transparent" />
+            <div className="absolute inset-0" />
             
             {/* Animated code snippets */}
             <div className="absolute inset-0 opacity-10">
               {[...Array(5)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="absolute font-mono text-xs text-purple-300"
+                  className="absolute font-mono text-xs text-white/40"
                   style={{
                     left: `${Math.random() * 100}%`,
                     top: `${Math.random() * 100}%`,
@@ -147,7 +147,7 @@ export default function CVPage() {
             >
               <h1 className="text-5xl lg:text-7xl font-display font-bold text-white mb-4">
                 Strahil
-                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"> Peykov</span>
+                <span> Peykov</span>
               </h1>
               <p className="text-2xl text-gray-400 mb-6">Software Engineer & Full-Stack Developer</p>
               
@@ -172,7 +172,7 @@ export default function CVPage() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="group inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-full"
+                  className="group inline-flex items-center gap-2 px-8 py-4 bg-glow text-white font-semibold rounded-xl shadow-[0_6px_18px_rgba(60,159,255,0.25)]"
                 >
                   <Download className="w-5 h-5" />
                   Download PDF
@@ -181,7 +181,7 @@ export default function CVPage() {
                 
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 border-2 border-purple-500/30 text-purple-400 font-semibold rounded-full hover:bg-purple-500/10 hover:border-purple-500/50 transition-all"
+                  className="inline-flex items-center gap-2 px-8 py-4 border border-outline text-white font-semibold rounded-xl hover:bg-white/5 transition-all"
                 >
                   <Mail className="w-5 h-5" />
                   Get in touch
@@ -214,7 +214,7 @@ export default function CVPage() {
         </section>
         
         {/* Navigation Tabs */}
-        <section className="sticky top-20 z-30 px-6 py-4 bg-slate-950/90 backdrop-blur-xl border-y border-slate-800">
+        <section className="sticky top-20 z-30 px-6 py-4 bg-bg/90 backdrop-blur-xl border-y border-outline">
           <div className="max-w-6xl mx-auto">
             <div className="flex gap-2 overflow-x-auto no-scrollbar">
               {['experience', 'education', 'skills', 'achievements'].map((section) => (
@@ -223,8 +223,8 @@ export default function CVPage() {
                   onClick={() => setActiveSection(section)}
                   className={`px-6 py-2 rounded-full font-medium capitalize transition-all whitespace-nowrap ${
                     activeSection === section
-                      ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
-                      : 'text-gray-400 hover:text-white hover:bg-slate-800'
+                      ? 'bg-glow/15 border border-glow/30 text-white'
+                      : 'text-white/70 hover:text-white hover:bg-white/5'
                   }`}
                 >
                   {section}
@@ -245,7 +245,7 @@ export default function CVPage() {
                 transition={{ duration: 0.5 }}
               >
                 <div className="flex items-center gap-3 mb-8">
-                  <Briefcase className="w-8 h-8 text-blue-400" />
+                  <Briefcase className="w-8 h-8 text-white" />
                   <h2 className="text-3xl font-display font-bold text-white">Professional Experience</h2>
                 </div>
                 
@@ -260,22 +260,22 @@ export default function CVPage() {
                     >
                       {/* Timeline line */}
                       {index < experience.length - 1 && (
-                        <div className="absolute left-8 top-16 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 to-transparent" />
+                        <div className="absolute left-8 top-16 bottom-0 w-0.5 bg-white/20" />
                       )}
                       
                       <div className="flex gap-6">
                         {/* Timeline dot */}
-                        <div className="relative z-10 w-16 h-16 bg-slate-900 rounded-full flex items-center justify-center border-4 border-slate-950 flex-shrink-0">
-                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 opacity-20 absolute" />
-                          <Briefcase className="w-6 h-6 text-purple-400 relative z-10" />
+                        <div className="relative z-10 w-16 h-16 bg-bg-soft rounded-full flex items-center justify-center border-4 border-outline flex-shrink-0">
+                          <div className="w-12 h-12 rounded-full bg-white/10 absolute" />
+                          <Briefcase className="w-6 h-6 text-white relative z-10" />
                         </div>
                         
                         {/* Content */}
-                        <div className="flex-1 bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 hover:border-purple-500/30 transition-all">
+                        <div className="flex-1 bg-bg-soft/80 backdrop-blur-sm border border-outline rounded-2xl p-6 hover:shadow-glow hover:border-glow/35 transition-all">
                           <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4 mb-4">
                             <div>
                               <h3 className="text-xl font-semibold text-white">{job.role}</h3>
-                              <p className="text-purple-400">{job.company}</p>
+                              <p className="text-white/80">{job.company}</p>
                             </div>
                             <div className="flex items-center gap-4 text-sm text-gray-500">
                               <span className="flex items-center gap-1">
@@ -294,8 +294,8 @@ export default function CVPage() {
                           {/* Achievements */}
                           <div className="space-y-2 mb-4">
                             {job.achievements.map((achievement, i) => (
-                              <div key={i} className="flex items-start gap-2 text-sm text-gray-300">
-                                <ChevronRight className="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5" />
+                              <div key={i} className="flex items-start gap-2 text-sm text-ink/80">
+                                <ChevronRight className="w-4 h-4 text-white/60 flex-shrink-0 mt-0.5" />
                                 <span>{achievement}</span>
                               </div>
                             ))}
@@ -304,7 +304,7 @@ export default function CVPage() {
                           {/* Technologies */}
                           <div className="flex flex-wrap gap-2">
                             {job.technologies.map((tech) => (
-                              <Badge key={tech} variant="purple" size="sm">
+                              <Badge key={tech} variant="default" size="sm">
                                 {tech}
                               </Badge>
                             ))}
@@ -325,7 +325,7 @@ export default function CVPage() {
                 transition={{ duration: 0.5 }}
               >
                 <div className="flex items-center gap-3 mb-8">
-                  <GraduationCap className="w-8 h-8 text-purple-400" />
+                  <GraduationCap className="w-8 h-8 text-white" />
                   <h2 className="text-3xl font-display font-bold text-white">Education</h2>
                 </div>
                 
@@ -376,9 +376,9 @@ export default function CVPage() {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.3 + index * 0.1 }}
-                        className="flex items-center gap-4 p-4 bg-slate-900/30 rounded-xl border border-slate-800 hover:border-purple-500/30 transition-all"
+                        className="flex items-center gap-4 p-4 bg-bg-soft/70 rounded-xl border border-outline hover:shadow-glow hover:border-glow/35 transition-all"
                       >
-                        <Award className="w-8 h-8 text-purple-400 flex-shrink-0" />
+                        <Award className="w-8 h-8 text-white flex-shrink-0" />
                         <div>
                           <h4 className="text-white font-medium">{cert.name}</h4>
                           <p className="text-sm text-gray-500">{cert.issuer} • {cert.year}</p>
@@ -398,7 +398,7 @@ export default function CVPage() {
                 transition={{ duration: 0.5 }}
               >
                 <div className="flex items-center gap-3 mb-8">
-                  <Code2 className="w-8 h-8 text-blue-400" />
+                  <Code2 className="w-8 h-8 text-white" />
                   <h2 className="text-3xl font-display font-bold text-white">Skills & Expertise</h2>
                 </div>
                 
@@ -418,9 +418,9 @@ export default function CVPage() {
                           <span className="text-white font-medium">{skill.name}</span>
                           <span className="text-sm text-gray-500">{skill.level}%</span>
                         </div>
-                        <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                        <div className="w-full h-2 bg-outline/50 rounded-full overflow-hidden">
                           <motion.div
-                            className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
+                            className="h-full bg-glow"
                             initial={{ width: 0 }}
                             animate={{ width: `${skill.level}%` }}
                             transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
@@ -454,7 +454,7 @@ export default function CVPage() {
                 {/* Languages */}
                 <div>
                   <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
-                    <Languages className="w-6 h-6 text-purple-400" />
+                    <Languages className="w-6 h-6 text-white" />
                     Languages
                   </h3>
                   
@@ -465,10 +465,10 @@ export default function CVPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-xl p-4 text-center hover:border-purple-500/30 transition-all"
+                        className="bg-bg-soft/80 backdrop-blur-sm border border-outline rounded-xl p-4 text-center hover:shadow-glow hover:border-glow/35 transition-all"
                       >
                         <h4 className="text-white font-medium mb-1">{lang.name}</h4>
-                        <p className="text-sm text-purple-400">{lang.level}</p>
+                        <p className="text-sm text-white/80">{lang.level}</p>
                       </motion.div>
                     ))}
                   </div>
@@ -484,7 +484,7 @@ export default function CVPage() {
                 transition={{ duration: 0.5 }}
               >
                 <div className="flex items-center gap-3 mb-8">
-                  <Star className="w-8 h-8 text-yellow-400" />
+                  <Star className="w-8 h-8 text-white" />
                   <h2 className="text-3xl font-display font-bold text-white">Key Achievements</h2>
                 </div>
                 
@@ -498,9 +498,9 @@ export default function CVPage() {
                       className="group"
                     >
                       <div className="relative overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                         
-                        <div className="relative bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-xl p-6 hover:border-yellow-500/30 transition-all">
+                        <div className="relative bg-bg-soft/80 backdrop-blur-sm border border-outline rounded-xl p-6 hover:shadow-glow hover:border-glow/35 transition-all">
                           <p className="text-lg text-white">{achievement}</p>
                         </div>
                       </div>
@@ -520,7 +520,7 @@ export default function CVPage() {
                   </p>
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-full hover:scale-105 transition-transform"
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-glow text-white font-semibold rounded-xl hover:scale-105 transition-transform"
                   >
                     Start a conversation
                     <ExternalLink className="w-5 h-5" />

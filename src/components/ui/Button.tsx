@@ -16,7 +16,7 @@ const variants = {
   primary: 'bg-blue-500 hover:bg-blue-600 text-white border-transparent',
   secondary: 'bg-slate-800 hover:bg-slate-700 text-white border-slate-700',
   ghost: 'bg-transparent hover:bg-slate-800/50 text-gray-400 hover:text-white border-transparent',
-  gradient: 'bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white border-transparent'
+  gradient: 'bg-glow text-white border-transparent'
 }
 
 const sizes = {

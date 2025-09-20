@@ -2,14 +2,14 @@ import { cn } from '../../lib/utils'
 
 interface TagProps {
   children: React.ReactNode
-  variant?: 'default' | 'electric' | 'amber'
+  variant?: 'default' | 'active' | 'warm'
 }
 
 export function Tag({ children, variant = 'default' }: TagProps) {
   const variants = {
-    default: "bg-midnight text-gray-400 border-gray-700",
-    electric: "bg-electric/10 text-electric border-electric/30",
-    amber: "bg-amber/10 text-amber border-amber/30"
+    default: "bg-bg-soft text-ink/70 border-outline",
+    active: "bg-glow/10 text-glow border-glow/40",
+    warm: "bg-warmth/10 text-warmth border-warmth/40"
   }
   
   return (

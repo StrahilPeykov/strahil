@@ -29,24 +29,17 @@ function IdeaCard({ idea }: { idea: ContentListItem }) {
       className="group"
     >
       <Link href={`/notes/${idea.slug}`}>
-        <div className="h-full bg-slate-900/30 backdrop-blur-sm border border-slate-800 rounded-xl p-6 hover:border-purple-500/30 transition-all">
+        <div className="h-full bg-bg-soft/80 backdrop-blur-sm border border-outline rounded-xl p-6 hover:shadow-glow hover:border-glow/35 transition-all">
           <div className="flex items-start justify-between mb-4">
-            <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${
-              idea.category === 'Theory of Mind' ? 'from-blue-500/20 to-purple-500/20' :
-              idea.category === 'Philosophy' ? 'from-purple-500/20 to-pink-500/20' :
-              idea.category === 'Projects' ? 'from-green-500/20 to-teal-500/20' :
-              idea.category === 'Recommendations' ? 'from-orange-500/20 to-red-500/20' :
-              idea.category === 'Research' ? 'from-indigo-500/20 to-blue-500/20' :
-              'from-gray-500/20 to-gray-600/20'
-            } flex items-center justify-center`}>
-              <Icon className="w-5 h-5 text-gray-300" />
+            <div className={`w-10 h-10 rounded-lg bg-bg-soft/70 border border-outline flex items-center justify-center`}>
+              <Icon className="w-5 h-5 text-white" />
             </div>
             {idea.featured && (
               <Badge variant="purple" size="sm">Featured</Badge>
             )}
           </div>
           
-          <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all">
+          <h3 className="text-xl font-semibold text-white mb-2 transition-colors">
             {idea.title}
           </h3>
           
@@ -102,7 +95,7 @@ export default function NotesPage() {
       {/* Hero Section */}
       <section className="relative min-h-[40vh] flex items-center justify-center px-6 py-24 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 via-blue-500/5 to-transparent" />
+          <div className="absolute inset-0" />
         </div>
         
         <div className="relative z-10 max-w-4xl mx-auto text-center">
@@ -112,7 +105,7 @@ export default function NotesPage() {
             transition={{ duration: 0.5 }}
             className="mb-6"
           >
-            <Brain className="w-16 h-16 text-purple-400 mx-auto mb-6" />
+            <Brain className="w-16 h-16 text-white mx-auto mb-6" />
           </motion.div>
           
           <motion.h1
@@ -122,16 +115,14 @@ export default function NotesPage() {
             className="text-5xl lg:text-7xl font-display font-bold text-white mb-6"
           >
             Ideas &
-            <span className="block bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-              Observations
-            </span>
+            <span className="block">Observations</span>
           </motion.h1>
           
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-gray-400 max-w-2xl mx-auto"
+            className="text-xl text-white/80 max-w-2xl mx-auto"
           >
             A collection of thoughts on theory of mind, philosophy, project ideas, and 
             observations from years of arguing with people on the internet.
@@ -140,7 +131,7 @@ export default function NotesPage() {
       </section>
       
       {/* Search and Categories */}
-      <section className="px-6 py-8 border-y border-slate-800 sticky top-20 z-30 bg-slate-950/90 backdrop-blur-xl">
+      <section className="px-6 py-8 border-y border-outline sticky top-20 z-30 bg-bg/90 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-4">
             {/* Search */}
@@ -151,7 +142,7 @@ export default function NotesPage() {
                 placeholder="Search notes..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/50 transition-colors"
+                className="w-full pl-12 pr-4 py-3 bg-bg-soft/70 border border-outline rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-glow/50 transition-colors"
               />
             </div>
             
@@ -161,8 +152,8 @@ export default function NotesPage() {
                 onClick={() => setViewMode('grid')}
                 className={`p-2 rounded-lg transition-colors ${
                   viewMode === 'grid' 
-                    ? 'bg-purple-500/20 text-purple-400' 
-                    : 'text-gray-500 hover:text-gray-300'
+                    ? 'bg-glow/15 text-white' 
+                    : 'text-white/60 hover:text-white'
                 }`}
               >
                 <Grid3x3 className="w-5 h-5" />
@@ -171,8 +162,8 @@ export default function NotesPage() {
                 onClick={() => setViewMode('list')}
                 className={`p-2 rounded-lg transition-colors ${
                   viewMode === 'list' 
-                    ? 'bg-purple-500/20 text-purple-400' 
-                    : 'text-gray-500 hover:text-gray-300'
+                    ? 'bg-glow/15 text-white' 
+                    : 'text-white/60 hover:text-white'
                 }`}
               >
                 <List className="w-5 h-5" />
@@ -190,8 +181,8 @@ export default function NotesPage() {
                   onClick={() => setSelectedCategory(category.id)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
                     selectedCategory === category.id
-                      ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
-                      : 'text-gray-400 hover:text-white hover:bg-slate-800'
+                      ? 'bg-glow/15 text-white border border-glow/30'
+                      : 'text-white/70 hover:text-white hover:bg-white/5'
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -229,20 +220,19 @@ export default function NotesPage() {
       </section>
       
       {/* Newsletter CTA */}
-      <section className="px-6 py-16 border-t border-slate-800">
+      <section className="px-6 py-16 border-t border-outline">
         <div className="max-w-4xl mx-auto text-center">
-          <Coffee className="w-12 h-12 text-purple-400 mx-auto mb-6" />
+          <Coffee className="w-12 h-12 text-white mx-auto mb-6" />
           <h2 className="text-3xl font-display font-bold text-white mb-4">
             Get my latest thoughts
           </h2>
-          <p className="text-gray-400 mb-8">
+          <p className="text-white/80 mb-8">
             Occasional updates on new ideas, research notes, and philosophical musings.
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold rounded-full hover:scale-105 transition-transform"
-          >
-            Subscribe to updates
+          <Link href="/contact" className="inline-flex">
+            <span className="relative inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold bg-glow text-white shadow-glow transition-transform hover:scale-[1.02]">
+              Subscribe to updates
+            </span>
           </Link>
         </div>
       </section>

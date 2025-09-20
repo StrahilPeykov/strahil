@@ -12,33 +12,33 @@ export function Footer() {
 
   return (
     <>
-      <footer className="border-t border-slate-800/50 bg-slate-950">
+      <footer className="border-t border-outline bg-bg">
         <div className="py-12 px-6">
           <div className="max-w-7xl mx-auto">
             {/* Main footer content */}
             <div className="grid md:grid-cols-3 gap-8 md:gap-12">
               {/* About/Contact */}
               <div>
-                <h3 className="font-display font-bold text-lg text-white mb-3">
+                <h3 className="font-display font-bold text-lg text-ink mb-3">
                   Strahil Peykov
                 </h3>
-                <p className="text-gray-400 text-sm mb-4">
+                <p className="text-ink/70 text-sm mb-4">
                   Full-Stack Developer & Software Engineer
                 </p>
                 <div className="space-y-2 text-sm">
-                  <div className="flex items-center gap-2 text-gray-400">
+                  <div className="flex items-center gap-2 text-ink/70">
                     <MapPin size={14} />
                     <span>Amsterdam, Netherlands</span>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-400">
+                  <div className="flex items-center gap-2 text-ink/70">
                     <Mail size={14} />
-                    <a href="mailto:strahil.peykov@gmail.com" className="hover:text-purple-400 transition-colors">
+                    <a href="mailto:strahil.peykov@gmail.com" className="hover:text-white transition-colors">
                       strahil.peykov@gmail.com
                     </a>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-400">
+                  <div className="flex items-center gap-2 text-ink/70">
                     <Download size={14} />
-                    <a href="/cv.pdf" download className="hover:text-purple-400 transition-colors">
+                    <a href="/cv.pdf" download className="hover:text-white transition-colors">
                       Download CV
                     </a>
                   </div>
@@ -52,7 +52,7 @@ export function Footer() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="text-gray-400 hover:text-white transition-colors text-sm"
+                      className="text-ink/70 hover:text-ink transition-colors text-sm"
                     >
                       {item.label}
                     </Link>
@@ -60,33 +60,33 @@ export function Footer() {
                 </div>
                 
                 {/* Social links */}
-                <div className="mt-8 pt-8 border-t border-slate-800/50">
+                <div className="mt-8 pt-8 border-t border-outline">
                   <SocialLinks />
                 </div>
               </div>
             </div>
             
             {/* Bottom bar */}
-            <div className="mt-8 pt-8 border-t border-slate-800/50 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+            <div className="mt-8 pt-8 border-t border-outline flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-ink/60">
               <p>© 2025 Strahil Peykov, All Rights Reserved</p>
               <div className="flex items-center gap-4">
-                <Link href="/privacy" className="hover:text-purple-400 transition-colors">
+                <Link href="/privacy" className="hover:text-white transition-colors">
                   Privacy
                 </Link>
-                <Link href="/terms" className="hover:text-purple-400 transition-colors">
+                <Link href="/terms" className="hover:text-white transition-colors">
                   Terms
                 </Link>
-                <Link href="/cookies" className="hover:text-purple-400 transition-colors">
+                <Link href="/cookies" className="hover:text-white transition-colors">
                   Cookies
                 </Link>
                 <button 
                   onClick={() => setShowCookieSettings(true)}
-                  className="hover:text-purple-400 transition-colors cursor-pointer flex items-center gap-1"
+                  className="hover:text-white transition-colors cursor-pointer flex items-center gap-1"
                 >
                   <Settings className="w-3 h-3" />
                   Cookie Settings
                 </button>
-                <span className="text-gray-700">•</span>
+                <span className="text-ink/30">•</span>
                 <span>Built with Next.js & TypeScript</span>
               </div>
             </div>

@@ -1,5 +1,6 @@
 import { Header } from './Header'
 import { Footer } from '../../components/features/footer/Footer'
+import { NoiseOverlay } from '../effects/NoiseOverlay'
 
 interface PageWrapperProps {
   children: React.ReactNode
@@ -15,7 +16,8 @@ export function PageWrapper({
   showFooter = true 
 }: PageWrapperProps) {
   return (
-    <div className={`min-h-screen bg-slate-950 text-gray-300 overflow-x-hidden ${className}`}>
+    <div className={`relative min-h-screen bg-bg text-ink overflow-x-hidden ${className}`}>
+      <NoiseOverlay />
       {showHeader && <Header />}
       <main>{children}</main>
       {showFooter && <Footer />}

@@ -89,7 +89,7 @@ export default function ContactPage() {
       <section className="relative min-h-[60vh] flex items-center justify-center px-6 py-32 overflow-hidden">
         {/* Animated background */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 via-blue-500/5 to-transparent" />
+          <div className="absolute inset-0" />
           
           {/* Animated connection lines */}
           <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 800 600">
@@ -115,10 +115,10 @@ export default function ContactPage() {
             ))}
             <defs>
               <linearGradient id="gradient">
-                <stop offset="0%" stopColor="#60a5fa" />
-                <stop offset="100%" stopColor="#c084fc" />
+                <stop offset="0%" stopColor="#ffffff" />
+                <stop offset="100%" stopColor="#ffffff" />
               </linearGradient>
-            </defs>
+          </defs>
           </svg>
         </div>
         
@@ -139,16 +139,14 @@ export default function ContactPage() {
             className="text-5xl lg:text-7xl font-display font-bold leading-none text-white mb-6"
           >
             Let's Start a
-            <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Conversation
-            </span>
+            <span className="block">Conversation</span>
           </motion.h1>
           
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-gray-400 max-w-2xl mx-auto"
+            className="text-xl text-white/80 max-w-2xl mx-auto"
           >
             Have a project in mind? Let's discuss how we can work together 
             to bring your ideas to life.
@@ -157,7 +155,7 @@ export default function ContactPage() {
       </section>
       
       {/* Contact Methods */}
-      <section className="px-6 py-16 border-y border-slate-800">
+      <section className="px-6 py-16 border-y border-outline">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {contactMethods.map((method) => {
@@ -178,10 +176,10 @@ export default function ContactPage() {
                     target={method.href?.startsWith('http') ? '_blank' : undefined}
                     rel={method.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
                   >
-                    <div className="relative p-6 rounded-xl bg-slate-900/50 backdrop-blur-sm border border-slate-800 hover:border-purple-500/30 transition-all duration-300 h-full flex flex-col">
-                      <div className={`absolute inset-0 bg-gradient-to-br ${method.gradient} opacity-0 group-hover:opacity-10 rounded-xl transition-opacity`} />
+                    <div className="relative p-6 rounded-xl bg-bg-soft/80 backdrop-blur-sm border border-outline hover:shadow-glow hover:border-glow/35 transition-all duration-300 h-full flex flex-col">
+                      <div className="absolute inset-0 opacity-[0.04] rounded-xl" />
                       
-                      <Icon className={`w-8 h-8 ${method.color} mb-3 flex-shrink-0`} />
+                      <Icon className={`w-8 h-8 text-white mb-3 flex-shrink-0`} />
                       <h3 className="text-sm text-gray-500 mb-1 flex-shrink-0">{method.label}</h3>
                       <p className="text-white font-medium text-sm leading-relaxed break-normal">{method.value}</p>
                     </div>
@@ -235,30 +233,30 @@ export default function ContactPage() {
                         className="group relative"
                         aria-label={social.label}
                       >
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg blur-lg opacity-0 group-hover:opacity-50 transition-opacity" />
-                        <div className="relative w-12 h-12 bg-slate-900/50 border border-slate-800 rounded-lg flex items-center justify-center hover:border-purple-500/50 transition-all">
-                          <Icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+                        <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <div className="relative w-12 h-12 bg-bg-soft/80 border border-outline rounded-lg flex items-center justify-center hover:shadow-glow hover:border-glow/35 transition-all">
+                          <Icon className="w-5 h-5 text-white/70 group-hover:text-white transition-colors" />
                         </div>
                       </Link>
-                    )
+                  )
                   })}
                 </div>
               </div>
               
               {/* Schedule Meeting */}
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl blur-2xl" />
-                <div className="relative bg-slate-900/50 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-6">
-                  <Calendar className="w-8 h-8 text-purple-400 mb-3" />
+                <div className="absolute inset-0 rounded-2xl opacity-[0.03]" />
+                <div className="relative bg-bg-soft/80 backdrop-blur-sm border border-outline rounded-2xl p-6">
+                  <Calendar className="w-8 h-8 text-white mb-3" />
                   <h3 className="text-lg font-semibold text-white mb-2">
                     Prefer a quick call?
                   </h3>
-                  <p className="text-gray-400 text-sm mb-4">
+                  <p className="text-white/80 text-sm mb-4">
                     Book a free 30-minute consultation to discuss your project.
                   </p>
                   <Link
                     href="mailto:strahil.peykov@gmail.com?subject=Consultation Request"
-                    className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors font-medium"
+                    className="inline-flex items-center gap-2 text-white hover:text-white transition-colors font-medium"
                   >
                     Schedule a meeting
                     <Calendar className="w-4 h-4" />
@@ -279,7 +277,7 @@ export default function ContactPage() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.5 + index * 0.1 }}
-                      className="border-b border-slate-800 pb-4 last:border-0"
+                      className="border-b border-outline pb-4 last:border-0"
                     >
                       <h4 className="text-white font-medium mb-2">{faq.question}</h4>
                       <p className="text-gray-400 text-sm">{faq.answer}</p>

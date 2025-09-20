@@ -61,17 +61,17 @@ export function MobileMenu({ isOpen, onClose, items, currentPath }: MobileMenuPr
     >
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm"
+        className="absolute inset-0 bg-bg/80 backdrop-blur-sm"
         onClick={onClose}
         aria-label="Close menu"
       />
       
       {/* Menu panel - Fixed positioning with proper scroll container */}
-      <div className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-slate-900/95 backdrop-blur-md border-l border-purple-500/20 flex flex-col">
+      <div className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-bg/95 backdrop-blur-md border-l border-outline flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 mt-16 flex-shrink-0 border-b border-slate-800/50">
+        <div className="flex items-center justify-between p-6 mt-16 flex-shrink-0 border-b border-outline">
           <h2 className="text-lg font-display font-semibold text-white">Navigation</h2>
-          <div className="text-sm text-gray-500">{items.length} pages</div>
+          <div className="text-sm text-white/50">{items.length} pages</div>
         </div>
 
         {/* Scrollable Navigation Container */}
@@ -101,28 +101,28 @@ export function MobileMenu({ isOpen, onClose, items, currentPath }: MobileMenuPr
                   <Link
                     href={item.href}
                     onClick={onClose}
-                    className={`group flex items-center gap-4 px-4 py-4 rounded-xl transition-all relative overflow-hidden ${
+                    className={`group flex items-center gap-4 px-4 py-4 rounded-xl transition-all relative overflow-hidden border ${
                       isActive
-                        ? 'text-white bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-500/30'
-                        : 'text-gray-400 hover:text-purple-400 hover:bg-purple-500/10'
+                        ? 'text-white bg-glow/5 border-glow/40 shadow-glow'
+                        : 'text-white/70 hover:text-white hover:bg-bg-soft/60 border-outline'
                     }`}
                     aria-label={`Navigate to ${item.label} - ${item.description}`}
                   >
-                    {/* Background gradient effect */}
+                    {/* Subtle hover layer */}
                     <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                      isActive ? '' : 'bg-gradient-to-r from-blue-500/5 to-purple-500/5'
+                      isActive ? '' : 'bg-bg-soft/40'
                     }`} />
                     
                     {/* Icon */}
                     <div className={`relative z-10 w-10 h-10 rounded-lg flex items-center justify-center transition-all flex-shrink-0 ${
                       isActive
-                        ? 'bg-purple-500/20 border border-purple-500/30'
-                        : 'bg-slate-800/50 border border-slate-700/50 group-hover:border-purple-500/30'
+                        ? 'bg-glow/10 border border-glow/40'
+                        : 'bg-bg-soft/70 border border-outline group-hover:border-glow/30'
                     }`}>
                       <Icon 
                         size={18} 
                         className={`transition-colors ${
-                          isActive ? 'text-purple-400' : 'text-gray-500 group-hover:text-purple-400'
+                          isActive ? 'text-white' : 'text-white/60 group-hover:text-white'
                         }`} 
                       />
                     </div>
@@ -135,7 +135,7 @@ export function MobileMenu({ isOpen, onClose, items, currentPath }: MobileMenuPr
                         {item.label}
                       </div>
                       <div className={`text-xs transition-colors break-words ${
-                        isActive ? 'text-purple-300' : 'text-gray-500 group-hover:text-gray-400'
+                        isActive ? 'text-white/70' : 'text-white/50 group-hover:text-white/70'
                       }`}>
                         {item.description}
                       </div>
@@ -145,7 +145,7 @@ export function MobileMenu({ isOpen, onClose, items, currentPath }: MobileMenuPr
                     {isActive && (
                       <motion.div
                         layoutId="mobileActiveTab"
-                        className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-purple-400 rounded-l-full"
+                        className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-glow rounded-l-full"
                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                       />
                     )}
@@ -157,10 +157,10 @@ export function MobileMenu({ isOpen, onClose, items, currentPath }: MobileMenuPr
         </nav>
 
         {/* Footer - Fixed at bottom */}
-        <div className="p-6 border-t border-slate-800/50 flex-shrink-0">
+        <div className="p-6 border-t border-outline flex-shrink-0">
           <div className="text-center">
-            <div className="text-xs text-gray-600">
-              Currently on: <span className="text-purple-400 font-medium">
+            <div className="text-xs text-white/60">
+              Currently on: <span className="text-white font-medium">
                 {items.find(item => isActiveItem(item.href))?.label || 'Home'}
               </span>
             </div>

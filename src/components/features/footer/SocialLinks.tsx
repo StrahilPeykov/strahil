@@ -11,7 +11,7 @@ export function SocialLinks() {
           <a
             key={social.label}
             href={social.href}
-            className="p-2.5 bg-slate-900/50 rounded-lg text-gray-400 hover:text-purple-400 hover:bg-purple-500/10 transition-all"
+            className="p-2.5 bg-bg-soft/70 border border-outline rounded-lg text-white/70 hover:text-white hover:shadow-glow hover:border-glow/35 transition-all"
             aria-label={social.label}
             target={social.external ? "_blank" : undefined}
             rel={social.external ? "noopener noreferrer" : undefined}

@@ -19,12 +19,12 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       transition={{ delay: index * 0.2 }}
       className="group relative"
     >
-      <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} rounded-2xl blur-xl opacity-50 group-hover:opacity-80 transition-all`} />
+      <div className={`absolute inset-0 rounded-2xl opacity-[0.06]`} style={{ boxShadow: 'inset 0 0 160px rgba(60,159,255,0.15)' }} />
       
-      <div className="relative bg-slate-900/50 backdrop-blur-sm rounded-2xl p-8 border border-purple-500/20 hover:border-purple-500/40 transition-all">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-transparent rounded-2xl" />
+      <div className="relative bg-bg-soft/80 backdrop-blur-sm rounded-2xl p-8 border border-outline hover:shadow-glow hover:border-glow/35 transition-all">
+        <div className="absolute top-0 right-0 w-32 h-32 rounded-2xl opacity-[0.04]" />
         
-        <h3 className="text-2xl font-display font-semibold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all">
+        <h3 className="text-2xl font-display font-semibold text-white mb-3 transition-colors">
           {project.title}
         </h3>
         
@@ -45,7 +45,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         
         <Link 
           href={project.url || `/projects/${project.id}`}
-          className="inline-flex items-center gap-2 text-purple-400 hover:text-blue-400 transition-colors font-medium"
+          className="inline-flex items-center gap-2 text-white hover:text-white transition-colors font-medium"
         >
           View case study
           <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />

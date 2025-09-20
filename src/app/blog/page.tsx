@@ -19,9 +19,9 @@ function ArticleCard({ article, index }: { article: ContentListItem; index: numb
       className="group"
     >
       <Link href={`/blog/${article.slug}`}>
-        <div className="relative h-full bg-slate-900/30 backdrop-blur-sm border border-slate-800 rounded-xl overflow-hidden hover:border-purple-500/30 transition-all duration-300">
-          <div className={`h-48 bg-gradient-to-br ${article.gradient || 'from-blue-500 to-purple-500'} opacity-20 relative overflow-hidden`}>
-            <div className="absolute inset-0 bg-slate-900/50" />
+        <div className="relative h-full bg-bg-soft/80 backdrop-blur-sm border border-outline rounded-xl overflow-hidden hover:shadow-glow hover:border-glow/35 transition-all duration-300">
+          <div className="h-48 relative overflow-hidden bg-bg-soft">
+            <div className="absolute inset-0 opacity-[0.06]" style={{ boxShadow: 'inset 0 0 120px rgba(60,159,255,0.15)' }} />
             <div className="absolute bottom-4 left-4 px-3 py-1 bg-slate-900/80 backdrop-blur-sm rounded-full text-xs text-gray-300 flex items-center gap-1">
               <Clock className="w-3 h-3" />
               {article.readTime}
@@ -34,7 +34,7 @@ function ArticleCard({ article, index }: { article: ContentListItem; index: numb
               <span className="text-xs text-gray-500">{article.date}</span>
             </div>
             
-            <h3 className="text-xl font-display font-semibold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all line-clamp-2">
+            <h3 className="text-xl font-display font-semibold text-white mb-3 transition-colors line-clamp-2">
               {article.title}
             </h3>
             
@@ -48,7 +48,7 @@ function ArticleCard({ article, index }: { article: ContentListItem; index: numb
                   <span key={tag} className="text-xs text-gray-500">#{tag}</span>
                 ))}
               </div>
-              <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 text-purple-400 transition-all group-hover:translate-x-1" />
+              <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 text-white/60 transition-all group-hover:translate-x-1" />
             </div>
           </div>
         </div>
@@ -95,7 +95,7 @@ export default function BlogPage() {
       {/* Hero Section */}
       <section className="relative min-h-[50vh] flex items-center justify-center px-6 py-24 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-pink-500/5 via-purple-500/5 to-transparent" />
+          <div className="absolute inset-0" />
         </div>
         
         <div className="relative z-10 max-w-4xl mx-auto text-center">
@@ -105,7 +105,7 @@ export default function BlogPage() {
             transition={{ duration: 0.5 }}
             className="mb-6"
           >
-            <PenTool className="w-16 h-16 text-pink-400 mx-auto mb-6" />
+            <PenTool className="w-16 h-16 text-white mx-auto mb-6" />
           </motion.div>
           
           <motion.h1
@@ -115,16 +115,14 @@ export default function BlogPage() {
             className="text-5xl lg:text-7xl font-display font-bold text-white mb-6"
           >
             Writing &
-            <span className="block bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
-              Thoughts
-            </span>
+            <span className="block">Thoughts</span>
           </motion.h1>
           
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-gray-400 max-w-2xl mx-auto"
+            className="text-xl text-white/80 max-w-2xl mx-auto"
           >
             Articles on technology, design, and the art of building digital experiences. 
             Thoughts from the intersection of code and creativity.
@@ -133,7 +131,7 @@ export default function BlogPage() {
       </section>
       
       {/* Search and Filters */}
-      <section className="px-6 py-8 border-y border-slate-800 sticky top-20 z-30 bg-slate-950/90 backdrop-blur-xl">
+      <section className="px-6 py-8 border-y border-outline sticky top-20 z-30 bg-bg/90 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="flex-1 relative">
@@ -143,7 +141,7 @@ export default function BlogPage() {
                 placeholder="Search articles..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/50 transition-colors"
+                className="w-full pl-12 pr-4 py-3 bg-bg-soft/70 border border-outline rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-glow/50 transition-colors"
               />
             </div>
             
@@ -154,8 +152,8 @@ export default function BlogPage() {
                   onClick={() => setSelectedCategory(cat)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                     selectedCategory === cat
-                      ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
-                      : 'text-gray-400 hover:text-white hover:bg-slate-800'
+                      ? 'bg-glow/15 text-white border border-glow/30'
+                      : 'text-white/70 hover:text-white hover:bg-white/5'
                   }`}
                 >
                   {cat}

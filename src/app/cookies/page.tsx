@@ -103,9 +103,9 @@ export default function CookiesPage() {
                 </section>
 
                 {/* Analytics cookies */}
-                <section className="bg-slate-900/30 rounded-xl p-6">
+                <section className="bg-bg-soft/60 rounded-xl p-6 border border-outline">
                   <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                    <BarChart className="w-5 h-5 text-purple-400" />
+                    <BarChart className="w-5 h-5 text-white" />
                     Analytics Cookies (Optional)
                   </h2>
                   <div className="text-gray-300">
@@ -113,7 +113,7 @@ export default function CookiesPage() {
                       These cookies help us understand how visitors use the website. All data is anonymized.
                     </p>
                     
-                    <div className="bg-slate-800/50 rounded-lg overflow-hidden">
+                    <div className="bg-bg-soft/70 rounded-lg overflow-hidden border border-outline">
                       <table className="w-full text-sm">
                         <thead>
                           <tr className="border-b border-slate-700">
@@ -141,8 +141,8 @@ export default function CookiesPage() {
                       </table>
                     </div>
                     
-                    <div className="mt-4 p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
-                      <p className="text-sm text-green-300">
+                    <div className="mt-4 p-4 bg-bg-soft/70 border border-outline rounded-lg">
+                      <p className="text-sm text-white/80">
                         Google Analytics is configured with IP anonymization and no advertising features
                       </p>
                     </div>
@@ -150,9 +150,9 @@ export default function CookiesPage() {
                 </section>
 
                 {/* Third-party cookies */}
-                <section className="bg-slate-900/30 rounded-xl p-6">
+                <section className="bg-bg-soft/60 rounded-xl p-6 border border-outline">
                   <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                    <MessageSquare className="w-5 h-5 text-pink-400" />
+                    <MessageSquare className="w-5 h-5 text-white" />
                     Third-Party Services
                   </h2>
                   <div className="text-gray-300">
@@ -171,16 +171,16 @@ export default function CookiesPage() {
                 </section>
 
                 {/* Managing cookies */}
-                <section className="bg-slate-900/30 rounded-xl p-6">
+                <section className="bg-bg-soft/60 rounded-xl p-6 border border-outline">
                   <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                    <Settings className="w-5 h-5 text-yellow-400" />
+                    <Settings className="w-5 h-5 text-white" />
                     Managing Your Cookie Preferences
                   </h2>
                   <div className="text-gray-300 space-y-3">
                     <p>You can control cookies through:</p>
                     
                     <div className="space-y-3">
-                      <div className="p-4 bg-slate-800/50 rounded-lg">
+                      <div className="p-4 bg-bg-soft/70 border border-outline rounded-lg">
                         <h3 className="font-medium text-white mb-1">Cookie Banner</h3>
                         <p className="text-sm">
                           When you first visit, you can accept or reject non-essential cookies. 
@@ -194,16 +194,16 @@ export default function CookiesPage() {
                           Most browsers allow you to block or delete cookies. Here's how:
                         </p>
                         <ul className="list-disc list-inside ml-4 text-sm space-y-1">
-                          <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">Chrome</a></li>
-                          <li><a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">Firefox</a></li>
-                          <li><a href="https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">Safari</a></li>
-                          <li><a href="https://support.microsoft.com/en-us/windows/manage-cookies-in-microsoft-edge-view-allow-block-delete-and-use-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">Edge</a></li>
+                          <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white">Chrome</a></li>
+                          <li><a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white">Firefox</a></li>
+                          <li><a href="https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white">Safari</a></li>
+                          <li><a href="https://support.microsoft.com/en-us/windows/manage-cookies-in-microsoft-edge-view-allow-block-delete-and-use-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white">Edge</a></li>
                         </ul>
                       </div>
                     </div>
                     
-                    <div className="p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
-                      <p className="text-sm text-yellow-300">
+                    <div className="p-4 bg-bg-soft/70 border border-outline rounded-lg">
+                      <p className="text-sm text-white/80">
                         ⚠️ Note: Blocking all cookies may affect website functionality.
                       </p>
                     </div>
@@ -211,9 +211,9 @@ export default function CookiesPage() {
                 </section>
 
                 {/* Updates */}
-                <section className="bg-slate-900/30 rounded-xl p-6">
+                <section className="bg-bg-soft/60 rounded-xl p-6 border border-outline">
                   <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                    <Clock className="w-5 h-5 text-gray-400" />
+                    <Clock className="w-5 h-5 text-white" />
                     Updates to This Policy
                   </h2>
                   <div className="text-gray-300">
@@ -225,20 +225,20 @@ export default function CookiesPage() {
                 </section>
 
                 {/* Contact */}
-                <section className="bg-slate-900/30 rounded-xl p-6">
+                <section className="bg-bg-soft/60 rounded-xl p-6 border border-outline">
                   <h2 className="text-xl font-semibold text-white mb-4">
                     Questions?
                   </h2>
                   <div className="text-gray-300">
                     <p>
                       For questions about our use of cookies, contact:{' '}
-                      <a href="mailto:strahil.peykov@gmail.com" className="text-blue-400 hover:text-blue-300">
+                      <a href="mailto:strahil.peykov@gmail.com" className="text-white hover:text-white">
                         strahil.peykov@gmail.com
                       </a>
                     </p>
                     <p className="mt-3">
                       For more about how we handle your data, see our{' '}
-                      <Link href="/privacy" className="text-blue-400 hover:text-blue-300">
+                      <Link href="/privacy" className="text-white hover:text-white">
                         Privacy Policy
                       </Link>.
                     </p>
@@ -251,7 +251,7 @@ export default function CookiesPage() {
             <div className="mt-12 text-center">
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
+                className="inline-flex items-center gap-2 text-white hover:text-white transition-colors"
               >
                 ← Back to Home
               </Link>

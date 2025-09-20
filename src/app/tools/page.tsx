@@ -84,14 +84,14 @@ function ToolCard({ tool, index }: { tool: typeof tools[0], index: number }) {
       transition={{ delay: index * 0.1 }}
       className="group relative h-full"
     >
-      <div className="relative h-full bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-2xl overflow-hidden hover:border-purple-500/30 transition-all duration-300">
-        {/* Background gradient */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${tool.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+      <div className="relative h-full bg-bg-soft/80 backdrop-blur-sm border border-outline rounded-2xl overflow-hidden hover:shadow-glow hover:border-glow/35 transition-all duration-300">
+        {/* Subtle layer */}
+        <div className="absolute inset-0 opacity-[0.04]" />
         
         {/* Header */}
         <div className="p-6 pb-0">
           <div className="flex items-start justify-between mb-4">
-            <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${tool.gradient} p-2.5`}>
+            <div className="w-12 h-12 rounded-xl bg-bg-soft/70 border border-outline p-2.5">
               <Icon className="w-full h-full text-white" />
             </div>
             
@@ -103,22 +103,22 @@ function ToolCard({ tool, index }: { tool: typeof tools[0], index: number }) {
             </Badge>
           </div>
           
-          <h3 className="text-2xl font-semibold text-white mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all">
+          <h3 className="text-2xl font-semibold text-white mb-2 transition-all">
             {tool.title}
           </h3>
-          <p className="text-purple-400 mb-3">{tool.tagline}</p>
-          <p className="text-gray-400 text-sm mb-6">
+          <p className="text-white/80 mb-3">{tool.tagline}</p>
+          <p className="text-ink/75 text-sm mb-6">
             {tool.description}
           </p>
         </div>
         
         {/* Features */}
         <div className="px-6 mb-6">
-          <h4 className="text-sm font-semibold text-gray-300 mb-3">Key Features</h4>
+          <h4 className="text-sm font-semibold text-white/70 mb-3">Key Features</h4>
           <ul className="space-y-2">
             {tool.features.slice(0, 3).map((feature, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-gray-400">
-                <Zap className="w-3 h-3 text-yellow-400 flex-shrink-0 mt-0.5" />
+              <li key={i} className="flex items-start gap-2 text-sm text-ink/80">
+                <Zap className="w-3 h-3 text-white/70 flex-shrink-0 mt-0.5" />
                 <span>{feature}</span>
               </li>
             ))}
@@ -129,10 +129,10 @@ function ToolCard({ tool, index }: { tool: typeof tools[0], index: number }) {
         <div className="px-6 pb-6">
           <div className="flex flex-wrap gap-2 mb-6">
             {tool.techStack.slice(0, 3).map((tech) => (
-              <Badge key={tech} variant="blue" className="text-xs">{tech}</Badge>
+              <Badge key={tech} variant="default" className="text-xs">{tech}</Badge>
             ))}
             {tool.techStack.length > 3 && (
-              <Badge variant="blue" className="text-xs">+{tool.techStack.length - 3} more</Badge>
+              <Badge variant="default" className="text-xs">+{tool.techStack.length - 3} more</Badge>
             )}
           </div>
           
@@ -144,7 +144,7 @@ function ToolCard({ tool, index }: { tool: typeof tools[0], index: number }) {
                   href={tool.link}
                   target={tool.link.startsWith('http') ? "_blank" : undefined}
                   rel={tool.link.startsWith('http') ? "noopener noreferrer" : undefined}
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white font-medium rounded-full hover:scale-105 transition-transform"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-glow text-white font-medium rounded-xl hover:scale-105 transition-transform"
                 >
                   Try it now
                   {tool.link.startsWith('http') && <ExternalLink className="w-4 h-4" />}
@@ -154,17 +154,17 @@ function ToolCard({ tool, index }: { tool: typeof tools[0], index: number }) {
                     href={tool.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 border border-slate-700 rounded-full hover:bg-slate-800 transition-colors"
+                    className="p-2 border border-outline rounded-xl hover:bg-white/5 transition-colors"
                     aria-label="View on GitHub"
                   >
-                    <Github className="w-5 h-5 text-gray-400" />
+                    <Github className="w-5 h-5 text-white/70" />
                   </a>
                 )}
               </>
             ) : (
               <Link
                 href={tool.link}
-                className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 border border-purple-500/30 text-purple-400 font-medium rounded-full hover:bg-purple-500/10 hover:border-purple-500/50 transition-all"
+                className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 border border-outline text-white font-medium rounded-xl hover:bg-white/5 transition-all"
               >
                 Coming soon
                 <ArrowRight className="w-4 h-4" />
@@ -221,16 +221,14 @@ export default function ToolsPage() {
             className="text-5xl lg:text-7xl font-display font-bold text-white mb-6"
           >
             Developer
-            <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Tools
-            </span>
+            <span className="block">Tools</span>
           </motion.h1>
           
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-gray-400 max-w-2xl mx-auto"
+            className="text-xl text-white/80 max-w-2xl mx-auto"
           >
             Some cool tools I made.
           </motion.p>
@@ -238,11 +236,11 @@ export default function ToolsPage() {
       </section>
       
       {/* Featured Tool */}
-      <section className="px-6 py-16 border-y border-slate-800">
+      <section className="px-6 py-16 border-y border-outline">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center gap-2 mb-8">
-            <Star className="w-5 h-5 text-yellow-400" />
-            <span className="text-yellow-400 font-mono text-sm">Most Popular</span>
+            <Star className="w-5 h-5 text-white" />
+            <span className="text-white font-mono text-sm">Most Popular</span>
           </div>
           
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -250,12 +248,12 @@ export default function ToolsPage() {
               <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-4">
                 {tools[1].title}
               </h2>
-              <p className="text-xl text-purple-400 mb-4">{tools[1].tagline}</p>
-              <p className="text-gray-400 mb-6">{tools[1].longDescription}</p>
+              <p className="text-xl text-white/80 mb-4">{tools[1].tagline}</p>
+              <p className="text-ink/75 mb-6">{tools[1].longDescription}</p>
               
               <div className="grid grid-cols-2 gap-6 mb-8">
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-300 mb-2">Built with</h3>
+                  <h3 className="text-sm font-semibold text-white/70 mb-2">Built with</h3>
                   <div className="flex flex-wrap gap-2">
                     {tools[1].techStack.map((tech) => (
                       <Badge key={tech} variant="default" size="sm">{tech}</Badge>
@@ -263,8 +261,8 @@ export default function ToolsPage() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-300 mb-2">Status</h3>
-                  <div className="space-y-1 text-sm text-gray-400">
+                  <h3 className="text-sm font-semibold text-white/70 mb-2">Status</h3>
+                  <div className="space-y-1 text-sm text-ink/80">
                     <div>Live & Active</div>
                     <div>EU Compliant</div>
                   </div>
@@ -274,7 +272,7 @@ export default function ToolsPage() {
               <div className="flex items-center gap-4">
                 <Link
                   href={tools[1].link}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-violet-500 text-white font-semibold rounded-full hover:scale-105 transition-transform"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-glow text-white font-semibold rounded-xl hover:scale-105 transition-transform"
                 >
                   Try it now
                   <ArrowRight className="w-5 h-5" />
@@ -284,7 +282,7 @@ export default function ToolsPage() {
                     href={tools[1].github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 border border-slate-700 text-gray-300 font-medium rounded-full hover:bg-slate-800 transition-colors"
+                    className="inline-flex items-center gap-2 px-6 py-3 border border-outline text-white font-medium rounded-xl hover:bg-white/5 transition-colors"
                   >
                     <Github className="w-5 h-5" />
                     View source
@@ -294,16 +292,16 @@ export default function ToolsPage() {
             </div>
             
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-violet-500/20 blur-3xl" />
-              <div className="relative bg-slate-900/50 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-8">
+              <div className="absolute inset-0 opacity-[0.03]" />
+              <div className="relative bg-bg-soft/80 backdrop-blur-sm border border-outline rounded-2xl p-8">
                 <h3 className="text-xl font-semibold text-white mb-4">Features</h3>
                 <ul className="space-y-3">
                   {tools[1].features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Zap className="w-3 h-3 text-purple-400" />
+                      <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <Zap className="w-3 h-3 text-white/70" />
                       </div>
-                      <span className="text-gray-300">{feature}</span>
+                      <span className="text-ink/80">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -327,13 +325,13 @@ export default function ToolsPage() {
       </section>
       
       {/* Open Source CTA */}
-      <section className="px-6 py-16 border-t border-slate-800">
+      <section className="px-6 py-16 border-t border-outline">
         <div className="max-w-4xl mx-auto text-center">
-          <Github className="w-12 h-12 text-purple-400 mx-auto mb-6" />
+          <Github className="w-12 h-12 text-white mx-auto mb-6" />
           <h2 className="text-3xl font-display font-bold text-white mb-4">
             Open Source First
           </h2>
-          <p className="text-gray-400 mb-8">
+          <p className="text-ink/75 mb-8">
             Most of my tools are open source. Feel free to contribute, 
             fork, or use them in your own projects.
           </p>
@@ -341,7 +339,7 @@ export default function ToolsPage() {
             href="https://github.com/StrahilPeykov"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 border-2 border-purple-500/30 text-purple-400 font-semibold rounded-full hover:bg-purple-500/10 hover:border-purple-500/50 transition-all"
+            className="inline-flex items-center gap-2 px-8 py-4 border border-outline text-white font-semibold rounded-xl hover:bg-white/5 transition-all"
           >
             View on GitHub
             <ExternalLink className="w-5 h-5" />

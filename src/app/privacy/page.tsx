@@ -17,7 +17,7 @@ export default function PrivacyPage() {
           >
             {/* Header */}
             <div className="mb-12 text-center">
-              <Shield className="w-16 h-16 text-blue-400 mx-auto mb-6" />
+              <Shield className="w-16 h-16 text-white mx-auto mb-6" />
               <h1 className="text-4xl lg:text-5xl font-display font-bold text-white mb-4">
                 Privacy Policy
               </h1>
@@ -26,23 +26,23 @@ export default function PrivacyPage() {
 
             {/* Content */}
             <div className="prose prose-invert max-w-none">
-              <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-2xl p-8 mb-8">
+              <div className="bg-bg-soft/80 backdrop-blur-sm border border-outline rounded-2xl p-8 mb-8">
                 <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-                  <Database className="w-6 h-6 text-purple-400" />
+                  <Database className="w-6 h-6 text-white" />
                   Data Controller
                 </h2>
                 <p className="text-gray-300">
                   Strahil Peykov<br />
                   Amsterdam, Netherlands<br />
-                  Email: <a href="mailto:strahil.peykov@gmail.com" className="text-blue-400 hover:text-blue-300">strahil.peykov@gmail.com</a>
+                  Email: <a href="mailto:strahil.peykov@gmail.com" className="text-white hover:text-white">strahil.peykov@gmail.com</a>
                 </p>
               </div>
 
               <div className="space-y-8">
                 {/* What data we collect */}
-                <section className="bg-slate-900/30 rounded-xl p-6">
+                <section className="bg-bg-soft/60 rounded-xl p-6 border border-outline">
                   <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                    <Mail className="w-5 h-5 text-blue-400" />
+                    <Mail className="w-5 h-5 text-white" />
                     What Data We Collect
                   </h2>
                   <div className="text-gray-300 space-y-3">
@@ -79,9 +79,9 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* Legal basis */}
-                <section className="bg-slate-900/30 rounded-xl p-6">
+                <section className="bg-bg-soft/60 rounded-xl p-6 border border-outline">
                   <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                    <Lock className="w-5 h-5 text-green-400" />
+                    <Lock className="w-5 h-5 text-white" />
                     Legal Basis for Processing
                   </h2>
                   <div className="text-gray-300 space-y-2">
@@ -92,9 +92,9 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* Data retention */}
-                <section className="bg-slate-900/30 rounded-xl p-6">
+                <section className="bg-bg-soft/60 rounded-xl p-6 border border-outline">
                   <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                    <Calendar className="w-5 h-5 text-purple-400" />
+                    <Calendar className="w-5 h-5 text-white" />
                     How Long We Keep Your Data
                   </h2>
                   <div className="text-gray-300 space-y-2">
@@ -144,9 +144,9 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* Newsletter Details */}
-                <section className="bg-slate-900/30 rounded-xl p-6">
+                <section className="bg-bg-soft/60 rounded-xl p-6 border border-outline">
                   <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                    <Mail className="w-5 h-5 text-purple-400" />
+                    <Mail className="w-5 h-5 text-white" />
                     Newsletter Subscription
                   </h2>
                   <div className="text-gray-300 space-y-3">
@@ -159,7 +159,7 @@ export default function PrivacyPage() {
                     </ul>
                     <p className="text-sm mt-3">
                       To unsubscribe, click the link at the bottom of any newsletter or email{' '}
-                      <a href="mailto:strahil.peykov@gmail.com" className="text-blue-400 hover:text-blue-300">
+                      <a href="mailto:strahil.peykov@gmail.com" className="text-white hover:text-white">
                         strahil.peykov@gmail.com
                       </a>
                     </p>
@@ -167,9 +167,9 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* Security */}
-                <section className="bg-slate-900/30 rounded-xl p-6">
+                <section className="bg-bg-soft/60 rounded-xl p-6 border border-outline">
                   <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                    <Lock className="w-5 h-5 text-red-400" />
+                    <Lock className="w-5 h-5 text-white" />
                     Security Measures
                   </h2>
                   <div className="text-gray-300">
@@ -184,15 +184,15 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* Cookies */}
-                <section className="bg-slate-900/30 rounded-xl p-6">
+                <section className="bg-bg-soft/60 rounded-xl p-6 border border-outline">
                   <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                    <Cookie className="w-5 h-5 text-orange-400" />
+                    <Cookie className="w-5 h-5 text-white" />
                     Cookies
                   </h2>
                   <div className="text-gray-300">
                     <p>
                       For detailed information about cookies, please see our{' '}
-                      <Link href="/cookies" className="text-blue-400 hover:text-blue-300">
+                      <Link href="/cookies" className="text-white hover:text-white">
                         Cookie Policy
                       </Link>.
                     </p>
@@ -200,21 +200,21 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* Contact & complaints */}
-                <section className="bg-slate-900/30 rounded-xl p-6">
+                <section className="bg-bg-soft/60 rounded-xl p-6 border border-outline">
                   <h2 className="text-xl font-semibold text-white mb-4">
                     Questions & Complaints
                   </h2>
                   <div className="text-gray-300 space-y-3">
                     <p>
                       For privacy questions or to exercise your rights, contact:{' '}
-                      <a href="mailto:strahil.peykov@gmail.com" className="text-blue-400 hover:text-blue-300">
+                      <a href="mailto:strahil.peykov@gmail.com" className="text-white hover:text-white">
                         strahil.peykov@gmail.com
                       </a>
                     </p>
                     <p>
                       If you're not satisfied with our response, you can lodge a complaint with the Dutch Data Protection Authority 
                       (Autoriteit Persoonsgegevens) at{' '}
-                      <a href="https://www.autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">
+                      <a href="https://www.autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white">
                         autoriteitpersoonsgegevens.nl
                       </a>.
                     </p>
@@ -222,7 +222,7 @@ export default function PrivacyPage() {
                 </section>
 
                 {/* Updates */}
-                <section className="bg-slate-900/30 rounded-xl p-6">
+                <section className="bg-bg-soft/60 rounded-xl p-6 border border-outline">
                   <h2 className="text-xl font-semibold text-white mb-4">
                     Policy Updates
                   </h2>
@@ -240,7 +240,7 @@ export default function PrivacyPage() {
             <div className="mt-12 text-center">
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
+                className="inline-flex items-center gap-2 text-white hover:text-white transition-colors"
               >
                 ← Back to Home
               </Link>

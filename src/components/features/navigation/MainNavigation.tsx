@@ -9,6 +9,7 @@ import { useScrollPosition } from '../../../hooks/useScrollPosition'
 import { allNavigationItems, primaryNavigation } from '../../../data/navigation'
 import { MobileMenu } from './MobileMenu'
 import { FaviconLogo } from '../../ui/LogoIcon'
+import { NavItem } from '../../ui/NavItem'
 
 export function MainNavigation() {
   const pathname = usePathname()
@@ -39,73 +40,34 @@ export function MainNavigation() {
   return (
     <>
       <motion.nav
-        initial={{ y: -100 }}
+        initial={{ y: -60 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'py-2' : 'py-4'
-        }`}
+        transition={{ duration: 0.4 }}
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3"
       >
         <div className="container max-w-7xl mx-auto px-6">
-          <div className={`rounded-full transition-all duration-300 ${
-            isScrolled 
-              ? 'backdrop-blur-xl bg-slate-900/80 border border-purple-500/20 px-4 py-2 shadow-lg shadow-purple-500/5' 
-              : 'px-2'
-          }`}>
+          <div className={
+            `rounded-xl border ${isScrolled ? 'border-outline backdrop-blur-xl' : 'border-transparent backdrop-blur-lg'} 
+             bg-bg/65 px-4 py-3 transition-all duration-300`
+          }>
             <div className="flex items-center justify-between">
               {/* Enhanced Logo with Text */}
               <Link href="/" className="group flex items-center gap-3" aria-label="Strahil Peykov - Home">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-lg scale-150" />
-                  <FaviconLogo 
-                    size={isScrolled ? 28 : 32} 
-                    className="relative transition-all duration-300 group-hover:scale-110"
-                    alt="SP"
-                  />
-                </div>
-                
-                {/* Stylized "Strahil" text */}
-                <div className="relative overflow-hidden">
-                  <span className="font-display font-bold text-xl bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent transition-all duration-300 group-hover:from-blue-300 group-hover:to-purple-300">
-                    Strahil
-                  </span>
-                  
-                  {/* Subtle underline animation */}
-                  <div className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300 w-0 group-hover:w-full" />
-                </div>
+                <FaviconLogo 
+                  size={isScrolled ? 26 : 30}
+                  className="transition-transform duration-300 group-hover:scale-105"
+                  alt="SP"
+                />
+                <span className="font-display font-bold text-lg tracking-tight text-white">
+                  Strahil
+                </span>
               </Link>
 
               {/* Desktop menu */}
               <div className="hidden md:flex items-center gap-1">
-                {/* Primary nav - 5 items with active states */}
-                {primaryNavItems.map((item) => {
-                  const isActive = isActiveItem(item.href)
-                  
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="relative px-4 py-2 transition-all group"
-                    >
-                      <span className={`relative z-10 text-sm font-medium transition-colors ${
-                        isActive 
-                          ? 'text-white' 
-                          : 'text-gray-400 group-hover:text-white'
-                      }`}>
-                        {item.label}
-                      </span>
-                      
-                      {/* Active indicator */}
-                      <div className={`absolute inset-0 rounded-full transition-all duration-300 ${
-                        isActive
-                          ? 'bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 border border-purple-500/30'
-                          : 'bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/10 group-hover:via-purple-500/10 group-hover:to-pink-500/10'
-                      }`} />
-                      
-
-                    </Link>
-                  )
-                })}
+                {primaryNavItems.map((item) => (
+                  <NavItem key={item.href} href={item.href} label={item.label} active={isActiveItem(item.href)} />
+                ))}
                 
                 {/* More dropdown for secondary items */}
                 {moreItems.length > 0 && (
@@ -117,7 +79,7 @@ export function MainNavigation() {
                           setTimeout(closeMoreMenu, 200)
                         }
                       }}
-                      className="relative px-3 py-2 text-gray-500 hover:text-gray-300 transition-all flex items-center gap-1 text-sm"
+                      className="relative px-3 py-2 text-white/70 hover:text-white transition-all flex items-center gap-1 text-sm"
                     >
                       <span>More</span>
                       <ChevronDown className={`w-3 h-3 transition-transform ${isMoreMenuOpen ? 'rotate-180' : ''}`} />
@@ -126,11 +88,11 @@ export function MainNavigation() {
                     <AnimatePresence>
                       {isMoreMenuOpen && (
                         <motion.div
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
-                          transition={{ duration: 0.2 }}
-                          className="absolute top-full right-0 mt-2 w-48 bg-slate-900/95 backdrop-blur-xl border border-slate-800 rounded-xl shadow-xl overflow-hidden"
+                          initial={{ opacity: 0, scale: 0.98 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.98 }}
+                          transition={{ duration: 0.18 }}
+                          className="absolute top-full right-0 mt-3 w-48 origin-top-right z-50 bg-bg/80 backdrop-blur-xl border border-outline rounded-xl shadow-xl overflow-hidden"
                         >
                           <div className="py-2">
                             {moreItems.map((item) => {
@@ -142,16 +104,16 @@ export function MainNavigation() {
                                   key={item.href}
                                   href={item.href}
                                   onClick={closeMoreMenu}
-                                  className={`flex items-center gap-3 px-4 py-2 text-sm transition-all ${
+                                  className={`group flex items-center gap-3 px-4 py-2 text-sm transition-all ${
                                     isActive
-                                      ? 'text-white bg-purple-500/10 border-r-2 border-purple-400'
-                                      : 'text-gray-400 hover:text-white hover:bg-slate-800/50'
+                                      ? 'text-white bg-glow/10 border-r-2 border-glow'
+                                      : 'text-white/70 hover:text-white hover:bg-bg-soft/50'
                                   }`}
                                 >
-                                  <Icon size={16} className={isActive ? 'text-purple-400' : 'text-gray-500'} />
+                                  <Icon size={16} className={isActive ? 'text-white' : 'text-white/60 group-hover:text-white'} />
                                   <div>
                                     <div className="font-medium">{item.label}</div>
-                                    <div className="text-xs text-gray-600">{item.description}</div>
+                                    <div className="text-xs text-white/40">{item.description}</div>
                                   </div>
                                 </Link>
                               )
@@ -167,7 +129,7 @@ export function MainNavigation() {
               {/* Mobile menu button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden p-2 text-gray-400 hover:text-purple-400 transition-colors"
+                className="md:hidden p-2 text-white/60 hover:text-white transition-colors"
                 aria-label="Toggle menu"
               >
                 {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

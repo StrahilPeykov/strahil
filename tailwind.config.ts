@@ -6,6 +6,7 @@ const config: Config = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     container: {
@@ -17,6 +18,16 @@ const config: Config = {
     },
     extend: {
       colors: {
+        // New visual system tokens
+        bg: {
+          DEFAULT: '#0B0F14',
+          soft: '#0F1621',
+        },
+        // Base text color for body copy (soft near‑white)
+        ink: '#C7D1E0',
+        glow: '#3c9fff',
+        warmth: '#FFD166',
+        outline: '#2A3444',
         // Cosmic palette
         cosmic: {
           blue: 'hsl(217 91% 60%)',
@@ -63,6 +74,10 @@ const config: Config = {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
+      boxShadow: {
+        // Soft electric blue glow for interactive elements
+        glow: '0 0 12px rgba(60, 159, 255, 0.35), 0 0 24px rgba(60, 159, 255, 0.2)',
+      },
       fontFamily: {
         sans: ['var(--font-inter)', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
         display: ['var(--font-space-grotesk)', 'Space Grotesk', 'system-ui', '-apple-system', 'sans-serif'],
@@ -98,6 +113,11 @@ const config: Config = {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
         },
+        'drift-slow': {
+          '0%': { transform: 'translate3d(0,0,0) rotate(0deg)' },
+          '50%': { transform: 'translate3d(10px,-10px,0) rotate(180deg)' },
+          '100%': { transform: 'translate3d(0,0,0) rotate(360deg)' },
+        },
       },
       animation: {
         'fade-in': 'fade-in 0.3s ease-out',
@@ -106,6 +126,8 @@ const config: Config = {
         'slide-in-right': 'slide-in-right 0.3s ease-out',
         'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
         'float': 'float 3s ease-in-out infinite',
+        'spin-slow': 'spin 50s linear infinite',
+        'drift-slow': 'drift-slow 45s ease-in-out infinite',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

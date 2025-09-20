@@ -212,7 +212,7 @@ export function ContactForm() {
           value={formData.subject}
           onChange={handleChange}
           required
-          className="w-full px-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/50 transition-all"
+          className="w-full px-4 py-3 bg-bg-soft/70 border border-outline rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-glow/50 transition-all"
           placeholder="What's this about?"
         />
         
@@ -226,7 +226,7 @@ export function ContactForm() {
             onBlur={() => setFocusedField(null)}
             required
             rows={6}
-            className="w-full px-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/50 transition-all resize-none"
+            className="w-full px-4 py-3 bg-bg-soft/70 border border-outline rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-glow/50 transition-all resize-none"
             placeholder="Tell me about your project..."
           />
           <div className="absolute bottom-3 right-3 text-xs text-gray-600">
@@ -242,15 +242,15 @@ export function ContactForm() {
             checked={agreedToTerms}
             onChange={(e) => setAgreedToTerms(e.target.checked)}
             required
-            className="mt-1 w-4 h-4 bg-slate-900/50 border border-slate-700 rounded text-purple-500 focus:ring-purple-500 focus:ring-offset-0 focus:ring-2 cursor-pointer"
+            className="mt-1 w-4 h-4 bg-bg-soft/70 border border-outline rounded text-white focus:ring-glow focus:ring-offset-0 focus:ring-2 cursor-pointer"
           />
-          <label htmlFor="consent" className="text-sm text-gray-400 cursor-pointer">
+          <label htmlFor="consent" className="text-sm text-white/80 cursor-pointer">
             I agree to the{' '}
-            <Link href="/privacy" className="text-purple-400 hover:text-purple-300 underline">
+            <Link href="/privacy" className="text-white hover:text-white">
               privacy policy
             </Link>{' '}
             and{' '}
-            <Link href="/terms" className="text-purple-400 hover:text-purple-300 underline">
+            <Link href="/terms" className="text-white hover:text-white">
               terms of service
             </Link>
             . I understand my data will be processed as described and I can request deletion at any time.
@@ -261,11 +261,11 @@ export function ContactForm() {
         {RECAPTCHA_SITE_KEY && (
           <p className="text-xs text-gray-500 text-center">
             This site is protected by reCAPTCHA and the Google{' '}
-            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline">
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="">
               Privacy Policy
             </a>{' '}
             and{' '}
-            <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline">
+            <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="">
               Terms of Service
             </a>{' '}
             apply.
@@ -307,8 +307,8 @@ export function ContactForm() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl" />
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 bg-glow rounded-xl" />
+              <div className="absolute inset-0 bg-glow rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
               
               <div className="relative flex items-center justify-center gap-2 px-8 py-4 text-white font-semibold">
                 {isSubmitting ? (
