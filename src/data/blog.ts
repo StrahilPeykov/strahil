@@ -17,21 +17,6 @@ export interface Article {
 
 export const articles: Article[] = [
   {
-    id: 'ai-illiterate-programmers',
-    title: 'Is AI Creating a Generation of Illiterate Programmers?',
-    excerpt: 'The double-edged sword of AI coding assistants: How tools meant to enhance productivity might be undermining fundamental programming skills.',
-    date: '2025-01-15',
-    readTime: '12 min',
-    views: 15234,
-    likes: 342,
-    comments: 87,
-    tags: ['AI', 'Programming', 'Education', 'Technology'],
-    category: 'Technology',
-    featured: true,
-    gradient: 'from-red-500 to-orange-500',
-    url: '/blog/ai-illiterate-programmers'
-  },
-  {
     id: 'stop-killing-games',
     title: 'The Stop Killing Games Movement: A Developer\'s Perspective',
     excerpt: 'When publishers shut down game servers, they\'re not just ending a service, they\'re destroying digital culture. Here\'s why the movement matters.',

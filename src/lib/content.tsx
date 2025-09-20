@@ -68,28 +68,6 @@ const contentRegistry: ContentEntry[] = [
     }
   },
   {
-    slug: 'ai-illiterate-programmers',
-    type: 'blog',
-    metadata: {
-      title: 'Is AI Creating a Generation of',
-      subtitle: 'Illiterate Programmers?',
-      excerpt: 'The double-edged sword of AI coding assistants: How tools meant to enhance productivity might be undermining fundamental programming skills.',
-      date: 'June 16, 2025',
-      readTime: '12 min read',
-      author: 'Strahil Peykov',
-      tags: ['AI', 'Programming', 'Education', 'Technology'],
-      category: 'Technology',
-      badges: [
-        { variant: 'warning', label: 'Opinion' },
-        { variant: 'purple', label: 'Technology' }
-      ]
-    },
-    content: () => {
-      const Component = require('../content/blog/ai-illiterate-programmers').default
-      return <Component />
-    }
-  },
-  {
     slug: 'stop-killing-games',
     type: 'blog',
     metadata: {
