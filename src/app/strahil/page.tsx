@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 // Optimized metadata specifically for "Strahil" searches
 export const metadata: Metadata = {
   title: 'Strahil - Full-Stack Developer & Software Engineer',
-  description: 'Strahil is a Bulgarian Full-Stack Developer in Eindhoven. Learn about Strahil, view projects by Strahil, and contact Strahil for your next project.',
+  description: 'Strahil is a Bulgarian Full-Stack Developer in Amsterdam. Learn about Strahil, view projects by Strahil, and contact Strahil for your next project.',
   keywords: [
     'Strahil',
     'Strahil developer',

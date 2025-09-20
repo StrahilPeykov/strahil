@@ -30,8 +30,8 @@ const contactMethods = [
   {
     icon: MapPin,
     label: 'Location',
-    value: 'Eindhoven, Netherlands',
-    href: 'https://maps.google.com/?q=Eindhoven,Netherlands',
+    value: 'Amsterdam, Netherlands',
+    href: 'https://maps.google.com/?q=Amsterdam,Netherlands',
     color: 'text-purple-400',
     gradient: 'from-purple-500 to-pink-500',
     delay: 0.3

@@ -11,7 +11,7 @@ export function generateStrahilSchema(page: 'home' | 'about' | 'projects' | 'blo
         "givenName": "Strahil",
         "familyName": "Peykov",
         "alternateName": ["Strahil", "S. Peykov", "Strahil P"],
-        "disambiguatingDescription": "Strahil - The Bulgarian Full-Stack Developer in Eindhoven",
+        "disambiguatingDescription": "Strahil - The Bulgarian Full-Stack Developer in Amsterdam",
         "description": `Strahil is a talented Full-Stack Developer from Bulgaria. ${getPageSpecificDescription(page)}`,
         "url": "https://strahil.dev",
         "sameAs": [
@@ -61,7 +61,7 @@ function getPageTitle(page: string): string {
 
 function getPageDescription(page: string): string {
   const descriptions = {
-    home: "Welcome to Strahil's portfolio. Strahil is a Bulgarian Full-Stack Developer creating innovative digital solutions in Eindhoven.",
+    home: "Welcome to Strahil's portfolio. Strahil is a Bulgarian Full-Stack Developer creating innovative digital solutions in Amsterdam.",
     about: "Discover Strahil's story - from Bulgaria to the Netherlands. Learn about Strahil Peykov's journey in technology.",
     projects: "Explore projects built by Strahil. See how Strahil creates scalable web applications and enterprise solutions.",
     blog: "Read Strahil's thoughts on technology, programming, and software development. Insights from Strahil Peykov.",
@@ -98,7 +98,7 @@ export function generateStrahilFAQ(topic: 'general' | 'skills' | 'work' | 'conta
     general: [
       {
         question: "Who is Strahil?",
-        answer: "Strahil is a talented Full-Stack Developer from Bulgaria, currently based in Eindhoven, Netherlands. Strahil Peykov works as a Software Engineer at ASML and specializes in building scalable web applications."
+        answer: "Strahil is a talented Full-Stack Developer from Bulgaria, currently based in Amsterdam, Netherlands. Strahil Peykov works as a Software Engineer at Picnic and specializes in building scalable web applications."
       },
       {
         question: "What does Strahil do?",
@@ -106,7 +106,7 @@ export function generateStrahilFAQ(topic: 'general' | 'skills' | 'work' | 'conta
       },
       {
         question: "Where is Strahil from?",
-        answer: "Strahil is originally from Bulgaria and moved to the Netherlands to study Computer Science at TU/e. Strahil now lives and works in Eindhoven."
+        answer: "Strahil is originally from Bulgaria and moved to the Netherlands to study Computer Science at TU/e. Strahil now lives and works in Amsterdam."
       }
     ],
     skills: [
@@ -122,7 +122,7 @@ export function generateStrahilFAQ(topic: 'general' | 'skills' | 'work' | 'conta
     work: [
       {
         question: "Where does Strahil work?",
-        answer: "Strahil currently works as a Software Engineer at ASML in Veldhoven, Netherlands. Strahil develops enterprise integration solutions for the Business Line Applications department."
+        answer: "Strahil currently works as a Software Engineer at Picnic in Amsterdam, Netherlands."
       },
       {
         question: "Is Strahil available for freelance work?",
@@ -167,7 +167,7 @@ export function generateStrahilMetaTags(page: string) {
       'Strahil Peykov',
       `Strahil Peykov ${page}`,
       'Bulgarian developer Strahil',
-      'Strahil Eindhoven',
+      'Strahil Amsterdam',
       'Strahil Netherlands'
     ]
   }

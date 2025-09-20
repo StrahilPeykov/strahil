@@ -34,8 +34,8 @@ const personalSchema = {
   "givenName": "Strahil",
   "familyName": "Peykov",
   "alternateName": ["Strahil", "Strahil P", "S. Peykov"],
-  "disambiguatingDescription": "Strahil - Bulgarian Full-Stack Developer and Software Engineer in Eindhoven",
-  "description": "Strahil is a Bulgarian Full-Stack Developer based in Eindhoven, Netherlands. Strahil Peykov specializes in building scalable web applications, enterprise software, and innovative digital solutions.",
+  "disambiguatingDescription": "Strahil - Bulgarian Full-Stack Developer and Software Engineer in Amsterdam",
+  "description": "Strahil is a Bulgarian Full-Stack Developer based in Amsterdam, Netherlands. Strahil Peykov specializes in building scalable web applications, enterprise software, and innovative digital solutions.",
   "jobTitle": "Full-Stack Developer & Software Engineer",
   "url": "https://strahil.dev",
   "image": [
@@ -50,8 +50,8 @@ const personalSchema = {
   "gender": "Male",
   "worksFor": {
     "@type": "Organization",
-    "name": "ASML Netherlands B.V.",
-    "description": "Software Engineer at ASML"
+    "name": "Picnic",
+    "description": "Software Engineer at Picnic"
   },
   "alumniOf": {
     "@type": "EducationalOrganization",
@@ -61,8 +61,8 @@ const personalSchema = {
   },
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Eindhoven",
-    "addressRegion": "North Brabant",
+    "addressLocality": "Amsterdam",
+    "addressRegion": "North Holland",
     "addressCountry": "Netherlands"
   },
   "email": "strahil.peykov@gmail.com",
@@ -85,15 +85,14 @@ const personalSchema = {
     "TypeScript Development",
     "Complex Systems",
     "AI and Machine Learning",
-    "Bulgarian Developer Community",
-    "Eindhoven Tech Scene"
+    "Bulgarian Developer Community"
   ],
   "hasOccupation": {
     "@type": "Occupation",
     "name": "Full-Stack Developer",
     "occupationLocation": {
       "@type": "City",
-      "name": "Eindhoven",
+      "name": "Amsterdam",
       "addressCountry": "Netherlands"
     },
     "skills": "React, Next.js, Python, TypeScript, Java, Enterprise Integration, Cloud Computing"
@@ -125,7 +124,7 @@ const websiteSchema = {
   "name": "Strahil - Full-Stack Developer Portfolio",
   "alternateName": ["Strahil Peykov Portfolio", "Strahil.dev", "Strahil Developer"],
   "url": "https://strahil.dev",
-  "description": "Strahil's personal portfolio and digital garden. Discover projects, articles, and insights from Strahil Peykov, a Bulgarian Full-Stack Developer in Eindhoven.",
+  "description": "Strahil's personal portfolio and digital garden. Discover projects, articles, and insights from Strahil Peykov, a Bulgarian Full-Stack Developer in Amsterdam.",
   "publisher": {
     "@id": "https://strahil.dev/#strahil"
   },
@@ -162,7 +161,7 @@ const strahilFAQSchema = {
       "name": "Who is Strahil?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Strahil is a Bulgarian Full-Stack Developer and Software Engineer based in Eindhoven, Netherlands. Strahil Peykov specializes in building scalable web applications and enterprise software solutions."
+        "text": "Strahil is a Bulgarian Full-Stack Developer and Software Engineer based in Amsterdam, Netherlands. Strahil Peykov specializes in building scalable web applications and enterprise software solutions."
       }
     },
     {
@@ -170,7 +169,7 @@ const strahilFAQSchema = {
       "name": "What does Strahil do?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Strahil works as a Software Engineer at ASML and develops full-stack applications using React, Next.js, Python, and Java. Strahil creates innovative digital solutions and shares knowledge through his blog."
+        "text": "Strahil works as a Software Engineer at Picnic and develops full-stack applications using React, Next.js, Python, and Java. Strahil creates innovative digital solutions and shares knowledge through his blog."
       }
     },
     {
@@ -178,7 +177,7 @@ const strahilFAQSchema = {
       "name": "Where is Strahil from?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Strahil is originally from Bulgaria and currently lives in Eindhoven, Netherlands. Strahil Peykov moved to the Netherlands to study Computer Science at TU/e."
+        "text": "Strahil is originally from Bulgaria and currently lives in Amsterdam, Netherlands. Strahil Peykov moved to the Netherlands to study Computer Science at TU/e."
       }
     },
     {
@@ -211,7 +210,7 @@ export const metadata: Metadata = {
     default: 'Strahil - Full-Stack Developer & Software Engineer | Strahil Peykov',
     template: '%s | Strahil - Developer Portfolio'
   },
-  description: 'Strahil is a Bulgarian Full-Stack Developer in Eindhoven. Discover projects, insights, and expertise from Strahil Peykov - Software Engineer at ASML, BSc Computer Science from TU/e.',  
+  description: 'Strahil is a Bulgarian Full-Stack Developer in Amsterdam. Discover projects, insights, and expertise from Strahil Peykov - Software Engineer at Picnic, BSc Computer Science from TU/e.',  
   keywords: [
     // Primary branded keywords
     'Strahil',
@@ -219,7 +218,7 @@ export const metadata: Metadata = {
     'Strahil programmer',
     'Strahil software engineer',
     'Strahil portfolio',
-    'Strahil Eindhoven',
+    'Strahil Amsterdam',
     'Strahil Netherlands',
     'Strahil Bulgarian',
     'Strahil TU/e',
@@ -242,12 +241,12 @@ export const metadata: Metadata = {
     'TypeScript Developer',
     
     // Location-based keywords
-    'Eindhoven Developer',
+    'Amsterdam Developer',
     'Netherlands Developer',
     'Bulgarian Developer',
-    'Developer Eindhoven',
+    'Developer Amsterdam',
     'Web Developer Netherlands',
-    'Tech Eindhoven',
+    'Tech Amsterdam',
     
     // Specialization keywords
     'Enterprise Integration',
@@ -401,19 +400,19 @@ export default function RootLayout({
         <meta name="revisit-after" content="3 days" />
         <meta name="distribution" content="web" />
         <meta name="rating" content="general" />
-        <meta name="geo.region" content="NL-NB" />
-        <meta name="geo.placename" content="Eindhoven" />
-        <meta name="geo.position" content="51.4416;5.4697" />
-        <meta name="ICBM" content="51.4416, 5.4697" />
-        
+        <meta name="geo.region" content="NL-NH" />
+        <meta name="geo.placename" content="Amsterdam" />
+        <meta name="geo.position" content="52.3676;4.9041" />
+        <meta name="ICBM" content="52.3676, 4.9041" />
+
         {/* Open Graph additional tags */}
         <meta property="og:first_name" content="Strahil" />
         <meta property="og:last_name" content="Peykov" />
         <meta property="og:email" content="strahil.peykov@gmail.com" />
         <meta property="og:phone_number" content="+31644729684" />
-        <meta property="og:street-address" content="Eindhoven" />
-        <meta property="og:locality" content="Eindhoven" />
-        <meta property="og:region" content="North Brabant" />
+        <meta property="og:street-address" content="Amsterdam" />
+        <meta property="og:locality" content="Amsterdam" />
+        <meta property="og:region" content="North Holland" />
         <meta property="og:postal-code" content="56XX XX" />
         <meta property="og:country-name" content="Netherlands" />
         <meta property="profile:first_name" content="Strahil" />
@@ -475,13 +474,13 @@ export default function RootLayout({
                 <span itemProp="alternateName">Strahil</span>
                 <span itemProp="jobTitle">Full-Stack Developer</span>
                 <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-                  <span itemProp="addressLocality">Eindhoven</span>
+                  <span itemProp="addressLocality">Amsterdam</span>
                   <span itemProp="addressCountry">Netherlands</span>
                 </span>
                 <span itemProp="email">strahil.peykov@gmail.com</span>
                 <span itemProp="alumniOf">Eindhoven University of Technology</span>
                 <span itemProp="nationality">Bulgarian</span>
-                <span itemProp="worksFor">ASML</span>
+                <span itemProp="worksFor">Picnic</span>
                 <span itemProp="knowsAbout">React</span>
                 <span itemProp="knowsAbout">Next.js</span>
                 <span itemProp="knowsAbout">Python</span>
@@ -490,7 +489,7 @@ export default function RootLayout({
                 <meta itemProp="url" content="https://strahil.dev" />
                 <meta itemProp="image" content="https://strahil.dev/images/strahil-profile.jpg" />
               </span>
-              <p>Strahil is a talented developer from Bulgaria living in Eindhoven.</p>
+              <p>Strahil is a talented developer from Bulgaria living in Amsterdam.</p>
               <p>Contact Strahil for web development projects.</p>
               <p>Strahil Peykov - Full-Stack Developer and Software Engineer</p>
             </div>

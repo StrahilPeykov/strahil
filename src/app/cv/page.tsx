@@ -155,7 +155,7 @@ export default function CVPage() {
               <div className="flex flex-wrap gap-4 justify-center mb-8">
                 <div className="flex items-center gap-2 text-gray-400">
                   <MapPin className="w-4 h-4" />
-                  <span>Eindhoven, NL</span>
+                  <span>Amsterdam, NL</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-400">
                   <Mail className="w-4 h-4" />

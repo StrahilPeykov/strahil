@@ -28,7 +28,7 @@ export function Footer() {
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center gap-2 text-gray-400">
                     <MapPin size={14} />
-                    <span>Eindhoven, Netherlands</span>
+                    <span>Amsterdam, Netherlands</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-400">
                     <Mail size={14} />

@@ -19,7 +19,7 @@ export function generateArticleSchema(article: {
       "jobTitle": "Full-Stack Developer",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Eindhoven",
+        "addressLocality": "Amsterdam",
         "addressCountry": "Netherlands"
       }
     },

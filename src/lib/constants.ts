@@ -10,7 +10,7 @@ export const SITE_CONFIG = {
     github: 'StrahilPeykov',
   },
   location: {
-    city: 'Eindhoven',
+    city: 'Amsterdam',
     country: 'Netherlands',
     timezone: 'Europe/Amsterdam'
   }

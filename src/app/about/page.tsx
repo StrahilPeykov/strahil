@@ -170,7 +170,7 @@ export default function AboutPage() {
               transition={{ delay: 0.2 }}
               className="text-xl text-gray-400 max-w-2xl mx-auto mb-8"
             >
-              A Bulgarian creative technologist based in Eindhoven, Netherlands. 
+              A Bulgarian creative technologist based in Amsterdam, Netherlands. 
               I build digital experiences that live at the intersection of 
               <span className="text-blue-400"> technology</span>,
               <span className="text-purple-400"> engineering</span>, and
@@ -184,9 +184,9 @@ export default function AboutPage() {
               className="flex flex-wrap gap-3 justify-center"
             >
               <Badge variant="blue">🇧🇬 Bulgarian</Badge>
-              <Badge variant="purple">Eindhoven, NL</Badge>
+              <Badge variant="purple">Amsterdam, NL</Badge>
               <Badge variant="pink">BSc Computer Science</Badge>
-              <Badge variant="default">ASML Intern</Badge>
+              <Badge variant="default">Picnic</Badge>
             </motion.div>
           </div>
         </section>
@@ -226,9 +226,7 @@ export default function AboutPage() {
                     </p>
                     
                     <p>
-                      Currently, I work as an Software Engineer at ASML, where I'm developing 
-                      enterprise solutions that connect complex backend systems. Every line of code 
-                      is an opportunity to create something meaningful.
+                      Currently, I work as an Software Engineer at Picnic.
                     </p>
                   </div>
                 </div>

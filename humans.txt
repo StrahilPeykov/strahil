@@ -6,14 +6,14 @@
     First Name: Strahil
     Role: Full-Stack Developer & Designer
     Contact: strahil.peykov [at] gmail.com
-    Location: Eindhoven, Netherlands
+    Location: Amsterdam, Netherlands
     From: Bulgaria
     Bio: Strahil is a passionate developer creating innovative digital solutions
     
 # ABOUT STRAHIL
     Strahil is a Bulgarian Full-Stack Developer
-    Strahil lives in Eindhoven, Netherlands
-    Strahil works as a Software Engineer at ASML
+    Strahil lives in Amsterdam, Netherlands
+    Strahil works as a Software Engineer at Picnic
     Strahil graduated from TU/e with BSc Computer Science
     Contact Strahil for web development projects
 
@@ -25,7 +25,6 @@
 
 # THANKS FROM STRAHIL
     Complex Systems Community
-    Eindhoven Tech Community
     Open Source Contributors
     Everyone who supports Strahil's work
 

@@ -4,7 +4,7 @@ export const personalSchema = {
   "name": "Strahil Peykov",
   "alternateName": ["Strahil"],
   "jobTitle": "Full-Stack Developer",
-  "description": "Bulgarian Full-Stack Developer based in Eindhoven, Netherlands. Expert in complex systems, AI development, and scalable web applications.",
+  "description": "Bulgarian Full-Stack Developer based in Amsterdam, Netherlands. Expert in complex systems, AI development, and scalable web applications.",
   "url": "https://strahil.dev",
   "image": "https://strahil.dev/images/strahil-peykov-profile.jpg",
   "birthPlace": "Bulgaria",
@@ -19,8 +19,8 @@ export const personalSchema = {
   },
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Eindhoven",
-    "addressRegion": "North Brabant",
+    "addressLocality": "Amsterdam",
+    "addressRegion": "North Holland",
     "addressCountry": "Netherlands"
   },
   "sameAs": [
@@ -47,7 +47,7 @@ export const personalSchema = {
     "name": "Full-Stack Developer",
     "occupationLocation": {
       "@type": "City",
-      "name": "Eindhoven"
+      "name": "Amsterdam"
     }
   }
 }

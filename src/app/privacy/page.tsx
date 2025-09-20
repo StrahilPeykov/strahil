@@ -33,7 +33,7 @@ export default function PrivacyPage() {
                 </h2>
                 <p className="text-gray-300">
                   Strahil Peykov<br />
-                  Eindhoven, Netherlands<br />
+                  Amsterdam, Netherlands<br />
                   Email: <a href="mailto:strahil.peykov@gmail.com" className="text-blue-400 hover:text-blue-300">strahil.peykov@gmail.com</a>
                 </p>
               </div>
