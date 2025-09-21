@@ -43,16 +43,16 @@ function LegalModal({ isOpen, onClose, onAccept }: LegalModalProps) {
         exit={{ opacity: 0, scale: 0.95 }}
         className="relative z-10 w-full max-w-lg mx-4"
       >
-        <div className="bg-gray-900 rounded-2xl shadow-2xl border border-gray-800 p-6">
+        <div className="bg-bg-soft/80 rounded-2xl shadow-2xl border border-outline p-6">
           <div className="flex items-center gap-3 mb-6">
-            <Shield className="w-8 h-8 text-purple-500" />
+            <Shield className="w-8 h-8 text-white" />
             <h2 className="text-2xl font-bold text-white">Legal Compliance Check</h2>
           </div>
           
           <div className="space-y-6">
-            <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 flex gap-3">
-              <AlertCircle className="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
-              <div className="text-sm text-yellow-200">
+            <div className="bg-bg-soft/70 border border-outline rounded-lg p-4 flex gap-3">
+              <AlertCircle className="w-5 h-5 text-white flex-shrink-0 mt-0.5" />
+              <div className="text-sm text-white/80">
                 <p className="font-semibold mb-1">Important Notice</p>
                 <p>
                   This tool is intended for downloading your own content or 
@@ -75,9 +75,9 @@ function LegalModal({ isOpen, onClose, onAccept }: LegalModalProps) {
                     setIsOwner(e.target.checked)
                     if (e.target.checked) setHasRights(false)
                   }}
-                  className="w-5 h-5 rounded border-2 border-gray-600 bg-gray-800 text-purple-600 focus:ring-purple-500"
+                  className="w-5 h-5 rounded border-2 border-outline bg-bg-soft/70 text-white focus:ring-glow"
                 />
-                <span className="text-gray-300 text-sm">
+                <span className="text-ink/80 text-sm">
                   I am the owner/author of this Obsidian Publish vault
                 </span>
               </label>
@@ -90,26 +90,26 @@ function LegalModal({ isOpen, onClose, onAccept }: LegalModalProps) {
                     setHasRights(e.target.checked)
                     if (e.target.checked) setIsOwner(false)
                   }}
-                  className="w-5 h-5 rounded border-2 border-gray-600 bg-gray-800 text-purple-600 focus:ring-purple-500"
+                  className="w-5 h-5 rounded border-2 border-outline bg-bg-soft/70 text-white focus:ring-glow"
                 />
-                <span className="text-gray-300 text-sm">
+                <span className="text-ink/80 text-sm">
                   This vault is published under an open license (CC-BY, CC-BY-SA, CC0, etc.) 
                   that permits downloading and redistribution
                 </span>
               </label>
             </div>
 
-            <div className="border-t border-gray-800 pt-4">
+            <div className="border-t border-outline pt-4">
               <label className="flex items-start gap-3 cursor-pointer group">
                 <input
                   type="checkbox"
                   checked={acceptTerms}
                   onChange={(e) => setAcceptTerms(e.target.checked)}
-                  className="w-5 h-5 rounded border-2 border-gray-600 bg-gray-800 text-purple-600 focus:ring-purple-500"
+                  className="w-5 h-5 rounded border-2 border-outline bg-bg-soft/70 text-white focus:ring-glow"
                 />
-                <span className="text-gray-300 text-sm">
+                <span className="text-ink/80 text-sm">
                   I accept the{' '}
-                  <Link href="/terms" className="text-purple-400 hover:text-purple-300 underline">
+                  <Link href="/terms" className="text-white hover:text-white">
                     Terms of Service
                   </Link>
                   {' '}and understand that false claims may result in legal action
@@ -120,23 +120,23 @@ function LegalModal({ isOpen, onClose, onAccept }: LegalModalProps) {
             <div className="flex gap-3 pt-2">
               <button
                 onClick={onClose}
-                className="flex-1 py-3 border border-gray-700 text-gray-300 rounded-lg hover:bg-gray-800 transition-colors"
+                className="flex-1 py-3 border border-outline text-white rounded-lg hover:bg-white/5 transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={handleAccept}
                 disabled={!canProceed}
-                className="flex-1 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 py-3 bg-glow text-white font-semibold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 I Confirm & Proceed
               </button>
             </div>
 
-            <p className="text-xs text-gray-500 text-center">
+            <p className="text-xs text-ink/70 text-center">
               Your consent and IP address will be logged for legal compliance. 
               Content owners can request removal via our{' '}
-              <Link href="/api/report" className="text-purple-400 hover:text-purple-300">
+              <Link href="/api/report" className="text-white hover:text-white">
                 takedown form
               </Link>.
             </p>
@@ -152,7 +152,7 @@ function ProgressBar({ progress }: { progress: number }) {
     <div className="w-full">
       <div className="h-2 bg-white/10 rounded-full overflow-hidden">
         <motion.div
-          className="h-full bg-gradient-to-r from-purple-500 to-pink-500"
+          className="h-full bg-glow"
           initial={{ width: 0 }}
           animate={{ width: `${progress}%` }}
           transition={{ duration: 0.3, ease: 'easeOut' }}
@@ -263,7 +263,7 @@ export default function ObsidianDownloaderPage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center justify-center w-20 h-20 mb-6 bg-purple-600 rounded-2xl">
+          <div className="inline-flex items-center justify-center w-20 h-20 mb-6 bg-bg-soft/70 border border-outline rounded-2xl">
             <Archive className="w-10 h-10 text-white" />
           </div>
           
@@ -281,11 +281,11 @@ export default function ObsidianDownloaderPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 mb-12 border border-white/20"
+          className="bg-bg-soft/80 backdrop-blur-md rounded-2xl p-8 mb-12 border border-outline"
         >
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="url" className="block text-sm font-medium text-gray-200 mb-2">
+              <label htmlFor="url" className="block text-sm font-medium text-white/80 mb-2">
                 Obsidian Publish URL
               </label>
               <input
@@ -294,7 +294,7 @@ export default function ObsidianDownloaderPage() {
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 placeholder="https://publish.obsidian.md/example"
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full px-4 py-3 bg-bg-soft/70 border border-outline rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-glow focus:border-transparent"
                 required
                 disabled={isDownloading}
               />
@@ -303,7 +303,7 @@ export default function ObsidianDownloaderPage() {
             <button
               type="submit"
               disabled={isDownloading}
-              className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="w-full py-4 bg-glow text-white font-semibold rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {isDownloading ? (
                 <>
@@ -347,26 +347,26 @@ export default function ObsidianDownloaderPage() {
           transition={{ delay: 0.4 }}
           className="grid md:grid-cols-3 gap-6 mb-12"
         >
-          <div className="bg-white/5 backdrop-blur rounded-xl p-6 border border-white/10">
+          <div className="bg-bg-soft/80 backdrop-blur rounded-xl p-6 border border-outline">
             <Shield className="w-8 h-8 text-green-400 mb-3" />
             <h3 className="text-lg font-semibold text-white mb-2">Privacy First</h3>
-            <p className="text-gray-300 text-sm">
+            <p className="text-ink/80 text-sm">
               We never store your data. Archives are generated on-demand and immediately deleted after download.
             </p>
           </div>
 
-          <div className="bg-white/5 backdrop-blur rounded-xl p-6 border border-white/10">
+          <div className="bg-bg-soft/80 backdrop-blur rounded-xl p-6 border border-outline">
             <CheckCircle className="w-8 h-8 text-blue-400 mb-3" />
             <h3 className="text-lg font-semibold text-white mb-2">Legal Compliance</h3>
-            <p className="text-gray-300 text-sm">
+            <p className="text-ink/80 text-sm">
               EU/Dutch compliant with ownership verification and opt-out support for content creators.
             </p>
           </div>
 
-          <div className="bg-white/5 backdrop-blur rounded-xl p-6 border border-white/10">
+          <div className="bg-bg-soft/80 backdrop-blur rounded-xl p-6 border border-outline">
             <Clock className="w-8 h-8 text-purple-400 mb-3" />
             <h3 className="text-lg font-semibold text-white mb-2">Respectful Crawling</h3>
-            <p className="text-gray-300 text-sm">
+            <p className="text-ink/80 text-sm">
               We respect robots.txt and implement rate limiting to avoid overloading servers.
             </p>
           </div>

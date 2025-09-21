@@ -26,7 +26,7 @@ export default function YouTubeTranscriptSearchPage() {
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center px-6 py-24 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-red-500/5 via-pink-500/5 to-transparent" />
+          <div className="absolute inset-0" />
         </div>
         
         <div className="relative z-10 max-w-4xl mx-auto">
@@ -44,19 +44,17 @@ export default function YouTubeTranscriptSearchPage() {
             transition={{ duration: 0.5 }}
           >
             <div className="flex items-center gap-3 mb-6">
-              <Youtube className="w-10 h-10 text-red-400" />
-              <Badge variant="warning">In Development</Badge>
-              <Badge variant="blue">Coming Soon</Badge>
+              <Youtube className="w-10 h-10 text-white" />
+              <Badge variant="default">In Development</Badge>
+              <Badge variant="default">Coming Soon</Badge>
             </div>
             
             <h1 className="text-4xl lg:text-6xl font-display font-bold text-white mb-6">
               YouTube Transcript
-              <span className="block bg-gradient-to-r from-red-400 to-pink-400 bg-clip-text text-transparent">
-                Search Engine
-              </span>
+              <span className="block">Search Engine</span>
             </h1>
             
-            <p className="text-xl text-gray-400 mb-8 max-w-3xl">
+            <p className="text-xl text-white/80 mb-8 max-w-3xl">
               Search through any YouTube channel's entire content library like a database. 
               Find specific topics, quotes, or discussions across thousands of hours of video instantly.
             </p>
@@ -64,15 +62,15 @@ export default function YouTubeTranscriptSearchPage() {
             <div className="flex flex-wrap gap-4">
               <button
                 onClick={() => document.getElementById('waitlist-form')?.scrollIntoView({ behavior: 'smooth' })}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-red-500 to-pink-500 text-white font-semibold rounded-full hover:scale-105 transition-transform"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-glow text-white font-semibold rounded-xl hover:scale-105 transition-transform shadow-[0_6px_18px_rgba(60,159,255,0.25)]"
               >
                 <Sparkles className="w-5 h-5" />
                 Join the Waitlist
               </button>
-              
+             
               <Link
                 href="/tools"
-                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-red-500/30 text-red-400 font-semibold rounded-full hover:bg-red-500/10 hover:border-red-500/50 transition-all"
+                className="inline-flex items-center gap-2 px-8 py-4 border border-outline text-white font-semibold rounded-xl hover:bg-white/5 transition-all"
               >
                 View Other Tools
               </Link>
@@ -82,7 +80,7 @@ export default function YouTubeTranscriptSearchPage() {
       </section>
       
       {/* Features Section */}
-      <section className="px-6 py-16 border-t border-slate-800">
+      <section className="px-6 py-16 border-t border-outline">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
@@ -94,24 +92,24 @@ export default function YouTubeTranscriptSearchPage() {
             </h2>
             
             <div className="grid md:grid-cols-2 gap-8 mb-16">
-              <div className="bg-slate-900/50 rounded-xl p-8 border border-slate-800">
+              <div className="bg-bg-soft/80 rounded-xl p-8 border border-outline">
                 <h3 className="text-xl font-semibold text-white mb-4">The Problem</h3>
-                <p className="text-gray-400 mb-4">
+                <p className="text-ink/75 mb-4">
                   YouTube creators produce thousands of hours of valuable content, but finding 
                   specific information is nearly impossible. YouTube's search only shows video 
                   titles, not what's actually said inside them.
                 </p>
                 <ul className="space-y-2 text-gray-400">
                   <li className="flex items-start gap-2">
-                    <span className="text-red-400 mt-1">×</span>
+                    <span className="text-white/70 mt-1">×</span>
                     Can't search within videos
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-red-400 mt-1">×</span>
+                    <span className="text-white/70 mt-1">×</span>
                     No way to find specific quotes
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-red-400 mt-1">×</span>
+                    <span className="text-white/70 mt-1">×</span>
                     Hours wasted scrubbing through videos
                   </li>
                 </ul>
@@ -188,14 +186,14 @@ export default function YouTubeTranscriptSearchPage() {
       </section>
       
       {/* Development Status */}
-      <section className="px-6 py-16 border-t border-slate-800">
+      <section className="px-6 py-16 border-t border-outline">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-orange-500/10 border border-orange-500/30 rounded-xl p-8">
+          <div className="bg-bg-soft/80 border border-outline rounded-xl p-8">
             <div className="flex items-start gap-4">
               <Construction className="w-8 h-8 text-orange-400 flex-shrink-0" />
               <div>
                 <h3 className="text-xl font-semibold text-white mb-3">Development Status</h3>
-                <div className="space-y-4 text-gray-300">
+                <div className="space-y-4 text-ink/80">
                   <p>
                     This tool is currently under active development. Here's what's been completed 
                     and what's still in progress:
@@ -211,7 +209,7 @@ export default function YouTubeTranscriptSearchPage() {
                       <span>Transcript extraction and processing pipeline</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <Clock className="w-5 h-5 text-yellow-400 flex-shrink-0" />
+                    <Clock className="w-5 h-5 text-white/70 flex-shrink-0" />
                       <span>Building Elasticsearch index for fast searching</span>
                     </div>
                     <div className="flex items-center gap-3">
@@ -224,10 +222,10 @@ export default function YouTubeTranscriptSearchPage() {
                     </div>
                   </div>
                   
-                  <p className="text-sm text-gray-400 mt-4">
+                  <p className="text-sm text-ink/70 mt-4">
                     Expected launch: Q2 2025 • Follow progress on{' '}
                     <a href="https://github.com/StrahilPeykov" target="_blank" rel="noopener noreferrer" 
-                       className="text-red-400 hover:text-red-300 underline">
+                       className="text-white/80 hover:text-white">
                       GitHub
                     </a>
                   </p>

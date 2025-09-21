@@ -66,8 +66,8 @@ export function HeroSection() {
             transition={{ duration: shouldReduceMotion ? 0 : 0.8, delay: 0.6 }}
             className="mt-10 flex flex-col sm:flex-row gap-4 items-center"
           >
-            <GlowButton as="a" href="/contact">Join chat</GlowButton>
-            <OutlineButton as="a" href="/rss.xml">Subscribe</OutlineButton>
+            <GlowButton as="a" href="/contact">Chat</GlowButton>
+            <OutlineButton as="a" href="/about">About</OutlineButton>
           </motion.div>
           {/* Quick Links */}
           <motion.div

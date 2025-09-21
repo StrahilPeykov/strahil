@@ -162,12 +162,12 @@ export default function HealthPage() {
               transition={{ duration: 0.5 }}
               className="mb-6"
             >
-              <Dumbbell className="w-16 h-16 text-purple-400 mx-auto mb-6" />
+              <Dumbbell className="w-16 h-16 text-white mx-auto mb-6" />
             </motion.div>
             
             <div className="flex items-center gap-2 mb-4 justify-center">
-              <Dumbbell className="w-5 h-5 text-purple-400" />
-              <span className="text-purple-400 font-mono text-sm">My Fitness</span>
+              <Dumbbell className="w-5 h-5 text-white" />
+              <span className="text-white font-mono text-sm">My Fitness</span>
             </div>
             
             <motion.h1
@@ -177,16 +177,14 @@ export default function HealthPage() {
               className="text-5xl lg:text-7xl font-display font-bold text-white mb-6"
             >
               Health &
-              <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Performance
-              </span>
+              <span className="block">Performance</span>
             </motion.h1>
             
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-xl text-gray-400 max-w-2xl mx-auto mb-8"
+              className="text-xl text-white/80 max-w-2xl mx-auto mb-8"
             >
               Balancing muscle growth with sustainable body composition. A structured approach 
               to bodybuilding with integrated cardio and long-term health optimization.
@@ -202,34 +200,34 @@ export default function HealthPage() {
               <div className="text-center">
                 <div className="text-3xl font-display font-bold text-white mb-1 flex items-center justify-center gap-1">
                   {workoutStats.currentBodyFat}%
-                  <Target className="w-5 h-5 text-purple-400" />
+                  <Target className="w-5 h-5 text-white" />
                 </div>
-                <div className="text-sm text-gray-500">Body Fat</div>
+                <div className="text-sm text-white/60">Body Fat</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-display font-bold text-blue-400 mb-1">
+                <div className="text-3xl font-display font-bold text-white mb-1">
                   {workoutStats.vo2Max}
                 </div>
-                <div className="text-sm text-gray-500">VO2 Max</div>
+                <div className="text-sm text-white/60">VO2 Max</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-display font-bold text-green-400 mb-1">
+                <div className="text-3xl font-display font-bold text-white mb-1">
                   75kg
                 </div>
-                <div className="text-sm text-gray-500">Current Weight</div>
+                <div className="text-sm text-white/60">Current Weight</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-display font-bold text-pink-400 mb-1">
+                <div className="text-3xl font-display font-bold text-white mb-1">
                   5
                 </div>
-                <div className="text-sm text-gray-500">Training Days</div>
+                <div className="text-sm text-white/60">Training Days</div>
               </div>
             </motion.div>
           </div>
         </section>
         
         {/* Training Philosophy */}
-        <section className="px-6 py-24 border-t border-slate-800">
+        <section className="px-6 py-24 border-t border-outline">
           <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0 }}

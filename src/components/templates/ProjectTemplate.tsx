@@ -61,7 +61,7 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
     <PageWrapper>
       {/* Hero Section */}
       <section className="relative min-h-[50vh] flex items-center justify-center px-4 sm:px-6 py-16 sm:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-green-500/5 via-blue-500/5 to-transparent" />
+        <div className="absolute inset-0" />
         
         <div className="relative z-10 w-full max-w-4xl mx-auto">
           <Link
@@ -78,7 +78,7 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
             transition={{ duration: 0.5 }}
           >
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4 flex-wrap">
-              <Icon className="w-8 h-8 text-green-400 flex-shrink-0" />
+              <Icon className="w-8 h-8 text-white flex-shrink-0" />
               <div className="flex flex-wrap gap-2">
                 {project.badges.map((badge, i) => (
                   <Badge key={i} variant={badge.variant}>{badge.label}</Badge>
@@ -100,7 +100,7 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
                   <Link
                     href={project.links.demo}
                     target="_blank"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold rounded-full hover:scale-105 transition-transform text-center"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-glow text-white font-semibold rounded-xl hover:scale-105 transition-transform text-center"
                   >
                     <ExternalLink className="w-5 h-5 flex-shrink-0" />
                     <span>View Demo</span>
@@ -111,7 +111,7 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
                     href={project.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-blue-500/30 text-blue-400 font-semibold rounded-full hover:bg-blue-500/10 hover:border-blue-500/50 transition-all text-center"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-outline text-white font-semibold rounded-xl hover:bg-white/5 transition-all text-center"
                   >
                     <Github className="w-5 h-5 flex-shrink-0" />
                     <span>View Source</span>
@@ -178,7 +178,7 @@ export function ProjectTemplate({ project }: ProjectTemplateProps) {
             {/* Sidebar */}
             <div className="w-full lg:w-80 flex-shrink-0 space-y-6">
               {/* Project Details */}
-              <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
+              <div className="bg-bg-soft/80 rounded-xl p-6 border border-outline">
                 <h3 className="text-lg font-semibold text-white mb-4">Project Details</h3>
                 <dl className="space-y-3">
                   <div>

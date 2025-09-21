@@ -76,14 +76,14 @@ export default function NotFoundPage() {
       <section className="relative min-h-screen flex items-center justify-center px-6 py-24 overflow-hidden">
         {/* Animated Background */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-red-500/5 via-purple-500/5 to-transparent" />
+          <div className="absolute inset-0" />
           
           {/* Floating elements */}
           <div className="absolute inset-0">
             {floatingElements.map((element) => (
               <motion.div
                 key={element.id}
-                className="absolute rounded-full bg-gradient-to-r from-red-400/20 to-purple-400/20"
+                className="absolute rounded-full bg-white/10"
                 style={{
                   width: `${element.size}px`,
                   height: `${element.size}px`,
@@ -108,7 +108,7 @@ export default function NotFoundPage() {
 
           {/* Large glowing orbs */}
           <motion.div
-            className="absolute top-20 left-20 w-96 h-96 bg-red-500/10 rounded-full blur-3xl"
+            className="absolute top-20 left-20 w-96 h-96 bg-white/5 rounded-full blur-3xl"
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.1, 0.3, 0.1]
@@ -120,7 +120,7 @@ export default function NotFoundPage() {
             }}
           />
           <motion.div
-            className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
+            className="absolute bottom-20 right-20 w-96 h-96 bg-white/5 rounded-full blur-3xl"
             animate={{
               scale: [1.2, 1, 1.2],
               opacity: [0.3, 0.1, 0.3]
@@ -170,7 +170,7 @@ export default function NotFoundPage() {
               Don't worry though, even the best explorers sometimes take a wrong turn.
             </p>
 
-            <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
+            <div className="flex items-center justify-center gap-2 text-sm text-white/60">
               <Zap className="w-4 h-4" />
               <span>Error Code: PAGE_NOT_FOUND</span>
             </div>
@@ -191,7 +191,7 @@ export default function NotFoundPage() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search for something..."
-                  className="w-full pl-12 pr-4 py-3 bg-slate-900/50 border border-slate-800 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/50 transition-colors"
+                  className="w-full pl-12 pr-4 py-3 bg-bg-soft/70 border border-outline rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-glow/50 transition-colors"
                 />
               </div>
             </form>
@@ -206,7 +206,7 @@ export default function NotFoundPage() {
           >
             <button
               onClick={handleGoBack}
-              className="group inline-flex items-center gap-2 px-6 py-3 border-2 border-red-500/30 text-red-400 font-semibold rounded-full hover:bg-red-500/10 hover:border-red-500/50 transition-all"
+              className="group inline-flex items-center gap-2 px-6 py-3 border border-outline text-white font-semibold rounded-xl hover:bg-white/5 transition-all"
             >
               <ArrowLeft className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
               Go Back
@@ -214,7 +214,7 @@ export default function NotFoundPage() {
             
             <Link
               href="/"
-              className="group inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-500 to-purple-500 text-white font-semibold rounded-full hover:scale-105 transition-transform"
+              className="group inline-flex items-center gap-2 px-6 py-3 bg-glow text-white font-semibold rounded-xl hover:scale-105 transition-transform shadow-[0_6px_18px_rgba(60,159,255,0.25)]"
             >
               <Home className="w-5 h-5" />
               Take Me Home
@@ -243,13 +243,13 @@ export default function NotFoundPage() {
                   >
                     <Link
                       href={link.href}
-                      className="group block p-4 bg-slate-900/30 backdrop-blur-sm border border-slate-800 rounded-xl hover:border-purple-500/30 transition-all"
+                      className="group block p-4 bg-bg-soft/70 backdrop-blur-sm border border-outline rounded-xl hover:shadow-glow hover:border-glow/35 transition-all"
                     >
-                      <Icon className="w-8 h-8 text-gray-400 group-hover:text-purple-400 transition-colors mx-auto mb-2" />
-                      <h4 className="font-semibold text-white group-hover:text-purple-400 transition-colors mb-1">
+                      <Icon className="w-8 h-8 text-white/70 group-hover:text-white transition-colors mx-auto mb-2" />
+                      <h4 className="font-semibold text-white group-hover:text-white transition-colors mb-1">
                         {link.label}
                       </h4>
-                      <p className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors">
+                      <p className="text-xs text-white/60 group-hover:text-white/70 transition-colors">
                         {link.description}
                       </p>
                     </Link>
@@ -267,14 +267,14 @@ export default function NotFoundPage() {
             className="mt-16"
           >
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 blur-3xl" />
-              <div className="relative bg-slate-900/50 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-6">
+              <div className="absolute inset-0 opacity-[0.03]" />
+              <div className="relative bg-bg-soft/80 backdrop-blur-sm border border-outline rounded-2xl p-6">
                 <p className="text-sm text-gray-400 mb-2">
                   Still can't find what you're looking for?
                 </p>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
+                  className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors"
                 >
                   Let me know what you were trying to find
                   <ExternalLink className="w-4 h-4" />

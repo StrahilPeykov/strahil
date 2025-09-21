@@ -21,12 +21,11 @@ function ArticleCard({ article, index }: ArticleCardProps) {
       className="group relative"
     >
       <Link href={`/blog/${article.slug}`}>
-        <div className="relative p-6 rounded-lg hover:bg-slate-900/30 transition-all cursor-pointer overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-500/5 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
+        <div className="relative p-6 rounded-lg hover:bg-white/5 transition-all cursor-pointer overflow-hidden border border-outline bg-bg-soft/60">
           
           <div className="relative flex items-start justify-between gap-4">
             <div className="flex-1">
-              <h3 className="text-xl font-semibold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 group-hover:bg-clip-text transition-all mb-2">
+              <h3 className="text-xl font-semibold text-white transition-colors mb-2">
                 {article.title}
               </h3>
               <p className="text-gray-500 text-sm mb-2">
@@ -36,7 +35,7 @@ function ArticleCard({ article, index }: ArticleCardProps) {
                 {article.date} · {article.readTime}
               </p>
             </div>
-            <ArrowUpRight className="w-5 h-5 text-gray-600 group-hover:text-purple-400 transition-all group-hover:translate-x-1 group-hover:-translate-y-1 mt-1 flex-shrink-0" />
+            <ArrowUpRight className="w-5 h-5 text-white/60 group-hover:text-white transition-all group-hover:translate-x-1 group-hover:-translate-y-1 mt-1 flex-shrink-0" />
           </div>
         </div>
       </Link>
@@ -70,15 +69,15 @@ export function RecentArticles() {
       <section className="py-32 px-6 relative">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-4">
-            <PenTool className="w-6 h-6 text-pink-400" />
-            <span className="text-pink-400 font-mono text-sm">Recent Writing</span>
+            <PenTool className="w-6 h-6 text-white" />
+            <span className="text-white font-mono text-sm">Recent Writing</span>
           </div>
           
           <h2 className="text-4xl lg:text-6xl font-display font-bold text-white mb-6">
             Articles & Thoughts
           </h2>
           
-          <p className="text-gray-400 text-lg mb-16 max-w-2xl">
+          <p className="text-white/80 text-lg mb-16 max-w-2xl">
             Exploring the intersection of technology, design, and complex systems
           </p>
           
@@ -139,7 +138,7 @@ export function RecentArticles() {
           >
             <Link 
               href="/blog"
-              className="inline-flex items-center gap-2 text-gray-400 hover:text-purple-400 transition-colors"
+              className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors"
             >
               View all articles
               <ArrowUpRight className="w-4 h-4" />
