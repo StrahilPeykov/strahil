@@ -21,7 +21,7 @@ export function DesktopMegaMenu({ items, primaryIds, isOpen, onToggle, onClose }
     <div className="relative">
       <button
         onClick={onToggle}
-        className="relative px-3 py-2 text-white/70 hover:text-white transition-all group flex items-center gap-1"
+        className="relative px-3 py-2 text-foreground/70 hover:text-foreground transition-all group flex items-center gap-1"
         aria-expanded={isOpen}
         aria-label="More navigation options"
       >
@@ -52,10 +52,10 @@ export function DesktopMegaMenu({ items, primaryIds, isOpen, onToggle, onClose }
               transition={{ duration: 0.2 }}
               className="absolute top-full right-0 mt-2 w-80 z-50"
             >
-              <div className="bg-bg/95 backdrop-blur-xl border border-outline rounded-2xl shadow-2xl overflow-hidden">
+              <div className="bg-card/95 backdrop-blur-xl border border-border rounded-2xl shadow-2xl overflow-hidden">
                 {/* Header */}
-                <div className="p-4 border-b border-slate-800/50">
-                  <p className="text-sm text-gray-400">Explore more sections</p>
+                <div className="p-4 border-b border-border">
+                  <p className="text-sm text-foreground/60">Explore more sections</p>
                 </div>
 
                 {/* Navigation items */}
@@ -68,16 +68,16 @@ export function DesktopMegaMenu({ items, primaryIds, isOpen, onToggle, onClose }
                           key={item.href}
                           href={item.href}
                           onClick={onClose}
-                          className="group flex items-start gap-3 p-3 rounded-xl hover:bg-slate-800/50 transition-all"
+                          className="group flex items-start gap-3 p-3 rounded-xl hover:bg-muted/50 transition-all"
                         >
-                          <div className="w-10 h-10 rounded-lg flex items-center justify-center transition-all group-hover:scale-110 bg-bg-soft/70 border border-outline">
-                            <Icon size={18} className="text-white" />
+                          <div className="w-10 h-10 rounded-lg flex items-center justify-center transition-all group-hover:scale-110 bg-muted/70 border border-border">
+                            <Icon size={18} className="text-foreground" />
                           </div>
                           <div className="flex-1">
-                            <h3 className="text-sm font-medium text-white">
+                            <h3 className="text-sm font-medium text-foreground">
                               {item.label}
                             </h3>
-                            <p className="text-xs text-gray-500 mt-0.5">
+                            <p className="text-xs text-foreground/60 mt-0.5">
                               {item.description}
                             </p>
                           </div>

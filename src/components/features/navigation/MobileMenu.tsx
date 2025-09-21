@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useEffect } from 'react'
 import type { NavigationItem } from '../../../types/navigation'
+import { ThemeToggle } from '../../ThemeProvider'
 
 interface MobileMenuProps {
   isOpen: boolean
@@ -61,17 +62,17 @@ export function MobileMenu({ isOpen, onClose, items, currentPath }: MobileMenuPr
     >
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-bg/80 backdrop-blur-sm"
+        className="absolute inset-0 bg-background/80 backdrop-blur-sm"
         onClick={onClose}
         aria-label="Close menu"
       />
       
       {/* Menu panel - Fixed positioning with proper scroll container */}
-      <div className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-bg/95 backdrop-blur-md border-l border-outline flex flex-col">
+      <div className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-card/95 backdrop-blur-md border-l border-border flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 mt-16 flex-shrink-0 border-b border-outline">
-          <h2 className="text-lg font-display font-semibold text-white">Navigation</h2>
-          <div className="text-sm text-white/50">{items.length} pages</div>
+        <div className="flex items-center justify-between p-6 mt-16 flex-shrink-0 border-b border-border">
+          <h2 className="text-lg font-display font-semibold text-foreground">Navigation</h2>
+          <div className="text-sm text-foreground/50">{items.length} pages</div>
         </div>
 
         {/* Scrollable Navigation Container */}
@@ -103,26 +104,26 @@ export function MobileMenu({ isOpen, onClose, items, currentPath }: MobileMenuPr
                     onClick={onClose}
                     className={`group flex items-center gap-4 px-4 py-4 rounded-xl transition-all relative overflow-hidden border ${
                       isActive
-                        ? 'text-white bg-glow/5 border-glow/40 shadow-glow'
-                        : 'text-white/70 hover:text-white hover:bg-bg-soft/60 border-outline'
+                        ? 'text-foreground bg-glow/5 border-glow/40 shadow-glow'
+                        : 'text-foreground/70 hover:text-foreground hover:bg-muted/60 border-border'
                     }`}
                     aria-label={`Navigate to ${item.label} - ${item.description}`}
                   >
                     {/* Subtle hover layer */}
                     <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                      isActive ? '' : 'bg-bg-soft/40'
+                      isActive ? '' : 'bg-muted/40'
                     }`} />
                     
                     {/* Icon */}
                     <div className={`relative z-10 w-10 h-10 rounded-lg flex items-center justify-center transition-all flex-shrink-0 ${
                       isActive
                         ? 'bg-glow/10 border border-glow/40'
-                        : 'bg-bg-soft/70 border border-outline group-hover:border-glow/30'
+                        : 'bg-muted/70 border border-border group-hover:border-glow/30'
                     }`}>
                       <Icon 
                         size={18} 
                         className={`transition-colors ${
-                          isActive ? 'text-white' : 'text-white/60 group-hover:text-white'
+                          isActive ? 'text-foreground' : 'text-foreground/60 group-hover:text-foreground'
                         }`} 
                       />
                     </div>
@@ -130,12 +131,12 @@ export function MobileMenu({ isOpen, onClose, items, currentPath }: MobileMenuPr
                     {/* Content - with proper text wrapping */}
                     <div className="flex-1 relative z-10 min-w-0">
                       <div className={`font-medium transition-colors truncate ${
-                        isActive ? 'text-white' : 'group-hover:text-white'
+                        isActive ? 'text-foreground' : 'group-hover:text-foreground'
                       }`}>
                         {item.label}
                       </div>
                       <div className={`text-xs transition-colors break-words ${
-                        isActive ? 'text-white/70' : 'text-white/50 group-hover:text-white/70'
+                        isActive ? 'text-foreground/70' : 'text-foreground/50 group-hover:text-foreground/70'
                       }`}>
                         {item.description}
                       </div>
@@ -157,13 +158,14 @@ export function MobileMenu({ isOpen, onClose, items, currentPath }: MobileMenuPr
         </nav>
 
         {/* Footer - Fixed at bottom */}
-        <div className="p-6 border-t border-outline flex-shrink-0">
-          <div className="text-center">
-            <div className="text-xs text-white/60">
-              Currently on: <span className="text-white font-medium">
+        <div className="p-6 border-t border-border flex-shrink-0">
+          <div className="flex items-center justify-between">
+            <div className="text-xs text-foreground/60">
+              Currently on: <span className="text-foreground font-medium">
                 {items.find(item => isActiveItem(item.href))?.label || 'Home'}
               </span>
             </div>
+            <ThemeToggle />
           </div>
         </div>
       </div>

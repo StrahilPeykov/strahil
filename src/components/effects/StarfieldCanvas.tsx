@@ -63,7 +63,10 @@ export function StarfieldCanvas({ density = 130 }: { density?: number }) {
       last = t
 
       ctx.clearRect(0, 0, width, height)
-      ctx.fillStyle = '#0B0F14'
+      // Theme-aware background color using CSS variable --background (HSL tokens)
+      const styles = getComputedStyle(document.documentElement)
+      const bg = styles.getPropertyValue('--background').trim() || '222 47% 11%'
+      ctx.fillStyle = `hsl(${bg})`
       ctx.fillRect(0, 0, width, height)
 
       for (const s of stars) {
@@ -78,7 +81,8 @@ export function StarfieldCanvas({ density = 130 }: { density?: number }) {
         ctx.globalAlpha = Math.max(0, Math.min(0.7, alpha))
         ctx.beginPath()
         ctx.arc(px, py, s.size, 0, Math.PI * 2)
-        ctx.fillStyle = '#FFFFFF'
+        const fg = styles.getPropertyValue('--foreground').trim() || '210 40% 96%'
+        ctx.fillStyle = `hsl(${fg})`
         ctx.fill()
         ctx.closePath()
 

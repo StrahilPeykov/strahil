@@ -52,14 +52,14 @@ export function CookieBar() {
             className="fixed bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 z-50"
           >
             <div className="max-w-4xl mx-auto">
-              <div className="relative bg-bg/95 backdrop-blur-xl border border-outline rounded-2xl shadow-2xl shadow-black/25 overflow-hidden">
+              <div className="relative bg-card/95 backdrop-blur-xl border border-border rounded-2xl shadow-2xl shadow-black/25 overflow-hidden">
                 {/* Subtle layer */}
                 <div className="absolute inset-0 opacity-[0.03]" />
                 
                 {/* Close button */}
                 <button
                   onClick={handleClose}
-                  className="absolute top-4 right-4 p-1.5 text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition-all"
+                  className="absolute top-4 right-4 p-1.5 text-foreground/60 hover:text-foreground hover:bg-foreground/5 rounded-lg transition-all"
                   aria-label="Dismiss cookie banner"
                 >
                   <X className="w-4 h-4" />
@@ -71,22 +71,22 @@ export function CookieBar() {
                     <div className="flex-1">
                       <div className="flex items-start gap-4">
                         <div className="flex-shrink-0">
-                          <div className="w-12 h-12 bg-bg-soft/70 border border-outline rounded-xl flex items-center justify-center">
-                            <Shield className="w-6 h-6 text-white" />
+                          <div className="w-12 h-12 bg-muted/70 border border-border rounded-xl flex items-center justify-center">
+                            <Shield className="w-6 h-6 text-foreground" />
                           </div>
                         </div>
                         
                         <div className="flex-1 min-w-0">
-                          <h3 className="text-lg font-semibold text-white mb-2">
+                          <h3 className="text-lg font-semibold text-foreground mb-2">
                             We value your privacy
                           </h3>
-                          <p className="text-sm text-gray-300 leading-relaxed">
+                          <p className="text-sm text-foreground/70 leading-relaxed">
                             This website uses cookies to enhance your experience and provide analytics. 
                             Essential cookies are always active, but you can choose whether to accept optional cookies.{' '}
                             <Link 
                               href="/privacy" 
                               target="_blank" 
-                              className="text-white/80 hover:text-white transition-colors"
+                              className="text-foreground/80 hover:text-foreground transition-colors"
                             >
                               Learn more
                             </Link>
@@ -99,7 +99,7 @@ export function CookieBar() {
                     <div className="flex flex-col sm:flex-row gap-3 lg:flex-shrink-0">
                       <button
                         onClick={handleOpenSettings}
-                          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 border border-outline rounded-xl transition-all"
+                          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-foreground/5 border border-border rounded-xl transition-all"
                       >
                         <Settings className="w-4 h-4" />
                         Customize
@@ -107,7 +107,7 @@ export function CookieBar() {
                       
                       <button
                         onClick={handleReject}
-                        className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium text-white/80 hover:text-white hover:bg-white/5 border border-outline rounded-xl transition-all"
+                        className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-foreground/5 border border-border rounded-xl transition-all"
                       >
                         Decline
                       </button>
@@ -123,7 +123,7 @@ export function CookieBar() {
                 </div>
 
                 {/* Bottom accent */}
-                <div className="h-1 bg-white/10" />
+                <div className="h-1 bg-foreground/10" />
               </div>
             </div>
           </motion.div>

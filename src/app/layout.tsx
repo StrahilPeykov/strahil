@@ -369,8 +369,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Set theme class before React hydration to avoid flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{var k='midnight-theme';var s=localStorage.getItem(k);var m=window.matchMedia('(prefers-color-scheme: dark)');var t=(s==='light'||s==='dark')?s:(m.matches?'dark':'light');var e=document.documentElement;e.classList.remove('light','dark');e.classList.add(t);}catch(e){}})();",
+          }}
+        />
         {/* Preconnect to external domains for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -440,10 +447,10 @@ export default function RootLayout({
         inter.variable,
         spaceGrotesk.variable,
         jetbrainsMono.variable,
-        'font-sans antialiased min-h-screen bg-bg text-ink'
+        'font-sans antialiased min-h-screen bg-background text-foreground'
       )}>
         <CookieConsentProvider>
-          <ThemeProvider defaultTheme="dark">
+          <ThemeProvider defaultTheme="system">
             {/* Skip link for accessibility */}
             <a 
               href="#main-content" 

@@ -16,7 +16,7 @@ export function PageWrapper({
   showFooter = true 
 }: PageWrapperProps) {
   return (
-    <div className={`relative min-h-screen bg-bg text-ink overflow-x-hidden ${className}`}>
+    <div className={`relative min-h-screen bg-background text-foreground overflow-x-hidden ${className}`}>
       <NoiseOverlay />
       {showHeader && <Header />}
       <main>{children}</main>
