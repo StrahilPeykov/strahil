@@ -55,7 +55,7 @@ export function HeroSection() {
               transition={{ duration: shouldReduceMotion ? 0 : 0.6, delay: 0.3 }}
               className="text-base sm:text-lg text-ink/75 leading-relaxed"
             >
-              Building readable, resilient tools with a calm dark base and soft electric blue accents.
+              Building software and tools.
             </motion.p>
           </div>
 
