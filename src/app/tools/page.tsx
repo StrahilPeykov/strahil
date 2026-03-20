@@ -35,7 +35,7 @@ const tools = [
     longDescription: 'A privacy-focused tool that lets you create local archives of Obsidian Publish vaults. Fully compliant with EU regulations and respects content ownership.',
     gradient: 'from-purple-500 to-violet-500',
     icon: Archive,
-    status: 'live',
+    status: 'paused',
     features: [
       'One-click vault archiving',
       'Legal compliance checks',
@@ -55,6 +55,7 @@ function ToolCard({ tool, index }: { tool: typeof tools[0], index: number }) {
   const Icon = tool.icon
   const isLive = tool.status === 'live'
   const isBeta = tool.status === 'beta'
+  const isPaused = tool.status === 'paused'
 
   return (
     <motion.div
@@ -140,6 +141,14 @@ function ToolCard({ tool, index }: { tool: typeof tools[0], index: number }) {
                   </a>
                 )}
               </>
+            ) : isPaused ? (
+              <Link
+                href={tool.link}
+                className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 border border-outline text-white font-medium rounded-xl hover:bg-white/5 transition-all"
+              >
+                View status
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             ) : (
               <Link
                 href={tool.link}
@@ -242,7 +251,7 @@ export default function ToolsPage() {
                 <div>
                   <h3 className="text-sm font-semibold text-white/70 mb-2">Status</h3>
                   <div className="space-y-1 text-sm text-ink/80">
-                    <div>Live & Active</div>
+                    <div>{tools[1].status === 'paused' ? 'Hosted mode paused' : 'Live & Active'}</div>
                     <div>EU Compliant</div>
                   </div>
                 </div>

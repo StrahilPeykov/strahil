@@ -91,18 +91,18 @@ export default function HumansNotTruthSeekingContent() {
         <h3 className="text-lg font-semibold text-white mb-3">Related Ideas</h3>
         <ul className="space-y-2">
           <li>
-            <Link href="/notes/constellation-of-beliefs" className="text-blue-400 hover:text-blue-300">
-              → The Constellation of Beliefs
+            <Link href="/notes" className="text-blue-400 hover:text-blue-300">
+              → Browse all notes
             </Link>
           </li>
           <li>
-            <Link href="/notes/social-incentives-beliefs" className="text-blue-400 hover:text-blue-300">
-              → Social Incentives Dictate Beliefs
+            <Link href="/blog/blame-game" className="text-blue-400 hover:text-blue-300">
+              → The Blame Game
             </Link>
           </li>
           <li>
-            <Link href="/notes/aesthetic-vs-function" className="text-blue-400 hover:text-blue-300">
-              → Aesthetic vs Function in Decision Making
+            <Link href="/blog/stop-killing-games" className="text-blue-400 hover:text-blue-300">
+              → Stop Killing Games
             </Link>
           </li>
         </ul>

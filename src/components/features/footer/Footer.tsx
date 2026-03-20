@@ -68,7 +68,7 @@ export function Footer() {
             
             {/* Bottom bar */}
             <div className="mt-8 pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-foreground/60">
-              <p>© 2025 Strahil Peykov, All Rights Reserved</p>
+              <p>© {new Date().getFullYear()} Strahil Peykov, All Rights Reserved</p>
               <div className="flex items-center gap-4">
                 <Link href="/privacy" className="hover:text-foreground transition-colors">
                   Privacy

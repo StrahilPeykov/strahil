@@ -1,11 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { Download, Shield, AlertCircle, CheckCircle, Archive, Clock, Users, Loader2, ExternalLink, Lock, Zap } from 'lucide-react'
+import { Download, Shield, AlertCircle, CheckCircle, Archive, Clock, Loader2 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import toast, { Toaster } from 'react-hot-toast'
 import { PageWrapper } from '../../../components/layout/PageWrapper'
-import { Badge } from '../../../components/ui/Badge'
 import Link from 'next/link'
 
 interface LegalModalProps {
@@ -134,10 +133,10 @@ function LegalModal({ isOpen, onClose, onAccept }: LegalModalProps) {
             </div>
 
             <p className="text-xs text-ink/70 text-center">
-              Your consent and IP address will be logged for legal compliance. 
-              Content owners can request removal via our{' '}
-              <Link href="/api/report" className="text-white hover:text-white">
-                takedown form
+              This hosted downloader is currently paused. If you need help with
+              takedown or ownership questions, use the{' '}
+              <Link href="/contact" className="text-white hover:text-white">
+                contact page
               </Link>.
             </p>
           </div>
@@ -195,66 +194,22 @@ export default function ObsidianDownloaderPage() {
   const handleLegalAccept = async () => {
     setShowLegalModal(false)
     setIsDownloading(true)
-    setProgress(0)
+    setProgress(12)
 
-    try {
-      const response = await fetch('/api/download', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          url,
-          consent: true,
-          timestamp: new Date().toISOString()
-        })
-      })
-
-      if (!response.ok) {
-        const error = await response.json()
-        throw new Error(error.error || 'Download failed')
-      }
-
-      const reader = response.body?.getReader()
-      const decoder = new TextDecoder()
-
-      if (!reader) throw new Error('No response body')
-
-      while (true) {
-        const { done, value } = await reader.read()
-        if (done) break
-
-        const chunk = decoder.decode(value)
-        const lines = chunk.split('\n').filter(Boolean)
-
-        for (const line of lines) {
-          try {
-            const data = JSON.parse(line)
-            
-            if (data.type === 'progress') {
-              setProgress(data.value)
-            } else if (data.type === 'complete') {
-              toast.success('Vault archived successfully!')
-              window.location.href = `/api/download/${data.downloadId}`
-            } else if (data.type === 'error') {
-              throw new Error(data.message)
-            }
-          } catch (e) {
-            // Skip invalid JSON lines
-          }
-        }
-      }
-    } catch (error: any) {
-      toast.error(error.message || 'Failed to download vault')
-    } finally {
+    window.setTimeout(() => {
       setIsDownloading(false)
       setProgress(0)
-    }
+      toast(
+        'The hosted downloader is temporarily paused. Use the GitHub repo for now.'
+      )
+    }, 700)
   }
 
   return (
     <PageWrapper>
       <Toaster position="top-right" />
       
-      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-5" />
+      <div className="absolute inset-0 opacity-5" />
       
       <div className="relative z-10 container mx-auto px-4 py-16 max-w-4xl">
         {/* Header */}
@@ -400,7 +355,7 @@ export default function ObsidianDownloaderPage() {
             {' • '}
             <Link href="/terms" className="hover:text-white">Terms of Service</Link>
             {' • '}
-            <Link href="/api/report" className="hover:text-white">Report Content</Link>
+            <Link href="/contact" className="hover:text-white">Report Content</Link>
           </p>
           <p>
             Built by{' '}

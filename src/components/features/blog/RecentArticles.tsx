@@ -3,8 +3,7 @@
 import { motion } from 'framer-motion'
 import { PenTool, ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
-import { getBlogListItems, type ContentListItem } from '../../../lib/content' // Updated import
+import type { ContentListItem } from '../../../lib/content'
 
 interface ArticleCardProps {
   article: ContentListItem
@@ -43,58 +42,11 @@ function ArticleCard({ article, index }: ArticleCardProps) {
   )
 }
 
-export function RecentArticles() {
-  const [articles, setArticles] = useState<ContentListItem[]>([])
-  const [loading, setLoading] = useState(true)
+interface RecentArticlesProps {
+  articles: ContentListItem[]
+}
 
-  useEffect(() => {
-    async function loadArticles() {
-      try {
-        const blogItems = await getBlogListItems()
-        // Show the most recent 3 articles (already sorted by date)
-        setArticles(blogItems.slice(0, 3))
-      } catch (error) {
-        console.error('Failed to load articles:', error)
-        setArticles([])
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    loadArticles()
-  }, [])
-
-  if (loading) {
-    return (
-      <section className="py-32 px-6 relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 mb-4">
-            <PenTool className="w-6 h-6 text-white" />
-            <span className="text-white font-mono text-sm">Recent Writing</span>
-          </div>
-          
-          <h2 className="text-4xl lg:text-6xl font-display font-bold text-white mb-6">
-            Articles & Thoughts
-          </h2>
-          
-          <p className="text-white/80 text-lg mb-16 max-w-2xl">
-            Exploring the intersection of technology, design, and complex systems
-          </p>
-          
-          <div className="grid gap-1">
-            {[...Array(3)].map((_, i) => (
-              <div key={i} className="p-6 rounded-lg bg-slate-900/20 animate-pulse">
-                <div className="h-6 bg-slate-800 rounded mb-2 w-3/4"></div>
-                <div className="h-4 bg-slate-800 rounded mb-2 w-full"></div>
-                <div className="h-4 bg-slate-800 rounded w-1/4"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
-
+export function RecentArticles({ articles }: RecentArticlesProps) {
   return (
     <section className="py-32 px-6 relative">
       <div className="max-w-7xl mx-auto">
