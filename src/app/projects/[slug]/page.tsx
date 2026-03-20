@@ -23,9 +23,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: 'article',
       images: [
         {
-          url: '/og-image.png',
-          width: 1200,
-          height: 630,
+          url: '/icons/android-chrome-512x512.png',
+          width: 512,
+          height: 512,
           alt: project.title,
         },
       ],

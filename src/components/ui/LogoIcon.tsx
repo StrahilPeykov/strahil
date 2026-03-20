@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { cn } from '../../lib/utils'
 
 interface LogoIconProps {
@@ -95,14 +96,13 @@ export function FaviconLogo({
   alt?: string;
 }) {
   return (
-    <img 
+    <Image
       src="/icons/favicon.svg" 
       alt={alt}
       width={size} 
       height={size}
       className={cn("flex-shrink-0", className)}
-      loading="eager" // Load immediately since it's likely above the fold
-      decoding="async"
+      priority
     />
   )
 }

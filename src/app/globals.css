@@ -3,6 +3,11 @@
 /* CSS Variables for the color system */
 /* Light theme (default) */
 :root {
+  /* Font fallbacks (local/system to keep builds deterministic) */
+  --font-inter: system-ui, -apple-system, sans-serif;
+  --font-space-grotesk: system-ui, -apple-system, sans-serif;
+  --font-jetbrains-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
   /* Core cosmic palette */
   --midnight: 222 47% 11%;
   --midnight-light: 217 33% 17%;

@@ -1,7 +1,7 @@
 'use client'
 
-import { motion, useMotionValue, useTransform, animate } from 'framer-motion'
-import { Film, Gamepad2, Sparkles, Zap, ArrowRight, ExternalLink, Github, Star, TrendingUp, Code, Download, Shield, Archive } from 'lucide-react'
+import { motion, useMotionValue } from 'framer-motion'
+import { Film, Gamepad2, Sparkles, Zap, ArrowRight, Code, Archive } from 'lucide-react'
 import { PageWrapper } from '../../components/layout/PageWrapper'
 import { Badge } from '../../components/ui/Badge'
 import Link from 'next/link'
@@ -53,28 +53,6 @@ const experiments = [
     link: '/tools/obsidian-downloader',
     github: 'https://github.com/StrahilPeykov/obsidian-publish-downloader',
     category: 'Productivity'
-  },
-  {
-    id: 'performance-analyzer',
-    title: 'Web Performance Analyzer',
-    tagline: 'Make your sites blazing fast',
-    description: 'Comprehensive performance analysis tool that provides actionable insights to optimize your web applications.',
-    longDescription: 'Get detailed performance metrics, optimization suggestions, and track improvements over time.',
-    gradient: 'from-blue-500 to-purple-500',
-    icon: TrendingUp,
-    status: 'development',
-    expectedLaunch: 'Q2 2024',
-    waitlist: 234,
-    features: [
-      'Core Web Vitals tracking',
-      'Bundle size analysis',
-      'Performance budgets',
-      'Historical tracking'
-    ],
-    techStack: ['Lighthouse', 'Puppeteer', 'D3.js', 'Node.js'],
-    link: '/tools/performance-analyzer',
-    github: null,
-    category: 'Performance'
   }
 ]
 
@@ -355,7 +333,7 @@ export default function PlayPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {experiments.map((experiment, index) => {
                 const Icon = experiment.icon
-                const href = experiment.link.startsWith('http') ? experiment.link : `/play/${experiment.id}`
+                const href = experiment.link
                 const target = experiment.link.startsWith('http') ? '_blank' : undefined
                 const rel = experiment.link.startsWith('http') ? 'noopener noreferrer' : undefined
                 
@@ -485,15 +463,11 @@ export default function PlayPage() {
                     </div>
                     
                     <div className="flex gap-4">
-                      <Link
-                        href="/play/neural-network"
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-glow text-white font-semibold rounded-xl hover:scale-105 transition-transform"
+                      <button
+                        disabled
+                        className="inline-flex cursor-not-allowed items-center gap-2 rounded-xl border border-outline px-6 py-3 font-semibold text-white/70"
                       >
-                        Try it now
-                        <ArrowRight className="w-5 h-5" />
-                      </Link>
-                      <button className="inline-flex items-center gap-2 px-6 py-3 border border-outline text-white font-semibold rounded-xl hover:bg-white/5 transition-all">
-                        View source
+                        Coming soon
                       </button>
                     </div>
                   </div>

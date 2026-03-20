@@ -14,7 +14,7 @@ export function generateMetadata({
   title,
   description = SITE_CONFIG.description,
   keywords = [],
-  ogImage = '/og-image.png',
+  ogImage = '/icons/android-chrome-512x512.png',
   noIndex = false,
   canonicalUrl
 }: GenerateMetadataProps = {}): Metadata {

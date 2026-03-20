@@ -11,14 +11,11 @@ interface CookieSettingsModalProps {
 }
 
 export function CookieSettingsModal({ isOpen, onClose }: CookieSettingsModalProps) {
+  const { consentType, updateConsent } = useCookieConsent()
+
   // Initialize with null to handle SSR
   const [analyticsEnabled, setAnalyticsEnabled] = useState<boolean | null>(null)
   const [isMounted, setIsMounted] = useState(false)
-  
-  // Use the hook conditionally after mounting
-  const cookieContext = isMounted ? useCookieConsent() : null
-  const consentType = cookieContext?.consentType
-  const updateConsent = cookieContext?.updateConsent
   
   // Set mounted state
   useEffect(() => {
@@ -33,7 +30,7 @@ export function CookieSettingsModal({ isOpen, onClose }: CookieSettingsModalProp
   }, [isMounted, consentType])
   
   const handleSave = () => {
-    if (!updateConsent || analyticsEnabled === null) return
+    if (analyticsEnabled === null) return
     
     const newConsent = analyticsEnabled ? 'accepted' : 'rejected'
     updateConsent(newConsent)
@@ -128,7 +125,7 @@ export function CookieSettingsModal({ isOpen, onClose }: CookieSettingsModalProp
                 <button
                   onClick={handleSave}
                   className="flex-1 px-4 py-2 text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 rounded-lg transition-all"
-                  disabled={!updateConsent}
+                  disabled={analyticsEnabled === null}
                 >
                   Save preferences
                 </button>

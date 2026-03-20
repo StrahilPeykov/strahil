@@ -6,28 +6,14 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/private/', '/admin/', '/_next/', '/api/private/', '/courses'],
-        crawlDelay: 0, // No delay for faster indexing
-      },
-      {
-        userAgent: 'Googlebot',
-        allow: '/', // Allow everything for Google
-        disallow: ['/admin/', '/api/private/', '/courses'],
-        crawlDelay: 0,
-      },
-      {
-        userAgent: 'Googlebot-Image',
-        allow: '/', // Allow Google to index all images
+        disallow: ['/private/', '/admin/', '/_next/', '/api/private/'],
       },
       {
         userAgent: 'GPTBot',
-        disallow: ['/'], // Block AI crawlers to protect content
+        disallow: ['/'],
       },
     ],
-    sitemap: [
-      'https://strahil.dev/sitemap.xml',
-      'https://strahil.dev/sitemap-strahil.xml', // Special sitemap for Strahil-focused pages
-    ],
+    sitemap: 'https://strahil.dev/sitemap.xml',
     host: 'https://strahil.dev',
   }
 }

@@ -38,9 +38,9 @@ export function Footer() {
                   </div>
                   <div className="flex items-center gap-2 text-foreground/70">
                     <Download size={14} />
-                    <a href="/cv.pdf" download className="hover:text-foreground transition-colors">
-                      Download CV
-                    </a>
+                    <Link href="/cv" className="hover:text-foreground transition-colors">
+                      View CV
+                    </Link>
                   </div>
                 </div>
               </div>

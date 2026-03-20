@@ -17,7 +17,7 @@ export interface PageProps {
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
-// For contentlayer integration
+// Shared metadata shape for article-like content
 export interface ContentMeta {
   readingTime: {
     text: string

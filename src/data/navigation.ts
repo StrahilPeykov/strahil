@@ -1,4 +1,4 @@
-import { Briefcase, PenTool, User, Mail, Wrench, GraduationCap, Heart, Gamepad2, Brain } from 'lucide-react'
+import { Briefcase, PenTool, User, Mail, Wrench, Heart, Gamepad2, Brain } from 'lucide-react'
 import type { NavigationItem } from '../types/navigation'
 
 export const allNavigationItems: NavigationItem[] = [
@@ -58,16 +58,6 @@ export const allNavigationItems: NavigationItem[] = [
     description: 'Ideas & observations',
     color: '#8b5cf6',
     gradient: 'from-violet-500/10 to-purple-500/10'
-  },
-  {
-    id: 'courses',
-    href: '/courses',
-    label: 'Learn',
-    icon: GraduationCap,
-    description: 'Courses & resources',
-    color: '#8b5cf6',
-    gradient: 'from-violet-500/10 to-purple-500/10',
-    hidden: true
   },
   {
     id: 'play',

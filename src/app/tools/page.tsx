@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Wrench, Search, Users, Zap, ArrowRight, ExternalLink, Github, Star, TrendingUp, Code, Download, Shield, Archive } from 'lucide-react'
+import { Wrench, Search, Zap, ArrowRight, ExternalLink, Github, Star, Archive } from 'lucide-react'
 import { PageWrapper } from '../../components/layout/PageWrapper'
 import { Badge } from '../../components/ui/Badge'
 import Link from 'next/link'
@@ -48,27 +48,6 @@ const tools = [
     link: '/tools/obsidian-downloader',
     github: 'https://github.com/StrahilPeykov/obsidian-publish-downloader',
     category: 'Productivity'
-  },
-  {
-    id: 'performance-analyzer',
-    title: 'Web Performance Analyzer',
-    tagline: 'Make your sites blazing fast',
-    description: 'Comprehensive performance analysis tool that provides actionable insights to optimize your web applications.',
-    longDescription: 'Get detailed performance metrics, optimization suggestions, and track improvements over time.',
-    gradient: 'from-blue-500 to-purple-500',
-    icon: TrendingUp,
-    status: 'development',
-    expectedLaunch: 'Q2 2024',
-    features: [
-      'Core Web Vitals tracking',
-      'Bundle size analysis',
-      'Performance budgets',
-      'Historical tracking'
-    ],
-    techStack: ['Lighthouse', 'Puppeteer', 'D3.js', 'Node.js'],
-    link: '/tools/performance-analyzer',
-    github: null,
-    category: 'Performance'
   }
 ]
 
