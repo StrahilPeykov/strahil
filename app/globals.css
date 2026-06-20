@@ -30,9 +30,6 @@
 :root[data-theme="terminal"] {
   --bg: #000000; --fg: #00ff41; --panel: #0a0a0a; --border: #003b00; --accent: #00ff41;
 }
-:root[data-theme="claude"] {
-  --bg: #262624; --fg: #f5f4f0; --panel: #30302e; --border: #4a4a47; --accent: #c6613f;
-}
 
 :root {
   --font-mono-stack: var(--font-mono-src), ui-monospace, "Fira Code", monospace;
