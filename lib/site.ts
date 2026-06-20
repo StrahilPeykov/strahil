@@ -6,12 +6,16 @@ export const site = {
   description:
     "Software engineer in Amsterdam working on logistics and date-heavy backend systems.",
 
-  // TODO: set the email you want to publish (copy-to-clipboard in footer/home).
-  email: "your-email@example.com",
-
+  email: "strahil.peykov@gmail.com",
   github: "https://github.com/StrahilPeykov",
-  // TODO: confirm your real LinkedIn URL.
-  linkedin: "https://www.linkedin.com/in/strahilpeykov/",
+  linkedin: "https://www.linkedin.com/in/strahil-peykov/",
   // TODO: drop a PDF at public/cv.pdf, or remove this link.
   cv: "/cv.pdf",
+
+  // Personal/social — shown small and set apart in the footer, not next to
+  // the professional links.
+  elsewhere: [
+    { label: "instagram", href: "https://www.instagram.com/strahil.peykov" },
+    { label: "letterboxd", href: "https://letterboxd.com/strahil_peykov/" },
+  ],
 };
