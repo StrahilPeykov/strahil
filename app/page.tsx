@@ -42,7 +42,7 @@ export default function Home() {
           <CopyEmail email={site.email} />
           <a href={site.github} target="_blank" rel="noreferrer" className="hover:text-fg">github</a>
           <a href={site.linkedin} target="_blank" rel="noreferrer" className="hover:text-fg">linkedin</a>
-          <a href={site.cv} className="hover:text-fg">cv</a>
+          <a href={site.cv} target="_blank" rel="noreferrer" className="hover:text-fg">cv</a>
         </div>
       </section>
 
