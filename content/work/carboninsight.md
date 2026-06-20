@@ -4,7 +4,7 @@ year: 2025
 weight: 40
 role: Full-stack, team project
 stack: [Django, Next.js, PostgreSQL]
-url: https://www.carboninsight.strahilpeykov.com/
+url: https://carboninsight.strahil.dev
 source: https://github.com/StrahilPeykov/carboninsight-frontend
 summary: A tool that helps manufacturing SMEs compute a product's carbon footprint and export it as a standards-compliant Digital Product Passport.
 ---

@@ -4,7 +4,7 @@ year: 2025
 weight: 25
 role: Personal project
 stack: [Next.js, TypeScript, Supabase]
-url: https://frameguessr-steel.vercel.app
+url: https://frameguessr.strahil.dev
 source: https://github.com/StrahilPeykov/frameguessr
 summary: A daily movie-and-TV guessing game, one title a day revealed through progressive hints.
 ---
