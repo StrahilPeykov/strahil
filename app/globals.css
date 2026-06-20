@@ -16,7 +16,7 @@
 /* ── Theme palettes (recycled from Odysseus: just 5 colors per theme) ── */
 :root,
 :root[data-theme="dark"] {
-  --bg: #282c34; --fg: #9cdef2; --panel: #111111; --border: #355a66; --accent: #e06c75;
+  --bg: #282c34; --fg: #d8e0e8; --panel: #111111; --border: #355a66; --accent: #e06c75;
 }
 :root[data-theme="paper"] {
   --bg: #faf8f5; --fg: #3b3836; --panel: #ffffff; --border: #d5d0c8; --accent: #b8860b;
