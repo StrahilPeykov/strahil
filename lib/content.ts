@@ -15,8 +15,13 @@ export type Doc = {
   url?: string;
   source?: string;
   weight?: number;
+  draft?: boolean;
   content: string;
 };
+
+// Drafts are visible while developing locally, but excluded from the production
+// build, so they never appear (or get indexed) on the live site.
+const showDrafts = process.env.NODE_ENV !== "production";
 
 const contentRoot = path.join(process.cwd(), "content");
 
@@ -37,6 +42,7 @@ function readKind(kind: Kind): Doc[] {
       if (data.date instanceof Date) data.date = toISODate(data.date);
       return { slug: f.replace(/\.md$/, ""), content, ...(data as object) } as Doc;
     })
+    .filter((d) => showDrafts || !d.draft)
     .sort((a, b) => {
       // Explicit weight wins (higher first); fall back to date/year, newest first.
       const aw = Number(a.weight ?? 0);

@@ -2,6 +2,7 @@
 title: A first note
 date: 2026-06-20
 summary: Placeholder article so the writing section renders.
+draft: true
 ---
 
 This is a placeholder article. It exists so the `/writing` section has something

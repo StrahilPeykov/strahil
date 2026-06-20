@@ -23,7 +23,12 @@ export default function WritingIndex() {
                 href={`/writing/${p.slug}`}
                 className="group flex items-baseline justify-between gap-4 py-4"
               >
-                <span className="font-mono group-hover:text-accent">{p.title}</span>
+                <span className="font-mono group-hover:text-accent">
+                  {p.title}
+                  {p.draft && (
+                    <span className="ml-2 border border-border px-1 text-xs text-muted">draft</span>
+                  )}
+                </span>
                 {p.date && <span className="font-mono text-xs text-muted">{p.date}</span>}
               </Link>
             </li>
