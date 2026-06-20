@@ -42,6 +42,20 @@ export default async function WorkPage({
             <span>{doc.stack.join(" · ")}</span>
           )}
         </div>
+        {(doc.url || doc.source) && (
+          <div className="flex flex-wrap gap-x-4 font-mono text-xs">
+            {doc.url && (
+              <a href={doc.url} target="_blank" rel="noreferrer" className="text-accent hover:underline">
+                live ↗
+              </a>
+            )}
+            {doc.source && (
+              <a href={doc.source} target="_blank" rel="noreferrer" className="text-accent hover:underline">
+                code ↗
+              </a>
+            )}
+          </div>
+        )}
       </header>
       <div className="prose">
         <Markdown remarkPlugins={[remarkGfm]}>{doc.content}</Markdown>

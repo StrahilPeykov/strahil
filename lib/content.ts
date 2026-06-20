@@ -12,6 +12,9 @@ export type Doc = {
   year?: string | number;
   role?: string;
   stack?: string[];
+  url?: string;
+  source?: string;
+  weight?: number;
   content: string;
 };
 
@@ -35,6 +38,10 @@ function readKind(kind: Kind): Doc[] {
       return { slug: f.replace(/\.md$/, ""), content, ...(data as object) } as Doc;
     })
     .sort((a, b) => {
+      // Explicit weight wins (higher first); fall back to date/year, newest first.
+      const aw = Number(a.weight ?? 0);
+      const bw = Number(b.weight ?? 0);
+      if (aw !== bw) return bw - aw;
       const av = String(a.date ?? a.year ?? "");
       const bv = String(b.date ?? b.year ?? "");
       return bv.localeCompare(av);
