@@ -16,7 +16,19 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const doc = getDoc("writing", slug);
-  return { title: doc?.title ?? "Writing" };
+  if (!doc) return { title: "Writing" };
+  return {
+    title: doc.title,
+    description: doc.summary,
+    alternates: { canonical: `/writing/${doc.slug}` },
+    openGraph: {
+      type: "article",
+      title: doc.title,
+      description: doc.summary,
+      url: `/writing/${doc.slug}`,
+      publishedTime: doc.date,
+    },
+  };
 }
 
 export default async function WritingPage({

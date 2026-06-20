@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { getWriting } from "@/lib/content";
 
-export const metadata = { title: "Writing" };
+export const metadata = {
+  title: "Writing",
+  description: "Writing by Strahil Peykov.",
+  alternates: { canonical: "/writing" },
+};
 
 export default function WritingIndex() {
   const posts = getWriting();

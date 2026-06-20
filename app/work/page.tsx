@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { getWork } from "@/lib/content";
 
-export const metadata = { title: "Work" };
+export const metadata = {
+  title: "Work",
+  description: "Selected work by Strahil Peykov.",
+  alternates: { canonical: "/work" },
+};
 
 export default function WorkIndex() {
   const work = getWork();

@@ -1,13 +1,36 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { site } from "@/lib/site";
 import { getWork } from "@/lib/content";
 import { CopyEmail } from "@/components/CopyEmail";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
+const personLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  url: site.url,
+  jobTitle: site.role,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: site.location,
+    addressCountry: "NL",
+  },
+  sameAs: [site.github, site.linkedin],
+};
 
 export default function Home() {
   const work = getWork().slice(0, 4);
 
   return (
     <div className="space-y-14">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
+      />
       <section className="space-y-5">
         <p className="max-w-2xl text-lg leading-relaxed">
           I&apos;m a software engineer in {site.location}. I work on logistics systems and

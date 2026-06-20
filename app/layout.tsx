@@ -10,8 +10,22 @@ const mono = Fira_Code({ subsets: ["latin"], variable: "--font-mono-src", displa
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans-src", display: "swap" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: { default: site.name, template: `%s · ${site.name}` },
   description: site.description,
+  openGraph: {
+    type: "website",
+    siteName: site.name,
+    title: site.name,
+    description: site.description,
+    url: site.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.name,
+    description: site.description,
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
