@@ -22,6 +22,7 @@ export function CopyEmail({ email }: { email: string }) {
       onClick={copy}
       className="font-mono hover:text-accent"
       title="Copy email address"
+      aria-label={`Copy email address ${email}`}
     >
       {copied ? "copied ✓" : email}
     </button>

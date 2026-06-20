@@ -34,13 +34,24 @@
 :root {
   --font-mono-stack: var(--font-mono-src), ui-monospace, "Fira Code", monospace;
   --font-sans-stack: var(--font-sans-src), ui-sans-serif, system-ui, sans-serif;
-  --muted: color-mix(in srgb, var(--fg) 58%, var(--bg));
+  /* 66% keeps muted/secondary text above the WCAG AA contrast threshold for
+     small text across the themes. */
+  --muted: color-mix(in srgb, var(--fg) 66%, var(--bg));
   color-scheme: dark;
 }
 :root[data-theme="paper"] { color-scheme: light; }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 body {
   margin: 0;
   background: var(--bg);

@@ -22,13 +22,19 @@ export function ThemeSwitcher() {
   }
 
   return (
-    <div className="relative font-mono text-sm">
+    <div
+      className="relative font-mono text-sm"
+      onKeyDown={(e) => {
+        if (e.key === "Escape") setOpen(false);
+      }}
+    >
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
         className="inline-flex items-center gap-1 border border-border px-2 py-1 text-muted hover:text-fg"
         aria-haspopup="listbox"
         aria-expanded={open}
+        aria-label={`Theme: ${theme}. Change theme`}
       >
         {theme} <span aria-hidden>▾</span>
       </button>

@@ -31,11 +31,11 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
       />
+      <h1 className="sr-only">{`${site.name}, ${site.role}`}</h1>
       <section className="space-y-5">
         <p className="max-w-2xl text-lg leading-relaxed">
           I&apos;m a software engineer in {site.location}. I work on logistics systems and
-          date-heavy backend services, the parts where staying correct under messy,
-          real-world input is the actual job. Before this I studied Computer Science &amp;
+          date-heavy backend services. Before this I studied Computer Science &amp;
           Engineering at TU Eindhoven and interned at ASML.
         </p>
         <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-1 font-mono text-sm text-muted">
