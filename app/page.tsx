@@ -11,7 +11,7 @@ export default function Home() {
       <section className="space-y-5">
         <p className="max-w-2xl text-lg leading-relaxed">
           I&apos;m a software engineer in {site.location}. I work on logistics systems and
-          date-heavy backend services — the parts where staying correct under messy,
+          date-heavy backend services, the parts where staying correct under messy,
           real-world input is the actual job. Before this I studied Computer Science &amp;
           Engineering at TU Eindhoven and interned at ASML.
         </p>

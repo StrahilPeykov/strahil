@@ -55,7 +55,7 @@ body {
   min-height: 100dvh;
 }
 
-/* Subtle dot texture — the restrained version of the Odysseus bg effect. */
+/* Subtle dot texture, the restrained version of the Odysseus bg effect. */
 body::before {
   content: "";
   position: fixed;

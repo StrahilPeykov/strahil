@@ -1,4 +1,4 @@
-// Central site config. Edit these — they're used across the site.
+// Central site config. Edit these, they're used across the site.
 export const site = {
   name: "Strahil Peykov",
   role: "Software engineer",
@@ -12,7 +12,7 @@ export const site = {
   // TODO: drop a PDF at public/cv.pdf, or remove this link.
   cv: "/cv.pdf",
 
-  // Personal/social — shown small and set apart in the footer, not next to
+  // Personal/social, shown small and set apart in the footer, not next to
   // the professional links.
   elsewhere: [
     { label: "instagram", href: "https://www.instagram.com/strahil.peykov" },

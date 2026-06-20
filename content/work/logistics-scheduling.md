@@ -6,7 +6,7 @@ stack: [TypeScript, Node, PostgreSQL]
 summary: Backend service for planning and re-planning deliveries as real-world constraints shift through the day.
 ---
 
-> Placeholder case note — replace with your own words. Keep it to
+> Placeholder case note, replace with your own words. Keep it to
 > problem → role → constraints → outcome, with no proprietary detail.
 
 ## Problem
@@ -19,7 +19,7 @@ What you specifically owned and decided.
 
 ## Constraints
 
-The real-world conditions that shaped the design — deadlines, data quality,
+The real-world conditions that shaped the design, deadlines, data quality,
 upstream systems, things that changed underneath you.
 
 ## Outcome

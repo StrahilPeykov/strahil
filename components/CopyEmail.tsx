@@ -11,7 +11,7 @@ export function CopyEmail({ email }: { email: string }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     } catch {
-      // clipboard blocked — fall back to revealing the address
+      // clipboard blocked, fall back to revealing the address
       window.location.href = `mailto:${email}`;
     }
   }
