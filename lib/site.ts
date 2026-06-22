@@ -21,5 +21,6 @@ export const site = {
   elsewhere: [
     { label: "instagram", href: "https://www.instagram.com/strahil.peykov" },
     { label: "letterboxd", href: "https://letterboxd.com/strahil_peykov/" },
+    { label: "goodreads", href: "https://www.goodreads.com/user/show/88346124-strahil-peykov" },
   ],
 };
