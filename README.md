@@ -1,7 +1,6 @@
 # strahil
 
-My personal site: a small index of real work, plus writing. Built to be read,
-not to look like a template.
+My personal site: a small index of real work, plus writing. 
 
 ## Stack
 
