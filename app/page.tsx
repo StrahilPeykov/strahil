@@ -3,6 +3,7 @@ import Link from "next/link";
 import { site } from "@/lib/site";
 import { getWork } from "@/lib/content";
 import { CopyEmail } from "@/components/CopyEmail";
+import { WorkList } from "@/components/WorkList";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -31,8 +32,10 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
       />
-      <h1 className="sr-only">{`${site.name}, ${site.role}`}</h1>
       <section className="space-y-5">
+        <h1 className="font-mono text-3xl font-semibold tracking-tight sm:text-4xl">
+          {site.name}
+        </h1>
         <p className="max-w-2xl text-lg leading-relaxed">
           I&apos;m a software engineer in {site.location}. I work on logistics systems and
           data-heavy backend services. Before this I studied Computer Science &amp;
@@ -48,19 +51,7 @@ export default function Home() {
 
       <section className="space-y-5">
         <h2 className="font-mono text-sm uppercase tracking-wider text-muted">Selected work</h2>
-        <ul className="border-y border-border">
-          {work.map((w) => (
-            <li key={w.slug} className="border-b border-border last:border-b-0">
-              <Link href={`/work/${w.slug}`} className="group block py-4">
-                <div className="flex items-baseline justify-between gap-4">
-                  <span className="font-mono group-hover:text-accent">{w.title}</span>
-                  {w.year && <span className="font-mono text-xs text-muted">{w.year}</span>}
-                </div>
-                {w.summary && <p className="mt-1 max-w-2xl text-sm text-muted">{w.summary}</p>}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <WorkList items={work} />
         <Link href="/work" className="inline-block font-mono text-sm text-muted hover:text-fg">
           all work →
         </Link>
