@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fira_Code, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
@@ -29,6 +29,10 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#282c34",
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" data-theme="dark" className={`${mono.variable} ${sans.variable}`}>
@@ -36,9 +40,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeScript />
       </head>
       <body>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-border focus:bg-panel focus:px-3 focus:py-2 focus:font-mono"
+        >
+          Skip to content
+        </a>
         <div className="mx-auto flex min-h-dvh w-full max-w-3xl flex-col px-6">
           <SiteHeader />
-          <main className="flex-1 py-10">{children}</main>
+          <main id="main" className="flex-1 py-10">{children}</main>
           <SiteFooter />
         </div>
         <Analytics />
