@@ -28,7 +28,7 @@
   --bg: #1c1410; --fg: #e8c39e; --panel: #140f0a; --border: #7a5533; --accent: #d4764e;
 }
 :root[data-theme="terminal"] {
-  --bg: #000000; --fg: #00ff41; --panel: #0a0a0a; --border: #003b00; --accent: #00ff41;
+  --bg: #000000; --fg: #00ff41; --panel: #0a0a0a; --border: #003b00; --accent: #ffb000;
 }
 
 :root {

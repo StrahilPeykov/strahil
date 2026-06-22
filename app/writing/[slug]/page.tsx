@@ -47,7 +47,11 @@ export default async function WritingPage({
       </Link>
       <header className="space-y-2">
         <h1 className="text-2xl">{doc.title}</h1>
-        {doc.date && <p className="font-mono text-xs text-muted">{doc.date}</p>}
+        <p className="font-mono text-xs text-muted">
+          {doc.date}
+          {doc.date && ` · `}
+          {doc.readingMinutes} min read
+        </p>
       </header>
       <div className="prose">
         <Markdown remarkPlugins={[remarkGfm]}>{doc.content}</Markdown>

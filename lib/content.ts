@@ -17,7 +17,14 @@ export type Doc = {
   weight?: number;
   draft?: boolean;
   content: string;
+  readingMinutes: number;
 };
+
+// Rough reading time at ~200 words per minute, floored at 1 minute.
+function readingMinutes(text: string): number {
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
 
 // Drafts are visible while developing locally, but excluded from the production
 // build, so they never appear (or get indexed) on the live site.
@@ -40,7 +47,12 @@ function readKind(kind: Kind): Doc[] {
       const { data, content } = matter(raw);
       // YAML turns unquoted dates into Date objects; keep them as strings.
       if (data.date instanceof Date) data.date = toISODate(data.date);
-      return { slug: f.replace(/\.md$/, ""), content, ...(data as object) } as Doc;
+      return {
+        slug: f.replace(/\.md$/, ""),
+        content,
+        readingMinutes: readingMinutes(content),
+        ...(data as object),
+      } as Doc;
     })
     .filter((d) => showDrafts || !d.draft)
     .sort((a, b) => {
