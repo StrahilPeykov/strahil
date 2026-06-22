@@ -77,8 +77,9 @@ body::before {
   background-size: 22px 22px;
 }
 
-/* The terminal theme uses the character-rain canvas as its texture instead. */
-:root[data-theme="terminal"] body::before { display: none; }
+/* These themes use a canvas effect as their texture instead of the dot grid. */
+:root[data-theme="terminal"] body::before,
+:root[data-theme="ocean"] body::before { display: none; }
 
 /* Monospace for the structural furniture; readable body font for prose. */
 h1, h2, h3, h4, nav, .mono { font-family: var(--font-mono-stack); }
