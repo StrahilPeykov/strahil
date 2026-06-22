@@ -11,6 +11,7 @@ export function SiteHeader() {
       <nav className="flex items-center gap-5 font-mono text-sm text-muted">
         <Link href="/work" className="hover:text-fg">work</Link>
         <Link href="/writing" className="hover:text-fg">writing</Link>
+        <Link href="/about" className="hover:text-fg">about</Link>
         <ThemeSwitcher />
       </nav>
     </header>
