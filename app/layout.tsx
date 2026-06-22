@@ -3,6 +3,7 @@ import { Fira_Code, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { ThemeScript } from "@/components/ThemeScript";
+import { TerminalRain } from "@/components/TerminalRain";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { site } from "@/lib/site";
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        <TerminalRain />
         <div className="mx-auto flex min-h-dvh w-full max-w-3xl flex-col px-6">
           <SiteHeader />
           <main id="main" className="flex-1 py-10">{children}</main>
