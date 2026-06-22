@@ -21,12 +21,8 @@ export default function About() {
           Amsterdam.
         </p>
         <p>
-          I&apos;m into gaming, music, philosophy, and politics, and those tend to
-          show up in what I make and write: a daily movie-guessing game, an essay
-          on game preservation and digital ownership, a tool for EU
-          product-emissions reporting. The work I find most interesting usually
-          sits where the software is only half the problem and the rest is people,
-          rules, or culture.
+          I really like games, music, philosophy, and politics, so they inevitably
+          bleed into the things I do.
         </p>
       </div>
 
@@ -34,7 +30,7 @@ export default function About() {
         <div>
           <dt className="inline text-fg">Languages: </dt>
           <dd className="inline">
-            Bulgarian (native), English (fluent), and some German, Dutch, and French.
+            Bulgarian (native), English (fluent), and some German, Dutch, French, and Japanese.
           </dd>
         </div>
         <div>
