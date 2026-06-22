@@ -20,11 +20,14 @@ export function CopyEmail({ email }: { email: string }) {
     <button
       type="button"
       onClick={copy}
-      className="font-mono hover:text-accent"
+      className="relative inline-block font-mono hover:text-accent"
       title="Copy email address"
       aria-label={`Copy email address ${email}`}
     >
-      {copied ? "copied ✓" : email}
+      {/* Invisible sizer reserves the email's width so swapping in "copied"
+          can't shift the rest of the row. */}
+      <span aria-hidden className="invisible">{email}</span>
+      <span className="absolute inset-0 text-left">{copied ? "copied ✓" : email}</span>
     </button>
   );
 }

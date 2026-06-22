@@ -21,6 +21,10 @@ export function SiteFooter() {
           ))}
         </div>
       )}
+
+      <p className="mt-4 text-xs text-muted opacity-60">
+        Privacy-friendly, cookieless analytics. No personal data collected.
+      </p>
     </footer>
   );
 }
