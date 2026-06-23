@@ -5,7 +5,7 @@ summary: "When publishers shut down game servers, they're not just ending a serv
 ---
 
 Imagine buying a book, only to have the publisher break into your house months
-later to burn it. Sounds absurd, right? Yet this is exactly what's happening in
+later to burn it. Sounds absurd, but this is exactly what's happening in
 the gaming world today, and most of us have accepted it as normal.
 
 ## The Movement That's Fighting Back
@@ -26,20 +26,19 @@ or compensation.
 The movement's legal action centers around Ubisoft's handling of "The Crew,"
 which became a perfect example of everything wrong with the current system.
 
-The timeline was swift and merciless: On December 14, 2023, Ubisoft delisted The
+As for the timeline, on December 14, 2023, Ubisoft delisted The
 Crew from digital platforms and suspended microtransaction sales. By March 31,
 2024, the servers were shut down permanently. Post-shutdown, Ubisoft began
 revoking licenses from players who had purchased the game, with no refunds
 offered and no way to download the game files.
 
-This wasn't just a server shutdown, it was systematic erasure. Players who had
+This was systematic erasure. Players who had
 purchased the game lost all access, despite having paid full price for what was
 marketed as a purchase. No refunds were offered, no offline mode was provided,
 and the game files themselves became inaccessible.
 
-The most troubling part? **The same fate awaits games like Need for Speed
-(2015)** unless something changes. These aren't isolated incidents; they're a
-business model.
+The most troubling part is that **the same fate awaits games like Need for Speed
+(2015)** unless something changes. 
 
 ## The Pirate Software Controversy
 
@@ -63,7 +62,7 @@ His criticism: *"this isn't always possible in all video games and it doesn't
 call out the specific practice that this is supposedly trying to defeat. It is
 incredibly vague and will damage all live service games."*
 
-But here's the crucial point Thor missed: **this vagueness is intentional and
+But the crucial point that Thor missed is **this vagueness is intentional and
 necessary**. Stop Killing Games is a European Citizen's Initiative, not a law or
 legislative proposal. It's a formal request to start a conversation and ask the
 European Commission to consider drafting legislation.
@@ -173,7 +172,7 @@ server support or free maintenance. It's asking for something simpler: that when
 you buy something, you should be able to keep it.
 
 In a world where digital goods can vanish at a publisher's whim, the right to
-preserve what we've purchased isn't radical, it's fundamental.
+preserve what we've purchased is fundamental.
 
 ### Take Action
 
