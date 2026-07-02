@@ -21,6 +21,9 @@
 :root[data-theme="paper"] {
   --bg: #faf8f5; --fg: #3b3836; --panel: #ffffff; --border: #d5d0c8; --accent: #b8860b;
 }
+:root[data-theme="sakura"] {
+  --bg: #fbf1f4; --fg: #47353d; --panel: #fff8fa; --border: #e6c4cf; --accent: #c94f7c;
+}
 :root[data-theme="ocean"] {
   --bg: #0b1a2c; --fg: #9fd6f5; --panel: #091422; --border: #1e5074; --accent: #4facfe;
 }
@@ -39,7 +42,8 @@
   --muted: color-mix(in srgb, var(--fg) 66%, var(--bg));
   color-scheme: dark;
 }
-:root[data-theme="paper"] { color-scheme: light; }
+:root[data-theme="paper"],
+:root[data-theme="sakura"] { color-scheme: light; }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -79,7 +83,8 @@ body::before {
 
 /* These themes use a canvas effect as their texture instead of the dot grid. */
 :root[data-theme="terminal"] body::before,
-:root[data-theme="ocean"] body::before { display: none; }
+:root[data-theme="ocean"] body::before,
+:root[data-theme="sakura"] body::before { display: none; }
 
 /* Monospace for the structural furniture; readable body font for prose. */
 h1, h2, h3, h4, nav, .mono { font-family: var(--font-mono-stack); }

@@ -2,6 +2,7 @@
 export const themes = [
   { id: "dark", label: "dark" },
   { id: "paper", label: "paper" },
+  { id: "sakura", label: "sakura" },
   { id: "ocean", label: "ocean" },
   { id: "copper", label: "copper" },
   { id: "terminal", label: "terminal" },
