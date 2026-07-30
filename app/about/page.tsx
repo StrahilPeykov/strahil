@@ -3,7 +3,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "About Strahil Peykov: backend engineer, complex-systems student, and builder.",
+  description: "About Strahil Peykov: backend engineer and builder.",
   alternates: { canonical: "/about" },
 };
 
@@ -17,8 +17,7 @@ export default function About() {
           I&apos;m Strahil Peykov, a backend software engineer based in Amsterdam.
           I grew up in Burgas, Bulgaria, moved to Eindhoven in 2021, and completed
           a BSc in Computer Science &amp; Engineering at TU Eindhoven in 2025.
-          I now work on last-mile delivery systems at Picnic while studying
-          Complex Systems and Policy at the University of Amsterdam.
+          I now work on last-mile delivery systems at Picnic.
         </p>
         <p>
           I&apos;m strongest where software design meets operational reality,
@@ -38,8 +37,7 @@ export default function About() {
         </div>
         <div>
           <dt className="text-xs uppercase tracking-wider text-accent">Education</dt>
-          <dd className="mt-1 text-fg">MSc Complex Systems and Policy, UvA · 2025–present</dd>
-          <dd className="text-fg">BSc Computer Science and Engineering, TU/e · 2021–2025</dd>
+          <dd className="mt-1 text-fg">BSc Computer Science and Engineering, TU/e · 2021–2025</dd>
         </div>
         <div>
           <dt className="inline text-fg">Languages: </dt>

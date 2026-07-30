@@ -38,8 +38,9 @@ export default function Home() {
         </h1>
         <p className="max-w-2xl text-lg leading-relaxed">
           I build backend systems where software meets operational reality. I
-          currently work on last-mile delivery systems at Picnic and study
-          Complex Systems and Policy at the University of Amsterdam.
+          currently work on last-mile delivery systems at Picnic. Before that I
+          built enterprise tooling at ASML and studied Computer Science &amp;
+          Engineering at TU Eindhoven.
         </p>
         <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-1 font-mono text-sm text-muted">
           <CopyEmail email={site.email} />
