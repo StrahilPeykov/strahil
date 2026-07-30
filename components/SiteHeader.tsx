@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
+import { NavLinks } from "./NavLinks";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 
 export function SiteHeader() {
@@ -9,9 +10,7 @@ export function SiteHeader() {
         {site.name}
       </Link>
       <nav className="flex items-center gap-5 font-mono text-sm text-muted">
-        <Link href="/work" className="hover:text-fg">work</Link>
-        <Link href="/writing" className="hover:text-fg">writing</Link>
-        <Link href="/about" className="hover:text-fg">about</Link>
+        <NavLinks />
         <ThemeSwitcher />
       </nav>
     </header>

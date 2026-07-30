@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import matter from "gray-matter";
+import { load } from "js-yaml";
 
 export type Kind = "work" | "writing";
 
@@ -32,6 +32,19 @@ const showDrafts = process.env.NODE_ENV !== "production";
 
 const contentRoot = path.join(process.cwd(), "content");
 
+function parseFrontmatter(raw: string): { data: Record<string, unknown>; content: string } {
+  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
+  if (!match) return { data: {}, content: raw };
+
+  const parsed = load(match[1]);
+  const data =
+    parsed && typeof parsed === "object" && !Array.isArray(parsed)
+      ? (parsed as Record<string, unknown>)
+      : {};
+
+  return { data, content: raw.slice(match[0].length) };
+}
+
 function toISODate(d: Date): string {
   return d.toISOString().slice(0, 10);
 }
@@ -44,7 +57,7 @@ function readKind(kind: Kind): Doc[] {
     .filter((f) => f.endsWith(".md"))
     .map((f) => {
       const raw = fs.readFileSync(path.join(dir, f), "utf8");
-      const { data, content } = matter(raw);
+      const { data, content } = parseFrontmatter(raw);
       // YAML turns unquoted dates into Date objects; keep them as strings.
       if (data.date instanceof Date) data.date = toISODate(data.date);
       return {

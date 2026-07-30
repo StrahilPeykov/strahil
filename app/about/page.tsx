@@ -3,7 +3,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "A short bio: who Strahil Peykov is, the work he gravitates to, and how this site is built.",
+  description: "About Strahil Peykov: backend engineer, complex-systems student, and builder.",
   alternates: { canonical: "/about" },
 };
 
@@ -14,11 +14,16 @@ export default function About() {
 
       <div className="prose">
         <p>
-          I&apos;m Strahil Peykov, born in Burgas, Bulgaria on 29 March 2002. I
-          finished the School of Mathematics and Natural Sciences in Burgas, moved
-          to Eindhoven in 2021 for a Computer Science &amp; Engineering
-          bachelor&apos;s (graduated 2024), and now work as a software engineer in
-          Amsterdam.
+          I&apos;m Strahil Peykov, a backend software engineer based in Amsterdam.
+          I grew up in Burgas, Bulgaria, moved to Eindhoven in 2021, and completed
+          a BSc in Computer Science &amp; Engineering at TU Eindhoven in 2025.
+          I now work on last-mile delivery systems at Picnic while studying
+          Complex Systems and Policy at the University of Amsterdam.
+        </p>
+        <p>
+          I&apos;m strongest where software design meets operational reality,
+          data modelling, and people who do not speak in implementation details.
+          I like systems that have to be useful outside the screen.
         </p>
         <p>
           I really like games, music, philosophy, and politics, so they inevitably
@@ -26,11 +31,20 @@ export default function About() {
         </p>
       </div>
 
-      <dl className="space-y-2 font-mono text-sm text-muted">
+      <dl className="space-y-3 border-y border-border py-5 font-mono text-sm text-muted">
+        <div>
+          <dt className="text-xs uppercase tracking-wider text-accent">Now</dt>
+          <dd className="mt-1 text-fg">Backend Java developer, Picnic · 2025–present</dd>
+        </div>
+        <div>
+          <dt className="text-xs uppercase tracking-wider text-accent">Education</dt>
+          <dd className="mt-1 text-fg">MSc Complex Systems and Policy, UvA · 2025–present</dd>
+          <dd className="text-fg">BSc Computer Science and Engineering, TU/e · 2021–2025</dd>
+        </div>
         <div>
           <dt className="inline text-fg">Languages: </dt>
           <dd className="inline">
-            Bulgarian (native), English (fluent), and some German, Dutch, French, and Japanese.
+            Bulgarian (native), English (fluent), and beginner Dutch, German, and French.
           </dd>
         </div>
         <div>
