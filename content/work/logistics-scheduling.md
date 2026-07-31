@@ -4,15 +4,14 @@ year: "2025–present"
 weight: 60
 role: Backend Java developer
 stack: [Java, Spring Boot, PostgreSQL, GraphQL]
-summary: Cut a core transport-planning flow's runtime by about 95% while improving solution quality, then moved into last-mile delivery systems.
+summary: "Work across two Picnic teams: transport planning, production support, and last-mile delivery software."
 ---
 
 I joined Picnic in September 2025 through its graduate Tech Academy and started
 in the team responsible for planning truck movements between warehouses and
-local delivery hubs. I progressed from onboarding changes to end-to-end feature
-ownership, performance work, production incident leadership, and preparing the
-service for handover. I later moved into the last-mile team, working on systems
-used by delivery drivers and hub operations.
+local delivery hubs. I worked on the planner itself, investigated production
+problems, and helped prepare the service for handover. I later moved to a
+last-mile team that builds software for delivery drivers and hub operations.
 
 ## Transport planning
 
@@ -26,24 +25,19 @@ repeatedly remove part of it, repair it, and retain better solutions. I
 investigated unexpectedly long runtimes and traced much of the cost to a
 parameter selected years earlier under different operating conditions.
 
-I reconstructed the reasoning behind the old value, built repeatable benchmarks,
-tested representative scenarios across markets, and compared both runtime and
-solution quality. The production change was tiny; the evidence behind it was
-the work. In the tested planning flow, runtime fell by roughly **95%** while
-solution quality improved by **1–7%**, depending on the scenario.
+I reconstructed the reasoning behind the old value and wrote repeatable
+benchmarks for representative scenarios in each market. In those tests, the
+planning flow ran about **95%** faster and produced solutions that were
+**1–7%** better, depending on the scenario.
 
-## Reliability and ownership
+I also changed how forecast demand was grouped across shifts and fixed a timing
+constraint that was being calculated at the wrong aggregation level. Production
+support covered concurrency bugs, reactive-thread starvation, invalid inputs,
+regional calendar exceptions, and unavailable downstream systems.
 
-- **Planning changes.** I owned changes to how forecast demand was grouped and
-  scheduled across shifts, including a correctness fix where a timing constraint
-  was calculated at the wrong aggregation level.
-- **Incidents.** I worked on production failures involving concurrency,
-  reactive-thread starvation, invalid inputs, regional calendar exceptions, and
-  unavailable downstream systems—and turned recurring failure modes into
-  durable fixes.
-- **Handover.** Before the planner entered maintenance mode, I added detection,
-  alerting, safe fallbacks, operator-facing error messages, legacy cleanup, and
-  technical playbooks so it could run without its original team.
+Before the planner entered maintenance mode, I added alerts, fallbacks,
+operator-facing error messages, and technical playbooks. I also removed legacy
+code that would otherwise have been left for the team taking over.
 
 ## Last-mile systems
 
@@ -56,9 +50,3 @@ structured delivery information. The change crossed a GraphQL-facing backend,
 a shared Java client, and a rules service. I corrected an ambiguous missing-data
 contract, introduced batching instead of an accepted N+1 request pattern, and
 sequenced the cross-repository changes so consumers stayed compatible.
-
-## What I took from it
-
-Question assumptions nobody has revisited. Measure the trade-off instead of
-arguing it. Turning incidents into permanent fixes builds trust, and making a
-system survive without its original team is real engineering.

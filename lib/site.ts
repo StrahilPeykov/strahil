@@ -4,7 +4,7 @@ export const site = {
   role: "Backend software engineer",
   location: "Amsterdam",
   description:
-    "Backend software engineer in Amsterdam building production logistics and data systems.",
+    "Backend engineer in Amsterdam, working on logistics software at Picnic.",
 
   // The site's own public URL. Used for canonical links, sitemap, and Open
   // Graph. Change this if the portfolio lives somewhere other than the apex.

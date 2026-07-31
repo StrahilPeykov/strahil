@@ -3,7 +3,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "About Strahil Peykov: backend engineer and builder.",
+  description: "About Strahil Peykov, a backend engineer in Amsterdam.",
   alternates: { canonical: "/about" },
 };
 
@@ -20,9 +20,10 @@ export default function About() {
           I now work on last-mile delivery systems at Picnic.
         </p>
         <p>
-          I&apos;m strongest where software design meets operational reality,
-          data modelling, and people who do not speak in implementation details.
-          I like systems that have to be useful outside the screen.
+          Most of my work has involved software tied to real operations:
+          logistics, internal business processes, and data that other people
+          depend on. I like understanding what people actually need from a
+          system, not just what the ticket says.
         </p>
         <p>
           I really like games, music, philosophy, and politics, so they inevitably
@@ -30,14 +31,14 @@ export default function About() {
         </p>
       </div>
 
-      <dl className="space-y-3 border-y border-border py-5 font-mono text-sm text-muted">
+      <dl className="space-y-2 font-mono text-sm text-muted">
         <div>
-          <dt className="text-xs uppercase tracking-wider text-accent">Now</dt>
-          <dd className="mt-1 text-fg">Backend Java developer, Picnic · 2025–present</dd>
+          <dt className="inline text-fg">Work: </dt>
+          <dd className="inline">Backend Java developer, Picnic · 2025–present</dd>
         </div>
         <div>
-          <dt className="text-xs uppercase tracking-wider text-accent">Education</dt>
-          <dd className="mt-1 text-fg">BSc Computer Science and Engineering, TU/e · 2021–2025</dd>
+          <dt className="inline text-fg">Education: </dt>
+          <dd className="inline">BSc Computer Science and Engineering, TU/e · 2021–2025</dd>
         </div>
         <div>
           <dt className="inline text-fg">Languages: </dt>
@@ -48,8 +49,7 @@ export default function About() {
         <div>
           <dt className="inline text-fg">Colophon: </dt>
           <dd className="inline">
-            Built with Next.js and TypeScript, self-hosted fonts, cookieless
-            analytics, no tracking.{" "}
+            Next.js, TypeScript, self-hosted fonts, and cookieless analytics.{" "}
             <a
               href={site.github + "/strahil"}
               target="_blank"

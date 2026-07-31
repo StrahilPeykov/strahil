@@ -4,15 +4,14 @@ year: 2023
 weight: 30
 role: Security research, course project
 stack: [.NET, reverse engineering]
-summary: Penetration testing of a lockdown exam browser, responsibly disclosed, with fixes credited in the v3.6.0 release.
+summary: A course project in which we found and disclosed several ways around Safe Exam Browser's Windows protections.
 ---
 
-A penetration-testing project on Safe Exam Browser, the lockdown browser used to
-keep online exams honest. Working in a team for TU Eindhoven's offensive-security
-course, we reverse-engineered the Windows client and found several ways to defeat
-its protections, including DLL injection, bypassing its virtual-machine detection,
-and getting around its process monitoring to run disallowed software during an
-exam.
+For TU Eindhoven's offensive-security course, my team tested Safe Exam Browser,
+which restricts what students can access during an online exam. We
+reverse-engineered the Windows client and found several ways around its
+protections, including DLL injection, bypassing virtual-machine detection, and
+evading its process monitoring to run disallowed software.
 
 We disclosed everything responsibly to the maintainers, and the fixes landed in
 the v3.6.0 release, which credits us by name for "proactive, constructive and

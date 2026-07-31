@@ -6,7 +6,7 @@ role: Full-stack, team project
 stack: [Django, Next.js, PostgreSQL]
 url: https://carboninsight.strahil.dev
 source: https://github.com/StrahilPeykov/carboninsight-frontend
-summary: A full-stack tool for manufacturing SMEs to calculate product carbon footprints and support Digital Product Passport workflows.
+summary: A team project for calculating a product's carbon footprint from its bill of materials.
 ---
 
 CarbonInsight helps manufacturing SMEs work out the carbon footprint of a
@@ -19,14 +19,13 @@ child's emissions up by quantity and splitting them across lifecycle stages.
 Because suppliers' bills of materials can reference each other, saving one runs a
 cycle check first so the graph can't close a loop on itself.
 
-Two parts were the most interesting to get right:
+Companies can request footprint data from each other through an approval flow.
+A partner sees the aggregated result, but not the supplier's underlying
+emission breakdown.
 
-- **Sharing without leaking.** Companies can request footprint data from each
-  other through an approval flow, but a partner only ever sees the aggregated
-  number, never the supplier's underlying emission breakdown.
-- **Standards-oriented exports.** The project produced AAS (Asset Administration
-  Shell) and SCSN interchange formats. This supported those workflows; it was
-  not a claim of formal certification.
+We also implemented exports in AAS (Asset Administration Shell) and SCSN
+formats, although the project was not formally certified against either
+standard.
 
 The backend is Django and Django REST Framework over PostgreSQL with token auth;
 the frontend is Next.js and TypeScript. Access is scoped per company throughout,

@@ -4,30 +4,23 @@ year: "2025–2026"
 weight: 55
 role: Hackathon concept and presentation
 stack: [Civic tech, AI product thinking, Rapid prototyping]
-summary: Co-created the winning Amsterdam Policy Hackathon concept and later presented it at the municipality; the municipality is now carrying the project forward.
+summary: A prototype made at the Amsterdam Policy Hackathon, followed by a presentation at the municipality's Energie Kennisuur.
 ---
 
-Energiekompas began at the first Amsterdam Policy Hackathon in September 2025.
-Our team, **Code & Close**, explored how residents could navigate fragmented
-information about energy-saving measures, home improvements, subsidies, and the
-heat transition. We shaped the problem, built an initial prototype, and won the
-hackathon.
+At the first Amsterdam Policy Hackathon in September 2025, I worked with
+Code & Close on Energiekompas. The idea was to help Amsterdam residents find
+information about home energy measures, subsidies, and the heat transition
+without having to piece it together from several places. We built a prototype
+and won the hackathon.
 
-The concept used guided, personalised decision support rather than another
-unstructured information portal. The prototype was a rapid demonstration, not
-a production municipal service.
+The prototype asked residents a short series of questions and used their answers
+to point them towards relevant information. It was a hackathon demo, not a
+production municipal service.
 
-## Taking the idea beyond the hackathon
+## Presenting it at the municipality
 
-After the win, the Municipality of Amsterdam invited the project into further
-conversation. In January 2026, I independently prepared and delivered an
-Energiekompas presentation at the municipality's Energie Kennisuur, presenting
-the concept and prototype to professionals working on the energy transition.
+In January 2026, I prepared and gave a presentation about Energiekompas at the
+Municipality of Amsterdam's Energie Kennisuur. The audience included people
+working on the city's energy transition.
 
-The project has since moved beyond the weekend prototype: the municipality is
-now carrying Energiekompas forward.
-
-What I value most about the experience is the continuity. The useful work was
-not only producing a plausible demo under time pressure, but articulating the
-resident problem clearly enough that the idea could survive the event and enter
-a real institutional context.
+The municipality has since continued developing the project.

@@ -37,10 +37,9 @@ export default function Home() {
           {site.name}
         </h1>
         <p className="max-w-2xl text-lg leading-relaxed">
-          I build backend systems where software meets operational reality. I
-          currently work on last-mile delivery systems at Picnic. Before that I
-          built enterprise tooling at ASML and studied Computer Science &amp;
-          Engineering at TU Eindhoven.
+          I&apos;m a backend engineer at Picnic, working on software used in
+          last-mile delivery. Before that, I built internal tooling at ASML and
+          studied Computer Science &amp; Engineering at TU Eindhoven.
         </p>
         <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-1 font-mono text-sm text-muted">
           <CopyEmail email={site.email} />
@@ -51,7 +50,7 @@ export default function Home() {
       </section>
 
       <section className="space-y-5">
-        <h2 className="font-mono text-sm uppercase tracking-wider text-muted">Selected work</h2>
+        <h2 className="font-mono text-sm text-muted">A few things I&apos;ve worked on</h2>
         <WorkList items={work} />
         <Link href="/work" className="inline-block font-mono text-sm text-muted hover:text-fg">
           all work →
