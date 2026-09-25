@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { site } from "@/lib/site";
-import { getWork } from "@/lib/content";
+import { getDoc, getWork } from "@/lib/content";
 import { CopyEmail } from "@/components/CopyEmail";
 import { WorkList } from "@/components/WorkList";
 
@@ -25,6 +25,7 @@ const personLd = {
 
 export default function Home() {
   const work = getWork().filter((item) => item.featured);
+  const essay = getDoc("writing", "stop-killing-games");
 
   return (
     <div className="space-y-10 sm:space-y-14">
@@ -44,8 +45,9 @@ export default function Home() {
             software for delivery drivers and hub teams.
           </p>
           <p className="leading-relaxed text-muted">
-            Before that, I built internal tools at ASML and studied Computer
-            Science &amp; Engineering at TU Eindhoven.
+            Originally from Burgas, Bulgaria. Before Picnic, I studied at
+            TU Eindhoven and built internal tools at ASML.{" "}
+            <Link href="/about" className="text-link">More about me</Link>.
           </p>
         </div>
         <div className="contact-links flex flex-wrap items-center gap-x-5 gap-y-1 pt-1 text-sm text-muted">
@@ -63,6 +65,20 @@ export default function Home() {
           all work →
         </Link>
       </section>
+
+      {essay && (
+        <section aria-labelledby="writing-heading" className="space-y-5">
+          <h2 id="writing-heading" className="font-mono text-sm text-muted">Writing</h2>
+          <ul className="entry-list">
+            <li>
+              <Link href={`/writing/${essay.slug}`} className="entry-link">
+                <span className="entry-title">{essay.title}</span>
+                <p className="entry-summary">{essay.summary}</p>
+              </Link>
+            </li>
+          </ul>
+        </section>
+      )}
     </div>
   );
 }
