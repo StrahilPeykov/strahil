@@ -44,6 +44,7 @@ Frontmatter fields:
 | `urlLabel`, `sourceLabel` | work | optional descriptive link labels |
 | `overview` | work | opening paragraph, supports Markdown; appears before screenshots |
 | `screenshots` | work | project images with `src`, `alt`, `width`, `height`, `caption`, and optional Markdown `credit`; assets live in `public/work/` |
+| `video` | work | optional MP4 with `src`, `poster`, `width`, `height`, and `caption`; uses native controls, no autoplay, and `preload="none"` |
 
 Adding a piece is just dropping a new `.md` file in the right folder.
 

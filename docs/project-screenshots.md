@@ -1,10 +1,32 @@
-# Project images
+# Project images and video
 
 Application screenshots were captured on 25 September 2026 through the browser at its normal viewport.
 These are actual application screens, compressed to WebP without changing their
 content. Each case study includes descriptive alternative text, a caption, and a
 link to the full-size image. Original captures and temporary source checkouts are
 in the ignored `.design-review/` directory.
+
+## Ruinweavers
+
+- Video: `public/work/ruinweavers-route-gameplay.mp4`, 960 × 600, 30 seconds,
+  with no audio track. Native controls; no autoplay or preloading.
+- Poster: `public/work/ruinweavers-route-gameplay.webp`, 960 × 600, taken from
+  12 seconds into that same recording and converted to WebP.
+- Original: `public/topology/route-gameplay.mp4` in
+  https://github.com/StrahilPeykov/Ruinweavers at
+  `66f07cb012e703477388d33bbdcf6e6b9838f085`.
+- Published source and context:
+  https://ruinweavers.strahil-peykov.workers.dev/topology/.
+- Updated on 25 September 2026 from the author's game repository. The original
+  H.264/MP4 is copied byte-for-byte; no re-encoding or editing.
+- The source labels this current Run Topology 0.3 gameplay, captured after the
+  wall-trim fix, build `5bb3a08e74c4`. The recording shows real keyboard/mouse
+  input with active enemies and connected co-op players.
+  It is an existing recording, not a new playtest or a performance benchmark.
+- The portfolio page identifies the project as a playable prototype and links
+  its public magic rules, walking prediction implementation, and gameplay gallery.
+- Replaces the retired Spatial Design solo clip and its poster. New filenames
+  prevent browser caches from serving the older footage.
 
 ## SQL Valley
 

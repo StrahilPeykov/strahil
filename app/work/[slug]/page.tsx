@@ -74,6 +74,30 @@ export default async function WorkPage({
           <Markdown>{doc.overview}</Markdown>
         </div>
       )}
+      {doc.video && (
+        <figure className="project-figure">
+          <video
+            controls
+            playsInline
+            preload="none"
+            poster={doc.video.poster}
+            width={doc.video.width}
+            height={doc.video.height}
+            aria-label={`${doc.title} gameplay`}
+            aria-describedby="project-video-caption"
+            className="block h-auto w-full border border-border"
+          >
+            <source src={doc.video.src} type="video/mp4" />
+            <a href={doc.video.src}>Watch the gameplay recording</a>
+          </video>
+          <figcaption id="project-video-caption" className="mt-3 flex flex-wrap items-baseline justify-between gap-x-5 gap-y-1 text-sm text-muted">
+            <p className="max-w-[58ch]">{doc.video.caption}</p>
+            <a href={doc.video.src} target="_blank" rel="noreferrer" className="text-link shrink-0 py-1" aria-label={`Watch ${doc.title} gameplay at full size`}>
+              Watch full size <span aria-hidden>↗</span>
+            </a>
+          </figcaption>
+        </figure>
+      )}
       {doc.screenshots?.map((shot, index) => (
         <figure key={shot.src} className="project-figure">
           <Image

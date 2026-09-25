@@ -18,6 +18,13 @@ export type Doc = {
   sourceLabel?: string;
   featured?: boolean;
   overview?: string;
+  video?: {
+    src: string;
+    poster: string;
+    width: number;
+    height: number;
+    caption: string;
+  };
   screenshots?: {
     src: string;
     alt: string;
