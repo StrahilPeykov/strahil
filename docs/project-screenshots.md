@@ -6,6 +6,29 @@ content. Each case study includes descriptive alternative text, a caption, and a
 link to the full-size image. Original captures and temporary source checkouts are
 in the ignored `.design-review/` directory.
 
+## Energiekompas photograph
+
+- Asset: `public/work/energiekompas-team.webp` (800 × 531, 34 KB).
+- Source: first image in Strahil's supplied hackathon post,
+  https://www.linkedin.com/feed/update/urn:li:activity:7373992669779361792/.
+- Retrieved on 25 September 2026 from the image URL exposed by that public post.
+  LinkedIn media ID: `D4D22AQGoiG_t4BfrfA`, version `B4DZlWvOSkIEAg-`.
+- Converted the supplied 800 × 531 JPEG to WebP; no cropping, upscaling,
+  retouching or generated content. Original retained in the ignored
+  `.design-review/energiekompas/` directory.
+- The user supplied the source posts and requested adding the photo to the
+  project page. The organiser's recap credits event photographers Elzė
+  Stanulionytė and Luan Duong:
+  https://www.linkedin.com/feed/update/urn:li:activity:7375835849722195969/.
+  It does not assign individual images to a photographer, and the downloaded
+  JPEG has no EXIF. The displayed credit therefore identifies them as event
+  photographers without claiming which person took this particular image.
+- This is September 2025 hackathon photography, not the January 2026 municipal
+  presentation. It appears beside the hackathon introduction with that date.
+- No open licence is stated by the source. The photograph remains the property
+  of its respective rights holder and is not covered by this repository's MIT
+  code licence.
+
 ## Ruinweavers
 
 - Video: `public/work/ruinweavers-route-gameplay.mp4`, 960 × 600, 30 seconds,

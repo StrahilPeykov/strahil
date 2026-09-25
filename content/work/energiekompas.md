@@ -13,6 +13,16 @@ overview: >-
   of questions. We won the
   [energy-transition challenge at the Amsterdam Policy Hackathon](https://www.linkedin.com/posts/amsterdam-policy-hackathon_what-an-inspiring-weekend-just-over-a-activity-7375831844531085312-jbfb)
   in September 2025.
+screenshots:
+  - src: /work/energiekompas-team.webp
+    alt: Team members wearing event lanyards discuss the project with other hackathon participants.
+    width: 800
+    height: 531
+    caption: Discussing Energiekompas at the Amsterdam Policy Hackathon, September 2025.
+    credit: >-
+      [Photo source](https://www.linkedin.com/feed/update/urn:li:activity:7373992669779361792/).
+      Event photographers: Elzė Stanulionytė and Luan Duong,
+      [credited by the organisers](https://www.linkedin.com/feed/update/urn:li:activity:7375835849722195969/).
 ---
 
 Energiekompas was a hackathon demo, not a production municipal service.
