@@ -1,28 +1,16 @@
 import Link from "next/link";
 import type { Doc } from "@/lib/content";
 
-// Work entries rendered as a numbered "index": editor-style accent line numbers
-// in the gutter, dotted leaders running out to the year. Used on the home page
-// and /work so they stay consistent.
 export function WorkList({ items }: { items: Doc[] }) {
   return (
-    <ul className="border-t border-border">
-      {items.map((w, i) => (
-        <li key={w.slug} className="border-b border-border">
-          <Link href={`/work/${w.slug}`} className="group block py-3.5">
-            <div className="flex items-baseline gap-2 font-mono sm:gap-3">
-              <span className="shrink-0 text-sm tabular-nums text-accent">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <span className="min-w-0 group-hover:text-accent">{w.title}</span>
-              <span
-                aria-hidden
-                className="mx-1 hidden flex-1 translate-y-[-3px] self-center border-b border-dotted border-border sm:block"
-              />
-              {w.year && <span className="shrink-0 text-xs text-muted">{w.year}</span>}
-            </div>
+    <ul className="entry-list">
+      {items.map((w) => (
+        <li key={w.slug}>
+          <Link href={`/work/${w.slug}`} className="entry-link">
+            <span className="entry-title">{w.title}</span>
+            {w.year && <span className="entry-date">{w.year}</span>}
             {w.summary && (
-              <p className="mt-1 max-w-2xl pl-8 text-sm text-muted">{w.summary}</p>
+              <p className="entry-summary">{w.summary}</p>
             )}
           </Link>
         </li>

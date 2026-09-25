@@ -4,12 +4,16 @@ year: "2023–2025"
 weight: 35
 role: Integration engineer intern
 stack: [Mendix, Data modelling, Workflows]
-summary: A Mendix application for managing outsourced workforce resources, built over two internships.
+summary: A Mendix app to replace spreadsheets used to manage outsourced workforce resources.
+overview: >-
+  At ASML, I helped build a Mendix application to replace spreadsheets used for
+  outsourced workforce management. I worked on the domain model, imports, and
+  workflows across two internships, then helped a larger intern team recover
+  from a broken integration and adopt branch-based development.
 ---
 
-Across two internship periods—December 2023 to July 2024 and March to August
-2025—I worked on a Mendix application intended to replace fragmented,
-spreadsheet-driven management of outsourced workforce resources.
+The internships ran from December 2023 to July 2024 and from March to August
+2025.
 
 I started without prior Mendix experience and learned the platform while
 establishing the initial application structure and relational domain model. The

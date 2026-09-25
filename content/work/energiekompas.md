@@ -2,20 +2,18 @@
 title: Energiekompas
 year: "2025–2026"
 weight: 55
+featured: true
 role: Hackathon concept and presentation
 stack: [Civic tech, AI product thinking, Rapid prototyping]
-summary: A prototype made at the Amsterdam Policy Hackathon, followed by a presentation at the municipality's Energie Kennisuur.
+summary: A hackathon prototype to help Amsterdam residents find home energy measures and subsidies.
+overview: >-
+  Amsterdam residents have to piece together information about home energy
+  measures, subsidies, and the heat transition. With Code & Close, I helped build
+  Energiekompas to guide people to relevant information through a short series
+  of questions. We won the Amsterdam Policy Hackathon in September 2025.
 ---
 
-At the first Amsterdam Policy Hackathon in September 2025, I worked with
-Code & Close on Energiekompas. The idea was to help Amsterdam residents find
-information about home energy measures, subsidies, and the heat transition
-without having to piece it together from several places. We built a prototype
-and won the hackathon.
-
-The prototype asked residents a short series of questions and used their answers
-to point them towards relevant information. It was a hackathon demo, not a
-production municipal service.
+Energiekompas was a hackathon demo, not a production municipal service.
 
 ## Presenting it at the municipality
 

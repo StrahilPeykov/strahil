@@ -16,20 +16,21 @@ export default function WritingIndex() {
       {posts.length === 0 ? (
         <p className="text-muted">Nothing published yet.</p>
       ) : (
-        <ul className="border-y border-border">
+        <ul className="entry-list">
           {posts.map((p) => (
-            <li key={p.slug} className="border-b border-border last:border-b-0">
+            <li key={p.slug}>
               <Link
                 href={`/writing/${p.slug}`}
-                className="group flex items-baseline justify-between gap-4 py-4"
+                className="entry-link"
               >
-                <span className="font-mono group-hover:text-accent">
+                <span className="entry-title">
                   {p.title}
                   {p.draft && (
                     <span className="ml-2 border border-border px-1 text-xs text-muted">draft</span>
                   )}
                 </span>
-                {p.date && <span className="font-mono text-xs text-muted">{p.date}</span>}
+                {p.date && <time dateTime={p.date} className="entry-date">{p.date}</time>}
+                {p.summary && <p className="entry-summary">{p.summary}</p>}
               </Link>
             </li>
           ))}

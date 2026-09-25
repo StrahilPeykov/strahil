@@ -14,6 +14,17 @@ export type Doc = {
   stack?: string[];
   url?: string;
   source?: string;
+  urlLabel?: string;
+  sourceLabel?: string;
+  featured?: boolean;
+  overview?: string;
+  screenshots?: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    caption: string;
+  }[];
   weight?: number;
   draft?: boolean;
   content: string;

@@ -6,17 +6,21 @@ My personal site: a small index of real work, plus writing.
 
 - Next.js (App Router) and TypeScript
 - Tailwind CSS v4, driven by a small CSS-variable token layer (see `app/globals.css`)
-- Markdown content via `gray-matter` and `react-markdown`
+- Markdown content via `js-yaml` and `react-markdown`
 - Hosted on Vercel
 
 ## Running locally
 
+Use Node.js 22 or newer.
+
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
 Open http://localhost:3000. Build with `npm run build`.
+If your global npm configuration uses a private registry, install these public
+dependencies with `npm ci --registry=https://registry.npmjs.org`.
 
 ## Content
 
@@ -31,21 +35,35 @@ Frontmatter fields:
 | --- | --- | --- |
 | `title` | both | |
 | `summary` | both | short blurb, also the meta description |
-| `year` | work | shown on the card |
+| `year` | work | shown in the project list |
 | `date` | writing | `YYYY-MM-DD`, sorts newest first |
-| `weight` | work | higher sorts first; the homepage shows the top entries |
+| `weight` | work | higher sorts first |
+| `featured` | work | `true` selects a homepage entry; up to four, sorted by weight |
 | `role`, `stack` | work | small metadata line |
 | `url`, `source` | work | optional live and code links |
+| `urlLabel`, `sourceLabel` | work | optional descriptive link labels |
+| `overview` | work | opening paragraph, supports Markdown; appears before screenshots |
+| `screenshots` | work | list of `src`, `alt`, `width`, `height`, and `caption`; assets live in `public/work/` |
 
 Adding a piece is just dropping a new `.md` file in the right folder.
 
 ## Themes
 
 The whole look comes from one set of CSS variables
-(`--bg --fg --panel --border --accent`). Each theme overrides those five values.
+(`--bg --fg --panel --border --accent`), with secondary text derived as `--muted`.
 The switcher in the header sets `data-theme` on `<html>` and remembers your
 choice. To add a theme, add a block in `app/globals.css` and an entry in
 `lib/themes.ts`.
+
+## Design
+
+The site uses plain backgrounds, a compact text column, and a shared work/writing
+list. Monospace is reserved for the name, navigation, page titles, and metadata;
+project titles and reading text use a proportional font. Dates have their own
+line on phones. Sakura, Ocean, and Terminal retain their original canvas effects.
+
+Research, design decisions, and review notes are in [docs/design-review.md](docs/design-review.md).
+Screenshot sources and reproduction notes are in [docs/project-screenshots.md](docs/project-screenshots.md).
 
 ## Layout
 

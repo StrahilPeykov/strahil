@@ -13,16 +13,16 @@
   --font-sans: var(--font-sans-stack);
 }
 
-/* ── Theme palettes (recycled from Odysseus: just 5 colors per theme) ── */
+/* Theme palettes. */
 :root,
 :root[data-theme="dark"] {
-  --bg: #282c34; --fg: #d8e0e8; --panel: #111111; --border: #355a66; --accent: #e06c75;
+  --bg: #282c34; --fg: #d8e0e8; --panel: #242830; --border: #454b54; --accent: #e57b84;
 }
 :root[data-theme="paper"] {
-  --bg: #faf8f5; --fg: #3b3836; --panel: #ffffff; --border: #d5d0c8; --accent: #b8860b;
+  --bg: #faf8f5; --fg: #3b3836; --panel: #ffffff; --border: #d5d0c8; --accent: #89640a;
 }
 :root[data-theme="sakura"] {
-  --bg: #fbf1f4; --fg: #47353d; --panel: #fff8fa; --border: #e6c4cf; --accent: #c94f7c;
+  --bg: #fbf1f4; --fg: #47353d; --panel: #fff8fa; --border: #e6c4cf; --accent: #b33d69;
 }
 :root[data-theme="ocean"] {
   --bg: #0b1a2c; --fg: #9fd6f5; --panel: #091422; --border: #1e5074; --accent: #4facfe;
@@ -37,9 +37,7 @@
 :root {
   --font-mono-stack: var(--font-mono-src), ui-monospace, "Fira Code", monospace;
   --font-sans-stack: var(--font-sans-src), ui-sans-serif, system-ui, sans-serif;
-  /* 66% keeps muted/secondary text above the WCAG AA contrast threshold for
-     small text across the themes. */
-  --muted: color-mix(in srgb, var(--fg) 66%, var(--bg));
+  --muted: color-mix(in srgb, var(--fg) 72%, var(--bg));
   color-scheme: dark;
 }
 :root[data-theme="paper"],
@@ -67,41 +65,77 @@ body {
   min-height: 100dvh;
 }
 
-/* Subtle dot texture, the restrained version of the Odysseus bg effect. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image: radial-gradient(
-    color-mix(in srgb, var(--fg) 6%, transparent) 1px,
-    transparent 1px
-  );
-  background-size: 22px 22px;
-}
-
-/* These themes use a canvas effect as their texture instead of the dot grid. */
-:root[data-theme="terminal"] body::before,
-:root[data-theme="ocean"] body::before,
-:root[data-theme="sakura"] body::before { display: none; }
-
 /* Monospace for the structural furniture; readable body font for prose. */
 h1, h2, h3, h4, nav, .mono { font-family: var(--font-mono-stack); }
 h1, h2, h3, h4 { line-height: 1.25; font-weight: 600; }
 
-a { color: inherit; text-decoration: none; }
-a:hover { color: var(--accent); }
+@layer base {
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: var(--accent); }
+}
 ::selection { background: color-mix(in srgb, var(--accent) 30%, transparent); }
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-/* ── Prose: markdown article/case-note body ── */
-.prose { max-width: 68ch; }
+/* Dates share a column on wide screens and get their own line on phones. */
+.entry-list { border-top: 1px solid var(--border); }
+.entry-list > li { border-bottom: 1px solid var(--border); }
+.entry-link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "title date" "summary summary";
+  align-items: baseline;
+  column-gap: 1.5rem;
+  row-gap: .4rem;
+  padding-block: 1.25rem;
+}
+.entry-title {
+  grid-area: title;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.45;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .22em;
+}
+.entry-date {
+  grid-area: date;
+  color: var(--muted);
+  font-family: var(--font-mono-stack);
+  font-size: .75rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.entry-summary {
+  grid-area: summary;
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: .9375rem;
+  line-height: 1.65;
+}
+.entry-link:hover .entry-title,
+.entry-link:focus-visible .entry-title {
+  color: var(--accent);
+  text-decoration-line: underline;
+}
+.text-link { text-decoration: underline; text-underline-offset: .2em; }
+.contact-links > a, .contact-links > button { padding-block: .25rem; }
+
+@media (max-width: 39.99rem) {
+  .contact-links > button { flex-basis: 100%; }
+  .entry-link {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "title" "date" "summary";
+    row-gap: .35rem;
+  }
+  .entry-summary { margin-top: .15rem; }
+}
+
+/* Reading pages. */
+.prose { max-width: 65ch; font-size: 1.0625rem; line-height: 1.75; }
 .prose > :first-child { margin-top: 0; }
 .prose p, .prose ul, .prose ol, .prose blockquote { margin: 0 0 1.1em; }
-.prose h2 { margin: 1.8em 0 .6em; font-size: 1.2rem; }
-.prose h3 { margin: 1.5em 0 .5em; font-size: 1.05rem; }
+.prose h2 { margin: 2em 0 .65em; font-family: var(--font-sans-stack); font-size: 1.25rem; }
+.prose h3 { margin: 1.5em 0 .5em; font-family: var(--font-sans-stack); font-size: 1.1rem; }
 .prose ul, .prose ol { padding-left: 1.4em; }
 .prose li { margin: .25em 0; }
 .prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }

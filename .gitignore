@@ -28,3 +28,6 @@ next-env.d.ts
 
 # private context (not committed)
 .context/
+
+# Local screenshots and design review artifacts
+.design-review/

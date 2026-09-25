@@ -42,7 +42,7 @@ export default async function WritingPage({
 
   return (
     <article className="space-y-6">
-      <Link href="/writing" className="font-mono text-sm text-muted hover:text-fg">
+      <Link href="/writing" className="inline-block font-mono text-sm text-muted hover:text-fg">
         ← writing
       </Link>
       <header className="space-y-2">

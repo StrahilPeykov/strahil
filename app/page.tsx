@@ -24,10 +24,10 @@ const personLd = {
 };
 
 export default function Home() {
-  const work = getWork().slice(0, 4);
+  const work = getWork().filter((item) => item.featured).slice(0, 4);
 
   return (
-    <div className="space-y-14">
+    <div className="space-y-10 sm:space-y-14">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
@@ -36,23 +36,30 @@ export default function Home() {
         <h1 className="font-mono text-3xl font-semibold tracking-tight sm:text-4xl">
           {site.name}
         </h1>
-        <p className="max-w-2xl text-lg leading-relaxed">
-          I&apos;m a backend engineer at Picnic, working on software used in
-          last-mile delivery. Before that, I built internal tooling at ASML and
-          studied Computer Science &amp; Engineering at TU Eindhoven.
-        </p>
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-1 font-mono text-sm text-muted">
+        <div className="max-w-2xl space-y-3">
+          <p className="text-lg leading-relaxed">
+            I&apos;m a backend engineer at{" "}
+            <Link href="/work/logistics-scheduling" className="text-link text-accent">Picnic</Link>{" "}
+            in Amsterdam. I work on
+            software for delivery drivers and hub teams.
+          </p>
+          <p className="leading-relaxed text-muted">
+            Before that, I built internal tools at ASML and studied Computer
+            Science &amp; Engineering at TU Eindhoven.
+          </p>
+        </div>
+        <div className="contact-links flex flex-wrap items-center gap-x-5 gap-y-1 pt-1 text-sm text-muted">
           <CopyEmail email={site.email} />
-          <a href={site.github} target="_blank" rel="noreferrer" className="hover:text-fg">github</a>
-          <a href={site.linkedin} target="_blank" rel="noreferrer" className="hover:text-fg">linkedin</a>
-          <a href={site.cv} target="_blank" rel="noreferrer" className="hover:text-fg">cv</a>
+          <a href={site.github} target="_blank" rel="noreferrer" className="text-link hover:text-fg">GitHub</a>
+          <a href={site.linkedin} target="_blank" rel="noreferrer" className="text-link hover:text-fg">LinkedIn</a>
+          <a href={site.cv} target="_blank" rel="noreferrer" className="text-link hover:text-fg">CV</a>
         </div>
       </section>
 
       <section className="space-y-5">
         <h2 className="font-mono text-sm text-muted">A few things I&apos;ve worked on</h2>
         <WorkList items={work} />
-        <Link href="/work" className="inline-block font-mono text-sm text-muted hover:text-fg">
+        <Link href="/work" className="text-link inline-block py-1 font-mono text-sm text-muted hover:text-fg">
           all work →
         </Link>
       </section>

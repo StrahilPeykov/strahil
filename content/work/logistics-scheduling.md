@@ -2,9 +2,15 @@
 title: Backend engineering at Picnic
 year: "2025–present"
 weight: 60
+featured: true
 role: Backend Java developer
 stack: [Java, Spring Boot, PostgreSQL, GraphQL]
-summary: "Work across two Picnic teams: transport planning, production support, and last-mile delivery software."
+summary: Java services for truck planning, delivery drivers, and hub operations.
+overview: >-
+  At Picnic, I investigated slow truck-planning runs and benchmarked changes
+  that made the planning flow about **95% faster**, with **1–7% better solutions**
+  in representative test scenarios. I now work on delivery systems for drivers
+  and hub teams, including structured delivery information across several Java services.
 ---
 
 I joined Picnic in September 2025 through its graduate Tech Academy and started

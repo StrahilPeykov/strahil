@@ -2,16 +2,32 @@
 title: CarbonInsight
 year: 2025
 weight: 40
+featured: true
 role: Full-stack, team project
 stack: [Django, Next.js, PostgreSQL]
 url: https://carboninsight.strahil.dev
+urlLabel: Visit CarbonInsight
 source: https://github.com/StrahilPeykov/carboninsight-frontend
+sourceLabel: View frontend source
+screenshots:
+  - src: /work/carboninsight-product.webp
+    alt: CarbonInsight product screen with a calculated footprint and a table of component and transport emissions.
+    width: 1280
+    height: 720
+    caption: Product footprint and component breakdown in the original app, running locally with sample data. Company names and numbers come from test fixtures.
 summary: A team project for calculating a product's carbon footprint from its bill of materials.
+overview: >-
+  A product's carbon footprint depends on the components and processes behind
+  it. For my Bachelor End Project, I worked across the frontend and backend of
+  CarbonInsight with my team. We built a prototype that rolls emissions up
+  through a bill of materials and lets companies request footprint data from suppliers.
 ---
 
-CarbonInsight helps manufacturing SMEs work out the carbon footprint of a
-product and prepare Digital Product Passport information. It was
-my team's Bachelor End Project, built for an EU-funded manufacturing initiative.
+We built CarbonInsight for an EU-funded manufacturing initiative, to help
+manufacturing SMEs calculate product footprints and prepare Digital Product
+Passport information.
+
+## Calculating the footprint
 
 The core is a supply-chain model: a product is a bill of materials made of other
 products, and its footprint is computed recursively down that tree, rolling each
@@ -30,6 +46,3 @@ standard.
 The backend is Django and Django REST Framework over PostgreSQL with token auth;
 the frontend is Next.js and TypeScript. Access is scoped per company throughout,
 and the whole thing ships through CI with tests and coverage.
-
-The public demo is a mock copy of the project rather than a live production
-system.

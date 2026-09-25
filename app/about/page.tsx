@@ -20,12 +20,6 @@ export default function About() {
           I now work on last-mile delivery systems at Picnic.
         </p>
         <p>
-          Most of my work has involved software tied to real operations:
-          logistics, internal business processes, and data that other people
-          depend on. I like understanding what people actually need from a
-          system, not just what the ticket says.
-        </p>
-        <p>
           I really like games, music, philosophy, and politics, so they inevitably
           bleed into the things I do.
         </p>

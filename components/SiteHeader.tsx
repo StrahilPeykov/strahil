@@ -9,7 +9,7 @@ export function SiteHeader() {
       <Link href="/" className="font-mono font-semibold tracking-tight hover:text-accent">
         {site.name}
       </Link>
-      <nav className="flex items-center gap-5 font-mono text-sm text-muted">
+      <nav aria-label="Main" className="flex items-center gap-5 font-mono text-sm text-muted">
         <NavLinks />
         <ThemeSwitcher />
       </nav>
