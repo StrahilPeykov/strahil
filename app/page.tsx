@@ -24,7 +24,7 @@ const personLd = {
 };
 
 export default function Home() {
-  const work = getWork().filter((item) => item.featured).slice(0, 4);
+  const work = getWork().filter((item) => item.featured);
 
   return (
     <div className="space-y-10 sm:space-y-14">

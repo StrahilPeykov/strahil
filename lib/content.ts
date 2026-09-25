@@ -24,6 +24,7 @@ export type Doc = {
     width: number;
     height: number;
     caption: string;
+    credit?: string;
   }[];
   weight?: number;
   draft?: boolean;

@@ -8,7 +8,9 @@ summary: A course project in which we found and disclosed several ways around Sa
 overview: >-
   For TU Eindhoven's offensive-security course, my team found several ways
   around Safe Exam Browser's Windows protections and disclosed them to its
-  maintainers. The fixes landed in version 3.6.0, which credits our team by name.
+  maintainers. The fixes landed in
+  [version 3.6.0](https://github.com/SafeExamBrowser/seb-win-refactoring/releases/tag/v3.6.0),
+  which credits our team by name.
 ---
 
 Safe Exam Browser restricts what students can access during an online exam.
@@ -16,6 +18,5 @@ We reverse-engineered the Windows client and tested DLL injection,
 bypassing virtual-machine detection, and
 evading its process monitoring to run disallowed software.
 
-We disclosed everything responsibly to the maintainers, and the fixes landed in
-the v3.6.0 release, which credits us by name for "proactive, constructive and
-responsible vulnerability disclosure."
+The maintainers thanked our team for "proactive, constructive and responsible
+vulnerability disclosure."

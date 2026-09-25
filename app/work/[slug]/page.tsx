@@ -85,11 +85,18 @@ export default async function WorkPage({
             loading={index === 0 ? "eager" : "lazy"}
             className="block h-auto w-full border border-border"
           />
-          <figcaption className="mt-3 flex flex-wrap items-baseline justify-between gap-x-5 gap-y-1 text-sm text-muted">
-            <p className="max-w-[58ch]">{shot.caption}</p>
-            <a href={shot.src} target="_blank" rel="noreferrer" className="text-link shrink-0 py-1" aria-label={`View screenshot ${index + 1} of ${doc.title} at full size`}>
-              View full size <span aria-hidden>↗</span>
-            </a>
+          <figcaption className="mt-3 space-y-1 text-sm text-muted">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-5 gap-y-1">
+              <p className="max-w-[58ch]">{shot.caption}</p>
+              <a href={shot.src} target="_blank" rel="noreferrer" className="text-link shrink-0 py-1" aria-label={`View image ${index + 1} of ${doc.title} at full size`}>
+                View full size <span aria-hidden>↗</span>
+              </a>
+            </div>
+            {shot.credit && (
+              <div className="text-xs leading-relaxed [&_a]:underline [&_a]:underline-offset-2 [&_a:hover]:text-fg">
+                <Markdown>{shot.credit}</Markdown>
+              </div>
+            )}
           </figcaption>
         </figure>
       ))}

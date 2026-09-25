@@ -38,12 +38,12 @@ Frontmatter fields:
 | `year` | work | shown in the project list |
 | `date` | writing | `YYYY-MM-DD`, sorts newest first |
 | `weight` | work | higher sorts first |
-| `featured` | work | `true` selects a homepage entry; up to four, sorted by weight |
+| `featured` | work | `true` selects a homepage entry, sorted by weight |
 | `role`, `stack` | work | small metadata line |
 | `url`, `source` | work | optional live and code links |
 | `urlLabel`, `sourceLabel` | work | optional descriptive link labels |
 | `overview` | work | opening paragraph, supports Markdown; appears before screenshots |
-| `screenshots` | work | list of `src`, `alt`, `width`, `height`, and `caption`; assets live in `public/work/` |
+| `screenshots` | work | project images with `src`, `alt`, `width`, `height`, `caption`, and optional Markdown `credit`; assets live in `public/work/` |
 
 Adding a piece is just dropping a new `.md` file in the right folder.
 

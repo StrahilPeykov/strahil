@@ -37,7 +37,7 @@ export default function About() {
         <div>
           <dt className="inline text-fg">Languages: </dt>
           <dd className="inline">
-            Bulgarian (native), English (fluent), and beginner Dutch, German, and French.
+            Bulgarian (native), English (fluent), basic Japanese, and a little Dutch and German.
           </dd>
         </div>
         <div>

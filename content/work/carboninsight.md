@@ -3,7 +3,7 @@ title: CarbonInsight
 year: 2025
 weight: 40
 featured: true
-role: Full-stack, team project
+role: Full-stack developer and project lead
 stack: [Django, Next.js, PostgreSQL]
 url: https://carboninsight.strahil.dev
 urlLabel: Visit CarbonInsight
@@ -18,14 +18,15 @@ screenshots:
 summary: A team project for calculating a product's carbon footprint from its bill of materials.
 overview: >-
   A product's carbon footprint depends on the components and processes behind
-  it. For my Bachelor End Project, I worked across the frontend and backend of
-  CarbonInsight with my team. We built a prototype that rolls emissions up
+  it. For my Bachelor End Project, I helped organise our team and worked across
+  CarbonInsight's frontend and backend. We built a prototype that rolls emissions up
   through a bill of materials and lets companies request footprint data from suppliers.
 ---
 
-We built CarbonInsight for an EU-funded manufacturing initiative, to help
-manufacturing SMEs calculate product footprints and prepare Digital Product
-Passport information.
+We built CarbonInsight with
+[Brainport Industries and TU/e](https://www.brainportindustries.com/nl/nieuws-en-agenda/nieuws/samenwerking-tussen-brainport-industries-en-tu-e-leidt-tot-carboninsight-een-praktische-innovatie-voor-mkb-bedrijven-in-de-maakindustrie)
+as part of the EU-funded AI REDGIO 5.0 initiative, to help manufacturing SMEs
+calculate product footprints and prepare Digital Product Passport information.
 
 ## Calculating the footprint
 

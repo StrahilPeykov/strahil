@@ -10,7 +10,9 @@ overview: >-
   Amsterdam residents have to piece together information about home energy
   measures, subsidies, and the heat transition. With Code & Close, I helped build
   Energiekompas to guide people to relevant information through a short series
-  of questions. We won the Amsterdam Policy Hackathon in September 2025.
+  of questions. We won the
+  [energy-transition challenge at the Amsterdam Policy Hackathon](https://www.linkedin.com/posts/amsterdam-policy-hackathon_what-an-inspiring-weekend-just-over-a-activity-7375831844531085312-jbfb)
+  in September 2025.
 ---
 
 Energiekompas was a hackathon demo, not a production municipal service.
